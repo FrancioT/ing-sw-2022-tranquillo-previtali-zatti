@@ -12,6 +12,7 @@ public class Teacher {
     }
 
     public static Teacher(){
-        private
+        private static bool istanced = false;
+
     }
 }

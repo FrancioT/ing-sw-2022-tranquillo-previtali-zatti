@@ -5,6 +5,8 @@ import com.sun.tools.javac.util.List;
 public class Bag {
     private List<Student> studentsList;
 
-    public Student randomExtraction(){}
+    public Student randomExtraction(){
+
+    }
 
 }
