@@ -6,6 +6,8 @@ public class Bag {
     
     private List<Student> studentsList;
 
-    public Student randomExtraction(){}
+    public Student randomExtraction(){
+
+    }
 
 }
