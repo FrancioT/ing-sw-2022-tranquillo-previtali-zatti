@@ -6,5 +6,5 @@ public class CharacterCardS extends CharacterCard{
     private List<Student> students;
     private Bag bag;
 
-    public Student removeStudent(colour c){}
+    public Student removeStudent(Colour c){}
 }

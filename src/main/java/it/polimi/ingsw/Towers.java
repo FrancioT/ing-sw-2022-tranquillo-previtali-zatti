@@ -5,7 +5,7 @@ import com.sun.tools.javac.util.List;
 public class Towers {
     private int availableTowers;
     private static boolean createdFlag;
-    private colourT colour;
+    private ColourT colour;
 
     public int availabilityChecker(){}
     public void availabilityModifier(int delta){}
