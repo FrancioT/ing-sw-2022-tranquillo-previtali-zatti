@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ING-SW" />
+        <module name="softeng-GC37" />
       </profile>
     </annotationProcessing>
   </component>
