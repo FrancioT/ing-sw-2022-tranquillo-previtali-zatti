@@ -5,14 +5,15 @@ import java.util.List;
 public class Teacher {
     private Player currentPos;
     private colour colour;
-    private boolean CreatedFlag;
+    private static boolean CreatedFlag;
 
     public Player getCurrentPos(){
         return currentPos;
     }
 
-    public static Teacher(){
-        private static bool istanced = false;
+    public static List<Teacher> teachersCreator(){
+        private static Boolean istanced = false;
+        private static List<Teacher> teacherList;
 
     }
 }
