@@ -1,14 +1,14 @@
 package it.polimi.ingsw;
 
 public class Student {
-    private colour colour;
+    private Colour colour;
 
-    Student(colour c)
+    Student(Colour c)
     {
         colour=c;
     }
 
-    public it.polimi.ingsw.colour getColour() {
+    public Colour getColour() {
         return colour;
     }
 
