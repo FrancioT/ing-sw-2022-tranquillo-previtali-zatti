@@ -12,8 +12,10 @@ public class Teacher {
     }
 
     public static List<Teacher> teachersCreator(){
-        private static Boolean istanced = false;
-        private static List<Teacher> teacherList;
+        private Boolean istanced = false;
+        private List<Teacher> teachersList;
+
+        public static
 
     }
 }
