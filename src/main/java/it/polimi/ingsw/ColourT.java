@@ -1,6 +1,6 @@
 package it.polimi.ingsw;
 
-public enum colourT {
+public enum ColourT {
     white,
     grey,
     black

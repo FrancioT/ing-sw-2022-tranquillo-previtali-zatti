@@ -20,7 +20,7 @@ class Entrance
                 this.students.add(s.clone());
         }
     }
-    Student entranceEmptier(colour c) throws EmptyException, UnexistingException
+    Student entranceEmptier(Colour c) throws EmptyException, UnexistingException
     {
         for(Student s: students)
         {
@@ -34,9 +34,9 @@ class Entrance
         }
         throw new UnexistingException();
     }
-    List<colour> getStudents()
+    List<Colour> getStudents()
     {
-        List<colour> studColours=new ArrayList<>();
+        List<Colour> studColours=new ArrayList<>();
         for(Student s: students)
         {
             studColours.add(s.getColour());

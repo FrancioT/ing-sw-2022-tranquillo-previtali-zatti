@@ -7,6 +7,6 @@ public class Island extends Tile{
     private boolean inhibitionFlag;
 
     public void islandsLinker(){}
-    public colour dominance(){}
+    public Colour dominance(){}
     public void towersSwitcher(Towers t){}
 }
