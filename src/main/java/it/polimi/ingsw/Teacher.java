@@ -11,7 +11,9 @@ public class Teacher {
         return currentPos;
     }
 
-    public static List<Teacher> teacherCreator(){
-        private static bool istanced = false;
+    public static List<Teacher> teachersCreator(){
+        private static Boolean istanced = false;
+        private static List<Teacher> teacherList;
+
     }
 }
