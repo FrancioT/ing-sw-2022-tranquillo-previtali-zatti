@@ -28,4 +28,24 @@ public class Dashboard
     {
         return entrance.getStudents();
     }
+    public void addStudent(Student student)
+    {
+        classrooms.addStudent(student);
+    }
+    public void addTeacher(Teacher teacher) throws TooManyTeachersException, TeacherAlreadyInException
+    {
+        classrooms.addTeacher(teacher);
+    }
+    public Teacher removeTeacher(Colour colour) throws NoSuchTeacherException
+    {
+        return classrooms.removeTeacher(colour);
+    }
+    public int getStudentNum(Colour colour)
+    {
+        return classrooms.getStudentNum(colour);
+    }
+    public boolean checkTeacherPresence(Colour colour)
+    {
+        return classrooms.checkTeacherPresence(colour);
+    }
 }
