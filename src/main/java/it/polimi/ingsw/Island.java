@@ -21,4 +21,10 @@ public class Island extends Tile{
             motherNatureFlag=true;
         }
     }
+
+    @Override
+    public void removeStudents(){
+        //add exception because in island we can't remove students
+        throw
+    }
 }
