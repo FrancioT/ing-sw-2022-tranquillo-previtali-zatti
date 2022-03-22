@@ -9,10 +9,9 @@ public class Teacher {
     private static List<Teacher> teachers;
     private static boolean createdFlag=false;
 
-    Teacher(Colour c)
+    private Teacher(Colour c)
     {
         colour=c;
-        teachers= new ArrayList<>();
     }
 
     public Player getCurrentPos(){
@@ -28,6 +27,7 @@ public class Teacher {
     {
         if(createdFlag==false)
         {
+            teachers= new ArrayList<>();
             for(Colour c: Colour.values())
             {
                 teachers.add(new Teacher(c));
@@ -36,4 +36,6 @@ public class Teacher {
         }
         return teachers;
     }
+
+    public void setNewPos(Player player) { currentPos=player; }
 }

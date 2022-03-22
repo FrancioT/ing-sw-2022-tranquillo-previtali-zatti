@@ -9,11 +9,11 @@ public class Dashboard
     private Classrooms classrooms;
     private Towers towers;
 
-    Dashboard(Classrooms classrooms, Entrance entrance, Towers towers)
+    public Dashboard(Towers towers)
     {
-        classrooms=classrooms;
-        entrance=entrance;
-        towers=towers;
+        classrooms=new Classrooms();
+        entrance=new Entrance();
+        this.towers=towers;
     }
 
     public void entranceFiller(List<Student> students) throws FullEntranceException
