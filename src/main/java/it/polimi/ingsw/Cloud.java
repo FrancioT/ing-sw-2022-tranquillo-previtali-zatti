@@ -1,5 +1,7 @@
 package it.polimi.ingsw;
 
+import it.polimi.ingsw.Dashboard.FullEntranceException;
+
 import java.util.List;
 
 public class Cloud extends Tile{
