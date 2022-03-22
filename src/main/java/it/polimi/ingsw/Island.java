@@ -9,4 +9,16 @@ public class Island extends Tile{
     public void islandsLinker(){}
     public Colour dominance(){}
     public void towersSwitcher(Towers t){}
+
+    public void setMotherNatureFlag()
+    {
+        if(motherNatureFlag==false)
+        {
+            motherNatureFlag=true;
+        }
+        else
+        {
+            motherNatureFlag=true;
+        }
+    }
 }
