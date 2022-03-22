@@ -1,9 +1,9 @@
 package it.polimi.ingsw;
 
 public class CharacterCard {
-    protected int price;
+    protected final int price;
     protected int overPrice;
-    protected int cardID;
+    protected final int cardID;
 
     public int getPrice() {
         return price+overPrice;
