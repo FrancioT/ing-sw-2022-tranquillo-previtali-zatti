@@ -2,9 +2,7 @@ package it.polimi.ingsw.Dashboard;
 import it.polimi.ingsw.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 class Classrooms
 {

@@ -1,6 +1,6 @@
 package it.polimi.ingsw;
 
-import com.sun.tools.javac.util.List;
+import java.util.List;
 
 public class Cloud extends Tile{
     private Bag bag;
