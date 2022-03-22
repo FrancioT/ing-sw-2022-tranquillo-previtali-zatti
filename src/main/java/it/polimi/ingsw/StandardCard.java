@@ -1,8 +1,8 @@
 package it.polimi.ingsw;
 
 public class StandardCard {
-    private int roundValue;
-    private int mnValue;
+    private final int roundValue;
+    private final int mnValue;
 
     public int getRoundValue(){
         return roundValue;

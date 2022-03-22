@@ -1,7 +1,7 @@
 package it.polimi.ingsw;
 
 public class Student {
-    private Colour colour;
+    private final Colour colour;
 
     Student(Colour c)
     {
