@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Dashboard
 {
-    private Entrance entrance;
-    private Classrooms classrooms;
-    private Towers towers;
+    private final Entrance entrance;
+    private final Classrooms classrooms;
+    private final Towers towers;
 
     public Dashboard(Towers towers)
     {
