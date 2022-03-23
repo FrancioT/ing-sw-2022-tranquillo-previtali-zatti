@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Dashboard;
 import it.polimi.ingsw.*;
+import it.polimi.ingsw.Exceptions.*;
 
 import java.util.List;
 

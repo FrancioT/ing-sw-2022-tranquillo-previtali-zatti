@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Dashboard;
 import java.util.*;
 import it.polimi.ingsw.*;
+import it.polimi.ingsw.Exceptions.*;
 
 class Entrance
 {

@@ -1,8 +1,7 @@
 package it.polimi.ingsw;
 
 import it.polimi.ingsw.Dashboard.Dashboard;
-
-import java.util.ArrayList;
+import it.polimi.ingsw.Exceptions.*;
 import java.util.List;
 
 public class Player {
@@ -10,30 +9,46 @@ public class Player {
     private String nickName;
     private final Dashboard playerDashboard;
     private final Deck playerDeck;
-    private static List<Player> players;
-    private static boolean createdFlag=false;
 
-    private Player(String uID, Dashboard dashboard, Deck deck)
+    Player(String uID, Towers towers)
     {
         this.uID=uID;
-        this.playerDashboard=dashboard;
-        this.playerDeck=deck;
-    }
-
-    // the model must pass the list of Towers in the same order of the uIDs, in there are 4 players
-    // the list must be like [towers1, towers1, towers2, towers2] because the towers are shared
-    public static List<Player> playersCreator(int playerNum, List<String> uIDs, List<Towers> towers)
-    {
-        if(createdFlag==false)
-        {
-            players=new ArrayList<>();
-            for(int i=0;i<playerNum;i++)
-            {
-                players.add(new Player(uIDs.get(i), new Dashboard(towers.get(i)), new Deck()));
-            }
-            createdFlag=true;
-        }
-        return players;
+        this.playerDashboard=new Dashboard(towers);
+        this.playerDeck=new Deck();
     }
     public void setNickName(String nickName) { this.nickName=nickName; }
+
+    public void entranceFiller(List<Student> students) throws FullEntranceException
+    {
+        playerDashboard.entranceFiller(students);
+    }
+    public Student entranceEmptier(Colour c) throws EmptyException, UnexistingException
+    {
+        return playerDashboard.entranceEmptier(c);
+    }
+    public List<Colour> getStudents()
+    {
+        return playerDashboard.getStudents();
+    }
+    public void addStudent(Student student)
+    {
+        playerDashboard.addStudent(student);
+    }
+    public void addTeacher(Teacher teacher) throws TooManyTeachersException, TeacherAlreadyInException
+    {
+        playerDashboard.addTeacher(teacher);
+    }
+    public Teacher removeTeacher(Colour colour) throws NoSuchTeacherException
+    {
+        return playerDashboard.removeTeacher(colour);
+    }
+    public int getStudentNum(Colour colour)
+    {
+        return playerDashboard.getStudentNum(colour);
+    }
+    public boolean checkTeacherPresence(Colour colour)
+    {
+        return playerDashboard.checkTeacherPresence(colour);
+    }
+    public StandardCard cardDiscarder(int pos) { return playerDeck.cardDiscarder(pos); }
 }

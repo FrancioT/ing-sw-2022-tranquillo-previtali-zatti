@@ -1,5 +1,8 @@
 package it.polimi.ingsw.Dashboard;
 import it.polimi.ingsw.*;
+import it.polimi.ingsw.Exceptions.NoSuchTeacherException;
+import it.polimi.ingsw.Exceptions.TeacherAlreadyInException;
+import it.polimi.ingsw.Exceptions.TooManyTeachersException;
 
 import java.util.ArrayList;
 import java.util.List;

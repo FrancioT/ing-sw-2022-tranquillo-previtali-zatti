@@ -1,5 +1,7 @@
 package it.polimi.ingsw;
 
+import it.polimi.ingsw.Exceptions.FullEntranceException;
+
 public class Cloud extends Tile{
     private Bag bag;
 
@@ -16,7 +18,8 @@ public class Cloud extends Tile{
         }
     }
 
-    public void cloudEmptier(it.polimi.ingsw.Dashboard.Dashboard d){
+    public void cloudEmptier(it.polimi.ingsw.Dashboard.Dashboard d) throws FullEntranceException
+    {
         d.entranceFiller(this.getStudents());
         removeStudents();
     }
