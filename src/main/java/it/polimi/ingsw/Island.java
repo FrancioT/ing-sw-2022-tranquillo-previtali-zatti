@@ -18,7 +18,7 @@ public class Island extends Tile{
         }
         else
         {
-            motherNatureFlag=true;
+            motherNatureFlag=false;
         }
     }
 
