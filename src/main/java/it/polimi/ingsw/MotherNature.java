@@ -16,9 +16,9 @@ public class MotherNature {
 
     public void jumpNextPos(Island i)
     {
-        currentPos.setMotherNatureFlag();
+        currentPos.setMotherNatureFlag(); /*sets the flag of the old island to false*/
         currentPos=i;
-        currentPos.setMotherNatureFlag();
+        currentPos.setMotherNatureFlag(); /*sets the flag of the new island to true*/
     }
 
 }
