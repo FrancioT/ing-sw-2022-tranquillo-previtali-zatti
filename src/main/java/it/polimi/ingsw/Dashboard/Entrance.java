@@ -18,7 +18,7 @@ class Entrance
             if(this.students.size()>9)
                 throw new FullEntranceException();
             else
-                this.students.add(s.clone());
+                this.students.add(s);
         }
     }
     Student entranceEmptier(Colour c) throws EmptyException, UnexistingException

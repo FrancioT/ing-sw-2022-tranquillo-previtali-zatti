@@ -1,5 +1,6 @@
 package it.polimi.ingsw;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Tile {
@@ -9,7 +10,13 @@ public class Tile {
         studentsList.add(s);
     }
 
-    public List<Student> getStudents() {
-        return studentsList;
+    public List<Colour> getStudentsColours()
+    {
+        List<Colour> colours=new ArrayList<>();
+        for(Student s: studentsList)
+        {
+            colours.add(s.getColour());
+        }
+        return colours;
     }
 }

@@ -8,12 +8,5 @@ public class Student {
         colour=c;
     }
 
-    public Colour getColour() {
-        return colour;
-    }
-
-    public Student clone()
-    {
-        return new Student(colour);
-    }
+    public Colour getColour() { return colour; }
 }
