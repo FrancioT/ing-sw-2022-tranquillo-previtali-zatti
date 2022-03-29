@@ -27,7 +27,8 @@ public class Model {
                 tmp = p;
         }
         assert tmp != null;
-        cloudsList.get(i_cloud).cloudEmptier(tmp.getPlayerDashboard());
+        tmp.entranceFiller(cloudsList.get(i_cloud).getStudents());
+        cloudsList.get(i_cloud).cloudEmptier();
     }
 
     public StandardCard cardDiscarder(String uID, int pos){

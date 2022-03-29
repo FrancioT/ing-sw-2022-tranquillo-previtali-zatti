@@ -18,9 +18,8 @@ public class Cloud extends Tile{
         }
     }
 
-    public void cloudEmptier(Dashboard d) throws FullEntranceException
+    public void cloudEmptier() throws FullEntranceException
     {
-        d.entranceFiller(this.getStudents());
         removeStudents();
     }
 }
