@@ -1,10 +1,10 @@
 package it.polimi.ingsw;
 import it.polimi.ingsw.Exceptions.*;
-
 import java.util.List;
 import java.util.Objects;
 
 public class Model {
+    private List<Teacher> teachersList;
     private List<Island> islandsList;
     private List<Cloud> cloudsList;
     private List<Player> playersList;
@@ -18,7 +18,29 @@ public class Model {
         }
     }
 
-    public void teacherDominance(String uID, Colour c){}
+    public void teacherDominance(String uID, Colour c){
+        Player player1 = null;
+        Player player2;
+        int num1, num2;
+        Teacher teacher = null;
+
+        for(Player p : playersList)
+            if(p.getuID().equals(uID))
+                player1 = p;
+
+        if (!player1.checkTeacherPresence(c)){
+            for(Teacher t : teachersList)
+                if(t.getColour() == c)
+                    teacher = t;
+            player2 = teacher.getCurrentPos();
+            num1 = player1.getStudentNum(c);
+            num2 = player2.getStudentNum(c);
+            if(num1 > num2){
+                player1.addTeacher(player2.removeTeacher(c));
+                teacher.setNewPos(player1);
+            }
+        }
+    }
 
     public void cloudEmptier(String uID, int i_cloud) throws FullEntranceException {
         Player tmp = null;
@@ -75,6 +97,8 @@ public class Model {
         i = i + deltaPos;
         motherNature.jumpNextPos(islandsList.get(i));
     }
+
+    private void islandDominance(Island island){}
 
     public void handleCard(int index){}
 }
