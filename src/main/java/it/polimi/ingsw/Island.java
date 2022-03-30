@@ -1,6 +1,7 @@
 package it.polimi.ingsw;
 
 import it.polimi.ingsw.Exceptions.EmptyException;
+import it.polimi.ingsw.Exceptions.FullTowersException;
 import it.polimi.ingsw.Exceptions.LinkFailedException;
 
 import java.util.ArrayList;
@@ -63,8 +64,7 @@ public class Island extends Tile
             throw new EmptyException();
     }
 
-    public void towersSwitcher(Towers newTowers)
-    {
+    public void towersSwitcher(Towers newTowers) throws FullTowersException {
         if(numTowers==0)
         {
             towers = newTowers;
