@@ -17,14 +17,6 @@ public class Island extends Tile{
             motherNatureFlag=true;
         }
         else
-        {
             motherNatureFlag=false;
-        }
-    }
-
-    @Override
-    public void removeStudents(){
-        //add exception because in island we can't remove students
-        throw
     }
 }

@@ -1,6 +1,9 @@
 package it.polimi.ingsw;
-
+import it.polimi.ingsw.Dashboard.*;
 import it.polimi.ingsw.Exceptions.FullEntranceException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Cloud extends Tile{
     private Bag bag;
@@ -11,16 +14,9 @@ public class Cloud extends Tile{
         }
     }
 
-    @Override
-    public void removeStudents() {
-        for (int i = 0; i < this.getStudents().size(); i++) {
-            this.getStudents().remove(0);
-        }
-    }
-
-    public void cloudEmptier(it.polimi.ingsw.Dashboard.Dashboard d) throws FullEntranceException
-    {
-        d.entranceFiller(this.getStudents());
-        removeStudents();
+    public void cloudEmptier(Player p) throws FullEntranceException {
+        List<Student> studentsTmp= new ArrayList<>(studentsList);
+        studentsList.clear();
+        p.entranceFiller(studentsTmp);
     }
 }

@@ -51,4 +51,6 @@ public class Player {
         return playerDashboard.checkTeacherPresence(colour);
     }
     public StandardCard cardDiscarder(int pos) { return playerDeck.cardDiscarder(pos); }
+
+    public String getuID(){return uID;}
 }

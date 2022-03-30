@@ -1,17 +1,22 @@
 package it.polimi.ingsw;
 
+import java.util.ArrayList;
 import java.util.List;
 
-abstract public class Tile {
-    private List<Student> studentsList;
+public class Tile {
+    protected List<Student> studentsList;
 
     public void addStudent(Student s){
         studentsList.add(s);
     }
 
-    abstract public void removeStudents();
-
-    public List<Student> getStudents() {
-        return studentsList;
+    public List<Colour> getStudentsColours()
+    {
+        List<Colour> colours=new ArrayList<>();
+        for(Student s: studentsList)
+        {
+            colours.add(s.getColour());
+        }
+        return colours;
     }
 }
