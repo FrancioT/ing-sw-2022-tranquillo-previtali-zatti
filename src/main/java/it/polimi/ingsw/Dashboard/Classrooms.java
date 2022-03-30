@@ -7,33 +7,28 @@ import java.util.List;
 
 class Classrooms
 {
-    private List<Student> []classrooms;
+    private List<List<Student>> classrooms;
     private List<Teacher> teachers;
 
     Classrooms()
     {
-        int n_colours=0;
+        classrooms=new ArrayList<>();
         for(Colour c:Colour.values())
         {
-            n_colours++;
-        }
-        classrooms = new List[n_colours];
-        for(int i=0; i<n_colours;i++)
-        {
-            classrooms[i]=new ArrayList<>();
+            classrooms.add(new ArrayList<>());
         }
         teachers = new ArrayList<>();
     }
     public void addStudent(Student student)
     {
-        for(List l:classrooms)
+        for(List<Student> l:classrooms)
         {
-            if(l.isEmpty()==true)
+            if(l.isEmpty())
             {
                 l.add(student);
                 return;
             }
-            else if(((Student)l.get(0)).getColour()==student.getColour())
+            else if(l.get(0).getColour()==student.getColour())
             {
                 l.add(student);
                 return;
@@ -62,9 +57,9 @@ class Classrooms
     }
     public int getStudentNum(Colour colour)
     {
-        for(List l:classrooms)
+        for(List<Student> l:classrooms)
         {
-            if(((Student)l.get(0)).getColour()==colour)
+            if(l.get(0).getColour()==colour)
                 return l.size();
         }
         return 0;

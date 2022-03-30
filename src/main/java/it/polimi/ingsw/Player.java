@@ -22,7 +22,7 @@ public class Player {
     {
         playerDashboard.entranceFiller(students);
     }
-    public Student entranceEmptier(Colour c) throws EmptyException, UnexistingException
+    public Student entranceEmptier(Colour c) throws EmptyException, NoSuchStudentException
     {
         return playerDashboard.entranceEmptier(c);
     }

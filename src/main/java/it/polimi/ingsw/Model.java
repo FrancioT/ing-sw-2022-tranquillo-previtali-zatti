@@ -1,7 +1,6 @@
 package it.polimi.ingsw;
 import it.polimi.ingsw.Exceptions.*;
 import java.util.List;
-import java.util.Objects;
 
 public class Model {
     private List<Teacher> teachersList;
@@ -12,13 +11,12 @@ public class Model {
     private List<CharacterCard> characterCardList;
     private int unusedCoins;
 
-    public void cloudsFiller(int n){
-        for(Cloud cloud : cloudsList){
-            cloud.cloudFiller(n);
-        }
-    }
 
-    public void teacherDominance(String uID, Colour c){
+    public void teacherDominance(String uID, Colour c) throws TooManyTeachersException,
+                                                              TeacherAlreadyInException,
+                                                              NoSuchTeacherException,
+                                                              NoSuchPlayerException
+    {
         Player player1 = null;
         Player player2;
         int num1, num2;
@@ -27,62 +25,112 @@ public class Model {
         for(Player p : playersList)
             if(p.getuID().equals(uID))
                 player1 = p;
+        if(player1==null)
+            throw new NoSuchPlayerException();
 
         if (!player1.checkTeacherPresence(c)){
             for(Teacher t : teachersList)
                 if(t.getColour() == c)
                     teacher = t;
             player2 = teacher.getCurrentPos();
-            num1 = player1.getStudentNum(c);
-            num2 = player2.getStudentNum(c);
-            if(num1 > num2){
-                player1.addTeacher(player2.removeTeacher(c));
+            if(player2==null) {
+                player1.addTeacher(teacher);
                 teacher.setNewPos(player1);
+            }
+            else {
+                num1 = player1.getStudentNum(c);
+                num2 = player2.getStudentNum(c);
+                if (num1 > num2) {
+                    player1.addTeacher(player2.removeTeacher(c));
+                    teacher.setNewPos(player1);
+                }
             }
         }
     }
 
-    public void cloudEmptier(String uID, int i_cloud) throws FullEntranceException {
+    public void addStudentDashboard(String uID, Student student) throws NoSuchPlayerException
+    {
         Player tmp = null;
-        for (Player p : playersList){
+        for (Player p : playersList)
             if (p.getuID().equals(uID))
                 tmp = p;
+        if(tmp==null)
+            throw new NoSuchPlayerException();
+        tmp.addStudent(student);
+    }
+
+    public void addStudentIsland(int index, Student student) throws IndexOutOfBoundsException
+    {
+        if(index>islandsList.size())
+            throw new IndexOutOfBoundsException();
+        islandsList.get(index).addStudent(student);
+    }
+
+    public void cloudsFiller(int n){
+        for(Cloud cloud : cloudsList){
+            cloud.cloudFiller(n);
         }
-        assert tmp != null;
+    }
+
+    public void cloudEmptier(String uID, int i_cloud) throws FullEntranceException,
+                                                             NoSuchPlayerException
+    {
+        Player tmp = null;
+        for (Player p : playersList)
+            if (p.getuID().equals(uID))
+                tmp = p;
+        if(tmp==null)
+            throw new NoSuchPlayerException();
         cloudsList.get(i_cloud).cloudEmptier(tmp);
     }
 
-    public StandardCard cardDiscarder(String uID, int pos){
+    public StandardCard cardDiscarder(String uID, int pos) throws NoSuchPlayerException
+    {
+        Player tmp=null;
         StandardCard s = null;
-        for (Player p : playersList){
-            if (p.getuID().equals(uID))
-                s = p.cardDiscarder(pos);
-        }
-        return s;
-    }
-
-    public void entranceFiller(String uID, List<Student> students) throws FullEntranceException {
-        for (Player p : playersList){
-            if (p.getuID().equals(uID))
-                p.entranceFiller(students);
-        }
-    }
-
-    public Student entranceEmptier(String uID, Colour c) throws EmptyException, UnexistingException {
-        Student s = null;
-        for (Player p : playersList){
-            if (p.getuID().equals(uID))
-                s = p.entranceEmptier(c);
-        }
-        return s;
-    }
-
-    public List<Colour> getStudents(String uID){
-        Player tmp = null;
-        for (Player p : playersList){
+        for (Player p: playersList)
             if (p.getuID().equals(uID))
                 tmp = p;
-        }
+        if(tmp==null)
+            throw new NoSuchPlayerException();
+        s = tmp.cardDiscarder(pos);
+        return s;
+    }
+
+    public void entranceFiller(String uID, List<Student> students) throws FullEntranceException,
+                                                                          NoSuchPlayerException
+    {
+        Player tmp=null;
+        for (Player p : playersList)
+            if (p.getuID().equals(uID))
+                tmp = p;
+        if(tmp==null)
+            throw new NoSuchPlayerException();
+        tmp.entranceFiller(students);
+    }
+
+    public Student entranceEmptier(String uID, Colour c) throws EmptyException, NoSuchStudentException,
+                                                                NoSuchPlayerException
+    {
+        Player tmp=null;
+        Student s;
+        for (Player p : playersList)
+            if (p.getuID().equals(uID))
+                tmp = p;
+        if(tmp==null)
+            throw new NoSuchPlayerException();
+        s = tmp.entranceEmptier(c);
+        return s;
+    }
+
+    public List<Colour> getStudents(String uID) throws NoSuchPlayerException
+    {
+        Player tmp = null;
+        for (Player p : playersList)
+            if (p.getuID().equals(uID))
+                tmp = p;
+        if(tmp==null)
+            throw new NoSuchPlayerException();
         return tmp.getStudents();
     }
 
@@ -94,7 +142,7 @@ public class Model {
     public void moveMN(int deltaPos){
         Island island = motherNature.getCurrentPos();
         int i = islandsList.indexOf(island);
-        i = i + deltaPos;
+        i = (i + deltaPos)%islandsList.size();
         motherNature.jumpNextPos(islandsList.get(i));
     }
 

@@ -18,7 +18,7 @@ class Entrance
 
         this.students.addAll(students);
     }
-    Student entranceEmptier(Colour c) throws EmptyException, UnexistingException
+    Student entranceEmptier(Colour c) throws EmptyException, NoSuchStudentException
     {
         if(students.size()==0)
             throw new EmptyException();
@@ -30,7 +30,7 @@ class Entrance
                 return s;
             }
         }
-        throw new UnexistingException();
+        throw new NoSuchStudentException();
     }
     List<Colour> getStudents()
     {

@@ -7,6 +7,7 @@ public class Teacher {
     Teacher(Colour c)
     {
         colour=c;
+        currentPos=null;
     }
     public Player getCurrentPos(){
         return currentPos;

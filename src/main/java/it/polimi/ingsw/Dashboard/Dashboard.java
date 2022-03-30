@@ -21,7 +21,7 @@ public class Dashboard
     {
         entrance.entranceFiller(students);
     }
-    public Student entranceEmptier(Colour c) throws EmptyException, UnexistingException
+    public Student entranceEmptier(Colour c) throws EmptyException, NoSuchStudentException
     {
         return entrance.entranceEmptier(c);
     }
