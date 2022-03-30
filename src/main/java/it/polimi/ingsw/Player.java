@@ -9,12 +9,14 @@ public class Player {
     private String nickName;
     private final Dashboard playerDashboard;
     private final Deck playerDeck;
+    private int coins;
 
     Player(String uID, Towers towers)
     {
         this.uID=uID;
         this.playerDashboard=new Dashboard(towers);
-        this.playerDeck=new Deck();
+        this.playerDeck=new Deck()
+        this.coins=0;
     }
     public void setNickName(String nickName) { this.nickName=nickName; }
 
