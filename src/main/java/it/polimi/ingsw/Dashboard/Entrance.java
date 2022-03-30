@@ -13,20 +13,17 @@ class Entrance
     }
     void entranceFiller(List<Student> students) throws FullEntranceException
     {
-        for(Student s: students)
-        {
-            if(this.students.size()>9)
-                throw new FullEntranceException();
-            else
-                this.students.add(s);
-        }
+        if(this.students.size()+students.size() > 9)
+            throw new FullEntranceException();
+
+        this.students.addAll(students);
     }
     Student entranceEmptier(Colour c) throws EmptyException, UnexistingException
     {
+        if(students.size()==0)
+            throw new EmptyException();
         for(Student s: students)
         {
-            if(students.size()==0)
-                throw new EmptyException();
             if(s.getColour()==c)
             {
                 students.remove(s);

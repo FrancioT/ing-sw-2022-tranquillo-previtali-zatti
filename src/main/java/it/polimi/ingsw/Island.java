@@ -63,9 +63,16 @@ public class Island extends Tile
             throw new EmptyException();
     }
 
-    public void towersSwitcher(Towers t)
+    public void towersSwitcher(Towers newTowers)
     {
-
+        if(numTowers==0)
+        {
+            towers = newTowers;
+            numTowers=1;
+        }
+        towers.availabilityModifier(numTowers);
+        newTowers.availabilityModifier(-numTowers);
+        towers=newTowers;
     }
 
     public void setMotherNatureFlag()
@@ -77,4 +84,7 @@ public class Island extends Tile
         else
             motherNatureFlag=false;
     }
+
+    public void setInhibitionFlag(boolean setPresence) { inhibitionFlag=setPresence; }
+    public boolean getInhibitionFlag() { return inhibitionFlag; }
 }
