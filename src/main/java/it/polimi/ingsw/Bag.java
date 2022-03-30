@@ -1,5 +1,6 @@
 package it.polimi.ingsw;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Bag {
@@ -8,6 +9,7 @@ public class Bag {
 
     public Bag()
     {
+        studentsList=new ArrayList<>();
         for(Colour c:Colour.values())
         {
             for(int i=0;i<n_StudentPC;i++)

@@ -6,6 +6,8 @@ import java.util.List;
 public class Tile {
     protected List<Student> studentsList;
 
+    public Tile() { studentsList=new ArrayList<>(); }
+
     public void addStudent(Student s){
         studentsList.add(s);
     }

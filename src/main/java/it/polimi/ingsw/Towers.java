@@ -6,6 +6,8 @@ public class Towers {
     private int availableTowers;
     private final ColourT colour;
 
-    public int availabilityChecker(){}
-    public void availabilityModifier(int delta){}
+    public Towers(ColourT colour) { this.colour=colour; }
+    //public int availabilityChecker(){}
+    //public void availabilityModifier(int delta){}
+    public ColourT getColour() { return colour; };
 }

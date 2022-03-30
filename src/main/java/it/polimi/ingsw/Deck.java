@@ -11,6 +11,7 @@ public class Deck {
     public Deck()
     {
         handList=new ArrayList<>();
+        discardedStack=new Stack<>();
 
         handList.add(new StandardCard(1,1));
         handList.add(new StandardCard(2,1));
@@ -27,7 +28,7 @@ public class Deck {
     public StandardCard cardDiscarder(int pos)
     {
         StandardCard s = handList.remove(pos);
-        discardedStack.add(s);
+        discardedStack.push(s);
         return s;
     }
 }
