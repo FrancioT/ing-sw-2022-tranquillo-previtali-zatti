@@ -1,7 +1,13 @@
 package it.polimi.ingsw.Dashboard;
-import java.util.*;
-import it.polimi.ingsw.*;
-import it.polimi.ingsw.Exceptions.*;
+
+import it.polimi.ingsw.Colour;
+import it.polimi.ingsw.Exceptions.EmptyException;
+import it.polimi.ingsw.Exceptions.FullEntranceException;
+import it.polimi.ingsw.Exceptions.UnexistingException;
+import it.polimi.ingsw.Student;
+
+import java.util.ArrayList;
+import java.util.List;
 
 class Entrance
 {
