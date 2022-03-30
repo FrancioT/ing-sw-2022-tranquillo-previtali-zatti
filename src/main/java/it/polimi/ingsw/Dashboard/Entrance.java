@@ -3,7 +3,7 @@ package it.polimi.ingsw.Dashboard;
 import it.polimi.ingsw.Colour;
 import it.polimi.ingsw.Exceptions.EmptyException;
 import it.polimi.ingsw.Exceptions.FullEntranceException;
-import it.polimi.ingsw.Exceptions.UnexistingException;
+import it.polimi.ingsw.Exceptions.NoSuchStudentException;
 import it.polimi.ingsw.Student;
 
 import java.util.ArrayList;
