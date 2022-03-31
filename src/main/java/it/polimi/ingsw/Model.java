@@ -97,18 +97,6 @@ public class Model {
         return s;
     }
 
-    public void entranceFiller(String uID, List<Student> students) throws FullEntranceException,
-                                                                          NoSuchPlayerException
-    {
-        Player tmp=null;
-        for (Player p : playersList)
-            if (p.getuID().equals(uID))
-                tmp = p;
-        if(tmp==null)
-            throw new NoSuchPlayerException();
-        tmp.entranceFiller(students);
-    }
-
     public Student entranceEmptier(String uID, Colour c) throws EmptyException, NoSuchStudentException,
                                                                 NoSuchPlayerException
     {
@@ -144,6 +132,7 @@ public class Model {
         int i = islandsList.indexOf(island);
         i = (i + deltaPos)%islandsList.size();
         motherNature.jumpNextPos(islandsList.get(i));
+        islandDominance(islandsList.get(i));
     }
 
     private void islandDominance(Island island){}
