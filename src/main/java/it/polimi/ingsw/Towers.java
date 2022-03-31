@@ -31,5 +31,5 @@ public class Towers {
         }
     }
 
-    public ColourT getColour() { return colour; };
+    public ColourT getColour() { return colour; }
 }
