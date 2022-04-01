@@ -127,7 +127,7 @@ public class Model {
         return islandsList.indexOf(position);
     }
 
-    public void moveMN(int deltaPos){
+    public void moveMN(int deltaPos) throws EmptyException, FullTowersException {
         Island island = motherNature.getCurrentPos();
         int i = islandsList.indexOf(island);
         i = (i + deltaPos)%islandsList.size();
@@ -135,7 +135,104 @@ public class Model {
         islandDominance(islandsList.get(i));
     }
 
-    private void islandDominance(Island island){}
+    private void islandDominance(Island island) throws FullTowersException, EmptyException {
+        List<Colour> coloursListTmp=island.getStudentsColours();
+        Player dominantPlayer=null;
+        boolean drawFlag=false;
+        int coloursPoints[]=new int[5];
+        int playersPoints[]=new int[4];
+        int pIndex = 0, pMax = 0;
+
+        if(island.equals(motherNature.getCurrentPos())&&(island.getInhibitionFlag()==false))
+        {
+            for(int i=0; i<5; i++)
+            {
+                coloursPoints[i]=0;
+                if(i<5)
+                {
+                    playersPoints[i]=0;
+                }
+            }
+
+            for(Colour c : coloursListTmp)
+            {
+                if(c.equals(Colour.red))
+                    coloursPoints[0]++;
+                if(c.equals(Colour.blue))
+                    coloursPoints[1]++;
+                if(c.equals(Colour.pink))
+                    coloursPoints[2]++;
+                if(c.equals(Colour.yellow))
+                    coloursPoints[3]++;
+                if(c.equals(Colour.green))
+                    coloursPoints[4]++;
+            }
+
+            for(Player p : playersList)
+            {
+                for(Teacher t : teachersList)
+                {
+                    if(p.equals(t.getCurrentPos()))
+                    {
+                        if((t.getColour()).equals(Colour.red))
+                            playersPoints[pIndex]=playersPoints[pIndex]+coloursPoints[0];
+                        if((t.getColour()).equals(Colour.blue))
+                            playersPoints[pIndex]=playersPoints[pIndex]+coloursPoints[1];
+                        if((t.getColour()).equals(Colour.pink))
+                            playersPoints[pIndex]=playersPoints[pIndex]+coloursPoints[2];
+                        if((t.getColour()).equals(Colour.yellow))
+                            playersPoints[pIndex]=playersPoints[pIndex]+coloursPoints[3];
+                        if((t.getColour()).equals(Colour.green))
+                            playersPoints[pIndex]=playersPoints[pIndex]+coloursPoints[4];
+                    }
+                }
+                pIndex++;
+            }
+
+            pIndex = 0;
+
+            for(Player p: playersList)
+            {
+                if(playersPoints[pIndex]>pMax)
+                {
+                    pMax=playersPoints[pIndex];
+                    dominantPlayer=p;
+                }
+                pIndex++;
+            }
+
+            pIndex = 0;
+
+            for(Player p: playersList)
+            {
+                if((playersPoints[pIndex]==pMax)&&!(p.equals(dominantPlayer)))
+                {
+                    drawFlag=true;
+                }
+                pIndex++;
+            }
+
+
+            if(drawFlag==false)
+            {
+                if(island.getNumTowers()==0)
+                {
+                    island.towersSwitcher((dominantPlayer.getDashboard()).getTower());
+                }
+                if(!(island.getTowersColour()).equals(((dominantPlayer.getDashboard()).getTower()).getColour()))
+                {
+                    pIndex=island.getNumTowers();
+
+                    for(int i=0; i<pIndex; i++)
+                    {
+                        island.towersSwitcher((dominantPlayer.getDashboard()).getTower());
+                    }
+                }
+            }
+
+
+        }
+    }
 
     public void handleCard(int index){}
 }

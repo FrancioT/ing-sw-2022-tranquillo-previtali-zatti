@@ -82,7 +82,9 @@ public class Island extends Tile
             motherNatureFlag=true;
         }
         else
+        {
             motherNatureFlag=false;
+        }
     }
 
     public void setInhibitionFlag(boolean setPresence) { inhibitionFlag=setPresence; }
