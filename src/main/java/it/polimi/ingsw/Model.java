@@ -1,5 +1,7 @@
 package it.polimi.ingsw;
 import it.polimi.ingsw.Exceptions.*;
+
+import java.util.HashMap;
 import java.util.List;
 
 public class Model {
@@ -127,7 +129,7 @@ public class Model {
         return islandsList.indexOf(position);
     }
 
-    public void moveMN(int deltaPos) throws EmptyException, FullTowersException {
+    public void moveMN(int deltaPos) throws FullTowersException {
         Island island = motherNature.getCurrentPos();
         int i = islandsList.indexOf(island);
         i = (i + deltaPos)%islandsList.size();
@@ -135,37 +137,24 @@ public class Model {
         islandDominance(islandsList.get(i));
     }
 
-    private void islandDominance(Island island) throws FullTowersException, EmptyException {
-        List<Colour> coloursListTmp=island.getStudentsColours();
+    private void islandDominance(Island island) throws FullTowersException {
+
+        List<Colour> islandColoursList=island.getStudentsColours();
+        HashMap<Colour, Integer> coloursMap=new HashMap<>();
         Player dominantPlayer=null;
         boolean drawFlag=false;
-        int coloursPoints[]=new int[5];
-        int playersPoints[]=new int[4];
-        int pIndex = 0, pMax = 0;
+        int pPoints=0, maxPPoints=0;
 
         if(island.equals(motherNature.getCurrentPos())&&(island.getInhibitionFlag()==false))
         {
-            for(int i=0; i<5; i++)
+            for(Colour c: Colour.values())
             {
-                coloursPoints[i]=0;
-                if(i<5)
-                {
-                    playersPoints[i]=0;
-                }
+                coloursMap.put(c, Integer.valueOf(0));
             }
 
-            for(Colour c : coloursListTmp)
+            for(Colour c: islandColoursList)
             {
-                if(c.equals(Colour.red))
-                    coloursPoints[0]++;
-                if(c.equals(Colour.blue))
-                    coloursPoints[1]++;
-                if(c.equals(Colour.pink))
-                    coloursPoints[2]++;
-                if(c.equals(Colour.yellow))
-                    coloursPoints[3]++;
-                if(c.equals(Colour.green))
-                    coloursPoints[4]++;
+                coloursMap.replace(c, (Integer.valueOf(coloursMap.get(c))).intValue()+1);
             }
 
             for(Player p : playersList)
@@ -174,59 +163,28 @@ public class Model {
                 {
                     if(p.equals(t.getCurrentPos()))
                     {
-                        if((t.getColour()).equals(Colour.red))
-                            playersPoints[pIndex]=playersPoints[pIndex]+coloursPoints[0];
-                        if((t.getColour()).equals(Colour.blue))
-                            playersPoints[pIndex]=playersPoints[pIndex]+coloursPoints[1];
-                        if((t.getColour()).equals(Colour.pink))
-                            playersPoints[pIndex]=playersPoints[pIndex]+coloursPoints[2];
-                        if((t.getColour()).equals(Colour.yellow))
-                            playersPoints[pIndex]=playersPoints[pIndex]+coloursPoints[3];
-                        if((t.getColour()).equals(Colour.green))
-                            playersPoints[pIndex]=playersPoints[pIndex]+coloursPoints[4];
+                        pPoints=pPoints+coloursMap.get(t.getColour());
                     }
                 }
-                pIndex++;
-            }
 
-            pIndex = 0;
-
-            for(Player p: playersList)
-            {
-                if(playersPoints[pIndex]>pMax)
-                {
-                    pMax=playersPoints[pIndex];
-                    dominantPlayer=p;
-                }
-                pIndex++;
-            }
-
-            pIndex = 0;
-
-            for(Player p: playersList)
-            {
-                if((playersPoints[pIndex]==pMax)&&!(p.equals(dominantPlayer)))
+                if(pPoints==maxPPoints)
                 {
                     drawFlag=true;
                 }
-                pIndex++;
+
+                if(pPoints>maxPPoints)
+                {
+                    maxPPoints=pPoints;
+                    dominantPlayer=p;
+                    drawFlag=false;
+                }
+
+                pPoints=0;
             }
 
             if(drawFlag==false)
             {
-                if(island.getNumTowers()==0)
-                {
-                    island.towersSwitcher((dominantPlayer.getTowers()));
-                }
-                if(!(island.getTowersColour()).equals(((dominantPlayer.getTowers()).getColour())))
-                {
-                    pIndex=island.getNumTowers();
-
-                    for(int i=0; i<pIndex; i++)
-                    {
-                        island.towersSwitcher((dominantPlayer.getTowers()));
-                    }
-                }
+                island.towersSwitcher((dominantPlayer.getTowers()));
             }
         }
     }

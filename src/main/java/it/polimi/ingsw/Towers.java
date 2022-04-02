@@ -13,7 +13,7 @@ public class Towers {
         return availableTowers;
     }
 
-    public void availabilityModifier(int delta) throws FullTowersException
+    public void availabilityModifier(int delta) throws FullTowersException, RunOutOfTowersException
     {
         if(availableTowers + delta < 0)
         {
