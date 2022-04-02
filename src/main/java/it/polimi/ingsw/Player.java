@@ -55,5 +55,8 @@ public class Player {
     public StandardCard cardDiscarder(int pos) { return playerDeck.cardDiscarder(pos); }
 
     public String getuID(){return uID;}
-    public Dashboard getDashboard(){return playerDashboard;}
+    public Towers getTowers()
+    {
+        return playerDashboard.getDTowers();
+    }
 }

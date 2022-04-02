@@ -212,25 +212,22 @@ public class Model {
                 pIndex++;
             }
 
-
             if(drawFlag==false)
             {
                 if(island.getNumTowers()==0)
                 {
-                    island.towersSwitcher((dominantPlayer.getDashboard()).getTower());
+                    island.towersSwitcher((dominantPlayer.getTowers()));
                 }
-                if(!(island.getTowersColour()).equals(((dominantPlayer.getDashboard()).getTower()).getColour()))
+                if(!(island.getTowersColour()).equals(((dominantPlayer.getTowers()).getColour())))
                 {
                     pIndex=island.getNumTowers();
 
                     for(int i=0; i<pIndex; i++)
                     {
-                        island.towersSwitcher((dominantPlayer.getDashboard()).getTower());
+                        island.towersSwitcher((dominantPlayer.getTowers()));
                     }
                 }
             }
-
-
         }
     }
 

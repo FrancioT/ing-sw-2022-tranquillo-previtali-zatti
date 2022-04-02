@@ -49,5 +49,5 @@ public class Dashboard
     {
         return classrooms.checkTeacherPresence(colour);
     }
-    public Towers getTower(){return towers;}
+    public Towers getDTowers(){return towers;}
 }
