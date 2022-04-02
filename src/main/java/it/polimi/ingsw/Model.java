@@ -99,7 +99,8 @@ public class Model {
         return s;
     }
 
-    public Student entranceEmptier(String uID, Colour c) throws EmptyException, NoSuchStudentException,
+    public Student entranceEmptier(String uID, Colour c) throws EmptyException,
+                                                                NoSuchStudentException,
                                                                 NoSuchPlayerException
     {
         Player tmp=null;
@@ -129,7 +130,9 @@ public class Model {
         return islandsList.indexOf(position);
     }
 
-    public void moveMN(int deltaPos) throws FullTowersException {
+    public void moveMN(int deltaPos) throws FullTowersException,
+                                            RunOutOfTowersException
+    {
         Island island = motherNature.getCurrentPos();
         int i = islandsList.indexOf(island);
         i = (i + deltaPos)%islandsList.size();
@@ -137,7 +140,8 @@ public class Model {
         islandDominance(islandsList.get(i));
     }
 
-    private void islandDominance(Island island) throws FullTowersException {
+    private void islandDominance(Island island) throws FullTowersException, RunOutOfTowersException
+    {
 
         List<Colour> islandColoursList=island.getStudentsColours();
         HashMap<Colour, Integer> coloursMap=new HashMap<>();

@@ -3,6 +3,7 @@ package it.polimi.ingsw;
 import it.polimi.ingsw.Exceptions.EmptyException;
 import it.polimi.ingsw.Exceptions.FullTowersException;
 import it.polimi.ingsw.Exceptions.LinkFailedException;
+import it.polimi.ingsw.Exceptions.RunOutOfTowersException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +65,7 @@ public class Island extends Tile
             throw new EmptyException();
     }
 
-    public void towersSwitcher(Towers newTowers) throws FullTowersException {
+    public void towersSwitcher(Towers newTowers) throws FullTowersException, RunOutOfTowersException {
         if(numTowers==0)
         {
             towers = newTowers;

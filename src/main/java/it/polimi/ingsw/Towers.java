@@ -1,6 +1,7 @@
 package it.polimi.ingsw;
 
 import it.polimi.ingsw.Exceptions.FullTowersException;
+import it.polimi.ingsw.Exceptions.RunOutOfTowersException;
 
 public class Towers {
     private int availableTowers;
@@ -17,7 +18,7 @@ public class Towers {
     {
         if(availableTowers + delta < 0)
         {
-            throw new FullTowersException();
+            throw new RunOutOfTowersException();
         }
 
         if(availableTowers + delta > 8)
