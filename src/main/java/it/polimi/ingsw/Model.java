@@ -131,8 +131,8 @@ public class Model {
     }
 
     public void moveMN(int deltaPos) throws FullTowersException,
-                                            RunOutOfTowersException
-    {
+                                            RunOutOfTowersException,
+                                            EmptyException {
         Island island = motherNature.getCurrentPos();
         int i = islandsList.indexOf(island);
         i = (i + deltaPos)%islandsList.size();
@@ -140,8 +140,7 @@ public class Model {
         islandDominance(islandsList.get(i));
     }
 
-    private void islandDominance(Island island) throws FullTowersException, RunOutOfTowersException
-    {
+    private void islandDominance(Island island) throws FullTowersException, RunOutOfTowersException, EmptyException {
 
         List<Colour> islandColoursList=island.getStudentsColours();
         HashMap<Colour, Integer> coloursMap=new HashMap<>();
@@ -168,6 +167,12 @@ public class Model {
                     if(p.equals(t.getCurrentPos()))
                     {
                         pPoints=pPoints+coloursMap.get(t.getColour());
+                    }
+                }
+
+                if (island.getNumTowers() != 0){
+                    if(island.getTowersColour().equals(p.getTowers().getColour())) {
+                        pPoints = pPoints + island.getNumTowers();
                     }
                 }
 
