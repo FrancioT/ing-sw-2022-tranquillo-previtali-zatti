@@ -193,5 +193,16 @@ public class Model {
         }
     }
 
+    public int getLastCardValue(String uID) throws NoSuchPlayerException
+    {
+        Player tmp = null;
+        for (Player p : playersList)
+            if (p.getuID().equals(uID))
+                tmp = p;
+        if(tmp==null)
+            throw new NoSuchPlayerException();
+        return tmp.getLastCardMNValue();
+    }
+
     public void handleCard(int index){}
 }

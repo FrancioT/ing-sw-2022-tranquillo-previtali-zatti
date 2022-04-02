@@ -31,4 +31,5 @@ public class Deck {
         discardedStack.push(s);
         return s;
     }
+    public int getLastCardMNValue() { return discardedStack.peek().getMnValue(); }
 }

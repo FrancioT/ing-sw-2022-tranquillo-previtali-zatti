@@ -59,4 +59,5 @@ public class Player {
     {
         return playerDashboard.getDTowers();
     }
+    public int getLastCardMNValue() { return playerDeck.getLastCardMNValue(); }
 }
