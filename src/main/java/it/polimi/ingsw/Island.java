@@ -15,6 +15,13 @@ public class Island extends Tile
     private boolean motherNatureFlag;
     private boolean inhibitionFlag;
 
+    public Island(boolean MN_presence)
+    {
+        super();
+        inhibitionFlag=false;
+        motherNatureFlag=MN_presence;
+        numTowers=0;
+    }
     public Island(Student student)
     {
         super();

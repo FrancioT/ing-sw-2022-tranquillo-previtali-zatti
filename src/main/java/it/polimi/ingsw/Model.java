@@ -1,8 +1,10 @@
 package it.polimi.ingsw;
 import it.polimi.ingsw.Exceptions.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Stack;
 
 public class Model {
     private List<Teacher> teachersList;
@@ -13,6 +15,33 @@ public class Model {
     private List<CharacterCard> characterCardList;
     private int unusedCoins;
 
+    public Model(List<String> uIDs)
+    {
+        teachersList=new ArrayList<>();
+        islandsList=new ArrayList<>();
+        cloudsList=new ArrayList<>();
+        playersList=new ArrayList<>();
+        // creation of players and towers
+        Stack<Towers> towersList= new Stack<>();
+        for(ColourT c: ColourT.values())
+            towersList.push(new Towers(c));
+        for(String uID: uIDs)
+            playersList.add(new Player(uID, towersList.pop()));
+        // creation of islands and mother nature
+        Bag bag=new Bag();
+        islandsList.add(new Island(true));
+        for(int i=1; i<12; i++)
+            islandsList.add(new Island(bag.randomExtraction()));
+        islandsList.add(new Island(false));
+        motherNature=new MotherNature(islandsList.get(0));
+        // creation of clouds and bag
+        bag=new Bag(bag);
+        for(int i=0; i<uIDs.size(); i++)
+            cloudsList.add(new Cloud(bag));
+        // creation of teachers
+        for(Colour c: Colour.values())
+            teachersList.add(new Teacher(c));
+    }
 
     public void teacherDominance(String uID, Colour colour) throws TooManyTeachersException,
                                                               TeacherAlreadyInException,

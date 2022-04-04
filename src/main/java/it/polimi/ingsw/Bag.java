@@ -12,15 +12,26 @@ public class Bag {
         studentsList=new ArrayList<>();
         for(Colour c:Colour.values())
         {
-            for(int i=0;i<n_StudentPC;i++)
+            for(int i=0;i<2;i++)
             {
                 studentsList.add(new Student(c));
             }
         }
     }
+    public Bag(Bag bag)
+    {
+        studentsList=new ArrayList<>();
+        for(Colour c:Colour.values())
+        {
+            for(int i=0;i<n_StudentPC-2;i++)
+            {
+                studentsList.add(new Student(c));
+            }
+        }
+        this.studentsList.addAll(bag.studentsList);
+    }
     public Student randomExtraction(){
         int index = (int) (Math.random()*studentsList.size());
         return studentsList.remove(index);
     }
-
 }
