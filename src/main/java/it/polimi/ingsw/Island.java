@@ -40,6 +40,8 @@ public class Island extends Tile
 
     public Island islandsLinker(Island island) throws LinkFailedException
     {
+        if(island==null) throw new NullPointerException();
+
         try
         {
             if (getTowersColour() != island.getTowersColour())
@@ -66,6 +68,8 @@ public class Island extends Tile
     }
 
     public void towersSwitcher(Towers newTowers) throws FullTowersException, RunOutOfTowersException {
+        if(newTowers==null) throw new NullPointerException();
+
         if(numTowers==0)
         {
             towers = newTowers;

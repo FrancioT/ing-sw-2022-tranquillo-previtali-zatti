@@ -25,8 +25,10 @@ public class Deck {
         handList.add(new StandardCard(10,5));
     }
 
-    public StandardCard cardDiscarder(int pos)
+    public StandardCard cardDiscarder(int pos) throws IndexOutOfBoundsException
     {
+        if(pos>=handList.size() || pos<0) throw new IndexOutOfBoundsException();
+
         StandardCard s = handList.remove(pos);
         discardedStack.push(s);
         return s;

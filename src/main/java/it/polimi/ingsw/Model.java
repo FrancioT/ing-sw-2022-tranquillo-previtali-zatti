@@ -14,11 +14,13 @@ public class Model {
     private int unusedCoins;
 
 
-    public void teacherDominance(String uID, Colour c) throws TooManyTeachersException,
+    public void teacherDominance(String uID, Colour colour) throws TooManyTeachersException,
                                                               TeacherAlreadyInException,
                                                               NoSuchTeacherException,
                                                               NoSuchPlayerException
     {
+        if(colour==null || uID==null) throw new NullPointerException();
+
         Player player1 = null;
         Player player2;
         int num1, num2;
@@ -30,9 +32,9 @@ public class Model {
         if(player1==null)
             throw new NoSuchPlayerException();
 
-        if (!player1.checkTeacherPresence(c)){
+        if (!player1.checkTeacherPresence(colour)){
             for(Teacher t : teachersList)
-                if(t.getColour() == c)
+                if(t.getColour() == colour)
                     teacher = t;
             player2 = teacher.getCurrentPos();
             if(player2==null) {
@@ -40,10 +42,10 @@ public class Model {
                 teacher.setNewPos(player1);
             }
             else {
-                num1 = player1.getStudentNum(c);
-                num2 = player2.getStudentNum(c);
+                num1 = player1.getStudentNum(colour);
+                num2 = player2.getStudentNum(colour);
                 if (num1 > num2) {
-                    player1.addTeacher(player2.removeTeacher(c));
+                    player1.addTeacher(player2.removeTeacher(colour));
                     teacher.setNewPos(player1);
                 }
             }
@@ -52,6 +54,8 @@ public class Model {
 
     public void addStudentDashboard(String uID, Student student) throws NoSuchPlayerException
     {
+        if(uID==null) throw new NullPointerException();
+
         Player tmp = null;
         for (Player p : playersList)
             if (p.getuID().equals(uID))
@@ -77,6 +81,9 @@ public class Model {
     public void cloudEmptier(String uID, int i_cloud) throws FullEntranceException,
                                                              NoSuchPlayerException
     {
+        if(uID==null) throw new NullPointerException();
+        if(i_cloud>cloudsList.size() || i_cloud<0) throw new IndexOutOfBoundsException();
+
         Player tmp = null;
         for (Player p : playersList)
             if (p.getuID().equals(uID))
@@ -88,6 +95,8 @@ public class Model {
 
     public StandardCard cardDiscarder(String uID, int pos) throws NoSuchPlayerException
     {
+        if(uID==null) throw new NullPointerException();
+
         Player tmp=null;
         StandardCard s = null;
         for (Player p: playersList)
@@ -103,6 +112,8 @@ public class Model {
                                                                 NoSuchStudentException,
                                                                 NoSuchPlayerException
     {
+        if(uID==null) throw new NullPointerException();
+
         Player tmp=null;
         Student s;
         for (Player p : playersList)
@@ -116,6 +127,8 @@ public class Model {
 
     public List<Colour> getStudents(String uID) throws NoSuchPlayerException
     {
+        if(uID==null) throw new NullPointerException();
+
         Player tmp = null;
         for (Player p : playersList)
             if (p.getuID().equals(uID))
@@ -140,8 +153,10 @@ public class Model {
         islandDominance(islandsList.get(i));
     }
 
-    private void islandDominance(Island island) throws FullTowersException, RunOutOfTowersException, EmptyException {
-
+    private void islandDominance(Island island) throws FullTowersException,
+                                                       RunOutOfTowersException,
+                                                       EmptyException
+    {
         List<Colour> islandColoursList=island.getStudentsColours();
         HashMap<Colour, Integer> coloursMap=new HashMap<>();
         Player dominantPlayer=null;
@@ -194,12 +209,15 @@ public class Model {
             if(drawFlag==false)
             {
                 island.towersSwitcher((dominantPlayer.getTowers()));
+
             }
         }
     }
 
     public int getLastCardValue(String uID) throws NoSuchPlayerException
     {
+        if(uID==null) throw new NullPointerException();
+
         Player tmp = null;
         for (Player p : playersList)
             if (p.getuID().equals(uID))

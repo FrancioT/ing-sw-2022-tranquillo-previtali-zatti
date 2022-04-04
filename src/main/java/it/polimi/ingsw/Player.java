@@ -24,9 +24,9 @@ public class Player {
     {
         playerDashboard.entranceFiller(students);
     }
-    public Student entranceEmptier(Colour c) throws EmptyException, NoSuchStudentException
+    public Student entranceEmptier(Colour colour) throws EmptyException, NoSuchStudentException
     {
-        return playerDashboard.entranceEmptier(c);
+        return playerDashboard.entranceEmptier(colour);
     }
     public List<Colour> getStudents()
     {

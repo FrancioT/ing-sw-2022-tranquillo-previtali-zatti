@@ -21,6 +21,8 @@ class Classrooms
     }
     public void addStudent(Student student)
     {
+        if(student==null) throw new NullPointerException();
+
         for(List<Student> l:classrooms)
         {
             if(l.isEmpty())
@@ -37,6 +39,8 @@ class Classrooms
     }
     public void addTeacher(Teacher teacher) throws TooManyTeachersException, TeacherAlreadyInException
     {
+        if(teacher==null) throw new NullPointerException();
+
         if(teachers.size()>=5)
             throw new TooManyTeachersException();
         if(teachers.contains(teacher))
@@ -45,6 +49,8 @@ class Classrooms
     }
     public Teacher removeTeacher(Colour colour) throws NoSuchTeacherException
     {
+        if(colour==null) throw new NullPointerException();
+
         for(Teacher t:teachers)
         {
             if(t.getColour()==colour)
@@ -57,6 +63,8 @@ class Classrooms
     }
     public int getStudentNum(Colour colour)
     {
+        if(colour==null) throw new NullPointerException();
+
         for(List<Student> l:classrooms)
         {
             if(l.get(0).getColour()==colour)
@@ -66,6 +74,8 @@ class Classrooms
     }
     public boolean checkTeacherPresence(Colour colour)
     {
+        if(colour==null) throw new NullPointerException();
+
         for(Teacher t:teachers)
         {
             if(t.getColour()==colour)

@@ -16,5 +16,10 @@ public class Teacher {
     {
         return colour;
     }
-    public void setNewPos(Player player) { currentPos=player; }
+    public void setNewPos(Player player)
+    {
+        if(player==null) throw new NullPointerException();
+
+        currentPos=player;
+    }
 }

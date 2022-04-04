@@ -8,8 +8,11 @@ public class Tile {
 
     public Tile() { studentsList=new ArrayList<>(); }
 
-    public void addStudent(Student s){
-        studentsList.add(s);
+    public void addStudent(Student student)
+    {
+        if(student==null) throw new NullPointerException();
+
+        studentsList.add(student);
     }
 
     public List<Colour> getStudentsColours()
