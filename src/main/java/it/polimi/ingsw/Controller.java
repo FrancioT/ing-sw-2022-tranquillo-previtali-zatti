@@ -53,7 +53,7 @@ public class Controller
                                // n=4 if number of players is 3
         List<Colour> usedColours=new ArrayList<>();
         boolean target=true;
-        Colour colour;
+        Colour colour=null;
         int index=0;
         Student s;
         for(int i=0; i<n; i++)

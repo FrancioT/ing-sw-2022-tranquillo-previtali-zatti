@@ -67,8 +67,9 @@ class Classrooms
 
         for(List<Student> l:classrooms)
         {
-            if(l.get(0).getColour()==colour)
-                return l.size();
+            if(l.size()!=0)
+                if(l.get(0).getColour()==colour)
+                    return l.size();
         }
         return 0;
     }
