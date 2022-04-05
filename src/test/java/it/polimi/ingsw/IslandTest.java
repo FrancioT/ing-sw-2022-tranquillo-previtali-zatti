@@ -2,6 +2,7 @@ package it.polimi.ingsw;
 
 import it.polimi.ingsw.Exceptions.EmptyException;
 import it.polimi.ingsw.Exceptions.FullTowersException;
+import it.polimi.ingsw.Exceptions.LinkFailedException;
 import it.polimi.ingsw.Exceptions.RunOutOfTowersException;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +13,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class IslandTest
 {
     @Test
-    public void isTest() throws FullTowersException, RunOutOfTowersException, EmptyException
+    public void isTest() throws FullTowersException, RunOutOfTowersException,
+                                EmptyException, LinkFailedException
     {
         Island island1;
         Island island2;
@@ -91,5 +93,29 @@ class IslandTest
             assertTrue(false);
         } catch (NullPointerException e){}
         //testato tutto a meno di islandLinker e getNumTowers
+        island2.towersSwitcher(new Towers(ColourT.white, 1));
+        island2.addStudent(new Student(Colour.green));
+        List<Colour> finalList= island1.getStudentsColours();
+        finalList.addAll(island2.getStudentsColours());
+        Island island3= island1.islandsLinker(island2);
+        assertEquals(island3.getTowersColour(), ColourT.white);
+        assertEquals(island3.getNumTowers(), 2);
+        assertTrue(island3.isMotherNatureFlag());
+        assertFalse(island3.getInhibitionFlag());
+        assertEquals(island3.getStudentsColours(), finalList);
+        try{
+            island3.islandsLinker(null);
+            assertTrue(false);
+        } catch (NullPointerException e){}
+        Island islandTmp=new Island(false);
+        try{
+            island3.islandsLinker(islandTmp);
+            assertTrue(false);
+        } catch (LinkFailedException e){}
+        islandTmp.towersSwitcher(new Towers(ColourT.grey, 1));
+        try{
+            island3.islandsLinker(islandTmp);
+            assertTrue(false);
+        } catch (LinkFailedException e){}
     }
 }

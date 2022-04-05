@@ -100,7 +100,7 @@ public class Model {
 
     public void addStudentIsland(int index, Student student) throws IndexOutOfBoundsException
     {
-        if(index>islandsList.size())
+        if(index>islandsList.size() || index<0)
             throw new IndexOutOfBoundsException();
         islandsList.get(index).addStudent(student);
     }
