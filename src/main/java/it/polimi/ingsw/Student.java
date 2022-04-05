@@ -3,7 +3,7 @@ package it.polimi.ingsw;
 public class Student {
     private final Colour colour;
 
-    Student(Colour c)
+    public Student(Colour c)
     {
         colour=c;
     }

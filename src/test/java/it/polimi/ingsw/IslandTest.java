@@ -3,12 +3,13 @@ package it.polimi.ingsw;
 import it.polimi.ingsw.Exceptions.EmptyException;
 import it.polimi.ingsw.Exceptions.FullTowersException;
 import it.polimi.ingsw.Exceptions.RunOutOfTowersException;
-import junit.framework.TestCase;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-public class IslandTest extends TestCase
+import static org.junit.jupiter.api.Assertions.*;
+
+class IslandTest
 {
     @Test
     public void isTest() throws FullTowersException, RunOutOfTowersException, EmptyException
@@ -66,7 +67,7 @@ public class IslandTest extends TestCase
             if(c==Colour.pink) pink_n++;
         }
         assertTrue(pink_n<2 && yellow_n<2 && green_n<2 && blue_n<2
-                   && red_n<2 && tmp.size()==1);
+                && red_n<2 && tmp.size()==1);
         assertEquals(island1.getNumTowers(), island2.getNumTowers());
         assertEquals(island1.getNumTowers(), 0);
         try {
@@ -89,8 +90,6 @@ public class IslandTest extends TestCase
             island1.towersSwitcher(null);
             assertTrue(false);
         } catch (NullPointerException e){}
-        // modifico il costruttore di towers per costruire il numero giusto di torri
-        // in base alla modalità
         //testato tutto a meno di islandLinker e getNumTowers
     }
 }

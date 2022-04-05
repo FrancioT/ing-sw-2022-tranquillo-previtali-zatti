@@ -4,7 +4,7 @@ public class Teacher {
     private Player currentPos;
     private final Colour colour;
 
-    Teacher(Colour c)
+    public Teacher(Colour c)
     {
         colour=c;
         currentPos=null;

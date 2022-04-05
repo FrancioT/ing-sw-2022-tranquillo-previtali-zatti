@@ -1,14 +1,15 @@
-package it.polimi.ingsw;
+package it.polimi.ingsw.Dashboard;
 
-import it.polimi.ingsw.Dashboard.Dashboard;
+import it.polimi.ingsw.*;
 import it.polimi.ingsw.Exceptions.*;
-import junit.framework.TestCase;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class TestDashboard extends TestCase
+import static org.junit.jupiter.api.Assertions.*;
+
+class DashboardTest
 {
     @Test
     public void testClassrooms() throws TooManyTeachersException, TeacherAlreadyInException, NoSuchTeacherException
