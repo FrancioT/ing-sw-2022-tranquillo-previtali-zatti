@@ -19,10 +19,22 @@ class Classrooms
         }
         teachers = new ArrayList<>();
     }
-    public void addStudent(Student student)
+    public void addStudent(Student student) throws FullClassException
     {
         if(student==null) throw new NullPointerException();
 
+        for(List<Student> l:classrooms)
+        {
+            if(!l.isEmpty())
+            {
+                if (l.get(0).getColour() == student.getColour())
+                {
+                    if(l.size()>10) throw new FullClassException();
+                    l.add(student);
+                    return;
+                }
+            }
+        }
         for(List<Student> l:classrooms)
         {
             if(l.isEmpty())
@@ -30,12 +42,8 @@ class Classrooms
                 l.add(student);
                 return;
             }
-            else if(l.get(0).getColour()==student.getColour())
-            {
-                l.add(student);
-                return;
-            }
         }
+        throw new IllegalArgumentException(); // it should never get till this point
     }
     public void addTeacher(Teacher teacher) throws TooManyTeachersException, TeacherAlreadyInException
     {

@@ -12,7 +12,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class DashboardTest
 {
     @Test
-    public void testClassrooms() throws TooManyTeachersException, TeacherAlreadyInException, NoSuchTeacherException
+    public void testClassrooms() throws TooManyTeachersException, TeacherAlreadyInException,
+                                        NoSuchTeacherException, FullClassException
     {
         Teacher red_t=new Teacher(Colour.red);
         Teacher blue_t=new Teacher(Colour.blue);

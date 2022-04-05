@@ -29,7 +29,7 @@ public class Dashboard
     {
         return entrance.getStudents();
     }
-    public void addStudent(Student student)
+    public void addStudent(Student student) throws FullClassException
     {
         classrooms.addStudent(student);
     }
