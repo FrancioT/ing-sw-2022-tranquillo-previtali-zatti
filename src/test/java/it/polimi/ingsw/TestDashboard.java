@@ -18,7 +18,7 @@ class TestDashboard extends TestCase
         Teacher pink_t=new Teacher(Colour.pink);
         Teacher yellow_t=new Teacher(Colour.yellow);
         Teacher green_t=new Teacher(Colour.green);
-        Dashboard d=new Dashboard(new Towers(ColourT.grey));
+        Dashboard d=new Dashboard(new Towers(ColourT.grey, 1));
 
         d.addStudent(new Student(Colour.blue));
         assertEquals(d.getStudentNum(Colour.blue), 1);
@@ -75,7 +75,7 @@ class TestDashboard extends TestCase
     @Test
     void testEntrance() throws EmptyException, NoSuchStudentException, FullEntranceException
     {
-        Dashboard d=new Dashboard(new Towers(ColourT.grey));
+        Dashboard d=new Dashboard(new Towers(ColourT.grey, 1));
         List<Student> students=new ArrayList<>();
         students.add(new Student(Colour.blue));
         students.add(new Student(Colour.blue));

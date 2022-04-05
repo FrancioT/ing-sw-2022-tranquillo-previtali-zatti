@@ -7,7 +7,12 @@ public class Towers {
     private int availableTowers;
     private final ColourT colour;
 
-    public Towers(ColourT colour) { this.colour=colour; }
+    public Towers(ColourT colour, int mod)  //mod=1 (there are 2 or 4 players)
+                                                // mod=0 (there are 3 players)
+    {
+        this.colour=colour;
+        availableTowers=mod*8+(1-mod)*6;
+    }
 
     public int availabilityChecker()
     {

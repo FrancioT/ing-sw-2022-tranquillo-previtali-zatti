@@ -81,6 +81,7 @@ public class Island extends Tile
         {
             towers = newTowers;
             numTowers=1;
+            newTowers.availabilityModifier(-1);
         }
         towers.availabilityModifier(numTowers);
         newTowers.availabilityModifier(-numTowers);
@@ -98,6 +99,8 @@ public class Island extends Tile
             motherNatureFlag=false;
         }
     }
+
+    public boolean isMotherNatureFlag() { return motherNatureFlag; }
 
     public void setInhibitionFlag(boolean setPresence) { inhibitionFlag=setPresence; }
     public boolean getInhibitionFlag() { return inhibitionFlag; }

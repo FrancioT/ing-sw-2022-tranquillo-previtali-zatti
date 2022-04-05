@@ -24,15 +24,19 @@ public class Model {
         // creation of players and towers
         Stack<Towers> towersList= new Stack<>();
         for(ColourT c: ColourT.values())
-            towersList.push(new Towers(c));
+            towersList.push(new Towers(c, 1));
         for(String uID: uIDs)
             playersList.add(new Player(uID, towersList.pop()));
         // creation of islands and mother nature
         Bag bag=new Bag();
         islandsList.add(new Island(true));
         for(int i=1; i<12; i++)
-            islandsList.add(new Island(bag.randomExtraction()));
-        islandsList.add(new Island(false));
+        {
+            if (i != 6)
+                islandsList.add(new Island(bag.randomExtraction()));
+            else
+                islandsList.add(new Island(false));
+        }
         motherNature=new MotherNature(islandsList.get(0));
         // creation of clouds and bag
         bag=new Bag(bag);
