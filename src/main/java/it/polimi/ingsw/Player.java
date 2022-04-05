@@ -32,7 +32,7 @@ public class Player {
     {
         return playerDashboard.getStudents();
     }
-    public void addStudent(Student student)
+    public void addStudent(Student student) throws FullClassException
     {
         playerDashboard.addStudent(student);
     }

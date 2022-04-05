@@ -1,9 +1,6 @@
 package it.polimi.ingsw;
 
-import it.polimi.ingsw.Exceptions.EmptyException;
-import it.polimi.ingsw.Exceptions.FullEntranceException;
-import it.polimi.ingsw.Exceptions.NoSuchPlayerException;
-import it.polimi.ingsw.Exceptions.NoSuchStudentException;
+import it.polimi.ingsw.Exceptions.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,7 +31,7 @@ class ModelTest
     //}
 
     @Test
-    void addStudentDashboard() throws NoSuchPlayerException
+    void addStudentDashboard() throws NoSuchPlayerException, FullClassException
     {
         model.addStudentDashboard(P1, new Student(Colour.green));
         try {

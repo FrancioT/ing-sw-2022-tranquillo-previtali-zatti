@@ -44,7 +44,7 @@ public class Controller
 
         return order;
     }
-    public void moveStudents(String uID) throws NoSuchStudentException, EmptyException,
+    public void moveStudents(String uID) throws NoSuchStudentException, EmptyException, FullClassException,
                                                 NoSuchPlayerException, TooManyTeachersException,
                                                 TeacherAlreadyInException, NoSuchTeacherException
     {

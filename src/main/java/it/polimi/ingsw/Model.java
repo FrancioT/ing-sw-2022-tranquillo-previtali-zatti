@@ -85,7 +85,8 @@ public class Model {
         }
     }
 
-    public void addStudentDashboard(String uID, Student student) throws NoSuchPlayerException
+    public void addStudentDashboard(String uID, Student student) throws NoSuchPlayerException,
+                                                                        FullClassException
     {
         if(uID==null) throw new NullPointerException();
 
