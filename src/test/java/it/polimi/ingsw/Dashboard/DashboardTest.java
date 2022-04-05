@@ -72,6 +72,16 @@ class DashboardTest
             d.getStudentNum(null);
             assertTrue(false);
         } catch (NullPointerException e){}
+
+        Dashboard d1= new Dashboard(new Towers(ColourT.black, 1));
+        for(int i=0; i<10; i++)
+        {
+            d1.addStudent(new Student(Colour.red));
+        }
+        try {
+            d1.addStudent(new Student(Colour.red));
+            assertTrue(false);
+        } catch (FullClassException e){}
     }
 
     @Test
@@ -100,8 +110,7 @@ class DashboardTest
         } catch (FullEntranceException e){}
         try
         {
-            List<Student> tmp=null;
-            d.entranceFiller(tmp);
+            d.entranceFiller(null);
             assertTrue(false);
         } catch (NullPointerException e){}
         try

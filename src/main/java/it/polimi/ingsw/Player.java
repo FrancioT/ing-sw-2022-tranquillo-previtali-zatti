@@ -59,5 +59,6 @@ public class Player {
     {
         return playerDashboard.getDTowers();
     }
-    public int getLastCardMNValue() { return playerDeck.getLastCardMNValue(); }
+    public int getLastCardMNValue() throws EmptyException
+    { return playerDeck.getLastCardMNValue(); }
 }

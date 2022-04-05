@@ -179,7 +179,10 @@ public class Model {
 
     public void moveMN(int deltaPos) throws FullTowersException,
                                             RunOutOfTowersException,
-                                            EmptyException {
+                                            EmptyException
+    {
+        if(deltaPos<=0) throw new IndexOutOfBoundsException();
+
         Island island = motherNature.getCurrentPos();
         int i = islandsList.indexOf(island);
         i = (i + deltaPos)%islandsList.size();
@@ -246,9 +249,17 @@ public class Model {
 
             }
         }
+        else
+        {
+            if(island.getInhibitionFlag()==false)
+            { /* rimozione inibitionFlag e restituzione dell'inbizione alla carta */ }
+            else
+                throw new IllegalArgumentException();  // the passed Island doesn't have the
+                                                       // mother nature on it
+        }
     }
 
-    public int getLastCardValue(String uID) throws NoSuchPlayerException
+    public int getLastCardValue(String uID) throws NoSuchPlayerException, EmptyException
     {
         if(uID==null) throw new NullPointerException();
 

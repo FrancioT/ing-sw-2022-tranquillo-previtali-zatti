@@ -1,5 +1,6 @@
 package it.polimi.ingsw;
 
+import it.polimi.ingsw.Exceptions.EmptyException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -7,7 +8,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class DeckTest {
 
     @Test
-    public void testCardDiscarderAndReturn() {
+    public void testCardDiscarderAndReturn() throws EmptyException
+    {
         Deck deck = new Deck();
 
         try{

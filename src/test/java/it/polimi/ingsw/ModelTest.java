@@ -97,11 +97,10 @@ class ModelTest
             assertTrue(false);
         } catch (NoSuchPlayerException e){}
     }
-/*
+
     @Test
-    void entranceEmptier() throws EmptyException,
-                                  NoSuchStudentException,
-                                  NoSuchPlayerException
+    void entranceEmptier() throws EmptyException, FullEntranceException,
+                                  NoSuchStudentException, NoSuchPlayerException
     {
         try {
             model.getStudents(null);
@@ -111,6 +110,9 @@ class ModelTest
             model.getStudents("sgds");
             assertTrue(false);
         } catch (NoSuchPlayerException e){}
+        model.cloudsFiller(3);
+        model.cloudEmptier(P2, 0);
+        model.cloudEmptier(P2, 1);
         List<Colour> tmp= model.getStudents(P2);
         model.entranceEmptier(P2, tmp.get(0));
         tmp.remove(0);
@@ -125,22 +127,43 @@ class ModelTest
         } catch (NullPointerException e){}
         try {
             model.entranceEmptier("ekfir", null);
-        } catch (NullPointerException e){}
+        } catch (NoSuchPlayerException e){}
     }
 
     @Test
-    void getCurrPosMN() {
+    void getCurrPosMN() throws Exception
+    {
+        int pos= model.getCurrPosMN();
+        assertTrue(pos==0);
+        model.moveMN(4);
+        pos= model.getCurrPosMN();
+        assertTrue(pos==4);
+        model.moveMN(10);
+        pos= model.getCurrPosMN();
+        assertTrue(pos==2);
     }
 
+    /*
     @Test
     void moveMN() {
-    }
-
-    @Test
-    void getLastCardValue() {
-    }
-
-    @Test
-    void handleCard() {
     }*/
+
+    @Test
+    void getLastCardValue() throws NoSuchPlayerException, EmptyException
+    {
+        try {
+            model.getLastCardValue(null);
+            assertTrue(false);
+        } catch (NullPointerException e){}
+        try {
+            model.getLastCardValue("rowuq");
+            assertTrue(false);
+        } catch (NoSuchPlayerException e){}
+        try {
+            model.getLastCardValue(P2);
+            assertTrue(false);
+        } catch (EmptyException e){}
+        model.cardDiscarder(P1, 3);
+        assertTrue(model.getLastCardValue(P1)==2);
+    }
 }

@@ -1,5 +1,7 @@
 package it.polimi.ingsw;
 
+import it.polimi.ingsw.Exceptions.EmptyException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -33,5 +35,9 @@ public class Deck {
         discardedStack.push(s);
         return s;
     }
-    public int getLastCardMNValue() { return discardedStack.peek().getMnValue(); }
+    public int getLastCardMNValue() throws EmptyException
+    {
+        if(discardedStack.size()==0) throw new EmptyException();
+        return discardedStack.peek().getMnValue();
+    }
 }

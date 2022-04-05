@@ -29,7 +29,7 @@ class Classrooms
             {
                 if (l.get(0).getColour() == student.getColour())
                 {
-                    if(l.size()>10) throw new FullClassException();
+                    if(l.size()>9) throw new FullClassException();
                     l.add(student);
                     return;
                 }
