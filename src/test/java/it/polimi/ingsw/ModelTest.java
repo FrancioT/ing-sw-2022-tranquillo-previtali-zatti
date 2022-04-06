@@ -1,7 +1,6 @@
 package it.polimi.ingsw;
 
 import it.polimi.ingsw.Exceptions.*;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -25,10 +24,27 @@ class ModelTest
         model= new Model(uIDs);
     }
 
-    //@Test
-    //void teacherDominance()
-    //{
-    //}
+    @Test
+    void teacherDominance() throws TooManyTeachersException,
+                                TeacherAlreadyInException,
+                                NoSuchTeacherException,
+                                NoSuchPlayerException
+    {
+        Teacher teacher1;
+        teacher1=new Teacher(Colour.red);
+
+        try {
+            model.teacherDominance(null, null);
+            assertTrue(false);
+        } catch (NullPointerException e){}
+
+        try {
+            model.teacherDominance("Andrea", Colour.pink);
+            assertTrue(false);
+        } catch (NoSuchPlayerException e){}
+
+        model.teacherDominance("Francio", Colour.pink);
+    }
 
     @Test
     void addStudentDashboard() throws NoSuchPlayerException, FullClassException
@@ -80,6 +96,10 @@ class ModelTest
             model.cloudEmptier("aaa",-1);
             assertTrue(false);
         } catch (IndexOutOfBoundsException e){}
+        try {
+            model.cloudEmptier("Zatti",0);
+            assertTrue(false);
+        } catch (NoSuchPlayerException e){}
 
     }
 
@@ -143,10 +163,19 @@ class ModelTest
         assertTrue(pos==2);
     }
 
-    /*
+
     @Test
-    void moveMN() {
-    }*/
+    void moveMN() throws FullTowersException,
+            RunOutOfTowersException,
+            EmptyException
+    {
+        try {
+            model.moveMN(-5);
+            assertTrue(false);
+        } catch (IndexOutOfBoundsException e){}
+
+        model.moveMN(3);
+    }
 
     @Test
     void getLastCardValue() throws NoSuchPlayerException, EmptyException
