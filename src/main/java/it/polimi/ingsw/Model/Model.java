@@ -201,7 +201,7 @@ public class Model {
         boolean drawFlag=false;
         int pPoints=0, maxPPoints=0;
 
-        if(island.equals(motherNature.getCurrentPos())&&(island.getInhibitionFlag()==false))
+        if(island.equals(motherNature.getCurrentPos()) && !island.getInhibitionFlag())
         {
             for(Colour c: Colour.values())
             {
@@ -210,29 +210,29 @@ public class Model {
 
             for(Colour c: islandColoursList)
             {
-                coloursMap.replace(c, (Integer.valueOf(coloursMap.get(c))).intValue()+1);
+                //here "coloursMap.get(c)" is equivalent to
+                //"Integer.valueOf(coloursMap.get(c).intValue())"
+                coloursMap.replace(c, coloursMap.get(c)+1);
             }
 
             for(Player p : playersList)
             {
                 for(Teacher t : teachersList)
                 {
-                    if(p.equals(t.getCurrentPos()))
+                    if(p.checkTeacherPresence(t.getColour()))
                     {
-                        pPoints=pPoints+coloursMap.get(t.getColour());
+                        pPoints += coloursMap.get(t.getColour());
                     }
                 }
 
                 if (island.getNumTowers() != 0){
                     if(island.getTowersColour().equals(p.getTowers().getColour())) {
-                        pPoints = pPoints + island.getNumTowers();
+                        pPoints += island.getNumTowers();
                     }
                 }
 
                 if(pPoints==maxPPoints)
-                {
                     drawFlag=true;
-                }
 
                 if(pPoints>maxPPoints)
                 {
@@ -245,14 +245,11 @@ public class Model {
             }
 
             if(drawFlag==false)
-            {
                 island.towersSwitcher((dominantPlayer.getTowers()));
-
-            }
         }
         else
         {
-            if(island.getInhibitionFlag()==false)
+            if(island.getInhibitionFlag())
             { /* rimozione inibitionFlag e restituzione dell'inbizione alla carta */ }
             else
                 throw new IllegalArgumentException();  // the passed Island doesn't have the

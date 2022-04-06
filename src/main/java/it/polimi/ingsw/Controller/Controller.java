@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Controller;
 
+import it.polimi.ingsw.Controller.Exceptions.IllegalMNMovementException;
 import it.polimi.ingsw.Model.Colour;
 import it.polimi.ingsw.Model.Exceptions.*;
 import it.polimi.ingsw.Model.Model;

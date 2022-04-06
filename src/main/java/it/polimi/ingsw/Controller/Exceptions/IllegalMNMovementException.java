@@ -1,4 +1,4 @@
-package it.polimi.ingsw.Model.Exceptions;
+package it.polimi.ingsw.Controller.Exceptions;
 
 public class IllegalMNMovementException extends Exception
 {

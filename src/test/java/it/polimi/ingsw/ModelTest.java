@@ -1,10 +1,7 @@
 package it.polimi.ingsw;
 
-import it.polimi.ingsw.Model.Colour;
+import it.polimi.ingsw.Model.*;
 import it.polimi.ingsw.Model.Exceptions.*;
-import it.polimi.ingsw.Model.Model;
-import it.polimi.ingsw.Model.Student;
-import it.polimi.ingsw.Model.Teacher;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -29,10 +26,8 @@ class ModelTest
     }
 
     @Test
-    void teacherDominance() throws TooManyTeachersException,
-                                TeacherAlreadyInException,
-                                NoSuchTeacherException,
-                                NoSuchPlayerException
+    void teacherDominance() throws TooManyTeachersException, TeacherAlreadyInException,
+                                   NoSuchTeacherException, NoSuchPlayerException, FullClassException
     {
         Teacher teacher1;
         teacher1=new Teacher(Colour.red);
@@ -47,7 +42,9 @@ class ModelTest
             assertTrue(false);
         } catch (NoSuchPlayerException e){}
 
-        model.teacherDominance("Francio", Colour.pink);
+        model.teacherDominance(P1, Colour.pink);
+        model.addStudentDashboard(P2, new Student(Colour.pink));
+        model.teacherDominance(P2, Colour.pink);
     }
 
     @Test
@@ -169,16 +166,50 @@ class ModelTest
 
 
     @Test
-    void moveMN() throws FullTowersException,
-            RunOutOfTowersException,
-            EmptyException
+    void moveMN() throws Exception
     {
         try {
             model.moveMN(-5);
             assertTrue(false);
         } catch (IndexOutOfBoundsException e){}
 
+        model.addStudentDashboard(P1, new Student(Colour.red));
+        model.teacherDominance(P1, Colour.red);
+        model.addStudentDashboard(P1, new Student(Colour.red));
+        model.teacherDominance(P1, Colour.red);
+        model.addStudentDashboard(P1, new Student(Colour.red));
+        model.teacherDominance(P1, Colour.red);
+        model.addStudentDashboard(P1, new Student(Colour.blue));
+        model.teacherDominance(P1, Colour.blue);
+        model.addStudentDashboard(P1, new Student(Colour.blue));
+        model.teacherDominance(P1, Colour.blue);
+        model.addStudentDashboard(P1, new Student(Colour.pink));
+        model.teacherDominance(P1, Colour.pink);
+        model.addStudentDashboard(P2, new Student(Colour.red));
+        model.teacherDominance(P2, Colour.red);
+        model.addStudentDashboard(P2, new Student(Colour.pink));
+        model.teacherDominance(P2, Colour.pink);
+        model.addStudentDashboard(P2, new Student(Colour.pink));
+        model.teacherDominance(P2, Colour.pink);
+        model.addStudentDashboard(P2, new Student(Colour.green));
+        model.teacherDominance(P2, Colour.green);
+
+        model.addStudentIsland(3, new Student(Colour.red));
+        model.addStudentIsland(3, new Student(Colour.red));
+        model.addStudentIsland(3, new Student(Colour.pink));
+        model.addStudentIsland(3, new Student(Colour.pink));
+        model.addStudentIsland(3, new Student(Colour.pink));
+        model.addStudentIsland(3, new Student(Colour.green));
+        model.addStudentIsland(3, new Student(Colour.blue));
+        model.addStudentIsland(3, new Student(Colour.blue));
+        model.addStudentIsland(3, new Student(Colour.blue));
         model.moveMN(3);
+        model.addStudentIsland(3, new Student(Colour.green));
+        model.addStudentIsland(3, new Student(Colour.green));
+        model.moveMN(12);
+        model.addStudentIsland(3, new Student(Colour.pink));
+        model.addStudentIsland(3, new Student(Colour.green));
+        model.moveMN(12);
     }
 
     @Test
