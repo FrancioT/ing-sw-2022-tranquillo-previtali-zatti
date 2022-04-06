@@ -1,11 +1,11 @@
 package it.polimi.ingsw;
 
-import it.polimi.ingsw.Exceptions.FullEntranceException;
-import it.polimi.ingsw.Exceptions.FullTowersException;
-import it.polimi.ingsw.Exceptions.RunOutOfTowersException;
+import it.polimi.ingsw.Model.ColourT;
+import it.polimi.ingsw.Model.Exceptions.FullTowersException;
+import it.polimi.ingsw.Model.Exceptions.RunOutOfTowersException;
+import it.polimi.ingsw.Model.Towers;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TowersTest {

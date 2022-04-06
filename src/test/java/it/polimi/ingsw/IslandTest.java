@@ -1,9 +1,10 @@
 package it.polimi.ingsw;
 
-import it.polimi.ingsw.Exceptions.EmptyException;
-import it.polimi.ingsw.Exceptions.FullTowersException;
-import it.polimi.ingsw.Exceptions.LinkFailedException;
-import it.polimi.ingsw.Exceptions.RunOutOfTowersException;
+import it.polimi.ingsw.Model.*;
+import it.polimi.ingsw.Model.Exceptions.EmptyException;
+import it.polimi.ingsw.Model.Exceptions.FullTowersException;
+import it.polimi.ingsw.Model.Exceptions.LinkFailedException;
+import it.polimi.ingsw.Model.Exceptions.RunOutOfTowersException;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

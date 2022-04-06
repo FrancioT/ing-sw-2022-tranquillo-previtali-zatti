@@ -1,6 +1,7 @@
 package it.polimi.ingsw;
 
-import it.polimi.ingsw.Exceptions.FullEntranceException;
+import it.polimi.ingsw.Model.*;
+import it.polimi.ingsw.Model.Exceptions.FullEntranceException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

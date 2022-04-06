@@ -1,6 +1,10 @@
 package it.polimi.ingsw;
 
-import it.polimi.ingsw.Exceptions.*;
+import it.polimi.ingsw.Model.Colour;
+import it.polimi.ingsw.Model.Exceptions.*;
+import it.polimi.ingsw.Model.Model;
+import it.polimi.ingsw.Model.Student;
+import it.polimi.ingsw.Model.Teacher;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
