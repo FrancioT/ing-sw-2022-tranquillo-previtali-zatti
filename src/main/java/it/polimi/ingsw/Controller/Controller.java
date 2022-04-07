@@ -13,6 +13,8 @@ public class Controller
     private List<String> uIDsList=new ArrayList<>();
     private Model model;
 
+    public Model getModel() { return model; }
+    public void setModel(Model model) { this.model=model; }
     public void cloudsFilling()
     {
         int tmp=uIDsList.size()%2;

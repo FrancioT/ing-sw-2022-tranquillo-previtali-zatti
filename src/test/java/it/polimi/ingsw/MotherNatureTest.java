@@ -18,16 +18,16 @@ class MotherNatureTest {
         island1=new Island(true);
         island2=new Island(false);
         mN1=new MotherNature(island1);
-        assertTrue(mN1.getCurrentPos().equals(island1));
-        assertTrue(island1.isMotherNatureFlag()==true);
-        assertFalse(mN1.getCurrentPos().equals(island2));
-        assertFalse(island2.isMotherNatureFlag()==true);
+        assertTrue(mN1.getCurrentPos()==island1);
+        assertTrue(island1.isMotherNatureFlag());
+        assertTrue(mN1.getCurrentPos() != island2);
+        assertFalse(island2.isMotherNatureFlag());
 
         mN1.jumpNextPos(island2);
 
-        assertTrue(mN1.getCurrentPos().equals(island2));
-        assertTrue(island2.isMotherNatureFlag()==true);
-        assertFalse(mN1.getCurrentPos().equals(island1));
-        assertFalse(island1.isMotherNatureFlag()==true);
+        assertTrue(mN1.getCurrentPos()==island2);
+        assertTrue(island2.isMotherNatureFlag());
+        assertTrue(mN1.getCurrentPos() != island1);
+        assertFalse(island1.isMotherNatureFlag());
     }
 }

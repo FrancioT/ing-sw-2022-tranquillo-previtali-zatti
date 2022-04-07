@@ -1,5 +1,7 @@
 package it.polimi.ingsw.Model.CharacterCard;
 
+import it.polimi.ingsw.Controller.Controller;
+
 abstract public class CharacterCard {
     protected final int price;
     protected int overPrice;
@@ -14,5 +16,5 @@ abstract public class CharacterCard {
     public int getPrice() {
         return price+overPrice;
     }
-    abstract public void handle(Object choice);
+    abstract public void handle(String uID, Object choice, Controller controller);
 }

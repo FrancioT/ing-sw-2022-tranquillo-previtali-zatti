@@ -23,6 +23,7 @@ class CloudTest {
 
         cloud1.cloudFiller(5);
         cloud1.cloudEmptier(player1);
+        assertEquals(player1.getStudents().size(), 5);
 
         try{
             cloud1.cloudFiller(-7);

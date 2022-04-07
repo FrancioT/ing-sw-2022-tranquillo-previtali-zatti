@@ -7,7 +7,11 @@ import java.util.List;
 public class Cloud extends Tile{
     final private Bag bag;
 
-    public Cloud(Bag bag) { this.bag=bag; }
+    public Cloud(Bag bag)
+    {
+        super();
+        this.bag=bag;
+    }
 
     public void cloudFiller(int n) throws IndexOutOfBoundsException
     {
