@@ -1,4 +1,5 @@
-package it.polimi.ingsw.Model;
+package it.polimi.ingsw.Model.ModelAndDecorators;
+import it.polimi.ingsw.Model.*;
 import it.polimi.ingsw.Model.CharacterCard.CharacterCard;
 import it.polimi.ingsw.Model.Exceptions.*;
 
@@ -8,13 +9,13 @@ import java.util.List;
 import java.util.Stack;
 
 public class Model {
-    private List<Teacher> teachersList;
-    private List<Island> islandsList;
-    private List<Cloud> cloudsList;
-    private List<Player> playersList;
-    private MotherNature motherNature;
-    private List<CharacterCard> characterCardList;
-    private int unusedCoins;
+    protected List<Teacher> teachersList;
+    protected List<Island> islandsList;
+    protected List<Cloud> cloudsList;
+    protected List<Player> playersList;
+    protected MotherNature motherNature;
+    protected List<CharacterCard> characterCardList;
+    protected int unusedCoins;
 
     public Model(List<String> uIDs)
     {
@@ -48,7 +49,38 @@ public class Model {
             teachersList.add(new Teacher(c));
     }
 
-    public void teacherDominance(String uID, Colour colour) throws TooManyTeachersException,
+    public Model(Model model)
+    {
+        teachersList=new ArrayList<>(model.teachersList);
+        islandsList=new ArrayList<>(model.islandsList);
+        cloudsList=new ArrayList<>(model.cloudsList);
+        playersList=new ArrayList<>(model.playersList);
+    }
+
+    public synchronized void payCard(String uID, int cardID) throws NoSuchPlayerException, NoSuchCardException,
+                                                       cardPaymentException
+    {
+        if(uID==null) throw new NullPointerException();
+
+        Player player = null;
+        for (Player p : playersList)
+            if (p.getuID().equals(uID))
+                player = p;
+        if(player==null)
+            throw new NoSuchPlayerException();
+        int chardPos=-1;
+        for(CharacterCard c: characterCardList)
+            if(c.getCardID()==cardID)
+                chardPos=characterCardList.indexOf(c);
+        if(chardPos==-1)
+            throw new NoSuchCardException();
+
+        int price=characterCardList.get(chardPos).getPrice();
+        player.pay(price);
+        unusedCoins+=price;
+    }
+
+    public synchronized void teacherDominance(String uID, Colour colour) throws TooManyTeachersException,
                                                               TeacherAlreadyInException,
                                                               NoSuchTeacherException,
                                                               NoSuchPlayerException
@@ -86,7 +118,7 @@ public class Model {
         }
     }
 
-    public void addStudentDashboard(String uID, Student student) throws NoSuchPlayerException,
+    public synchronized void addStudentDashboard(String uID, Student student) throws NoSuchPlayerException,
                                                                         FullClassException
     {
         if(uID==null) throw new NullPointerException();
@@ -100,20 +132,20 @@ public class Model {
         tmp.addStudent(student);
     }
 
-    public void addStudentIsland(int index, Student student) throws IndexOutOfBoundsException
+    public synchronized void addStudentIsland(int index, Student student) throws IndexOutOfBoundsException
     {
         if(index>islandsList.size() || index<0)
             throw new IndexOutOfBoundsException();
         islandsList.get(index).addStudent(student);
     }
 
-    public void cloudsFiller(int n){
+    public synchronized void cloudsFiller(int n){
         for(Cloud cloud : cloudsList){
             cloud.cloudFiller(n);
         }
     }
 
-    public void cloudEmptier(String uID, int i_cloud) throws FullEntranceException,
+    public synchronized void cloudEmptier(String uID, int i_cloud) throws FullEntranceException,
                                                              NoSuchPlayerException
     {
         if(uID==null) throw new NullPointerException();
@@ -128,7 +160,7 @@ public class Model {
         cloudsList.get(i_cloud).cloudEmptier(tmp);
     }
 
-    public StandardCard cardDiscarder(String uID, int pos) throws NoSuchPlayerException
+    public synchronized StandardCard cardDiscarder(String uID, int pos) throws NoSuchPlayerException
     {
         if(uID==null) throw new NullPointerException();
 
@@ -143,7 +175,7 @@ public class Model {
         return s;
     }
 
-    public Student entranceEmptier(String uID, Colour c) throws EmptyException,
+    public synchronized Student entranceEmptier(String uID, Colour c) throws EmptyException,
                                                                 NoSuchStudentException,
                                                                 NoSuchPlayerException
     {
@@ -160,7 +192,7 @@ public class Model {
         return s;
     }
 
-    public List<Colour> getStudents(String uID) throws NoSuchPlayerException
+    public synchronized List<Colour> getStudents(String uID) throws NoSuchPlayerException
     {
         if(uID==null) throw new NullPointerException();
 
@@ -173,12 +205,12 @@ public class Model {
         return tmp.getStudents();
     }
 
-    public int getCurrPosMN(){
+    public synchronized int getCurrPosMN(){
         Island position = motherNature.getCurrentPos();
         return islandsList.indexOf(position);
     }
 
-    public void moveMN(int deltaPos) throws FullTowersException,
+    public synchronized void moveMN(int deltaPos) throws FullTowersException,
                                             RunOutOfTowersException,
                                             EmptyException
     {
@@ -191,7 +223,7 @@ public class Model {
         islandDominance(islandsList.get(i));
     }
 
-    private void islandDominance(Island island) throws FullTowersException,
+    private synchronized void islandDominance(Island island) throws FullTowersException,
                                                        RunOutOfTowersException,
                                                        EmptyException
     {
@@ -257,7 +289,7 @@ public class Model {
         }
     }
 
-    public int getLastCardValue(String uID) throws NoSuchPlayerException, EmptyException
+    public synchronized int getLastCardValue(String uID) throws NoSuchPlayerException, EmptyException
     {
         if(uID==null) throw new NullPointerException();
 
@@ -269,6 +301,4 @@ public class Model {
             throw new NoSuchPlayerException();
         return tmp.getLastCardMNValue();
     }
-
-    public void handleCard(int index){}
 }

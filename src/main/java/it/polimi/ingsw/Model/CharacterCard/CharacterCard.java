@@ -16,5 +16,6 @@ abstract public class CharacterCard {
     public int getPrice() {
         return price+overPrice;
     }
-    abstract public void handle(String uID, Object choice, Controller controller);
+    public int getCardID() { return cardID; }
+    abstract public void handle(String uID, Object choice, Controller controller) throws Exception;
 }

@@ -3,7 +3,7 @@ package it.polimi.ingsw.Controller;
 import it.polimi.ingsw.Controller.Exceptions.IllegalMNMovementException;
 import it.polimi.ingsw.Model.Colour;
 import it.polimi.ingsw.Model.Exceptions.*;
-import it.polimi.ingsw.Model.Model;
+import it.polimi.ingsw.Model.ModelAndDecorators.Model;
 import it.polimi.ingsw.Model.Student;
 
 import java.util.*;
@@ -12,17 +12,22 @@ public class Controller
 {
     private List<String> uIDsList=new ArrayList<>();
     private Model model;
+    boolean decorationFlag=false;
 
-    public Model getModel() { return model; }
-    public void setModel(Model model) { this.model=model; }
-    public void cloudsFilling()
+    public synchronized Model getModel() { return model; }
+    public synchronized void decorateModel(Model model)
+    {
+        this.model=model;
+        decorationFlag=true;
+    }
+    public synchronized void cloudsFilling()
     {
         int tmp=uIDsList.size()%2;
         // if there are 2 or 4 players the clouds must be filled with 3 students
         // if there are 3 players the clouds must be filled with 4 students
         model.cloudsFiller(tmp*4 + (1-tmp)*3);
     }
-    public List<String> cardsPhase(List<String> uIDsOrder) throws NoSuchPlayerException
+    public synchronized List<String> cardsPhase(List<String> uIDsOrder) throws NoSuchPlayerException
     {
         List<String> order=new ArrayList<>();  // returning List
         Map<String, Integer> posCards= new HashMap<>();  // used to map a player to his
@@ -50,7 +55,7 @@ public class Controller
 
         return order;
     }
-    public void moveStudents(String uID) throws NoSuchStudentException, EmptyException, FullClassException,
+    public synchronized void moveStudents(String uID) throws NoSuchStudentException, EmptyException, FullClassException,
                                                 NoSuchPlayerException, TooManyTeachersException,
                                                 TeacherAlreadyInException, NoSuchTeacherException
     {
@@ -79,7 +84,7 @@ public class Controller
         for(Colour c: usedColours)
             model.teacherDominance(uID, c);
     }
-    public void moveMN(String uID) throws NoSuchPlayerException, IllegalMNMovementException,
+    public synchronized void moveMN(String uID) throws NoSuchPlayerException, IllegalMNMovementException,
                                           FullTowersException, RunOutOfTowersException, EmptyException
     {
         int pos=0;
@@ -93,7 +98,7 @@ public class Controller
             throw new IllegalMNMovementException();
         model.moveMN(delta_pos);
     }
-    public void chooseCloud(String uID) throws FullEntranceException,
+    public synchronized void chooseCloud(String uID) throws FullEntranceException,
                                                NoSuchPlayerException
     {
         int index=0;
@@ -101,5 +106,10 @@ public class Controller
         // input dell'indice dalla nuvola scelta
 
         model.cloudEmptier(uID, index);
+
+        if(decorationFlag) {
+            model = new Model(model);
+            decorationFlag=false;
+        }
     }
 }

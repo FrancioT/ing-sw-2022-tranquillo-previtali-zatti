@@ -35,6 +35,8 @@ public class Player {
     public void addStudent(Student student) throws FullClassException
     {
         playerDashboard.addStudent(student);
+        if(getStudentNum(student.getColour())%3==0)
+            coins++;
     }
     public void addTeacher(Teacher teacher) throws TooManyTeachersException, TeacherAlreadyInException
     {
@@ -59,6 +61,10 @@ public class Player {
     {
         return playerDashboard.getDTowers();
     }
-    public int getLastCardMNValue() throws EmptyException
-    { return playerDeck.getLastCardMNValue(); }
+    public int getLastCardMNValue() throws EmptyException { return playerDeck.getLastCardMNValue(); }
+    public void pay(int cost) throws cardPaymentException
+    {
+        if(cost>coins) throw new cardPaymentException();
+        coins -= cost;
+    }
 }
