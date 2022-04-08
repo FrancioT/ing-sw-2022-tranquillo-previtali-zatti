@@ -301,4 +301,12 @@ public class Model {
             throw new NoSuchPlayerException();
         return tmp.getLastCardMNValue();
     }
+
+    public synchronized void activateInhibitionFlag(Island island){
+        island.setInhibitionFlag(true);
+    }
+
+    public synchronized boolean getInhibitionFlag(Island island){
+        return island.getInhibitionFlag();
+    }
 }
