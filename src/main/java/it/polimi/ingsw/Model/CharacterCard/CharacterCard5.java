@@ -3,6 +3,7 @@ package it.polimi.ingsw.Model.CharacterCard;
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Model.Exceptions.InhibitionFlagAlreadyActiveException;
 import it.polimi.ingsw.Model.Exceptions.NoInhibitionFlagsAvailable;
+import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
 import it.polimi.ingsw.Model.Island;
 import it.polimi.ingsw.Model.ModelAndDecorators.Model;
 
@@ -11,7 +12,7 @@ public class CharacterCard5 extends CharacterCard{
     int availableFlags;
 
     public CharacterCard5(){
-        super(5, 1);
+        super(5, 2);
         availableFlags = 4;
     }
 
@@ -22,17 +23,22 @@ public class CharacterCard5 extends CharacterCard{
 
     @Override
     public void handle(String uID, Object choice, Controller controller) throws Exception {
-        model = controller.getModel();
 
-        if (!model.getInhibitionFlag((Island) choice) && availableFlags > 0){
-            controller.getModel().payCard(uID, cardID);
-            overPrice++;
-            model.activateInhibitionFlag((Island) choice, this);
-            availableFlags --;
+        if(controller.getModel().checkEnoughMoney(uID, cardID))
+        {
+            model = controller.getModel();
+            if (!model.getInhibitionFlag((Island) choice) && availableFlags > 0){
+                model.activateInhibitionFlag((Island) choice, this);
+                availableFlags --;
+
+                controller.getModel().payCard(uID, cardID);
+                overPrice++;
+            }
+            else if (availableFlags <= 0)
+                throw new NoInhibitionFlagsAvailable();
+            else
+                throw new InhibitionFlagAlreadyActiveException();
         }
-        else if (availableFlags <= 0)
-                 throw new NoInhibitionFlagsAvailable();
-             else
-                 throw new InhibitionFlagAlreadyActiveException();
+        else throw new NotEnoughMoneyException();
     }
 }

@@ -316,4 +316,24 @@ public class Model {
     public synchronized boolean getInhibitionFlag(Island island){
         return island.getInhibitionFlag();
     }
+
+    public boolean checkEnoughMoney(String uID, int cardID) throws NoSuchPlayerException, NoSuchCardException {
+        if(uID==null) throw new NullPointerException();
+
+        Player player = null;
+        for (Player p : playersList)
+            if (p.getuID().equals(uID))
+                player = p;
+        if(player==null)
+            throw new NoSuchPlayerException();
+        int cardPos=-1;
+        for(CharacterCard c: characterCardList)
+            if(c.getCardID() == cardID)
+                cardPos = characterCardList.indexOf(c);
+        if(cardPos==-1)
+            throw new NoSuchCardException();
+
+        int price = characterCardList.get(cardPos).getPrice();
+        return price <= player.getCoins();
+    }
 }

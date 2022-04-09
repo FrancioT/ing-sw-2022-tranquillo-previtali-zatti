@@ -4,6 +4,7 @@ import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Model.Bag;
 import it.polimi.ingsw.Model.Colour;
 import it.polimi.ingsw.Model.Exceptions.NoSuchStudentException;
+import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
 import it.polimi.ingsw.Model.ModelAndDecorators.Model;
 import it.polimi.ingsw.Model.Student;
 import java.util.ArrayList;
@@ -32,20 +33,26 @@ import java.util.List;
 
     @Override
     public void handle(String uID, Object choice, Controller controller) throws Exception {
-        model = controller.getModel();
-        Student tmp = null;
 
-        for(Student s: studentsList)
-            if(s.getColour()==(Colour)choice)
-                tmp=s;
+        if(controller.getModel().checkEnoughMoney(uID, cardID))
+        {
+            model = controller.getModel();
+            Student tmp = null;
 
-        if (tmp!=null){
-            controller.getModel().payCard(uID, cardID);
-            overPrice++;
-            model.addStudentDashboard(uID, tmp);
-            studentsList.remove(tmp);
-            studentsList.add(bag.randomExtraction());
+            for(Student s: studentsList)
+                if(s.getColour()==(Colour)choice)
+                    tmp=s;
+
+            if (tmp!=null){
+                model.addStudentDashboard(uID, tmp);
+                studentsList.remove(tmp);
+                studentsList.add(bag.randomExtraction());
+
+                controller.getModel().payCard(uID, cardID);
+                overPrice++;
+            }
+            else throw new NoSuchStudentException();
         }
-        else throw new NoSuchStudentException();
+        else throw new NotEnoughMoneyException();
     }
 }
