@@ -47,6 +47,14 @@ class Classrooms
         }
         throw new IllegalArgumentException(); // it should never get till this point
     }
+    Student removeStudent(Colour colour) throws NoSuchStudentException
+    {
+        for(List<Student> l:classrooms)
+            if(!l.isEmpty())
+                if (l.get(0).getColour() == colour)
+                    return l.remove(0);
+        throw new NoSuchStudentException();
+    }
     public void addTeacher(Teacher teacher) throws TooManyTeachersException, TeacherAlreadyInException
     {
         if(teacher==null) throw new NullPointerException();

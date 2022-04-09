@@ -67,5 +67,4 @@ public class Player {
         if(cost>coins) throw new cardPaymentException();
         coins -= cost;
     }
-    public int getCoins(){ return coins; }
 }
