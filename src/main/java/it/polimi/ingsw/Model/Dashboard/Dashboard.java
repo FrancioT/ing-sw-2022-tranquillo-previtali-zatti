@@ -5,6 +5,7 @@ import it.polimi.ingsw.Model.Student;
 import it.polimi.ingsw.Model.Teacher;
 import it.polimi.ingsw.Model.Towers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Dashboard
@@ -52,5 +53,16 @@ public class Dashboard
     {
         return classrooms.checkTeacherPresence(colour);
     }
-    public Towers getDTowers(){return towers;}
+    public Towers getDTowers() { return towers; }
+    public void studentsSwap(Colour entranceStudentColour, Colour classroomStudentColour)
+                                                         throws NoSuchStudentException, EmptyException,
+                                                                FullEntranceException, FullClassException
+    {
+        Student stud1=classrooms.removeStudent(classroomStudentColour);
+        Student stud2=entrance.entranceEmptier(entranceStudentColour);
+        classrooms.addStudent(stud2);
+        List<Student> tmp=new ArrayList<>();
+        tmp.add(stud1);
+        entrance.entranceFiller(tmp);
+    }
 }

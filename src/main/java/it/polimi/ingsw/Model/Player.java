@@ -67,4 +67,10 @@ public class Player {
         if(cost>coins) throw new cardPaymentException();
         coins -= cost;
     }
+    public void studentsSwap(Colour entranceStudentColour, Colour classroomStudentColour)
+                                                        throws NoSuchStudentException, EmptyException,
+                                                        FullEntranceException, FullClassException
+    {
+        playerDashboard.studentsSwap(entranceStudentColour, classroomStudentColour);
+    }
 }
