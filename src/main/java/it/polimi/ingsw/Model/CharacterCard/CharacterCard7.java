@@ -3,7 +3,6 @@ package it.polimi.ingsw.Model.CharacterCard;
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Model.Bag;
 import it.polimi.ingsw.Model.Colour;
-import it.polimi.ingsw.Model.Exceptions.NoSuchStudentException;
 import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
 import it.polimi.ingsw.Model.ModelAndDecorators.Model;
 import it.polimi.ingsw.Model.Student;
@@ -11,7 +10,7 @@ import it.polimi.ingsw.Model.Student;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CharacterCard7 extends CharacterCard {
+public class CharacterCard7 extends CharacterCardWithStudentsList {
     List<Student> studentsList;
 
     public CharacterCard7(Bag bag){
@@ -20,30 +19,6 @@ public class CharacterCard7 extends CharacterCard {
         for( int i = 0; i < 6; i++){
             studentsList.add(bag.randomExtraction());
         }
-    }
-
-    public List<Colour> getColoursOnCard(){
-        List<Colour> colours = new ArrayList<>();
-        for(Student s: studentsList)
-            colours.add(s.getColour());
-        return colours;
-    }
-
-    private Student removeStudent(Colour colour) throws NoSuchStudentException {
-        Student student = null;
-        for(int i = 0; i < getColoursOnCard().size(); i++){
-            if(getColoursOnCard().get(i) == colour){
-                student = studentsList.get(i);
-                break;
-            }
-        }
-        if (student != null){
-            studentsList.remove(student);
-            return student;
-        }
-
-        else
-            throw new NoSuchStudentException();
     }
 
     @Override
@@ -63,7 +38,9 @@ public class CharacterCard7 extends CharacterCard {
         }
 
         for(int i = studentsToSwap.size()/2; i < studentsToSwap.size(); i++){
-            model.addStudentDashboard(uID, removeStudent(studentsToSwap.get(i)));
+            List<Student> studentToAdd = new ArrayList<>();
+            studentToAdd.add(removeStudent(studentsToSwap.get(i)));
+            model.entranceFiller(uID, studentToAdd);
         }
 
         model.payCard(uID, cardID);

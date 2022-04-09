@@ -405,4 +405,15 @@ public class Model {
         int price=characterCardList.get(chardPos).getPrice();
         return price <= player.getCoins();
     }
+
+    public void entranceFiller(String uID, List<Student> studentsList) throws NoSuchPlayerException, FullEntranceException {
+        Player player = null;
+        for (Player p : playersList)
+            if (p.getuID().equals(uID))
+                player = p;
+        if(player==null)
+            throw new NoSuchPlayerException();
+        else
+            player.entranceFiller(studentsList);
+    }
 }

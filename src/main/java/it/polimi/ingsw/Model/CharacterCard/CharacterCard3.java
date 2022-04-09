@@ -10,11 +10,15 @@ public class CharacterCard3 extends CharacterCard {
     }
 
     @Override
-    public void handle(String uID, Object choice, Controller controller) throws NoSuchPlayerException, NoSuchCardException, cardPaymentException, EmptyException, FullTowersException, RunOutOfTowersException, LinkFailedException {
+    public void handle(String uID, Object choice, Controller controller) throws NoSuchPlayerException, NoSuchCardException, cardPaymentException, EmptyException, FullTowersException, RunOutOfTowersException, LinkFailedException, NotEnoughMoneyException {
+
+        if(choice==null || uID==null || controller==null)
+            throw new NullPointerException();
+        if(!controller.getModel().checkEnoughMoney(uID, cardID))
+            throw new NotEnoughMoneyException();
+
         int currentIslandIndex, nextIslandIndex, delta;
 
-        controller.getModel().payCard(uID, cardID);
-        overPrice++;
         currentIslandIndex=controller.getModel().getCurrPosMN();
         nextIslandIndex=(int) choice;
 
@@ -39,6 +43,9 @@ public class CharacterCard3 extends CharacterCard {
         }
 
         controller.getModel().moveMN(delta);
+
+        controller.getModel().payCard(uID, cardID);
+        overPrice++;
         //devo ricordarmi di risolvere il problema
         // correlato all'InhibitionFlag
         // con il ricalcolo della dominanza dopo che MN
