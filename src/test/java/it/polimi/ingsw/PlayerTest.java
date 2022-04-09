@@ -90,4 +90,23 @@ class PlayerTest {
         assertEquals(i, 1);
     }
 
+    @Test
+    public void paymentTest() throws FullClassException, cardPaymentException {
+        Player player = new Player("Gastani Frinzi", new Towers(ColourT.black, 1));
+        String uid;
+
+        uid = player.getuID();
+
+        try {
+            player.pay(1);
+            fail();
+        } catch (cardPaymentException c){}
+
+        for (int i = 0; i < 4; i++){
+            player.addStudent(new Student(Colour.red));
+        }
+
+        player.pay(1);
+    }
+
 }
