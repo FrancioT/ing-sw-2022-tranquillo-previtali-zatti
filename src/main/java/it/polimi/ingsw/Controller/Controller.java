@@ -85,7 +85,8 @@ public class Controller
             model.teacherDominance(uID, c);
     }
     public synchronized void moveMN(String uID) throws NoSuchPlayerException, IllegalMNMovementException,
-                                          FullTowersException, RunOutOfTowersException, EmptyException
+                                                       FullTowersException, RunOutOfTowersException,
+                                                       EmptyException, LinkFailedException
     {
         int pos=0;
 

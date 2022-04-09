@@ -1,10 +1,7 @@
 package it.polimi.ingsw.Model.ModelAndDecorators;
 
 import it.polimi.ingsw.Model.Colour;
-import it.polimi.ingsw.Model.Exceptions.EmptyException;
-import it.polimi.ingsw.Model.Exceptions.FullTowersException;
-import it.polimi.ingsw.Model.Exceptions.NoSuchPlayerException;
-import it.polimi.ingsw.Model.Exceptions.RunOutOfTowersException;
+import it.polimi.ingsw.Model.Exceptions.*;
 import it.polimi.ingsw.Model.Island;
 import it.polimi.ingsw.Model.Player;
 import it.polimi.ingsw.Model.Teacher;
@@ -32,7 +29,7 @@ public class Card8Decorator extends Model
     @Override
     protected synchronized void islandDominance(Island island) throws FullTowersException,
                                                                       RunOutOfTowersException,
-                                                                      EmptyException
+                                                                      EmptyException, LinkFailedException
     {
         List<Colour> islandColoursList=island.getStudentsColours();
         HashMap<Colour, Integer> coloursMap=new HashMap<>();

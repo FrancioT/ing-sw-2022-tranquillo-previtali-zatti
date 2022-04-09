@@ -19,7 +19,7 @@ public class Model {
     protected int unusedCoins;
     protected CharacterCard5 card5;
 
-    public Model(List<String> uIDs)
+    public Model(List<String> uIDs, boolean expertMode)
     {
         teachersList=new ArrayList<>();
         islandsList=new ArrayList<>();
@@ -33,13 +33,13 @@ public class Model {
             playersList.add(new Player(uID, towersList.pop()));
         // creation of islands and mother nature
         Bag bag=new Bag();
-        islandsList.add(new Island(true));
+        islandsList.add(new Island(true, this));
         for(int i=1; i<12; i++)
         {
             if (i != 6)
-                islandsList.add(new Island(bag.randomExtraction()));
+                islandsList.add(new Island(bag.randomExtraction(), this));
             else
-                islandsList.add(new Island(false));
+                islandsList.add(new Island(false, this));
         }
         motherNature=new MotherNature(islandsList.get(0));
         // creation of clouds and bag
@@ -49,6 +49,14 @@ public class Model {
         // creation of teachers
         for(Colour c: Colour.values())
             teachersList.add(new Teacher(c));
+        // expert mode
+        unusedCoins=0;
+        if(expertMode)
+        {
+            characterCardList=new ArrayList<>();
+            unusedCoins=20-playersList.size();
+            . // finish implementation
+        }
     }
 
     public Model(Model model)
@@ -57,6 +65,10 @@ public class Model {
         islandsList=new ArrayList<>(model.islandsList);
         cloudsList=new ArrayList<>(model.cloudsList);
         playersList=new ArrayList<>(model.playersList);
+        characterCardList=new ArrayList<>(model.characterCardList);
+        motherNature=model.motherNature;
+        unusedCoins=model.unusedCoins;
+        card5=model.card5;
     }
 
     public synchronized void payCard(String uID, int cardID) throws NoSuchPlayerException, NoSuchCardException,
@@ -167,7 +179,7 @@ public class Model {
         if(uID==null) throw new NullPointerException();
 
         Player tmp=null;
-        StandardCard s = null;
+        StandardCard s;
         for (Player p: playersList)
             if (p.getuID().equals(uID))
                 tmp = p;
@@ -214,7 +226,7 @@ public class Model {
 
     public synchronized void moveMN(int deltaPos) throws FullTowersException,
                                             RunOutOfTowersException,
-                                            EmptyException
+                                            EmptyException, LinkFailedException
     {
         if(deltaPos<=0) throw new IndexOutOfBoundsException();
 
@@ -227,7 +239,7 @@ public class Model {
 
     protected synchronized void islandDominance(Island island) throws FullTowersException,
                                                                       RunOutOfTowersException,
-                                                                      EmptyException
+                                                                      EmptyException, LinkFailedException
     {
         List<Colour> islandColoursList=island.getStudentsColours();
         HashMap<Colour, Integer> coloursMap=new HashMap<>();
@@ -286,11 +298,50 @@ public class Model {
             if(island.getInhibitionFlag())
             {
                 island.setInhibitionFlag(false);
-                card5.giveBackInhibitionFlag();
+                this.giveBackInhibitionFlag();
             }
             else
                 throw new IllegalArgumentException();  // the passed Island doesn't have the
                                                        // mother nature on it
+        }
+    }
+
+    public synchronized void checkIslandLinking() throws LinkFailedException
+    {
+        Island island1;
+        Island island2;
+        for(int i=0; i<islandsList.size(); i++)
+        {
+            island1=islandsList.get(i);
+            island2=islandsList.get(i+1);
+            if(island1.getNumTowers()!=0 && island2.getNumTowers()!=0)
+            {
+                try
+                {
+                    if (island1.getTowersColour() == island2.getTowersColour())
+                    {
+                        Island unifiedIsland= island1.islandsLinker(island2);
+                        islandsList.remove(island2);
+                        islandsList.set(i, unifiedIsland);
+                        i--;
+                    }
+                } catch (EmptyException e) { throw new LinkFailedException(); }
+            }
+        }
+        // check the last and first islands
+        island1=islandsList.get(0);
+        island2=islandsList.get(islandsList.size()-1);
+        if(island1.getNumTowers()!=0 && island2.getNumTowers()!=0)
+        {
+            try
+            {
+                if (island1.getTowersColour() == island2.getTowersColour())
+                {
+                    Island unifiedIsland= island1.islandsLinker(island2);
+                    islandsList.remove(island2);
+                    islandsList.set(0, unifiedIsland);
+                }
+            } catch (EmptyException e) { throw new LinkFailedException(); }
         }
     }
 
@@ -315,8 +366,8 @@ public class Model {
     public synchronized boolean getInhibitionFlag(Island island){
         return island.getInhibitionFlag();
     }
-
-    public void studentsSwap(String uID, Colour entranceStudentColour, Colour classroomStudentColour)
+    public synchronized void giveBackInhibitionFlag() { card5.giveBackInhibitionFlag(); }
+    public synchronized void studentsSwap(String uID, Colour entranceStudentColour, Colour classroomStudentColour)
                                         throws NoSuchStudentException, EmptyException, FullEntranceException,
                                                FullClassException, NoSuchPlayerException
     {
