@@ -1,11 +1,11 @@
 package it.polimi.ingsw.Model.CharacterCard;
 
 import it.polimi.ingsw.Controller.Controller;
-import it.polimi.ingsw.Model.ModelAndDecorators.Card2Decorator;
+import it.polimi.ingsw.Model.ModelAndDecorators.Card8Decorator;
 
-public class CharacterCard2 extends CharacterCard
+public class CharacterCard8 extends CharacterCard
 {
-    public CharacterCard2() { super(2, 2); }
+    public CharacterCard8() { super(8, 2); }
     @Override
     public void handle(String uID, Object choice, Controller controller) throws Exception
     {
@@ -13,8 +13,7 @@ public class CharacterCard2 extends CharacterCard
 
         controller.getModel().payCard(uID, cardID);
         overPrice++;
-        Card2Decorator model2= new Card2Decorator(controller.getModel());
+        Card8Decorator model2= new Card8Decorator(controller.getModel(), uID);
         controller.decorateModel(model2);
-        model2.moveTeachers(uID);
     }
 }

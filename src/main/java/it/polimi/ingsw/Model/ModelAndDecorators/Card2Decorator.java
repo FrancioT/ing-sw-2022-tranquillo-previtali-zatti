@@ -8,9 +8,9 @@ import it.polimi.ingsw.Model.Exceptions.TooManyTeachersException;
 import it.polimi.ingsw.Model.Player;
 import it.polimi.ingsw.Model.Teacher;
 
-public class Chard2Decorator extends Model
+public class Card2Decorator extends Model
 {
-    public Chard2Decorator(Model model) { super(model); }
+    public Card2Decorator(Model model) { super(model); }
 
     public synchronized void moveTeachers(String uID) throws NoSuchPlayerException, NoSuchTeacherException,
                                                 TooManyTeachersException, TeacherAlreadyInException

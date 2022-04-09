@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Model.ModelAndDecorators;
 import it.polimi.ingsw.Model.*;
 import it.polimi.ingsw.Model.CharacterCard.CharacterCard;
+import it.polimi.ingsw.Model.CharacterCard.CharacterCard5;
 import it.polimi.ingsw.Model.Exceptions.*;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class Model {
     protected MotherNature motherNature;
     protected List<CharacterCard> characterCardList;
     protected int unusedCoins;
+    protected CharacterCard5 card5;
 
     public Model(List<String> uIDs)
     {
@@ -223,9 +225,9 @@ public class Model {
         islandDominance(islandsList.get(i));
     }
 
-    private synchronized void islandDominance(Island island) throws FullTowersException,
-                                                       RunOutOfTowersException,
-                                                       EmptyException
+    protected synchronized void islandDominance(Island island) throws FullTowersException,
+                                                                      RunOutOfTowersException,
+                                                                      EmptyException
     {
         List<Colour> islandColoursList=island.getStudentsColours();
         HashMap<Colour, Integer> coloursMap=new HashMap<>();
@@ -258,7 +260,7 @@ public class Model {
                 }
 
                 if (island.getNumTowers() != 0){
-                    if(island.getTowersColour().equals(p.getTowers().getColour())) {
+                    if(island.getTowersColour()==p.getTowers().getColour()) {
                         pPoints += island.getNumTowers();
                     }
                 }
@@ -282,7 +284,10 @@ public class Model {
         else
         {
             if(island.getInhibitionFlag())
-            { /* rimozione inibitionFlag e restituzione dell'inbizione alla carta */ }
+            {
+                island.setInhibitionFlag(false);
+                card5.giveBackInhibitionFlag();
+            }
             else
                 throw new IllegalArgumentException();  // the passed Island doesn't have the
                                                        // mother nature on it
@@ -302,7 +307,9 @@ public class Model {
         return tmp.getLastCardMNValue();
     }
 
-    public synchronized void activateInhibitionFlag(Island island){
+    public synchronized void activateInhibitionFlag(Island island, CharacterCard5 card5)
+    {
+        this.card5=card5;
         island.setInhibitionFlag(true);
     }
 

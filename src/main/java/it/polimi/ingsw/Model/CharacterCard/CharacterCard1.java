@@ -25,8 +25,8 @@ import java.util.List;
 
     public List<Colour> getColoursOnCard(){
         List<Colour> colours = new ArrayList<>();
-        for(int i=0;i<4;i++)
-            colours.add(studentsList.get(i).getColour());
+        for(Student s: studentsList)
+            colours.add(s.getColour());
         return colours;
     }
 
@@ -35,19 +35,17 @@ import java.util.List;
         model = controller.getModel();
         Student tmp = null;
 
-        for (Student s : studentsList){         /* choice sarà un Colour o uno Student? Ho assunto sia uno Student*/
-            if (s.equals(choice))
-                tmp = s;
-        }
+        for(Student s: studentsList)
+            if(s.getColour()==(Colour)choice)
+                tmp=s;
 
-        if (tmp != null){
+        if (tmp!=null){
+            controller.getModel().payCard(uID, cardID);
+            overPrice++;
             model.addStudentDashboard(uID, tmp);
             studentsList.remove(tmp);
             studentsList.add(bag.randomExtraction());
-            controller.getModel().payCard(uID, cardID);
-            overPrice++;
         }
-
         else throw new NoSuchStudentException();
     }
 }

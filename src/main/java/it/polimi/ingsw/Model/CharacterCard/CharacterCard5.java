@@ -8,32 +8,31 @@ import it.polimi.ingsw.Model.ModelAndDecorators.Model;
 
 public class CharacterCard5 extends CharacterCard{
     Model model;
-    int AvailableFlags;
+    int availableFlags;
 
     public CharacterCard5(){
         super(5, 1);
-        AvailableFlags = 4;
+        availableFlags = 4;
     }
 
     public void giveBackInhibitionFlag(){
-        AvailableFlags ++;
+        if(availableFlags>3) throw new IllegalArgumentException("Too many inhibition tiles");
+        availableFlags ++;
     }
 
     @Override
     public void handle(String uID, Object choice, Controller controller) throws Exception {
         model = controller.getModel();
-        
-        if (!model.getInhibitionFlag((Island) choice) && AvailableFlags > 0){
-            model.activateInhibitionFlag((Island) choice);
-            AvailableFlags --;
+
+        if (!model.getInhibitionFlag((Island) choice) && availableFlags > 0){
             controller.getModel().payCard(uID, cardID);
             overPrice++;
+            model.activateInhibitionFlag((Island) choice, this);
+            availableFlags --;
         }
-
-        else if (model.getInhibitionFlag((Island) choice))
-            throw new InhibitionFlagAlreadyActiveException();
-
-        else if (AvailableFlags <= 0)
-            throw new NoInhibitionFlagsAvailable();
+        else if (availableFlags <= 0)
+                 throw new NoInhibitionFlagsAvailable();
+             else
+                 throw new InhibitionFlagAlreadyActiveException();
     }
 }
