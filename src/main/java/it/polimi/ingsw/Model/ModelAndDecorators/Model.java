@@ -55,7 +55,7 @@ public class Model {
         {
             characterCardList=new ArrayList<>();
             unusedCoins=20-playersList.size();
-            . // finish implementation
+            // finish implementation
         }
     }
 
@@ -363,10 +363,13 @@ public class Model {
         this.card5=card5;
         island.setInhibitionFlag(true);
     }
+
     public synchronized boolean getInhibitionFlag(Island island){
         return island.getInhibitionFlag();
     }
+
     public synchronized void giveBackInhibitionFlag() { card5.giveBackInhibitionFlag(); }
+
     public synchronized void studentsSwap(String uID, Colour entranceStudentColour, Colour classroomStudentColour)
                                             throws NoSuchStudentException, EmptyException, FullEntranceException,
                                                    FullClassException, NoSuchPlayerException
