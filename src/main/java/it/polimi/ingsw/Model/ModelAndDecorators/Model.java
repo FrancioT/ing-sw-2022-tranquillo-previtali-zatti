@@ -72,7 +72,7 @@ public class Model {
     }
 
     public synchronized void payCard(String uID, int cardID) throws NoSuchPlayerException, NoSuchCardException,
-            cardPaymentException
+                                                                    cardPaymentException
     {
         if(uID==null) throw new NullPointerException();
 
@@ -95,9 +95,9 @@ public class Model {
     }
 
     public synchronized void teacherDominance(String uID, Colour colour) throws TooManyTeachersException,
-            TeacherAlreadyInException,
-            NoSuchTeacherException,
-            NoSuchPlayerException
+                                                                                TeacherAlreadyInException,
+                                                                                NoSuchTeacherException,
+                                                                                NoSuchPlayerException
     {
         if(colour==null || uID==null) throw new NullPointerException();
 
@@ -133,7 +133,7 @@ public class Model {
     }
 
     public synchronized void addStudentDashboard(String uID, Student student) throws NoSuchPlayerException,
-            FullClassException
+                                                                                     FullClassException
     {
         if(uID==null) throw new NullPointerException();
 
@@ -160,7 +160,7 @@ public class Model {
     }
 
     public synchronized void cloudEmptier(String uID, int i_cloud) throws FullEntranceException,
-            NoSuchPlayerException
+                                                                          NoSuchPlayerException
     {
         if(uID==null) throw new NullPointerException();
         if(i_cloud>cloudsList.size() || i_cloud<0) throw new IndexOutOfBoundsException();
@@ -190,8 +190,8 @@ public class Model {
     }
 
     public synchronized Student entranceEmptier(String uID, Colour c) throws EmptyException,
-            NoSuchStudentException,
-            NoSuchPlayerException
+                                                                             NoSuchStudentException,
+                                                                             NoSuchPlayerException
     {
         if(uID==null) throw new NullPointerException();
 
@@ -225,8 +225,8 @@ public class Model {
     }
 
     public synchronized void moveMN(int deltaPos) throws FullTowersException,
-            RunOutOfTowersException,
-            EmptyException, LinkFailedException
+                                                         RunOutOfTowersException,
+                                                         EmptyException, LinkFailedException
     {
         if(deltaPos<=0) throw new IndexOutOfBoundsException();
 
@@ -238,8 +238,8 @@ public class Model {
     }
 
     protected synchronized void islandDominance(Island island) throws FullTowersException,
-            RunOutOfTowersException,
-            EmptyException, LinkFailedException
+                                                                      RunOutOfTowersException,
+                                                                      EmptyException, LinkFailedException
     {
         List<Colour> islandColoursList=island.getStudentsColours();
         HashMap<Colour, Integer> coloursMap=new HashMap<>();
@@ -302,7 +302,7 @@ public class Model {
             }
             else
                 throw new IllegalArgumentException();  // the passed Island doesn't have the
-            // mother nature on it
+                                                       // mother nature on it
         }
     }
 
@@ -368,8 +368,8 @@ public class Model {
     }
     public synchronized void giveBackInhibitionFlag() { card5.giveBackInhibitionFlag(); }
     public synchronized void studentsSwap(String uID, Colour entranceStudentColour, Colour classroomStudentColour)
-            throws NoSuchStudentException, EmptyException, FullEntranceException,
-            FullClassException, NoSuchPlayerException
+                                            throws NoSuchStudentException, EmptyException, FullEntranceException,
+                                                   FullClassException, NoSuchPlayerException
     {
         if(entranceStudentColour==null || classroomStudentColour==null || uID==null)
             throw new NullPointerException();

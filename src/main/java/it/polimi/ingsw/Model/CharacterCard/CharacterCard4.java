@@ -10,16 +10,14 @@ public class CharacterCard4 extends CharacterCard
     @Override
     public void handle(String uID, Object choice, Controller controller) throws Exception
     {
-        if(controller.getModel().checkEnoughMoney(uID, cardID))
-        {
-            if(uID==null) throw new NullPointerException();
+        if(uID==null || controller==null) throw new NullPointerException();
+        if(!controller.getModel().checkEnoughMoney(uID, cardID))
+            throw new NotEnoughMoneyException();
 
-            Card4Decorator model2= new Card4Decorator(controller.getModel());
-            controller.decorateModel(model2);
+        Card4Decorator model2= new Card4Decorator(controller.getModel());
+        controller.decorateModel(model2);
 
-            controller.getModel().payCard(uID, cardID);
-            overPrice++;
-        }
-        else throw new NotEnoughMoneyException();
+        controller.getModel().payCard(uID, cardID);
+        overPrice++;
     }
 }

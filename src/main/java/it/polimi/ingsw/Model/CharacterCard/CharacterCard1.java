@@ -13,7 +13,6 @@ import java.util.List;
  class CharacterCard1 extends CharacterCard{
     List<Student> studentsList;
     final private Bag bag;
-    Model model;
 
     public CharacterCard1(Bag bag) {
         super(1, 1);
@@ -33,26 +32,23 @@ import java.util.List;
 
     @Override
     public void handle(String uID, Object choice, Controller controller) throws Exception {
+        if(choice==null || uID==null || controller==null)
+            throw new NullPointerException();
+        Model model = controller.getModel();
+        if(!model.checkEnoughMoney(uID, cardID))
+            throw new NotEnoughMoneyException();
+        Student tmp = null;
+        for(Student s: studentsList)
+            if(s.getColour()==(Colour)choice)
+                tmp=s;
+        if (tmp==null)
+            throw new NoSuchStudentException();
 
-        if(controller.getModel().checkEnoughMoney(uID, cardID))
-        {
-            model = controller.getModel();
-            Student tmp = null;
+        model.addStudentDashboard(uID, tmp);
+        studentsList.remove(tmp);
+        studentsList.add(bag.randomExtraction());
 
-            for(Student s: studentsList)
-                if(s.getColour()==(Colour)choice)
-                    tmp=s;
-
-            if (tmp!=null){
-                model.addStudentDashboard(uID, tmp);
-                studentsList.remove(tmp);
-                studentsList.add(bag.randomExtraction());
-
-                controller.getModel().payCard(uID, cardID);
-                overPrice++;
-            }
-            else throw new NoSuchStudentException();
-        }
-        else throw new NotEnoughMoneyException();
+        model.payCard(uID, cardID);
+        overPrice++;
     }
 }
