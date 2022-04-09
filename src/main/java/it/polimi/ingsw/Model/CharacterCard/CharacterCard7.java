@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CharacterCard7 extends CharacterCardWithStudentsList {
-    List<Student> studentsList;
 
     public CharacterCard7(Bag bag){
         super(7, 1);

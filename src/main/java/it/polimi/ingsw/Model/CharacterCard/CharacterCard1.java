@@ -5,12 +5,9 @@ import it.polimi.ingsw.Model.Bag;
 import it.polimi.ingsw.Model.Colour;
 import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
 import it.polimi.ingsw.Model.ModelAndDecorators.Model;
-import it.polimi.ingsw.Model.Student;
 import java.util.ArrayList;
-import java.util.List;
 
  class CharacterCard1 extends CharacterCardWithStudentsList{
-    List<Student> studentsList;
     final private Bag bag;
 
     public CharacterCard1(Bag bag) {
