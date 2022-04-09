@@ -20,8 +20,8 @@ class IslandTest
         Island island1;
         Island island2;
         Bag bag=new Bag();
-        island1=new Island(true);
-        island2=new Island(bag.randomExtraction());
+        island1=new Island(true, null);
+        island2=new Island(bag.randomExtraction(), null);
         assertTrue(island2.getStudentsColours().size()>0);
         assertFalse(island2.isMotherNatureFlag());
         assertFalse(island2.getInhibitionFlag());
@@ -108,7 +108,7 @@ class IslandTest
             island3.islandsLinker(null);
             assertTrue(false);
         } catch (NullPointerException e){}
-        Island islandTmp=new Island(false);
+        Island islandTmp=new Island(false, null);
         try{
             island3.islandsLinker(islandTmp);
             assertTrue(false);

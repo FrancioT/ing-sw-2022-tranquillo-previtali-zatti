@@ -16,7 +16,7 @@ public class Player {
         this.uID=uID;
         this.playerDashboard=new Dashboard(towers);
         this.playerDeck=new Deck();
-        this.coins=0;
+        this.coins=1;
     }
     public void setNickName(String nickName) { this.nickName=nickName; }
 

@@ -312,8 +312,23 @@ public class Model {
         this.card5=card5;
         island.setInhibitionFlag(true);
     }
-
     public synchronized boolean getInhibitionFlag(Island island){
         return island.getInhibitionFlag();
+    }
+
+    public void studentsSwap(String uID, Colour entranceStudentColour, Colour classroomStudentColour)
+                                        throws NoSuchStudentException, EmptyException, FullEntranceException,
+                                               FullClassException, NoSuchPlayerException
+    {
+        if(entranceStudentColour==null || classroomStudentColour==null || uID==null)
+            throw new NullPointerException();
+
+        Player player = null;
+        for (Player p : playersList)
+            if (p.getuID().equals(uID))
+                player = p;
+        if(player==null)
+            throw new NoSuchPlayerException();
+        player.studentsSwap(entranceStudentColour, classroomStudentColour);
     }
 }
