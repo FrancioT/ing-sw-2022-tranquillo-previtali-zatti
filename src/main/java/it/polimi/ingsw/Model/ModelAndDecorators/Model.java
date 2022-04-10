@@ -310,7 +310,7 @@ public class Model {
     {
         Island island1;
         Island island2;
-        for(int i=0; i<islandsList.size(); i++)
+        for(int i=0; i<islandsList.size()-1; i++)
         {
             island1=islandsList.get(i);
             island2=islandsList.get(i+1);

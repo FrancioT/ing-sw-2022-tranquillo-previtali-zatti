@@ -5,8 +5,10 @@ import it.polimi.ingsw.Model.Exceptions.EmptyException;
 import it.polimi.ingsw.Model.Exceptions.FullTowersException;
 import it.polimi.ingsw.Model.Exceptions.LinkFailedException;
 import it.polimi.ingsw.Model.Exceptions.RunOutOfTowersException;
+import it.polimi.ingsw.Model.ModelAndDecorators.Model;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,11 +19,14 @@ class IslandTest
     public void isTest() throws FullTowersException, RunOutOfTowersException,
                                 EmptyException, LinkFailedException
     {
+        List<String> uIDs=new ArrayList<>();
+        uIDs.add("Francio"); uIDs.add("Tarallo");
+        Model model=new Model(uIDs, false);
         Island island1;
         Island island2;
         Bag bag=new Bag();
-        island1=new Island(true, null);
-        island2=new Island(bag.randomExtraction(), null);
+        island1=new Island(true, model);
+        island2=new Island(bag.randomExtraction(), model);
         assertTrue(island2.getStudentsColours().size()>0);
         assertFalse(island2.isMotherNatureFlag());
         assertFalse(island2.getInhibitionFlag());
@@ -102,7 +107,10 @@ class IslandTest
         assertEquals(island3.getTowersColour(), ColourT.white);
         assertEquals(island3.getNumTowers(), 2);
         assertTrue(island3.isMotherNatureFlag());
-        assertFalse(island3.getInhibitionFlag());
+        assertTrue(island3.getInhibitionFlag());
+        island1.setInhibitionFlag(false);
+        Island island4= island1.islandsLinker(island2);
+        assertFalse(island4.getInhibitionFlag());
         assertEquals(island3.getStudentsColours(), finalList);
         try{
             island3.islandsLinker(null);
@@ -113,7 +121,7 @@ class IslandTest
             island3.islandsLinker(islandTmp);
             assertTrue(false);
         } catch (LinkFailedException e){}
-        islandTmp.towersSwitcher(new Towers(ColourT.grey, 1));
+        //islandTmp.towersSwitcher(new Towers(ColourT.grey, 1));
         try{
             island3.islandsLinker(islandTmp);
             assertTrue(false);

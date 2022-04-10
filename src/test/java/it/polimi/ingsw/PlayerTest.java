@@ -98,7 +98,7 @@ class PlayerTest {
         uid = player.getuID();
 
         try {
-            player.pay(1);
+            player.pay(2);
             fail();
         } catch (cardPaymentException c){}
 

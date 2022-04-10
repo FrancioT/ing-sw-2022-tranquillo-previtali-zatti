@@ -23,7 +23,7 @@ class ModelTest
         List<String> uIDs=new ArrayList<>();
         uIDs.add(P1);
         uIDs.add(P2);
-        model= new Model(uIDs);
+        model= new Model(uIDs, false);
     }
 
     @Test
