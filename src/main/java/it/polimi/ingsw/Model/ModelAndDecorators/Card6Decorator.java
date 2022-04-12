@@ -11,6 +11,7 @@ import it.polimi.ingsw.Model.Teacher;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Card6Decorator extends Model
 {
@@ -22,7 +23,7 @@ public class Card6Decorator extends Model
                                                                     LinkFailedException
     {
         List<Colour> islandColoursList=island.getStudentsColours();
-        HashMap<Colour, Integer> coloursMap=new HashMap<>();
+        Map<Colour, Integer> coloursMap=new HashMap<>();
         Player dominantPlayer=null;
         boolean drawFlag=false;
         int pPoints=0, maxPPoints=0;

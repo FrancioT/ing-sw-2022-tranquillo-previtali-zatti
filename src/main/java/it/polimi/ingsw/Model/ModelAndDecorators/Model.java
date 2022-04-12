@@ -1,13 +1,9 @@
 package it.polimi.ingsw.Model.ModelAndDecorators;
 import it.polimi.ingsw.Model.*;
-import it.polimi.ingsw.Model.CharacterCard.CharacterCard;
-import it.polimi.ingsw.Model.CharacterCard.CharacterCard5;
+import it.polimi.ingsw.Model.CharacterCard.*;
 import it.polimi.ingsw.Model.Exceptions.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class Model {
     protected List<Teacher> teachersList;
@@ -21,6 +17,7 @@ public class Model {
 
     public Model(List<String> uIDs, boolean expertMode)
     {
+        int characterCardNum=11;
         teachersList=new ArrayList<>();
         islandsList=new ArrayList<>();
         cloudsList=new ArrayList<>();
@@ -51,11 +48,32 @@ public class Model {
             teachersList.add(new Teacher(c));
         // expert mode
         unusedCoins=0;
+        characterCardList=new ArrayList<>();
         if(expertMode)
         {
-            characterCardList=new ArrayList<>();
             unusedCoins=20-playersList.size();
-            // finish implementation
+            List<CharacterCard> cardListTmp= new ArrayList<>();
+            cardListTmp.add(new CharacterCard1(bag));
+            cardListTmp.add(new CharacterCard2());
+            cardListTmp.add(new CharacterCard3());
+            cardListTmp.add(new CharacterCard4());
+            cardListTmp.add(new CharacterCard5());
+            cardListTmp.add(new CharacterCard6());
+            cardListTmp.add(new CharacterCard7(bag));
+            cardListTmp.add(new CharacterCard8());
+            cardListTmp.add(new CharacterCard9());
+            cardListTmp.add(new CharacterCard10());
+            cardListTmp.add(new CharacterCard11(bag));
+            int randIndex= (int)Math.floor(Math.random()*(characterCardNum+1));
+            int oldRand= randIndex;
+            characterCardList.add(cardListTmp.get(randIndex));
+            do randIndex= (int)Math.floor(Math.random()*(characterCardNum+1));
+            while(randIndex==oldRand);
+            oldRand=randIndex;
+            characterCardList.add(cardListTmp.get(randIndex));
+            do randIndex= (int)Math.floor(Math.random()*(characterCardNum+1));
+            while(randIndex==oldRand);
+            characterCardList.add(cardListTmp.get(randIndex));
         }
     }
 
@@ -241,8 +259,9 @@ public class Model {
                                                                       RunOutOfTowersException,
                                                                       EmptyException, LinkFailedException
     {
+        if(island==null) throw new NullPointerException();
         List<Colour> islandColoursList=island.getStudentsColours();
-        HashMap<Colour, Integer> coloursMap=new HashMap<>();
+        Map<Colour, Integer> coloursMap=new HashMap<>();
         Player dominantPlayer=null;
         boolean drawFlag=false;
         int pPoints=0, maxPPoints=0;
@@ -360,11 +379,14 @@ public class Model {
 
     public synchronized void activateInhibitionFlag(Island island, CharacterCard5 card5)
     {
+        if(island==null || card5==null) throw new NullPointerException();
         this.card5=card5;
         island.setInhibitionFlag(true);
     }
 
-    public synchronized boolean getInhibitionFlag(Island island){
+    public synchronized boolean getInhibitionFlag(Island island)
+    {
+        if(island==null) throw new NullPointerException();
         return island.getInhibitionFlag();
     }
 
@@ -406,14 +428,15 @@ public class Model {
         return price <= player.getCoins();
     }
 
-    public void entranceFiller(String uID, List<Student> studentsList) throws NoSuchPlayerException, FullEntranceException {
+    public synchronized void entranceFiller(String uID, List<Student> studentsList) throws NoSuchPlayerException, FullEntranceException {
+        if(uID==null) throw new NullPointerException();
         Player player = null;
         for (Player p : playersList)
             if (p.getuID().equals(uID))
                 player = p;
         if(player==null)
             throw new NoSuchPlayerException();
-        else
-            player.entranceFiller(studentsList);
+
+        player.entranceFiller(studentsList);
     }
 }

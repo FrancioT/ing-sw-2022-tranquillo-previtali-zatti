@@ -38,7 +38,7 @@ public class CharacterCard10 extends CharacterCard{
             studentsToMove.remove(0);
         }
 
-        controller.getModel().payCard(uID, cardID);
+        model.payCard(uID, cardID);
         overPrice++;
     }
 }

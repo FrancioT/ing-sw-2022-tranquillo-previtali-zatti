@@ -13,55 +13,44 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Card9Decorator extends Model
+public class Card3Actuator
 {
-    private final Colour nullified_colour;
-    public Card9Decorator(Model model, Colour colour)
+    // this method is just a variant of islandDominance() in Model
+    static public void card3Effect(int index, Model model) throws FullTowersException,
+                                                                  RunOutOfTowersException,
+                                                                  EmptyException, LinkFailedException
     {
-        super(model);
-        nullified_colour=colour;
-    }
-    @Override
-    protected synchronized void islandDominance(Island island) throws FullTowersException,
-                                                                      RunOutOfTowersException,
-                                                                      EmptyException, LinkFailedException
-    {
+        if(model==null) throw new NullPointerException();
+        if(index<0) throw new IndexOutOfBoundsException();
+
+        Island island= model.islandsList.get(index);
         List<Colour> islandColoursList=island.getStudentsColours();
         Map<Colour, Integer> coloursMap=new HashMap<>();
         Player dominantPlayer=null;
         boolean drawFlag=false;
         int pPoints=0, maxPPoints=0;
 
-        if(island.equals(motherNature.getCurrentPos()) && !island.getInhibitionFlag())
+        if(!island.getInhibitionFlag())
         {
             for(Colour c: Colour.values())
-            {
                 coloursMap.put(c, Integer.valueOf(0));
-            }
 
             for(Colour c: islandColoursList)
             {
                 //here "coloursMap.get(c)" is equivalent to
                 //"Integer.valueOf(coloursMap.get(c).intValue())"
-                if(c!=nullified_colour)
-                    coloursMap.replace(c, coloursMap.get(c)+1);
+                coloursMap.replace(c, coloursMap.get(c)+1);
             }
 
-            for(Player p : playersList)
+            for(Player p : model.playersList)
             {
-                for(Teacher t : teachersList)
-                {
+                for(Teacher t : model.teachersList)
                     if(p.checkTeacherPresence(t.getColour()))
-                    {
                         pPoints += coloursMap.get(t.getColour());
-                    }
-                }
 
-                if (island.getNumTowers() != 0){
-                    if(island.getTowersColour()==p.getTowers().getColour()) {
+                if (island.getNumTowers() != 0)
+                    if(island.getTowersColour()==p.getTowers().getColour())
                         pPoints += island.getNumTowers();
-                    }
-                }
 
                 if(pPoints==maxPPoints)
                     drawFlag=true;
@@ -81,14 +70,8 @@ public class Card9Decorator extends Model
         }
         else
         {
-            if(island.getInhibitionFlag())
-            {
-                island.setInhibitionFlag(false);
-                card5.giveBackInhibitionFlag();
-            }
-            else
-                throw new IllegalArgumentException();  // the passed Island doesn't have the
-            // mother nature on it
+            island.setInhibitionFlag(false);
+            model.giveBackInhibitionFlag();
         }
     }
 }

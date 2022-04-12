@@ -94,20 +94,8 @@ public class Island extends Tile
         model.checkIslandLinking();
     }
 
-    public void setMotherNatureFlag()
-    {
-        if(motherNatureFlag==false)
-        {
-            motherNatureFlag=true;
-        }
-        else
-        {
-            motherNatureFlag=false;
-        }
-    }
-
+    public void setMotherNatureFlag() { motherNatureFlag=!motherNatureFlag; }
     public boolean isMotherNatureFlag() { return motherNatureFlag; }
-
     public void setInhibitionFlag(boolean setPresence) { inhibitionFlag=setPresence; }
     public boolean getInhibitionFlag() { return inhibitionFlag; }
 }

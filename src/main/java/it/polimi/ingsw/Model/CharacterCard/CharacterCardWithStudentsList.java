@@ -1,6 +1,5 @@
 package it.polimi.ingsw.Model.CharacterCard;
 
-import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Model.Colour;
 import it.polimi.ingsw.Model.Exceptions.NoSuchStudentException;
 import it.polimi.ingsw.Model.Student;
@@ -8,10 +7,10 @@ import it.polimi.ingsw.Model.Student;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CharacterCardWithStudentsList extends CharacterCard{
+abstract class CharacterCardWithStudentsList extends CharacterCard{
     List<Student> studentsList;
 
-    public CharacterCardWithStudentsList(int cardID, int price) {
+    CharacterCardWithStudentsList(int cardID, int price) {
         super(cardID, price);
     }
 
@@ -36,7 +35,4 @@ public class CharacterCardWithStudentsList extends CharacterCard{
             colours.add(s.getColour());
         return colours;
     }
-
-    @Override
-    public void handle(String uID, Object choice, Controller controller) throws Exception {}
 }

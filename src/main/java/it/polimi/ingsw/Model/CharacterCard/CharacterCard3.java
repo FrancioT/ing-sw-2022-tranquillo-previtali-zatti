@@ -1,55 +1,28 @@
 package it.polimi.ingsw.Model.CharacterCard;
 
 import it.polimi.ingsw.Controller.Controller;
-import it.polimi.ingsw.Model.Exceptions.*;
+import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
+import it.polimi.ingsw.Model.ModelAndDecorators.Card3Actuator;
 
 public class CharacterCard3 extends CharacterCard {
 
-    public CharacterCard3(int cardID, int price) {
+    public CharacterCard3() {
         super(3, 3);
     }
 
     @Override
-    public void handle(String uID, Object choice, Controller controller) throws NoSuchPlayerException, NoSuchCardException, cardPaymentException, EmptyException, FullTowersException, RunOutOfTowersException, LinkFailedException, NotEnoughMoneyException {
+    public void handle(String uID, Object choice, Controller controller) throws Exception
+    {
 
         if(choice==null || uID==null || controller==null)
             throw new NullPointerException();
         if(!controller.getModel().checkEnoughMoney(uID, cardID))
             throw new NotEnoughMoneyException();
 
-        int currentIslandIndex, nextIslandIndex, delta;
-
-        currentIslandIndex=controller.getModel().getCurrPosMN();
-        nextIslandIndex=(int) choice;
-
-        if(nextIslandIndex>currentIslandIndex)
-        {
-            delta=nextIslandIndex-currentIslandIndex;
-        }
-        else
-        {
-            delta=(12-currentIslandIndex)+nextIslandIndex;
-        }
-
-        controller.getModel().moveMN(delta);
-
-        if(nextIslandIndex>currentIslandIndex)
-        {
-            delta=(12-nextIslandIndex)+currentIslandIndex;
-        }
-        else
-        {
-            delta=currentIslandIndex-nextIslandIndex;
-        }
-
-        controller.getModel().moveMN(delta);
+        Card3Actuator.card3Effect((int)choice, controller.getModel());
 
         controller.getModel().payCard(uID, cardID);
         overPrice++;
-        //devo ricordarmi di risolvere il problema
-        // correlato all'InhibitionFlag
-        // con il ricalcolo della dominanza dopo che MN
-        // è tornata sulla vecchia isola
     }
 
 }

@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class IslandTest
 {
     @Test
-    public void isTest() throws FullTowersException, RunOutOfTowersException,
+    public void islTest() throws FullTowersException, RunOutOfTowersException,
                                 EmptyException, LinkFailedException
     {
         List<String> uIDs=new ArrayList<>();
@@ -116,12 +116,12 @@ class IslandTest
             island3.islandsLinker(null);
             assertTrue(false);
         } catch (NullPointerException e){}
-        Island islandTmp=new Island(false, null);
+        Island islandTmp=new Island(false, model);
         try{
             island3.islandsLinker(islandTmp);
             assertTrue(false);
         } catch (LinkFailedException e){}
-        //islandTmp.towersSwitcher(new Towers(ColourT.grey, 1));
+        islandTmp.towersSwitcher(new Towers(ColourT.grey, 1));
         try{
             island3.islandsLinker(islandTmp);
             assertTrue(false);

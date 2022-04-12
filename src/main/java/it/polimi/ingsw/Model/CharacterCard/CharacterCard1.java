@@ -6,8 +6,9 @@ import it.polimi.ingsw.Model.Colour;
 import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
 import it.polimi.ingsw.Model.ModelAndDecorators.Model;
 import java.util.ArrayList;
+import java.util.List;
 
- class CharacterCard1 extends CharacterCardWithStudentsList{
+public class CharacterCard1 extends CharacterCardWithStudentsList{
     final private Bag bag;
 
     public CharacterCard1(Bag bag) {
@@ -27,7 +28,8 @@ import java.util.ArrayList;
         if(!model.checkEnoughMoney(uID, cardID))
             throw new NotEnoughMoneyException();
 
-        model.addStudentDashboard(uID, removeStudent((Colour) choice)); /*modificare da dashboard a isola*/
+        List<Object> choice2= (List<Object>)choice;
+        model.addStudentIsland((Integer)choice2.get(0), removeStudent((Colour)choice2.get(1)));
         studentsList.add(bag.randomExtraction());
 
         model.payCard(uID, cardID);
