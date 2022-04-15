@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Model.ModelAndDecorators;
 
 import it.polimi.ingsw.Model.*;
+import it.polimi.ingsw.Model.CharacterCard.CharacterCard;
 import it.polimi.ingsw.Model.CharacterCard.CharacterCard3;
 import it.polimi.ingsw.Model.CharacterCard.CharacterCard4;
 import it.polimi.ingsw.Model.CharacterCard.CharacterCard5;
@@ -381,7 +382,7 @@ class ModelTest
     }
 
     @Test
-    void entranceFiller() throws NoSuchPlayerException, FullEntranceException
+    void entranceFiller()
     {
         List<Student> students=new ArrayList<>();
         assertThrows(NullPointerException.class, () -> model.entranceFiller(null, null));
@@ -408,5 +409,12 @@ class ModelTest
         assertEquals(model.getStudents(P1).size(), 3);
         assertEquals(model.playersList.get(0).getStudentNum(Colour.pink), 1);
         assertEquals(model.playersList.get(0).getStudentNum(Colour.blue), 0);
+    }
+
+    public static void changeCard(Model model, CharacterCard card)
+    {
+        if(model.characterCardList.size()==0)
+            throw new IllegalAccessError("The passed model is not in expert mode!");
+        model.characterCardList.set(0, card);
     }
 }
