@@ -89,7 +89,7 @@ public class Model {
     }
 
     public synchronized void payCard(String uID, int cardID) throws NoSuchPlayerException, NoSuchCardException,
-                                                                    cardPaymentException
+            CardPaymentException
     {
         if(characterCardList.size()==0) throw new IllegalAccessError();
         if(uID==null) throw new NullPointerException();

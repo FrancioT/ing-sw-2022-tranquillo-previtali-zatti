@@ -91,7 +91,7 @@ class PlayerTest {
     }
 
     @Test
-    public void paymentTest() throws FullClassException, cardPaymentException {
+    public void paymentTest() throws FullClassException, CardPaymentException {
         Player player = new Player("Gastani Frinzi", new Towers(ColourT.black, 1));
         String uid;
 
@@ -100,7 +100,7 @@ class PlayerTest {
         try {
             player.pay(2);
             fail();
-        } catch (cardPaymentException c){}
+        } catch (CardPaymentException c){}
 
         for (int i = 0; i < 4; i++){
             player.addStudent(new Student(Colour.red));

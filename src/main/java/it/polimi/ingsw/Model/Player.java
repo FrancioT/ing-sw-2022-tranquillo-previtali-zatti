@@ -62,9 +62,9 @@ public class Player {
         return playerDashboard.getDTowers();
     }
     public int getLastCardMNValue() throws EmptyException { return playerDeck.getLastCardMNValue(); }
-    public void pay(int cost) throws cardPaymentException
+    public void pay(int cost) throws CardPaymentException
     {
-        if(cost>coins) throw new cardPaymentException();
+        if(cost>coins) throw new CardPaymentException();
         coins -= cost;
     }
     public void studentsSwap(Colour entranceStudentColour, Colour classroomStudentColour)

@@ -10,10 +10,16 @@ import java.util.*;
 
 public class Controller
 {
-    private List<String> uIDsList=new ArrayList<>();
+    private List<String> uIDsList;
     private Model model;
-    boolean decorationFlag=false;
+    boolean decorationFlag;
 
+    public Controller(List<String> uIDs, boolean expertMode)
+    {
+        model= new Model(uIDs, expertMode);
+        uIDsList= new ArrayList<>(uIDs);
+        decorationFlag=false;
+    }
     public synchronized Model getModel() { return model; }
     public synchronized void decorateModel(Model model)
     {

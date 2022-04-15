@@ -30,7 +30,7 @@ class ModelTest
 
     @Test
     void payCard() throws NoSuchPlayerException, NoSuchCardException,
-                                                cardPaymentException, FullClassException
+            CardPaymentException, FullClassException
     {
         List<String> uIDs=new ArrayList<>();
         uIDs.add(P1);
@@ -40,7 +40,7 @@ class ModelTest
         assertThrows(NoSuchCardException.class, () -> model2.payCard(P1, 100));
         assertThrows(NoSuchPlayerException.class, () -> model2.payCard("ttt", 1));
         model2.characterCardList.set(0, new CharacterCard3());
-        assertThrows(cardPaymentException.class, () -> model2.payCard(P1, 3));
+        assertThrows(CardPaymentException.class, () -> model2.payCard(P1, 3));
         assertThrows(IllegalAccessError.class, () -> model.payCard(P1, 1));
         for(int i=0; i<10; i++)
             model2.addStudentDashboard(P1, new Student(Colour.yellow));
