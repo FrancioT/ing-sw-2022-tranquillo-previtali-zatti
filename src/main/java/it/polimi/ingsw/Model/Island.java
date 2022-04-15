@@ -88,9 +88,12 @@ public class Island extends Tile
             numTowers=1;
             newTowers.availabilityModifier(-1);
         }
-        towers.availabilityModifier(numTowers);
-        newTowers.availabilityModifier(-numTowers);
-        towers=newTowers;
+        else
+        {
+            towers.availabilityModifier(numTowers);
+            newTowers.availabilityModifier(-numTowers);
+            towers = newTowers;
+        }
         model.checkIslandLinking();
     }
 

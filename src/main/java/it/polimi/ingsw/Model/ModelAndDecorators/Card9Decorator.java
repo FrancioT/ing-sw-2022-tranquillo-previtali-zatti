@@ -29,39 +29,27 @@ public class Card9Decorator extends Model
         List<Colour> islandColoursList=island.getStudentsColours();
         Map<Colour, Integer> coloursMap=new HashMap<>();
         Player dominantPlayer=null;
-        boolean drawFlag=false;
+        boolean drawFlag=true;
         int pPoints=0, maxPPoints=0;
 
-        if(island.equals(motherNature.getCurrentPos()) && !island.getInhibitionFlag())
+        if(island==motherNature.getCurrentPos() && !island.getInhibitionFlag())
         {
             for(Colour c: Colour.values())
-            {
                 coloursMap.put(c, Integer.valueOf(0));
-            }
 
             for(Colour c: islandColoursList)
-            {
-                //here "coloursMap.get(c)" is equivalent to
-                //"Integer.valueOf(coloursMap.get(c).intValue())"
                 if(c!=nullified_colour)
                     coloursMap.replace(c, coloursMap.get(c)+1);
-            }
 
             for(Player p : playersList)
             {
                 for(Teacher t : teachersList)
-                {
                     if(p.checkTeacherPresence(t.getColour()))
-                    {
                         pPoints += coloursMap.get(t.getColour());
-                    }
-                }
 
-                if (island.getNumTowers() != 0){
-                    if(island.getTowersColour()==p.getTowers().getColour()) {
+                if (island.getNumTowers() != 0)
+                    if(island.getTowersColour()==p.getTowers().getColour())
                         pPoints += island.getNumTowers();
-                    }
-                }
 
                 if(pPoints==maxPPoints)
                     drawFlag=true;
@@ -76,7 +64,7 @@ public class Card9Decorator extends Model
                 pPoints=0;
             }
 
-            if(drawFlag==false)
+            if(!drawFlag)
                 island.towersSwitcher((dominantPlayer.getTowers()));
         }
         else

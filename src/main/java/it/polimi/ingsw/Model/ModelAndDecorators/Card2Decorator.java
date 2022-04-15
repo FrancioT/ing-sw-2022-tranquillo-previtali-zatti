@@ -57,7 +57,7 @@ public class Card2Decorator extends Model
         if(player1==null)
             throw new NoSuchPlayerException();
 
-        if (!player1.checkTeacherPresence(colour)){
+        if (!player1.checkTeacherPresence(colour) && player1.getStudentNum(colour)>0){
             for(Teacher t : teachersList)
                 if(t.getColour() == colour)
                     teacher = t;

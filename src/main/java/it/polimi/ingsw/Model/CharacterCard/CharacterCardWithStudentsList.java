@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 abstract class CharacterCardWithStudentsList extends CharacterCard{
-    List<Student> studentsList;
+    protected List<Student> studentsList;
 
     CharacterCardWithStudentsList(int cardID, int price) {
         super(cardID, price);

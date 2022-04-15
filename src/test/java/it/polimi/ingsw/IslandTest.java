@@ -98,7 +98,6 @@ class IslandTest
             island1.towersSwitcher(null);
             assertTrue(false);
         } catch (NullPointerException e){}
-        //testato tutto a meno di islandLinker e getNumTowers
         island2.towersSwitcher(new Towers(ColourT.white, 1));
         island2.addStudent(new Student(Colour.green));
         List<Colour> finalList= island1.getStudentsColours();

@@ -8,7 +8,7 @@ import it.polimi.ingsw.Model.Island;
 import it.polimi.ingsw.Model.ModelAndDecorators.Model;
 
 public class CharacterCard5 extends CharacterCard{
-    int availableFlags;
+    private int availableFlags;
 
     public CharacterCard5(){
         super(5, 2);
@@ -28,8 +28,8 @@ public class CharacterCard5 extends CharacterCard{
         if(!model.checkEnoughMoney(uID, cardID))
             throw new NotEnoughMoneyException();
 
-        if (!model.getInhibitionFlag((Island) choice) && availableFlags > 0){
-            model.activateInhibitionFlag((Island) choice, this);
+        if (availableFlags > 0){
+            model.activateInhibitionFlag((int) choice, this);
             availableFlags --;
 
             model.payCard(uID, cardID);
@@ -37,7 +37,5 @@ public class CharacterCard5 extends CharacterCard{
         }
         else if (availableFlags <= 0)
             throw new NoInhibitionFlagsAvailable();
-        else
-            throw new InhibitionFlagAlreadyActiveException();
     }
 }
