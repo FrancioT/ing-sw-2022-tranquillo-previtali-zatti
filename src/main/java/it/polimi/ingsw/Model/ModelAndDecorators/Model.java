@@ -52,6 +52,24 @@ public class Model {
         // creation of teachers
         for(Colour c: Colour.values())
             teachersList.add(new Teacher(c));
+
+        //initial filling of Entrances
+        /*
+        List<Student> entranceStudents = new ArrayList<>();
+        for(String uID : uIDs){
+            entranceStudents.clear();
+            if(uIDs.size()%2 == 0){
+                for(int i = 0; i < 7; i++)
+                    entranceStudents.add(bag.randomExtraction());
+            }
+            else{
+                for(int i = 0; i < 9; i++)
+                    entranceStudents.add(bag.randomExtraction());
+            }
+            entranceFiller(uID, entranceStudents);
+        }
+        */
+
         // expert mode
         unusedCoins=0;
         characterCardList=new ArrayList<>();
