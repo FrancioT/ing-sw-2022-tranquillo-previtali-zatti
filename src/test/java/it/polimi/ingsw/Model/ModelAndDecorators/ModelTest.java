@@ -14,7 +14,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ModelTest
+public class ModelTest
 {
     Model model;
     final private static String P1="Francio";
@@ -415,6 +415,7 @@ class ModelTest
     {
         if(model.characterCardList.size()==0)
             throw new IllegalAccessError("The passed model is not in expert mode!");
-        model.characterCardList.set(0, card);
+        model.characterCardList.clear();
+        model.characterCardList.add(card);
     }
 }

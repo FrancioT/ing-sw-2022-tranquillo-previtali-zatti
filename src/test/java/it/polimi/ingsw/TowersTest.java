@@ -15,8 +15,8 @@ class TowersTest {
         Towers towers0;
         Towers towers1;
 
-        towers0=new Towers(ColourT.white,0);
-        towers1=new Towers(ColourT.black,1);
+        towers0=new Towers(ColourT.white,1);
+        towers1=new Towers(ColourT.black,0);
 
         assertTrue(towers0.availabilityChecker()==6);
         assertTrue(towers1.availabilityChecker()==8);
