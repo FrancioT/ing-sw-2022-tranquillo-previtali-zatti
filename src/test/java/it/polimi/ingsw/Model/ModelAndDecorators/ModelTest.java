@@ -21,12 +21,20 @@ public class ModelTest
     final private static String P2="Tarallo";
 
     @BeforeEach
-    void initialization()
+    void initialization() throws Exception
     {
         List<String> uIDs=new ArrayList<>();
         uIDs.add(P1);
         uIDs.add(P2);
         model= new Model(uIDs, false);
+        List<Colour> colourList=model.getStudents(P1);
+        for(Colour c: colourList)
+            model.entranceEmptier(P1, c);
+        colourList=model.getStudents(P2);
+        for(Colour c: colourList)
+            model.entranceEmptier(P2, c);
+        assertEquals(model.getStudents(P1).size(), 0);
+        assertEquals(model.getStudents(P2).size(), 0);
     }
 
     @Test

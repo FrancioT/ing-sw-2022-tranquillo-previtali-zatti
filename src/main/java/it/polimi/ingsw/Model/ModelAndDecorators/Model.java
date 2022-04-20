@@ -54,21 +54,16 @@ public class Model {
             teachersList.add(new Teacher(c));
 
         //initial filling of Entrances
-        /*
         List<Student> entranceStudents = new ArrayList<>();
+        int mode=uIDs.size()%2;
         for(String uID : uIDs){
+            for(int i = 0; i < 7*(1-mode)+9*mode; i++)
+                entranceStudents.add(bag.randomExtraction());
+            try { entranceFiller(uID, entranceStudents); }
+            catch (FullEntranceException | NoSuchPlayerException e)
+            { throw new RuntimeException("Failed while filling entrances"); }
             entranceStudents.clear();
-            if(uIDs.size()%2 == 0){
-                for(int i = 0; i < 7; i++)
-                    entranceStudents.add(bag.randomExtraction());
-            }
-            else{
-                for(int i = 0; i < 9; i++)
-                    entranceStudents.add(bag.randomExtraction());
-            }
-            entranceFiller(uID, entranceStudents);
         }
-        */
 
         // expert mode
         unusedCoins=0;
@@ -113,7 +108,7 @@ public class Model {
     }
 
     public synchronized void payCard(String uID, int cardID) throws NoSuchPlayerException, NoSuchCardException,
-            CardPaymentException
+                                                                    CardPaymentException
     {
         if(characterCardList.size()==0) throw new IllegalAccessError();
         if(uID==null) throw new NullPointerException();

@@ -4,13 +4,13 @@ import it.polimi.ingsw.Controller.Exceptions.IllegalMNMovementException;
 import it.polimi.ingsw.Model.Colour;
 import it.polimi.ingsw.Model.Exceptions.*;
 import it.polimi.ingsw.Model.ModelAndDecorators.Model;
-import it.polimi.ingsw.Model.Student;
 
 import java.util.*;
 
 public class Controller
 {
     private List<String> uIDsList;
+    private final Map<String, DataBuffer> usersData;
     private Model model;
     boolean decorationFlag;
 
@@ -19,6 +19,9 @@ public class Controller
         model= new Model(uIDs, expertMode);
         uIDsList= new ArrayList<>(uIDs);
         decorationFlag=false;
+        usersData=new HashMap<>();
+        for(String s: uIDsList)
+            usersData.put(s, new DataBuffer(s));
     }
     public synchronized Model getModel() { return model; }
     public synchronized void decorateModel(Model model)
@@ -40,13 +43,20 @@ public class Controller
                                                          // played card position
         // SortedMap used to save player and his card round value in order
         SortedMap<Integer, String> playersOrder=new TreeMap<>();
-        int pos=0;
+        int pos=-1;
         int cardValue=0;
         for(String s: uIDsOrder)
         {
-
-            //ricezione input da ogni giocatore
-
+            while(pos==-1)
+            {
+                try {
+                    pos = usersData.get(s).getCardPos();
+                } catch (EmptyException e) {
+                    try {
+                        usersData.get(s).wait();
+                    } catch (InterruptedException ignored) {}
+                }
+            }
             posCards.put(s, Integer.valueOf(pos));
         }
         for(String s:uIDsOrder)
@@ -61,22 +71,32 @@ public class Controller
 
         return order;
     }
-    public synchronized void moveStudents(String uID) throws NoSuchStudentException, EmptyException, FullClassException,
-                                                NoSuchPlayerException, TooManyTeachersException,
-                                                TeacherAlreadyInException, NoSuchTeacherException
+    public synchronized void moveStudents(String uID) throws NoSuchStudentException, EmptyException,
+                                            FullClassException, NoSuchPlayerException, TooManyTeachersException,
+                                            TeacherAlreadyInException, NoSuchTeacherException
     {
         int n=uIDsList.size()%2;  // n=number of students that can be moved
         n=n*4 + (1-n)*3;       // n=3 if number of players is 2 or 4
                                // n=4 if number of players is 3
         List<Colour> usedColours=new ArrayList<>();
-        boolean target=true;
+        Boolean target=null;
         Colour colour=null;
-        int index=0;
-        Student s;
+        int index=-1;
         for(int i=0; i<n; i++)
         {
-
-            // input di target, colore studente e nel caso indice isola
+            while(colour==null || target==null)
+            {
+                try {
+                    if(target==null)
+                        target = usersData.get(uID).getTarget();
+                    if(colour==null)
+                        colour = usersData.get(uID).getStudentColour();
+                } catch (EmptyException e) {
+                    try {
+                        usersData.get(uID).wait();
+                    } catch (InterruptedException ignored) {}
+                }
+            }
 
             if(target)
             {
@@ -85,7 +105,19 @@ public class Controller
                 model.addStudentDashboard(uID, model.entranceEmptier(uID, colour));
             }
             else
+            {
+                while(index==-1)
+                {
+                    try {
+                        index = usersData.get(uID).getIslandPos();
+                    } catch (EmptyException e) {
+                        try {
+                            usersData.get(uID).wait();
+                        } catch (InterruptedException ignored) {}
+                    }
+                }
                 model.addStudentIsland(index, model.entranceEmptier(uID, colour));
+            }
         }
         for(Colour c: usedColours)
             model.teacherDominance(uID, c);
@@ -94,9 +126,18 @@ public class Controller
                                                        FullTowersException, RunOutOfTowersException,
                                                        EmptyException, LinkFailedException
     {
-        int pos=0;
+        int pos=-1;
 
-        // input di nuova posizione madre natura
+        while (pos==-1)
+        {
+            try {
+                pos=usersData.get(uID).getMnPos();
+            } catch (EmptyException e){
+                try {
+                    usersData.get(uID).wait();
+                } catch (InterruptedException ignored) {}
+            }
+        }
 
         int delta_pos=pos - model.getCurrPosMN();
         if(delta_pos > model.getLastCardValue(uID) )
@@ -106,11 +147,20 @@ public class Controller
         model.moveMN(delta_pos);
     }
     public synchronized void chooseCloud(String uID) throws FullEntranceException,
-                                               NoSuchPlayerException
+                                                            NoSuchPlayerException
     {
-        int index=0;
+        int index=-1;
 
-        // input dell'indice dalla nuvola scelta
+        while (index==-1)
+        {
+            try {
+                index=usersData.get(uID).getCloudPos();
+            } catch (EmptyException e){
+                try {
+                    usersData.get(uID).wait();
+                } catch (InterruptedException ignored) {}
+            }
+        }
 
         model.cloudEmptier(uID, index);
 
