@@ -3,6 +3,7 @@ package it.polimi.ingsw.Model.CharacterCard;
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Model.Bag;
 import it.polimi.ingsw.Model.Colour;
+import it.polimi.ingsw.Model.Exceptions.NoSuchStudentException;
 import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
 import it.polimi.ingsw.Model.ModelAndDecorators.Model;
 import it.polimi.ingsw.Model.Student;
@@ -28,17 +29,50 @@ public class CharacterCard7 extends CharacterCardWithStudentsList {
         if(!model.checkEnoughMoney(uID, cardID))
             throw new NotEnoughMoneyException();
 
-        List<Colour> studentsToSwap = (List<Colour>) choice;    /*the first half will be the colors to add to the card*/
-                                                                /*the second half are the ones to add in the entrance*/
+        boolean ok = false;
+        List<Colour> studentsToSwap = (List<Colour>) choice;
 
+        int studentsToMove = studentsToSwap.size()/2;
+        List<Colour> studentsToCard = new ArrayList<>();
+        List<Colour> studentsToEntrance = new ArrayList<>();
 
-        for(int i = 0; i < studentsToSwap.size()/2; i++){
-            studentsList.add(model.entranceEmptier(uID, studentsToSwap.get(i)));
+        for(int i = 0; i < studentsToMove; i++){
+            studentsToCard.add(studentsToSwap.remove(0));
         }
 
-        for(int i = studentsToSwap.size()/2; i < studentsToSwap.size(); i++){
+        for(int i = 0; i < studentsToMove; i++){
+            studentsToEntrance.add(studentsToSwap.remove(0));
+        }
+
+        for(Colour c : studentsToCard){
+            for(Colour colour : model.getStudents(uID)){
+                if(c.equals(colour))
+                    ok = true;
+            }
+            if(!ok)
+                throw new NoSuchStudentException();
+            else
+                ok = false;
+        }
+
+        for(Colour c : studentsToEntrance){
+            for(Colour colour : getColoursOnCard()){
+                if(c.equals(colour))
+                    ok = true;
+            }
+            if(!ok)
+                throw new NoSuchStudentException();
+            else
+                ok = false;
+        }
+
+        for(int i = 0; i < studentsToMove; i++){
+            studentsList.add(model.entranceEmptier(uID, studentsToCard.remove(0)));
+        }
+
+        for(int i = 0; i < studentsToMove; i++){
             List<Student> studentToAdd = new ArrayList<>();
-            studentToAdd.add(removeStudent(studentsToSwap.get(i)));
+            studentToAdd.add(removeStudent(studentsToEntrance.remove(0)));
             model.entranceFiller(uID, studentToAdd);
         }
 

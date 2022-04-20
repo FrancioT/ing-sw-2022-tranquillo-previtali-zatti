@@ -27,5 +27,8 @@ public class CharacterCard11 extends CharacterCardWithStudentsList{
 
         controller.getModel().addStudentDashboard(uID, removeStudent((Colour) choice));
         studentsList.add(bag.randomExtraction());
+
+        controller.getModel().payCard(uID, cardID);
+        overPrice ++;
     }
 }
