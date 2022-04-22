@@ -1,8 +1,10 @@
 package it.polimi.ingsw.Model.CharacterCard;
 
 import it.polimi.ingsw.Controller.Controller;
+import it.polimi.ingsw.Controller.DataBuffer;
 import it.polimi.ingsw.Model.Bag;
 import it.polimi.ingsw.Model.Colour;
+import it.polimi.ingsw.Model.Exceptions.EmptyException;
 import it.polimi.ingsw.Model.Exceptions.NoSuchStudentException;
 import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
 import it.polimi.ingsw.Model.ModelAndDecorators.Model;
@@ -22,15 +24,27 @@ public class CharacterCard7 extends CharacterCardWithStudentsList {
     }
 
     @Override
-    public void handle(String uID, Object choice, Controller controller) throws Exception {
-        if(uID==null || choice==null || controller==null)
+    public void handle(String uID, DataBuffer userData, Controller controller) throws Exception {
+        if(uID==null || userData==null || controller==null)
             throw new NullPointerException();
         Model model = controller.getModel();
         if(!model.checkEnoughMoney(uID, cardID))
             throw new NotEnoughMoneyException();
 
         boolean ok = false;
-        List<Colour> studentsToSwap = (List<Colour>) choice;
+        List<Colour> studentsToSwap=null;
+        while(studentsToSwap==null)
+        {
+            try {
+                studentsToSwap = userData.getStudentsColours();
+            } catch (EmptyException e) {
+                try {
+                    userData.wait();
+                } catch (InterruptedException ignored) {}
+            }
+        }
+        if(studentsToSwap.size()%2!=0)
+            throw new IllegalArgumentException();
 
         int studentsToMove = studentsToSwap.size()/2;
         List<Colour> studentsToCard = new ArrayList<>();

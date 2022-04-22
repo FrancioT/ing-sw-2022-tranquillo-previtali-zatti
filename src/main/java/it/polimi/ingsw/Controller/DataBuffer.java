@@ -3,6 +3,8 @@ package it.polimi.ingsw.Controller;
 import it.polimi.ingsw.Model.Colour;
 import it.polimi.ingsw.Model.Exceptions.EmptyException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class DataBuffer
@@ -14,6 +16,7 @@ public class DataBuffer
     private int islandPos;
     private int mnPos;
     private int cloudPos;
+    private List<Colour> studentsColours;
 
     public DataBuffer(String uID)
     {
@@ -24,6 +27,7 @@ public class DataBuffer
         islandPos=-1;
         mnPos=-1;
         cloudPos=-1;
+        studentsColours= new ArrayList<>();
     }
 
     public synchronized String getUID() { return uID; }
@@ -111,6 +115,19 @@ public class DataBuffer
         if(pos<0)
             throw new IllegalArgumentException();
         cloudPos=pos;
+        notifyAll();
+    }
+    public synchronized List<Colour> getStudentsColours() throws EmptyException
+    {
+        if(studentsColours.size()==0)
+            throw new EmptyException();
+        List<Colour> returnList= new ArrayList<>(studentsColours);
+        studentsColours.clear();
+        return returnList;
+    }
+    public synchronized void setStudentsColours(List<Colour> colours)
+    {
+        studentsColours.addAll(colours);
         notifyAll();
     }
 }

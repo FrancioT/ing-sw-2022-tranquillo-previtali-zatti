@@ -89,8 +89,7 @@ public class Controller
                 try {
                     if(target==null)
                         target = usersData.get(uID).getTarget();
-                    if(colour==null)
-                        colour = usersData.get(uID).getStudentColour();
+                    colour = usersData.get(uID).getStudentColour();
                 } catch (EmptyException e) {
                     try {
                         usersData.get(uID).wait();

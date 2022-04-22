@@ -1,6 +1,8 @@
 package it.polimi.ingsw.Model.CharacterCard;
 
 import it.polimi.ingsw.Controller.Controller;
+import it.polimi.ingsw.Controller.DataBuffer;
+import it.polimi.ingsw.Model.Exceptions.EmptyException;
 import it.polimi.ingsw.Model.Exceptions.InhibitionFlagAlreadyActiveException;
 import it.polimi.ingsw.Model.Exceptions.NoInhibitionFlagsAvailable;
 import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
@@ -21,15 +23,26 @@ public class CharacterCard5 extends CharacterCard{
     }
 
     @Override
-    public void handle(String uID, Object choice, Controller controller) throws Exception {
-        if(choice==null || uID==null || controller==null)
+    public void handle(String uID, DataBuffer userData, Controller controller) throws Exception {
+        if(userData==null || uID==null || controller==null)
             throw new NullPointerException();
         Model model = controller.getModel();
         if(!model.checkEnoughMoney(uID, cardID))
             throw new NotEnoughMoneyException();
 
+        int index=-1;
+        while(index==-1)
+        {
+            try {
+                index = userData.getIslandPos();
+            } catch (EmptyException e) {
+                try {
+                    userData.wait();
+                } catch (InterruptedException ignored) {}
+            }
+        }
         if (availableFlags > 0){
-            model.activateInhibitionFlag((int) choice, this);
+            model.activateInhibitionFlag(index, this);
             availableFlags --;
 
             model.payCard(uID, cardID);
