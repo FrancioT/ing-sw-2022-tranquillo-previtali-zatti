@@ -2,7 +2,6 @@ package it.polimi.ingsw.Model.CharacterCard;
 
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.DataBuffer;
-import it.polimi.ingsw.Model.Exceptions.EmptyException;
 import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
 import it.polimi.ingsw.Model.ModelAndDecorators.Card3Actuator;
 
@@ -21,17 +20,7 @@ public class CharacterCard3 extends CharacterCard {
         if(!controller.getModel().checkEnoughMoney(uID, cardID))
             throw new NotEnoughMoneyException();
 
-        int index=-1;
-        while(index==-1)
-        {
-            try {
-                index = userData.getIslandPos();
-            } catch (EmptyException e) {
-                try {
-                    userData.wait();
-                } catch (InterruptedException ignored) {}
-            }
-        }
+        int index= userData.getIslandPos();
         Card3Actuator.card3Effect(index, controller.getModel());
 
         controller.getModel().payCard(uID, cardID);

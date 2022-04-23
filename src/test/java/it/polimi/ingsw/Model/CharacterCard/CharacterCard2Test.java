@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-/*
+
 class CharacterCard2Test {
     @Test
     public void CharacterCard2Handle() throws Exception {
@@ -31,19 +31,13 @@ class CharacterCard2Test {
 
         for(int i=0; i < 3; i++){
             controller.getModel().addStudentDashboard("Aldo", new Student(Colour.red));
-            controller.getModel().teacherDominance("Aldo", Colour.red);
             controller.getModel().addStudentDashboard("Aldo", new Student(Colour.blue));
-            controller.getModel().teacherDominance("Aldo", Colour.blue);
             controller.getModel().addStudentDashboard("Giovanni", new Student(Colour.red));
-            controller.getModel().teacherDominance("Giovanni", Colour.red);
         }
 
         controller.getModel().addStudentDashboard("Aldo", new Student(Colour.green));
-        controller.getModel().teacherDominance("Aldo", Colour.green);
         controller.getModel().addStudentDashboard("Giovanni", new Student(Colour.blue));
-        controller.getModel().teacherDominance("Giovanni", Colour.blue);
         controller.getModel().addStudentDashboard("Giovanni", new Student(Colour.blue));
-        controller.getModel().teacherDominance("Giovanni", Colour.blue);
 
         try{
             card.handle(null, null, null);
@@ -58,16 +52,10 @@ class CharacterCard2Test {
         card.handle("Giovanni", null, controller);
 
         controller.getModel().addStudentDashboard("Giovanni", new Student(Colour.blue));
-        controller.getModel().teacherDominance("Giovanni", Colour.blue);
 
         controller.getModel().addStudentDashboard("Giovanni", new Student(Colour.pink));
-        controller.getModel().teacherDominance("Giovanni", Colour.pink);
-
-        try {
-            controller.getModel().teacherDominance("GastaniFrinzi", Colour.red);
-        }catch (NoSuchPlayerException nsp){}
 
         assertEquals(card.overPrice, 1);
     }
 
-}*/
+}

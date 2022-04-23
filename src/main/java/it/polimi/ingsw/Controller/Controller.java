@@ -44,19 +44,10 @@ public class Controller
         // SortedMap used to save player and his card round value in order
         SortedMap<Integer, String> playersOrder=new TreeMap<>();
         int pos=-1;
-        int cardValue=0;
+        int cardValue=-1;
         for(String s: uIDsOrder)
         {
-            while(pos==-1)
-            {
-                try {
-                    pos = usersData.get(s).getCardPos();
-                } catch (EmptyException e) {
-                    try {
-                        usersData.get(s).wait();
-                    } catch (InterruptedException ignored) {}
-                }
-            }
+            pos= usersData.get(s).getCardPos();
             posCards.put(s, Integer.valueOf(pos));
         }
         for(String s:uIDsOrder)
@@ -83,33 +74,13 @@ public class Controller
         int index=-1;
         for(int i=0; i<n; i++)
         {
-            while(colour==null || target==null)
-            {
-                try {
-                    if(target==null)
-                        target = usersData.get(uID).getTarget();
-                    colour = usersData.get(uID).getStudentColour();
-                } catch (EmptyException e) {
-                    try {
-                        usersData.get(uID).wait();
-                    } catch (InterruptedException ignored) {}
-                }
-            }
-
+            target= usersData.get(uID).getTarget();
+            colour = usersData.get(uID).getStudentColour();
             if(target)
                 model.addStudentDashboard(uID, model.entranceEmptier(uID, colour));
             else
             {
-                while(index==-1)
-                {
-                    try {
-                        index = usersData.get(uID).getIslandPos();
-                    } catch (EmptyException e) {
-                        try {
-                            usersData.get(uID).wait();
-                        } catch (InterruptedException ignored) {}
-                    }
-                }
+                index= usersData.get(uID).getIslandPos();
                 model.addStudentIsland(index, model.entranceEmptier(uID, colour));
             }
         }
@@ -118,19 +89,7 @@ public class Controller
                                                        FullTowersException, RunOutOfTowersException,
                                                        EmptyException, LinkFailedException
     {
-        int pos=-1;
-
-        while (pos==-1)
-        {
-            try {
-                pos=usersData.get(uID).getMnPos();
-            } catch (EmptyException e){
-                try {
-                    usersData.get(uID).wait();
-                } catch (InterruptedException ignored) {}
-            }
-        }
-
+        int pos= usersData.get(uID).getMnPos();
         int delta_pos=pos - model.getCurrPosMN();
         if(delta_pos > model.getLastCardValue(uID) )
             throw new IllegalMNMovementException();
@@ -141,19 +100,7 @@ public class Controller
     public synchronized void chooseCloud(String uID) throws FullEntranceException,
                                                             NoSuchPlayerException
     {
-        int index=-1;
-
-        while (index==-1)
-        {
-            try {
-                index=usersData.get(uID).getCloudPos();
-            } catch (EmptyException e){
-                try {
-                    usersData.get(uID).wait();
-                } catch (InterruptedException ignored) {}
-            }
-        }
-
+        int index= usersData.get(uID).getCloudPos();
         model.cloudEmptier(uID, index);
 
         if(decorationFlag) {

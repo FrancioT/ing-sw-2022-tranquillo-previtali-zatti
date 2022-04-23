@@ -3,7 +3,6 @@ package it.polimi.ingsw.Model.CharacterCard;
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.DataBuffer;
 import it.polimi.ingsw.Model.Colour;
-import it.polimi.ingsw.Model.Exceptions.EmptyException;
 import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
 import it.polimi.ingsw.Model.ModelAndDecorators.Card9Decorator;
 
@@ -17,17 +16,7 @@ public class CharacterCard9 extends CharacterCard
         if(!controller.getModel().checkEnoughMoney(uID,cardID))
             throw new NotEnoughMoneyException();
 
-        Colour colour=null;
-        while(colour==null)
-        {
-            try {
-                colour= userData.getStudentColour();
-            } catch (EmptyException e) {
-                try {
-                    userData.wait();
-                } catch (InterruptedException ignored) {}
-            }
-        }
+        Colour colour= userData.getStudentColour();
         Card9Decorator model2= new Card9Decorator(controller.getModel(), colour);
         controller.decorateModel(model2);
 

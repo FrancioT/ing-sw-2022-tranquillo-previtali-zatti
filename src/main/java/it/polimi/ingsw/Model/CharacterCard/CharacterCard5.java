@@ -2,7 +2,6 @@ package it.polimi.ingsw.Model.CharacterCard;
 
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.DataBuffer;
-import it.polimi.ingsw.Model.Exceptions.EmptyException;
 import it.polimi.ingsw.Model.Exceptions.NoInhibitionFlagsAvailable;
 import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
 import it.polimi.ingsw.Model.ModelAndDecorators.Model;
@@ -28,17 +27,7 @@ public class CharacterCard5 extends CharacterCard{
         if(!model.checkEnoughMoney(uID, cardID))
             throw new NotEnoughMoneyException();
 
-        int index=-1;
-        while(index==-1)
-        {
-            try {
-                index = userData.getIslandPos();
-            } catch (EmptyException e) {
-                try {
-                    userData.wait();
-                } catch (InterruptedException ignored) {}
-            }
-        }
+        int index= userData.getIslandPos();
         if (availableFlags > 0){
             model.addInhibition(index, this);
             availableFlags --;
@@ -46,7 +35,6 @@ public class CharacterCard5 extends CharacterCard{
             model.payCard(uID, cardID);
             overPrice++;
         }
-        else if (availableFlags <= 0)
-            throw new NoInhibitionFlagsAvailable();
+        else throw new NoInhibitionFlagsAvailable();
     }
 }

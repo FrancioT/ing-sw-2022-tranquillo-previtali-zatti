@@ -4,11 +4,9 @@ import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.DataBuffer;
 import it.polimi.ingsw.Model.Bag;
 import it.polimi.ingsw.Model.Colour;
-import it.polimi.ingsw.Model.Exceptions.EmptyException;
 import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
 import it.polimi.ingsw.Model.ModelAndDecorators.Model;
 import java.util.ArrayList;
-import java.util.List;
 
 public class CharacterCard1 extends CharacterCardWithStudentsList{
     final private Bag bag;
@@ -30,20 +28,8 @@ public class CharacterCard1 extends CharacterCardWithStudentsList{
         if(!model.checkEnoughMoney(uID, cardID))
             throw new NotEnoughMoneyException();
 
-        int index=-1;
-        Colour colour=null;
-        while(index==-1 || colour==null)
-        {
-            try {
-                if(index==-1)
-                    index = userData.getIslandPos();
-                colour= userData.getStudentColour();
-            } catch (EmptyException e) {
-                try {
-                    userData.wait();
-                } catch (InterruptedException ignored) {}
-            }
-        }
+        int index= userData.getIslandPos();
+        Colour colour= userData.getStudentColour();
         model.addStudentIsland(index, removeStudent(colour));
         studentsList.add(bag.randomExtraction());
 

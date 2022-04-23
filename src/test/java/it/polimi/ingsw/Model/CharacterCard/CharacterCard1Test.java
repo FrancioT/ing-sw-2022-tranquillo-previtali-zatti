@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Model.CharacterCard;
 
 import it.polimi.ingsw.Controller.Controller;
+import it.polimi.ingsw.Controller.DataBuffer;
 import it.polimi.ingsw.Model.*;
 import it.polimi.ingsw.Model.Exceptions.NoSuchStudentException;
 import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-/*
+
 class CharacterCard1Test {
     @Test
     public void CharacterCard1Colours(){
@@ -54,10 +55,11 @@ class CharacterCard1Test {
         controller.getModel().addStudentDashboard("Aldo", new Student(Colour.red));
 
         Colour presentColour = Colour.red, absentColour = Colour.blue;
-        List<Object> list = new ArrayList<>();
+        DataBuffer datas= new DataBuffer("Aldo");
 
-        list.add(2);
-        list.add(absentColour);
+
+        datas.setIslandPos(2);
+        datas.setStudColour(absentColour);
 
         card.studentsList.clear();
 
@@ -65,21 +67,21 @@ class CharacterCard1Test {
             card.studentsList.add(new Student(Colour.red));
 
         try {
-            card.handle("Giovanni", list, controller);
+            card.handle("Giovanni", datas, controller);
             fail();
         } catch (NotEnoughMoneyException n){}
 
         try {
-            card.handle("Aldo", list, controller);
+            card.handle("Aldo", datas, controller);
             fail();
         } catch (NoSuchStudentException ne){}
 
-        list.remove(1);
-        list.add(presentColour);
+        datas.setIslandPos(2);
+        datas.setStudColour(presentColour);
 
-        card.handle("Aldo", list, controller);
+        card.handle("Aldo", datas, controller);
 
         assertEquals(card.studentsList.size(), 4);
         assertEquals(card.overPrice, 2);
     }
-}*/
+}

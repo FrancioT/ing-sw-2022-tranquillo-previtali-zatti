@@ -1,7 +1,6 @@
 package it.polimi.ingsw.Controller;
 
 import it.polimi.ingsw.Model.Colour;
-import it.polimi.ingsw.Model.Exceptions.EmptyException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,10 +30,10 @@ public class DataBuffer
     }
 
     public synchronized String getUID() { return uID; }
-    public synchronized int getCardPos() throws EmptyException
+    public synchronized int getCardPos()
     {
-        if(cardPos==-1)
-            throw new EmptyException();
+        while(cardPos==-1)
+            try { wait(); } catch (InterruptedException ignored){}
         int returnValue= cardPos;
         cardPos=-1;
         return returnValue;
@@ -46,10 +45,10 @@ public class DataBuffer
         cardPos=pos;
         notifyAll();
     }
-    public synchronized boolean getTarget() throws EmptyException
+    public synchronized boolean getTarget()
     {
-        if(!target.isPresent())
-            throw new EmptyException();
+        while(!target.isPresent())
+            try { wait(); } catch (InterruptedException ignored){}
         boolean returnValue=target.get();
         target=Optional.empty();
         return returnValue;
@@ -59,10 +58,10 @@ public class DataBuffer
         target=Optional.of(value);
         notifyAll();
     }
-    public synchronized Colour getStudentColour() throws EmptyException
+    public synchronized Colour getStudentColour()
     {
-        if(!studColour.isPresent())
-            throw new EmptyException();
+        while(!studColour.isPresent())
+            try { wait(); } catch (InterruptedException ignored){}
         Colour returnValue=studColour.get();
         studColour=Optional.empty();
         return returnValue;
@@ -72,10 +71,10 @@ public class DataBuffer
         studColour=Optional.of(colour);
         notifyAll();
     }
-    public synchronized int getIslandPos() throws EmptyException
+    public synchronized int getIslandPos()
     {
-        if(islandPos==-1)
-            throw new EmptyException();
+        while(islandPos==-1)
+            try { wait(); } catch (InterruptedException ignored){}
         int returnValue=islandPos;
         islandPos=-1;
         return returnValue;
@@ -87,10 +86,10 @@ public class DataBuffer
         islandPos=pos;
         notifyAll();
     }
-    public synchronized int getMnPos() throws EmptyException
+    public synchronized int getMnPos()
     {
-        if(mnPos==-1)
-            throw new EmptyException();
+        while(mnPos==-1)
+            try { wait(); } catch (InterruptedException ignored){}
         int returnValue=mnPos;
         mnPos=-1;
         return returnValue;
@@ -102,10 +101,10 @@ public class DataBuffer
         mnPos=pos;
         notifyAll();
     }
-    public synchronized int getCloudPos() throws EmptyException
+    public synchronized int getCloudPos()
     {
-        if(cloudPos==-1)
-            throw new EmptyException();
+        while(cloudPos==-1)
+            try { wait(); } catch (InterruptedException ignored){}
         int returnValue=cloudPos;
         cloudPos=-1;
         return returnValue;
@@ -117,10 +116,10 @@ public class DataBuffer
         cloudPos=pos;
         notifyAll();
     }
-    public synchronized List<Colour> getStudentsColours() throws EmptyException
+    public synchronized List<Colour> getStudentsColours()
     {
-        if(studentsColours.size()==0)
-            throw new EmptyException();
+        while(studentsColours.size()==0)
+            try { wait(); } catch (InterruptedException ignored){}
         List<Colour> returnList= new ArrayList<>(studentsColours);
         studentsColours.clear();
         return returnList;

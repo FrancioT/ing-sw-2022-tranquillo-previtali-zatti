@@ -4,7 +4,6 @@ import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.DataBuffer;
 import it.polimi.ingsw.Model.Bag;
 import it.polimi.ingsw.Model.Colour;
-import it.polimi.ingsw.Model.Exceptions.EmptyException;
 import it.polimi.ingsw.Model.Exceptions.NoSuchStudentException;
 import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
 import it.polimi.ingsw.Model.ModelAndDecorators.Model;
@@ -32,17 +31,7 @@ public class CharacterCard7 extends CharacterCardWithStudentsList {
             throw new NotEnoughMoneyException();
 
         boolean ok = false;
-        List<Colour> studentsToSwap=null;
-        while(studentsToSwap==null)
-        {
-            try {
-                studentsToSwap = userData.getStudentsColours();
-            } catch (EmptyException e) {
-                try {
-                    userData.wait();
-                } catch (InterruptedException ignored) {}
-            }
-        }
+        List<Colour> studentsToSwap= userData.getStudentsColours();
         if(studentsToSwap.size()%2!=0)
             throw new IllegalArgumentException();
 
