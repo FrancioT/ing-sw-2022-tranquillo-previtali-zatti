@@ -2,7 +2,6 @@ package it.polimi.ingsw.Model.CharacterCard;
 
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Model.Colour;
-import it.polimi.ingsw.Model.Exceptions.NoSuchPlayerException;
 import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
 import it.polimi.ingsw.Model.ModelAndDecorators.ModelTest;
 import it.polimi.ingsw.Model.Student;

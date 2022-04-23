@@ -32,7 +32,7 @@ public class CharacterCard7 extends CharacterCardWithStudentsList {
 
         boolean ok = false;
         List<Colour> studentsToSwap= userData.getStudentsColours();
-        if(studentsToSwap.size()%2!=0)
+        if(studentsToSwap.size()%2!=0 || studentsToSwap.size()>6)
             throw new IllegalArgumentException();
 
         int studentsToMove = studentsToSwap.size()/2;
