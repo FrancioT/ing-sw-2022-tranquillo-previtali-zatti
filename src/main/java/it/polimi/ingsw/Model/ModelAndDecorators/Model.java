@@ -131,46 +131,42 @@ public class Model {
         unusedCoins+=price;
     }
 
-    public synchronized void teacherDominance(String uID, Colour colour) throws TooManyTeachersException,
+    protected synchronized void teacherDominance(Player player, Colour colour) throws TooManyTeachersException,
                                                                                 TeacherAlreadyInException,
-                                                                                NoSuchTeacherException,
-                                                                                NoSuchPlayerException
+                                                                                NoSuchTeacherException
     {
-        if(colour==null || uID==null) throw new NullPointerException();
+        if(colour==null || player==null) throw new NullPointerException();
 
-        Player player1 = null;
         Player player2;
         int num1, num2;
         Teacher teacher = null;
 
-        for(Player p : playersList)
-            if(p.getuID().equals(uID))
-                player1 = p;
-        if(player1==null)
-            throw new NoSuchPlayerException();
-
-        if (!player1.checkTeacherPresence(colour) && player1.getStudentNum(colour)>0){
+        if (!player.checkTeacherPresence(colour) && player.getStudentNum(colour)>0){
             for(Teacher t : teachersList)
                 if(t.getColour() == colour)
                     teacher = t;
+            if(teacher==null)
+                throw new NoSuchTeacherException();
             player2 = teacher.getCurrentPos();
             if(player2==null) {
-                player1.addTeacher(teacher);
-                teacher.setNewPos(player1);
+                player.addTeacher(teacher);
+                teacher.setNewPos(player);
             }
             else {
-                num1 = player1.getStudentNum(colour);
+                num1 = player.getStudentNum(colour);
                 num2 = player2.getStudentNum(colour);
                 if (num1 > num2) {
-                    player1.addTeacher(player2.removeTeacher(colour));
-                    teacher.setNewPos(player1);
+                    player.addTeacher(player2.removeTeacher(colour));
+                    teacher.setNewPos(player);
                 }
             }
         }
     }
 
-    public synchronized void addStudentDashboard(String uID, Student student) throws NoSuchPlayerException,
-                                                                                     FullClassException
+    public synchronized void addStudentDashboard(String uID, Student student)
+                                                    throws NoSuchPlayerException, FullClassException,
+                                                        TooManyTeachersException, TeacherAlreadyInException,
+                                                        NoSuchTeacherException
     {
         if(uID==null) throw new NullPointerException();
 
@@ -181,6 +177,7 @@ public class Model {
         if(tmp==null)
             throw new NoSuchPlayerException();
         tmp.addStudent(student);
+        teacherDominance(tmp, student.getColour());
     }
 
     public synchronized void addStudentIsland(int index, Student student) throws IndexOutOfBoundsException
@@ -402,7 +399,8 @@ public class Model {
 
     public synchronized void studentsSwap(String uID, Colour entranceStudentColour, Colour classroomStudentColour)
                                             throws NoSuchStudentException, EmptyException, FullEntranceException,
-                                                   FullClassException, NoSuchPlayerException
+                                                   FullClassException, NoSuchPlayerException, NoSuchTeacherException,
+                                                   TeacherAlreadyInException, TooManyTeachersException
     {
         if(entranceStudentColour==null || classroomStudentColour==null || uID==null)
             throw new NullPointerException();
@@ -414,6 +412,12 @@ public class Model {
         if(player==null)
             throw new NoSuchPlayerException();
         player.studentsSwap(entranceStudentColour, classroomStudentColour);
+        teacherDominance(player, entranceStudentColour);
+        // having removed a student from the classroom check if other players must take the
+        // dominance on that teacher
+        if(player.checkTeacherPresence(classroomStudentColour))
+            for(Player p: playersList)
+                teacherDominance(p, classroomStudentColour);
     }
 
     public synchronized boolean checkEnoughMoney(String uID, int cardID) throws NoSuchCardException,

@@ -38,8 +38,7 @@ public class ModelTest
     }
 
     @Test
-    void payCard() throws NoSuchPlayerException, NoSuchCardException,
-            CardPaymentException, FullClassException
+    void payCard() throws Exception
     {
         List<String> uIDs=new ArrayList<>();
         uIDs.add(P1);
@@ -71,30 +70,22 @@ public class ModelTest
             assertTrue(false);
         } catch (NullPointerException e){}
 
-        try {
-            model.teacherDominance("Andrea", Colour.pink);
-            assertTrue(false);
-        } catch (NoSuchPlayerException e){}
-
-        model.teacherDominance(P1, Colour.pink);
+        model.teacherDominance(model.playersList.get(0), Colour.pink);
         assertFalse(model.playersList.get(0).checkTeacherPresence(Colour.pink));
         for(Teacher t: model.teachersList)
             if(t.getColour()==Colour.pink)
                 assertNull(t.getCurrentPos());
         model.addStudentDashboard(P2, new Student(Colour.yellow));
-        model.teacherDominance(P2, Colour.yellow);
         assertTrue(model.playersList.get(1).checkTeacherPresence(Colour.yellow));
         for(Teacher t: model.teachersList)
             if(t.getColour()==Colour.yellow)
                 assertEquals(t.getCurrentPos(), model.playersList.get(1));
         model.addStudentDashboard(P1, new Student(Colour.yellow));
-        model.teacherDominance(P1, Colour.yellow);
         assertTrue(model.playersList.get(1).checkTeacherPresence(Colour.yellow));
         for(Teacher t: model.teachersList)
             if(t.getColour()==Colour.yellow)
                 assertEquals(t.getCurrentPos(), model.playersList.get(1));
         model.addStudentDashboard(P1, new Student(Colour.yellow));
-        model.teacherDominance(P1, Colour.yellow);
         assertTrue(model.playersList.get(0).checkTeacherPresence(Colour.yellow));
         assertFalse(model.playersList.get(1).checkTeacherPresence(Colour.yellow));
         for(Teacher t: model.teachersList)
@@ -103,7 +94,7 @@ public class ModelTest
     }
 
     @Test
-    void addStudentDashboard() throws NoSuchPlayerException, FullClassException
+    void addStudentDashboard() throws Exception
     {
         model.addStudentDashboard(P1, new Student(Colour.green));
         try {
@@ -242,32 +233,22 @@ public class ModelTest
         } catch (IndexOutOfBoundsException e){}
 
         model.addStudentDashboard(P1, new Student(Colour.red));
-        model.teacherDominance(P1, Colour.red);
         assertTrue(model.playersList.get(0).checkTeacherPresence(Colour.red));
         model.addStudentDashboard(P1, new Student(Colour.red));
-        model.teacherDominance(P1, Colour.red);
         model.addStudentDashboard(P1, new Student(Colour.red));
-        model.teacherDominance(P1, Colour.red);
         assertTrue(model.playersList.get(0).checkTeacherPresence(Colour.red));
         model.addStudentDashboard(P1, new Student(Colour.blue));
-        model.teacherDominance(P1, Colour.blue);
         model.addStudentDashboard(P1, new Student(Colour.blue));
-        model.teacherDominance(P1, Colour.blue);
         model.addStudentDashboard(P1, new Student(Colour.pink));
-        model.teacherDominance(P1, Colour.pink);
         assertTrue(model.playersList.get(0).checkTeacherPresence(Colour.blue));
         assertTrue(model.playersList.get(0).checkTeacherPresence(Colour.pink));
         model.addStudentDashboard(P2, new Student(Colour.red));
-        model.teacherDominance(P2, Colour.red);
         assertFalse(model.playersList.get(1).checkTeacherPresence(Colour.red));
         model.addStudentDashboard(P2, new Student(Colour.pink));
-        model.teacherDominance(P2, Colour.pink);
         assertFalse(model.playersList.get(1).checkTeacherPresence(Colour.pink));
         model.addStudentDashboard(P2, new Student(Colour.pink));
-        model.teacherDominance(P2, Colour.pink);
         assertTrue(model.playersList.get(1).checkTeacherPresence(Colour.pink));
         model.addStudentDashboard(P2, new Student(Colour.green));
-        model.teacherDominance(P2, Colour.green);
         assertTrue(model.playersList.get(1).checkTeacherPresence(Colour.green));
 
         model.addStudentIsland(3, new Student(Colour.red));
@@ -376,7 +357,6 @@ public class ModelTest
 
         model.addStudentIsland(6, new Student(Colour.red));
         model.addStudentDashboard(P1, new Student(Colour.red));
-        model.teacherDominance(P1, Colour.red);
         assertTrue(model.islandsList.get(6).getInhibition());
         model.moveMN(6);
         assertFalse(model.islandsList.get(6).getInhibition());

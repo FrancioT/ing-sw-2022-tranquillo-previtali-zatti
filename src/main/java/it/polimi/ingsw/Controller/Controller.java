@@ -78,7 +78,6 @@ public class Controller
         int n=uIDsList.size()%2;  // n=number of students that can be moved
         n=n*4 + (1-n)*3;       // n=3 if number of players is 2 or 4
                                // n=4 if number of players is 3
-        List<Colour> usedColours=new ArrayList<>();
         Boolean target=null;
         Colour colour=null;
         int index=-1;
@@ -98,11 +97,7 @@ public class Controller
             }
 
             if(target)
-            {
-                if(!usedColours.contains(colour))
-                    usedColours.add(colour);
                 model.addStudentDashboard(uID, model.entranceEmptier(uID, colour));
-            }
             else
             {
                 while(index==-1)
@@ -118,8 +113,6 @@ public class Controller
                 model.addStudentIsland(index, model.entranceEmptier(uID, colour));
             }
         }
-        for(Colour c: usedColours)
-            model.teacherDominance(uID, c);
     }
     public synchronized void moveMN(String uID) throws NoSuchPlayerException, IllegalMNMovementException,
                                                        FullTowersException, RunOutOfTowersException,
