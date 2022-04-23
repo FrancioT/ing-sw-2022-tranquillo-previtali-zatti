@@ -30,7 +30,7 @@ public class Card3Actuator
         boolean drawFlag=false;
         int pPoints=0, maxPPoints=0;
 
-        if(!island.getInhibitionFlag())
+        if(!island.getInhibition())
         {
             for(Colour c: Colour.values())
                 coloursMap.put(c, Integer.valueOf(0));
@@ -70,7 +70,7 @@ public class Card3Actuator
         }
         else
         {
-            island.setInhibitionFlag(false);
+            island.subInhibition();
             model.giveBackInhibitionFlag();
         }
     }

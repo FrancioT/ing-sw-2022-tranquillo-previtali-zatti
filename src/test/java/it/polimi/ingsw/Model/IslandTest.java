@@ -1,4 +1,4 @@
-package it.polimi.ingsw;
+package it.polimi.ingsw.Model;
 
 import it.polimi.ingsw.Model.*;
 import it.polimi.ingsw.Model.Exceptions.EmptyException;
@@ -29,7 +29,7 @@ class IslandTest
         island2=new Island(bag.randomExtraction(), model);
         assertTrue(island2.getStudentsColours().size()>0);
         assertFalse(island2.isMotherNatureFlag());
-        assertFalse(island2.getInhibitionFlag());
+        assertFalse(island2.getInhibition());
         int pink_n=0, yellow_n=0, green_n=0, blue_n=0, red_n=0;
         List<Colour> tmp=island1.getStudentsColours();
         for(Colour c: tmp)
@@ -89,9 +89,9 @@ class IslandTest
         assertFalse(island1.isMotherNatureFlag());
         island1.setMotherNatureFlag();
         assertTrue(island1.isMotherNatureFlag());
-        assertFalse(island1.getInhibitionFlag());
-        island1.setInhibitionFlag(true);
-        assertTrue(island1.getInhibitionFlag());
+        assertFalse(island1.getInhibition());
+        island1.addInhibition();
+        assertTrue(island1.getInhibition());
         island1.towersSwitcher(new Towers(ColourT.white, 1));
         assertEquals(island1.getTowersColour(), ColourT.white);
         try {
@@ -106,10 +106,10 @@ class IslandTest
         assertEquals(island3.getTowersColour(), ColourT.white);
         assertEquals(island3.getNumTowers(), 2);
         assertTrue(island3.isMotherNatureFlag());
-        assertTrue(island3.getInhibitionFlag());
-        island1.setInhibitionFlag(false);
+        assertTrue(island3.getInhibition());
+        island1.subInhibition();
         Island island4= island1.islandsLinker(island2);
-        assertFalse(island4.getInhibitionFlag());
+        assertFalse(island4.getInhibition());
         assertEquals(island3.getStudentsColours(), finalList);
         try{
             island3.islandsLinker(null);

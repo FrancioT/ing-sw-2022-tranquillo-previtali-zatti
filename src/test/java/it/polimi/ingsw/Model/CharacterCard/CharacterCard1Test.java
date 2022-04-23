@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+/*
 class CharacterCard1Test {
     @Test
     public void CharacterCard1Colours(){
@@ -82,4 +82,4 @@ class CharacterCard1Test {
         assertEquals(card.studentsList.size(), 4);
         assertEquals(card.overPrice, 2);
     }
-}
+}*/

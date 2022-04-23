@@ -285,7 +285,7 @@ public class Model {
         boolean drawFlag=true;
         int pPoints=0, maxPPoints=0;
 
-        if(island==motherNature.getCurrentPos() && !island.getInhibitionFlag())
+        if(island==motherNature.getCurrentPos() && !island.getInhibition())
         {
             for(Colour c: Colour.values())
                 coloursMap.put(c, Integer.valueOf(0));
@@ -325,9 +325,9 @@ public class Model {
         }
         else
         {
-            if(island.getInhibitionFlag())
+            if(island.getInhibition())
             {
-                island.setInhibitionFlag(false);
+                island.subInhibition();
                 this.giveBackInhibitionFlag();
             }
             else
@@ -390,21 +390,12 @@ public class Model {
         return tmp.getLastCardMNValue();
     }
 
-    public synchronized void activateInhibitionFlag(int islandPos, CharacterCard5 card5)
-                                                throws InhibitionFlagAlreadyActiveException
+    public synchronized void addInhibition(int islandPos, CharacterCard5 card5)
     {
         if(islandPos<0 || islandPos>=islandsList.size()) throw new IndexOutOfBoundsException();
         if(card5==null) throw new NullPointerException();
-        if(islandsList.get(islandPos).getInhibitionFlag())
-            throw new InhibitionFlagAlreadyActiveException();
         this.card5=card5;
-        islandsList.get(islandPos).setInhibitionFlag(true);
-    }
-
-    public synchronized boolean getInhibitionFlag(int islandPos)
-    {
-        if(islandPos<0 || islandPos>=islandsList.size()) throw new IndexOutOfBoundsException();
-        return islandsList.get(islandPos).getInhibitionFlag();
+        islandsList.get(islandPos).addInhibition();
     }
 
     public synchronized void giveBackInhibitionFlag() { card5.giveBackInhibitionFlag(); }

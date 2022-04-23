@@ -21,7 +21,7 @@ class Classrooms
         }
         teachers = new ArrayList<>();
     }
-    public void addStudent(Student student) throws FullClassException
+    void addStudent(Student student) throws FullClassException
     {
         if(student==null) throw new NullPointerException();
 
@@ -55,7 +55,7 @@ class Classrooms
                     return l.remove(0);
         throw new NoSuchStudentException();
     }
-    public void addTeacher(Teacher teacher) throws TooManyTeachersException, TeacherAlreadyInException
+    void addTeacher(Teacher teacher) throws TooManyTeachersException, TeacherAlreadyInException
     {
         if(teacher==null) throw new NullPointerException();
 
@@ -65,7 +65,7 @@ class Classrooms
             throw new TeacherAlreadyInException();
         teachers.add(teacher);
     }
-    public Teacher removeTeacher(Colour colour) throws NoSuchTeacherException
+    Teacher removeTeacher(Colour colour) throws NoSuchTeacherException
     {
         if(colour==null) throw new NullPointerException();
 
@@ -79,7 +79,7 @@ class Classrooms
         }
         throw new NoSuchTeacherException();
     }
-    public int getStudentNum(Colour colour)
+    int getStudentNum(Colour colour)
     {
         if(colour==null) throw new NullPointerException();
 
@@ -91,7 +91,7 @@ class Classrooms
         }
         return 0;
     }
-    public boolean checkTeacherPresence(Colour colour)
+    boolean checkTeacherPresence(Colour colour)
     {
         if(colour==null) throw new NullPointerException();
 

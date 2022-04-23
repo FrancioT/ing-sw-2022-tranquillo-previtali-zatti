@@ -1,6 +1,5 @@
-package it.polimi.ingsw;
+package it.polimi.ingsw.Model;
 
-import it.polimi.ingsw.Model.Deck;
 import it.polimi.ingsw.Model.Exceptions.EmptyException;
 import org.junit.jupiter.api.Test;
 

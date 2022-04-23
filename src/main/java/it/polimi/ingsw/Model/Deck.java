@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class Deck {
+class Deck {
     private List<StandardCard> handList;
     private Stack<StandardCard> discardedStack;
 
-    public Deck()
+    Deck()
     {
         handList=new ArrayList<>();
         discardedStack=new Stack<>();
@@ -27,7 +27,7 @@ public class Deck {
         handList.add(new StandardCard(10,5));
     }
 
-    public StandardCard cardDiscarder(int pos) throws IndexOutOfBoundsException
+    StandardCard cardDiscarder(int pos) throws IndexOutOfBoundsException
     {
         if(pos>=handList.size() || pos<0) throw new IndexOutOfBoundsException();
 
@@ -35,7 +35,7 @@ public class Deck {
         discardedStack.push(s);
         return s;
     }
-    public int getLastCardMNValue() throws EmptyException
+    int getLastCardMNValue() throws EmptyException
     {
         if(discardedStack.size()==0) throw new EmptyException();
         return discardedStack.peek().getMnValue();

@@ -14,13 +14,13 @@ public class Island extends Tile
     private Towers towers;
     private int numTowers;
     private boolean motherNatureFlag;
-    private boolean inhibitionFlag;
+    private int inhibitionCounter;
     private final Model model;
 
     public Island(boolean MN_presence, Model model)
     {
         super();
-        inhibitionFlag=false;
+        inhibitionCounter=0;
         motherNatureFlag=MN_presence;
         numTowers=0;
         this.model=model;
@@ -29,19 +29,19 @@ public class Island extends Tile
     {
         super();
         addStudent(student);
-        inhibitionFlag=false;
+        inhibitionCounter=0;
         motherNatureFlag=false;
         numTowers=0;
         this.model=model;
     }
     public Island(List<Student> students, Towers towers, int numT,
-                  boolean inhibitionFlag, Model model)
+                  int inhibitionCounter, Model model)
     {
         super();
         this.towers=towers;
         numTowers=numT;
         motherNatureFlag=true;
-        this.inhibitionFlag=inhibitionFlag;
+        this.inhibitionCounter=inhibitionCounter;
         this.model=model;
         for(Student s: students)
             addStudent(s);
@@ -59,12 +59,10 @@ public class Island extends Tile
         {
             throw new LinkFailedException();
         }
-        if(this.inhibitionFlag && island.inhibitionFlag)
-            model.giveBackInhibitionFlag();
         List<Student> tmp1=new ArrayList<>(studentsList);
         tmp1.addAll(island.studentsList);
         return new Island(tmp1, towers, numTowers + island.numTowers,
-              island.inhibitionFlag || inhibitionFlag, this.model);
+              island.inhibitionCounter + this.inhibitionCounter, this.model);
     }
 
     public int getNumTowers() { return numTowers; }
@@ -99,6 +97,13 @@ public class Island extends Tile
 
     public void setMotherNatureFlag() { motherNatureFlag=!motherNatureFlag; }
     public boolean isMotherNatureFlag() { return motherNatureFlag; }
-    public void setInhibitionFlag(boolean setPresence) { inhibitionFlag=setPresence; }
-    public boolean getInhibitionFlag() { return inhibitionFlag; }
+    public void addInhibition() { inhibitionCounter++; }
+    public void subInhibition()
+    {
+        if(inhibitionCounter<0)
+            throw new IllegalAccessError("Tried to remove inhibition tile from island, " +
+                                        "but there was't any");
+        inhibitionCounter--;
+    }
+    public boolean getInhibition() { return inhibitionCounter>0; }
 }

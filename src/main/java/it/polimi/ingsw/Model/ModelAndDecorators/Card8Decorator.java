@@ -38,7 +38,7 @@ public class Card8Decorator extends Model
         boolean drawFlag=true;
         int pPoints=0, maxPPoints=0;
 
-        if(island==motherNature.getCurrentPos() && !island.getInhibitionFlag())
+        if(island==motherNature.getCurrentPos() && !island.getInhibition())
         {
             for(Colour c: Colour.values())
                 coloursMap.put(c, Integer.valueOf(0));
@@ -77,9 +77,9 @@ public class Card8Decorator extends Model
         }
         else
         {
-            if(island.getInhibitionFlag())
+            if(island.getInhibition())
             {
-                island.setInhibitionFlag(false);
+                island.subInhibition();
                 card5.giveBackInhibitionFlag();
             }
             else

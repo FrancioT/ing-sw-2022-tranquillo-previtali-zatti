@@ -3,10 +3,8 @@ package it.polimi.ingsw.Model.CharacterCard;
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.DataBuffer;
 import it.polimi.ingsw.Model.Exceptions.EmptyException;
-import it.polimi.ingsw.Model.Exceptions.InhibitionFlagAlreadyActiveException;
 import it.polimi.ingsw.Model.Exceptions.NoInhibitionFlagsAvailable;
 import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
-import it.polimi.ingsw.Model.Island;
 import it.polimi.ingsw.Model.ModelAndDecorators.Model;
 
 public class CharacterCard5 extends CharacterCard{
@@ -42,7 +40,7 @@ public class CharacterCard5 extends CharacterCard{
             }
         }
         if (availableFlags > 0){
-            model.activateInhibitionFlag(index, this);
+            model.addInhibition(index, this);
             availableFlags --;
 
             model.payCard(uID, cardID);

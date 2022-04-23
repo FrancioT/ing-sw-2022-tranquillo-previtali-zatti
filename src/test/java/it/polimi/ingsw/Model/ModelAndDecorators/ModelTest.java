@@ -372,21 +372,18 @@ public class ModelTest
     void inhibitionFlag() throws Exception
     {
         CharacterCard5 card5= new CardTMP();
-        model.activateInhibitionFlag(6, card5);
-        assertThrows(InhibitionFlagAlreadyActiveException.class, ()->model.activateInhibitionFlag(6, card5));
+        model.addInhibition(6, card5);
 
         model.addStudentIsland(6, new Student(Colour.red));
         model.addStudentDashboard(P1, new Student(Colour.red));
         model.teacherDominance(P1, Colour.red);
-        assertTrue(model.getInhibitionFlag(6));
+        assertTrue(model.islandsList.get(6).getInhibition());
         model.moveMN(6);
-        assertFalse(model.getInhibitionFlag(6));
+        assertFalse(model.islandsList.get(6).getInhibition());
         assertEquals(model.islandsList.get(6).getNumTowers(), 0);
-        assertThrows(NullPointerException.class, () -> model.activateInhibitionFlag(0, null));
-        assertThrows(IndexOutOfBoundsException.class, () -> model.activateInhibitionFlag(-1, card5));
-        assertThrows(IndexOutOfBoundsException.class, () -> model.activateInhibitionFlag(12, card5));
-        assertThrows(IndexOutOfBoundsException.class, () -> model.getInhibitionFlag(-1));
-        assertThrows(IndexOutOfBoundsException.class, () -> model.getInhibitionFlag(12));
+        assertThrows(NullPointerException.class, () -> model.addInhibition(0, null));
+        assertThrows(IndexOutOfBoundsException.class, () -> model.addInhibition(-1, card5));
+        assertThrows(IndexOutOfBoundsException.class, () -> model.addInhibition(12, card5));
     }
 
     @Test
