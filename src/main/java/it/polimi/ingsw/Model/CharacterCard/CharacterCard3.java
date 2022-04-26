@@ -21,7 +21,8 @@ public class CharacterCard3 extends CharacterCard {
             throw new NotEnoughMoneyException();
 
         int index= userData.getIslandPos();
-        Card3Actuator.card3Effect(index, controller.getModel());
+        synchronized (controller.getModel())
+        {    Card3Actuator.card3Effect(index, controller.getModel());   }
 
         controller.getModel().payCard(uID, cardID);
         overPrice++;

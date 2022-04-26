@@ -30,12 +30,12 @@ public class Bag {
         }
         this.studentsList.addAll(bag.studentsList);
     }
-    public Student randomExtraction(){
+    public synchronized Student randomExtraction(){
         int index = (int) (Math.random()*studentsList.size());
         return studentsList.remove(index);
     }
 
-    public void addStudentBag(Student student){
+    public synchronized void addStudentBag(Student student){
         studentsList.add(student);
     }
 }

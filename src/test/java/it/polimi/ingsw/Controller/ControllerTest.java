@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Controller;
 
+import it.polimi.ingsw.Controller.Exceptions.IllegalMNMovementException;
 import it.polimi.ingsw.Model.Colour;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -46,7 +47,7 @@ class ControllerTest
         controller.cardsPhase(orderedPlayers);
     }
 
-    /*@Test
+    @Test
     void moveStudents() throws Exception
     {
         List<Colour> colours= controller.getModel().getStudents(p1);
@@ -54,21 +55,21 @@ class ControllerTest
                 while (true)
                 {
                     users.get(p1).setTarget(true);
-                    users.get(p1).setStudColour(colours.get(0));
-                    try{ Thread.sleep(1000); } catch (InterruptedException e){ return; }
+                    users.get(p1).setStudColour(colours.remove(0));
+                    try{ Thread.sleep(500); } catch (InterruptedException e){ return; }
                     users.get(p1).setTarget(false);
-                    users.get(p1).setStudColour(colours.get(0));
+                    users.get(p1).setStudColour(colours.remove(0));
                     users.get(p1).setIslandPos(3);
-                    try{ Thread.sleep(1000); } catch (InterruptedException e){ return; }
+                    try{ Thread.sleep(500); } catch (InterruptedException e){ return; }
                     users.get(p1).setTarget(true);
-                    users.get(p1).setStudColour(colours.get(0));
-                    try{ Thread.sleep(1000); } catch (InterruptedException e){ return; }
+                    users.get(p1).setStudColour(colours.remove(0));
+                    try{ Thread.sleep(500); } catch (InterruptedException e){ return; }
                 }
         });
         thread.start();
         controller.moveStudents(p1);
         thread.interrupt();
-    }*/
+    }
 
     @Test
     void moveMN() throws Exception
@@ -80,6 +81,10 @@ class ControllerTest
         controller.moveMN(p1);
         controller.moveMN(p2);
         controller.moveMN(p3);
+        users.get(p1).setMnPos(5);
+        assertThrows(IllegalMNMovementException.class, ()->controller.moveMN(p1));
+        users.get(p1).setMnPos(8);
+        assertThrows(IllegalMNMovementException.class, ()->controller.moveMN(p1));
     }
 
     @Test
