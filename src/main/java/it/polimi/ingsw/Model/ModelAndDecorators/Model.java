@@ -455,4 +455,6 @@ public class Model {
 
         player.entranceFiller(studentsList);
     }
+
+    public synchronized int getNumIslands() { return islandsList.size(); }
 }

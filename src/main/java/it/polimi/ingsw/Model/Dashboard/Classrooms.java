@@ -49,6 +49,8 @@ class Classrooms
     }
     Student removeStudent(Colour colour) throws NoSuchStudentException
     {
+        if(colour==null) throw new NullPointerException();
+
         for(List<Student> l:classrooms)
             if(!l.isEmpty())
                 if (l.get(0).getColour() == colour)

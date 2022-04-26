@@ -7,8 +7,8 @@ import it.polimi.ingsw.Model.ModelAndDecorators.ModelTest;
 import it.polimi.ingsw.Model.Student;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,10 +20,10 @@ class CharacterCard3Test
         String player1="Aldo";
         String player2="Giovanni";
         String player3="Giacomo";        CharacterCard3 card= new CharacterCard3();
-        List<String> uIDs = new ArrayList<>();
-        uIDs.add(player1);
-        uIDs.add(player2);
-        uIDs.add(player3);
+        Map<String, DataBuffer> uIDs = new HashMap<>();
+        uIDs.put(player1, new DataBuffer(player1));
+        uIDs.put(player2, new DataBuffer(player2));
+        uIDs.put(player3, new DataBuffer(player3));
 
         Controller controller = new Controller(uIDs, true);
         ModelTest.changeCard(controller.getModel(), card);

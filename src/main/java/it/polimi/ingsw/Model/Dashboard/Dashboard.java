@@ -58,8 +58,15 @@ public class Dashboard
                                                          throws NoSuchStudentException, EmptyException,
                                                                 FullEntranceException, FullClassException
     {
-        Student stud1=classrooms.removeStudent(classroomStudentColour);
-        Student stud2=entrance.entranceEmptier(entranceStudentColour);
+        Student stud1 = classrooms.removeStudent(classroomStudentColour);
+        Student stud2;
+        try{
+            stud2 = entrance.entranceEmptier(entranceStudentColour);
+        }catch (Exception e)
+        {
+            classrooms.addStudent(stud1);
+            throw e;
+        }
         classrooms.addStudent(stud2);
         List<Student> tmp=new ArrayList<>();
         tmp.add(stud1);

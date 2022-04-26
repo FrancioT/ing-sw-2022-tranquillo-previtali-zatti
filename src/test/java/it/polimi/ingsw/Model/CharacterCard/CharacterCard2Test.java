@@ -1,14 +1,15 @@
 package it.polimi.ingsw.Model.CharacterCard;
 
 import it.polimi.ingsw.Controller.Controller;
+import it.polimi.ingsw.Controller.DataBuffer;
 import it.polimi.ingsw.Model.Colour;
 import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
 import it.polimi.ingsw.Model.ModelAndDecorators.ModelTest;
 import it.polimi.ingsw.Model.Student;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,10 +21,10 @@ class CharacterCard2Test {
         assertEquals(card.getCardID(), 2);
         assertEquals(card.getPrice(), 2);
 
-        List<String> players = new ArrayList<>();
-        players.add("Aldo");
-        players.add("Giovanni");
-        players.add("Giacomo");
+        Map<String, DataBuffer> players = new HashMap<>();
+        players.put("Aldo", new DataBuffer("Aldo"));
+        players.put("Giovanni", new DataBuffer("Giovanni"));
+        players.put("Giacomo", new DataBuffer("Giacomo"));
 
         Controller controller = new Controller(players, true);
         ModelTest.changeCard(controller.getModel(), card);

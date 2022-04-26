@@ -8,8 +8,9 @@ import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
 import it.polimi.ingsw.Model.ModelAndDecorators.ModelTest;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -36,10 +37,10 @@ class CharacterCard1Test {
     @Test
     public void CharacterCard1Handle() throws Exception {
         CharacterCard1 card = new CharacterCard1(new Bag());
-        List<String> uIDs = new ArrayList<>();
-        uIDs.add("Aldo");
-        uIDs.add("Giovanni");
-        uIDs.add("Giacomo");
+        Map<String, DataBuffer> uIDs = new HashMap<>();
+        uIDs.put("Aldo", new DataBuffer("Aldo"));
+        uIDs.put("Giovanni", new DataBuffer("Giovanni"));
+        uIDs.put("Giacomo", new DataBuffer("Giacomo"));
 
         Controller controller = new Controller(uIDs, true);
 

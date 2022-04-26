@@ -9,7 +9,9 @@ import it.polimi.ingsw.Model.Student;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,11 +26,11 @@ class CharacterCard7Test
         String player4="Agnese";
         Bag bag=new Bag();
         CharacterCard7 card = new CharacterCard7(bag);
-        List<String> uIDs = new ArrayList<>();
-        uIDs.add(player1);
-        uIDs.add(player2);
-        uIDs.add(player3);
-        uIDs.add(player4);
+        Map<String, DataBuffer> uIDs = new HashMap<>();
+        uIDs.put(player1, new DataBuffer(player1));
+        uIDs.put(player2, new DataBuffer(player2));
+        uIDs.put(player3, new DataBuffer(player3));
+        uIDs.put(player4, new DataBuffer(player4));
 
         Controller controller = new Controller(uIDs, true);
         ModelTest.changeCard(controller.getModel(), card);
@@ -49,6 +51,6 @@ class CharacterCard7Test
         students.add(new Student(Colour.pink));
         controller.getModel().entranceFiller(player4, students);
         data.setStudentsColours(colours);
-        card.handle(player3, data, controller);
+        card.handle(player4, data, controller);
     }
 }

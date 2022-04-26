@@ -12,16 +12,14 @@ public class Controller
     private List<String> uIDsList;
     private final Map<String, DataBuffer> usersData;
     private Model model;
-    boolean decorationFlag;
+    private boolean decorationFlag;
 
-    public Controller(List<String> uIDs, boolean expertMode)
+    public Controller(Map<String, DataBuffer> uIDs, boolean expertMode)
     {
-        model= new Model(uIDs, expertMode);
-        uIDsList= new ArrayList<>(uIDs);
+        model= new Model(new ArrayList<>(uIDs.keySet()), expertMode);
+        uIDsList= new ArrayList<>(uIDs.keySet());
         decorationFlag=false;
-        usersData=new HashMap<>();
-        for(String s: uIDsList)
-            usersData.put(s, new DataBuffer(s));
+        usersData=new HashMap<>(uIDs);
     }
     public synchronized Model getModel() { return model; }
     public synchronized void decorateModel(Model model)
@@ -89,11 +87,16 @@ public class Controller
                                                        FullTowersException, RunOutOfTowersException,
                                                        EmptyException, LinkFailedException
     {
-        int pos= usersData.get(uID).getMnPos();
-        int delta_pos=pos - model.getCurrPosMN();
-        if(delta_pos > model.getLastCardValue(uID) )
+        int newPos= usersData.get(uID).getMnPos();
+        int oldPos= model.getCurrPosMN();
+        if(newPos==oldPos)
             throw new IllegalMNMovementException();
-        if(delta_pos == 0)
+        int delta_pos;
+        if(newPos>oldPos)
+            delta_pos= newPos-oldPos;
+        else
+            delta_pos= model.getNumIslands()-oldPos+newPos;
+        if(delta_pos > model.getLastCardValue(uID) )
             throw new IllegalMNMovementException();
         model.moveMN(delta_pos);
     }
