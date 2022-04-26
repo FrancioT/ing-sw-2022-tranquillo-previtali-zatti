@@ -34,7 +34,8 @@ public class Controller
         // if there are 3 players the clouds must be filled with 4 students
         model.cloudsFiller(tmp*4 + (1-tmp)*3);
     }
-    public synchronized List<String> cardsPhase(List<String> uIDsOrder) throws NoSuchPlayerException
+    public synchronized List<String> cardsPhase(List<String> uIDsOrder) throws NoSuchPlayerException,
+                                                                               InterruptedException
     {
         List<String> order=new ArrayList<>();  // returning List
         Map<String, Integer> posCards= new HashMap<>();  // used to map a player to his
@@ -62,7 +63,7 @@ public class Controller
     }
     public synchronized void moveStudents(String uID) throws NoSuchStudentException, EmptyException,
                                             FullClassException, NoSuchPlayerException, TooManyTeachersException,
-                                            TeacherAlreadyInException, NoSuchTeacherException
+                                            TeacherAlreadyInException, NoSuchTeacherException, InterruptedException
     {
         int n=uIDsList.size()%2;  // n=number of students that can be moved
         n=n*4 + (1-n)*3;       // n=3 if number of players is 2 or 4
@@ -85,7 +86,7 @@ public class Controller
     }
     public synchronized void moveMN(String uID) throws NoSuchPlayerException, IllegalMNMovementException,
                                                        FullTowersException, RunOutOfTowersException,
-                                                       EmptyException, LinkFailedException
+                                                       EmptyException, LinkFailedException, InterruptedException
     {
         int newPos= usersData.get(uID).getMnPos();
         int oldPos= model.getCurrPosMN();
@@ -100,8 +101,8 @@ public class Controller
             throw new IllegalMNMovementException();
         model.moveMN(delta_pos);
     }
-    public synchronized void chooseCloud(String uID) throws FullEntranceException,
-                                                            NoSuchPlayerException
+    public synchronized void chooseCloud(String uID) throws FullEntranceException, NoSuchPlayerException,
+                                                            InterruptedException
     {
         int index= usersData.get(uID).getCloudPos();
         model.cloudEmptier(uID, index);
