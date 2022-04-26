@@ -403,4 +403,5 @@ public class ModelTest
         model.characterCardList.clear();
         model.characterCardList.add(card);
     }
+    public static List<Player> getPlayers(Model model) { return new ArrayList<>(model.playersList); }
 }
