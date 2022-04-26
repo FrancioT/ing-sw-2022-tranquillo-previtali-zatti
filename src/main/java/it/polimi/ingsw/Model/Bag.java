@@ -34,4 +34,8 @@ public class Bag {
         int index = (int) (Math.random()*studentsList.size());
         return studentsList.remove(index);
     }
+
+    public void addStudentBag(Student student){
+        studentsList.add(student);
+    }
 }

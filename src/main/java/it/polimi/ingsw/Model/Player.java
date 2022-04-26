@@ -75,4 +75,8 @@ public class Player {
     }
 
     public int getCoins(){return coins;}
+
+    public Student removeStudentClassroom(Colour colour) throws NoSuchStudentException {
+        return playerDashboard.removeStudentClassroom(colour);
+    }
 }

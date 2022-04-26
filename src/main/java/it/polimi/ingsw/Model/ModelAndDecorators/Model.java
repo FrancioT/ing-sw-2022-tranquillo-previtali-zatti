@@ -83,6 +83,7 @@ public class Model {
             cardListTmp.add(new CharacterCard9());
             cardListTmp.add(new CharacterCard10());
             cardListTmp.add(new CharacterCard11(bag));
+            cardListTmp.add(new CharacterCard12(bag));
             int randIndex1= (int)Math.floor(Math.random()*characterCardNum);
             int randIndex2, randIndex3;
             characterCardList.add(cardListTmp.get(randIndex1));
@@ -457,4 +458,19 @@ public class Model {
     }
 
     public synchronized int getNumIslands() { return islandsList.size(); }
+
+
+    public void returnStudentBag(String uID, Colour colour, Bag bag) throws NoSuchPlayerException, NoSuchStudentException {
+
+        if(uID==null) throw new NullPointerException();
+        Player player = null;
+        for (Player p : playersList)
+            if (p.getuID().equals(uID))
+                player = p;
+        if(player==null)
+            throw new NoSuchPlayerException();
+
+        bag.addStudentBag(player.removeStudentClassroom(colour));
+    }
+
 }
