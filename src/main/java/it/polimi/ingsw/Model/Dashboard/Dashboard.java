@@ -72,4 +72,8 @@ public class Dashboard
         tmp.add(stud1);
         entrance.entranceFiller(tmp);
     }
+
+    public Student removeStudentClassroom(Colour colour) throws NoSuchStudentException {
+        return classrooms.removeStudent(colour);
+    }
 }

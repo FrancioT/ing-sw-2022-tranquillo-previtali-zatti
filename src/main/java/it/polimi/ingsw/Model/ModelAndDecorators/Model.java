@@ -17,7 +17,7 @@ public class Model {
 
     public Model(List<String> uIDs, boolean expertMode)
     {
-        int characterCardNum=11;
+        int characterCardNum=12;
         teachersList=new ArrayList<>();
         islandsList=new ArrayList<>();
         cloudsList=new ArrayList<>();
@@ -83,6 +83,7 @@ public class Model {
             cardListTmp.add(new CharacterCard9());
             cardListTmp.add(new CharacterCard10());
             cardListTmp.add(new CharacterCard11(bag));
+            cardListTmp.add(new CharacterCard12(bag, new ArrayList<>(playersList)));
             int randIndex1= (int)Math.floor(Math.random()*characterCardNum);
             int randIndex2, randIndex3;
             characterCardList.add(cardListTmp.get(randIndex1));
