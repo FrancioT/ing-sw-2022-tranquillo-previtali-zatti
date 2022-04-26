@@ -1,4 +1,6 @@
 package it.polimi.ingsw.Model.ModelAndDecorators;
+import it.polimi.ingsw.Controller.Controller;
+import it.polimi.ingsw.Controller.DataBuffer;
 import it.polimi.ingsw.Model.*;
 import it.polimi.ingsw.Model.CharacterCard.*;
 import it.polimi.ingsw.Model.Exceptions.*;
@@ -458,4 +460,13 @@ public class Model {
     }
 
     public synchronized int getNumIslands() { return islandsList.size(); }
+    public synchronized void activateCard(String uID, DataBuffer dataBuffer, Controller controller)
+                                        throws Exception
+    {
+        if(uID==null || dataBuffer==null || controller==null)
+            throw new NullPointerException();
+        if(!dataBuffer.getUID().equals(uID))
+            throw new IllegalArgumentException();
+        characterCardList.get(dataBuffer.getCardPos()).handle(uID, dataBuffer, controller);
+    }
 }

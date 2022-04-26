@@ -19,7 +19,7 @@ class DataBufferTest
     DataBuffer dataBufferP1, dataBufferP2;
 
     @Test
-    void testAllDataBuffer()
+    void testAllDataBuffer() throws Exception
     {
         Colour rosso = Colour.red;
         dataBufferP1 = new DataBuffer(p1);

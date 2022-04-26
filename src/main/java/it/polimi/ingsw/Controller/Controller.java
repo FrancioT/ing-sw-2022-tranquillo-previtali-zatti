@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Controller;
 
+import it.polimi.ingsw.Controller.Exceptions.CardActivatedException;
 import it.polimi.ingsw.Controller.Exceptions.IllegalMNMovementException;
 import it.polimi.ingsw.Model.Colour;
 import it.polimi.ingsw.Model.Exceptions.*;
@@ -9,10 +10,11 @@ import java.util.*;
 
 public class Controller
 {
-    private List<String> uIDsList;
+    private final List<String> uIDsList;
     private final Map<String, DataBuffer> usersData;
     private Model model;
     private boolean decorationFlag;
+    private boolean cardActivated;
 
     public Controller(Map<String, DataBuffer> uIDs, boolean expertMode)
     {
@@ -20,6 +22,7 @@ public class Controller
         uIDsList= new ArrayList<>(uIDs.keySet());
         decorationFlag=false;
         usersData=new HashMap<>(uIDs);
+        cardActivated=false;
     }
     public synchronized Model getModel() { return model; }
     public synchronized void decorateModel(Model model)
@@ -42,8 +45,8 @@ public class Controller
                                                          // played card position
         // SortedMap used to save player and his card round value in order
         SortedMap<Integer, String> playersOrder=new TreeMap<>();
-        int pos=-1;
-        int cardValue=-1;
+        int pos;
+        int cardValue;
         for(String s: uIDsOrder)
         {
             pos= usersData.get(s).getCardPos();
@@ -61,34 +64,82 @@ public class Controller
 
         return order;
     }
-    public synchronized void moveStudents(String uID) throws NoSuchStudentException, EmptyException,
-                                            FullClassException, NoSuchPlayerException, TooManyTeachersException,
-                                            TeacherAlreadyInException, NoSuchTeacherException, InterruptedException
+    public synchronized void moveStudents(String uID) throws Exception
     {
         int n=uIDsList.size()%2;  // n=number of students that can be moved
         n=n*4 + (1-n)*3;       // n=3 if number of players is 2 or 4
                                // n=4 if number of players is 3
-        Boolean target=null;
-        Colour colour=null;
+        Boolean target;
+        Colour colour;
         int index=-1;
         for(int i=0; i<n; i++)
         {
-            target= usersData.get(uID).getTarget();
-            colour = usersData.get(uID).getStudentColour();
+            target=null;
+            colour=null;
+            while (target==null || colour==null)
+            {
+                try {
+                    if(target==null)
+                        target = usersData.get(uID).getTarget();
+                    colour = usersData.get(uID).getStudentColour();
+                } catch (CardActivatedException e) {
+                    if (!cardActivated)
+                    {
+                        cardActivated=true;
+                        model.activateCard(uID, usersData.get(uID), this);
+                    }
+                    else
+                        throw new CardActivatedException();    //////////////////////////////////////////////////////////////////////
+                        // here you have to notify the client that he can't activate the card another time
+                        // instead of throwing an exception
+                        /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                }
+            }
             if(target)
                 model.addStudentDashboard(uID, model.entranceEmptier(uID, colour));
             else
             {
-                index= usersData.get(uID).getIslandPos();
+                while (index==-1)
+                {
+                    try {
+                        index= usersData.get(uID).getIslandPos();
+                    } catch (CardActivatedException e) {
+                        if (!cardActivated)
+                        {
+                            cardActivated=true;
+                            model.activateCard(uID, usersData.get(uID), this);
+                        }
+                        else
+                            throw new CardActivatedException();    //////////////////////////////////////////////////////////////////////
+                        // here you have to notify the client that he can't activate the card another time
+                        // instead of throwing an exception
+                        /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    }
+                }
                 model.addStudentIsland(index, model.entranceEmptier(uID, colour));
             }
         }
     }
-    public synchronized void moveMN(String uID) throws NoSuchPlayerException, IllegalMNMovementException,
-                                                       FullTowersException, RunOutOfTowersException,
-                                                       EmptyException, LinkFailedException, InterruptedException
+    public synchronized void moveMN(String uID) throws Exception
     {
-        int newPos= usersData.get(uID).getMnPos();
+        int newPos=-1;
+        while (newPos==-1)
+        {
+            try {
+                newPos = usersData.get(uID).getMnPos();
+            } catch (CardActivatedException e){
+                if (!cardActivated)
+                {
+                    cardActivated=true;
+                    model.activateCard(uID, usersData.get(uID), this);
+                }
+                else
+                    throw new CardActivatedException();    //////////////////////////////////////////////////////////////////////
+                // here you have to notify the client that he can't activate the card another time
+                // instead of throwing an exception
+                /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            }
+        }
         int oldPos= model.getCurrPosMN();
         if(newPos==oldPos)
             throw new IllegalMNMovementException();
@@ -101,15 +152,32 @@ public class Controller
             throw new IllegalMNMovementException();
         model.moveMN(delta_pos);
     }
-    public synchronized void chooseCloud(String uID) throws FullEntranceException, NoSuchPlayerException,
-                                                            InterruptedException
+    public synchronized void chooseCloud(String uID) throws Exception
     {
-        int index= usersData.get(uID).getCloudPos();
+        int index=-1;
+        while (index==-1)
+        {
+            try {
+                index = usersData.get(uID).getCloudPos();
+            } catch (CardActivatedException e){
+                if (!cardActivated)
+                {
+                    cardActivated=true;
+                    model.activateCard(uID, usersData.get(uID), this);
+                }
+                else
+                    throw new CardActivatedException();    //////////////////////////////////////////////////////////////////////
+                // here you have to notify the client that he can't activate the card another time
+                // instead of throwing an exception
+                /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            }
+        }
         model.cloudEmptier(uID, index);
 
         if(decorationFlag) {
             model = new Model(model);
             decorationFlag=false;
         }
+        cardActivated=false;
     }
 }

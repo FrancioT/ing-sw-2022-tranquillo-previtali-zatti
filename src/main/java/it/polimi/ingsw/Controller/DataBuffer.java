@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Controller;
 
+import it.polimi.ingsw.Controller.Exceptions.CardActivatedException;
 import it.polimi.ingsw.Model.Colour;
 
 import java.util.ArrayList;
@@ -15,7 +16,8 @@ public class DataBuffer
     private int islandPos;
     private int mnPos;
     private int cloudPos;
-    private List<Colour> studentsColours;
+    private final List<Colour> studentsColours;
+    private boolean activationCardRequest;
 
     public DataBuffer(String uID)
     {
@@ -27,6 +29,7 @@ public class DataBuffer
         mnPos=-1;
         cloudPos=-1;
         studentsColours= new ArrayList<>();
+        activationCardRequest=false;
     }
 
     public synchronized String getUID() { return uID; }
@@ -45,10 +48,15 @@ public class DataBuffer
         cardPos=pos;
         notifyAll();
     }
-    public synchronized boolean getTarget() throws InterruptedException
+    public synchronized boolean getTarget() throws InterruptedException, CardActivatedException
     {
-        while(!target.isPresent())
+        while(!target.isPresent() && !activationCardRequest)
             wait();
+        if(activationCardRequest)
+        {
+            activationCardRequest = false;
+            throw new CardActivatedException();
+        }
         boolean returnValue=target.get();
         target=Optional.empty();
         return returnValue;
@@ -58,10 +66,15 @@ public class DataBuffer
         target=Optional.of(value);
         notifyAll();
     }
-    public synchronized Colour getStudentColour() throws InterruptedException
+    public synchronized Colour getStudentColour() throws InterruptedException, CardActivatedException
     {
-        while(!studColour.isPresent())
+        while(!studColour.isPresent() && !activationCardRequest)
             wait();
+        if(activationCardRequest)
+        {
+            activationCardRequest = false;
+            throw new CardActivatedException();
+        }
         Colour returnValue=studColour.get();
         studColour=Optional.empty();
         return returnValue;
@@ -71,10 +84,15 @@ public class DataBuffer
         studColour=Optional.of(colour);
         notifyAll();
     }
-    public synchronized int getIslandPos() throws InterruptedException
+    public synchronized int getIslandPos() throws InterruptedException, CardActivatedException
     {
-        while(islandPos==-1)
+        while(islandPos==-1 && !activationCardRequest)
             wait();
+        if(activationCardRequest)
+        {
+            activationCardRequest = false;
+            throw new CardActivatedException();
+        }
         int returnValue=islandPos;
         islandPos=-1;
         return returnValue;
@@ -86,10 +104,15 @@ public class DataBuffer
         islandPos=pos;
         notifyAll();
     }
-    public synchronized int getMnPos() throws InterruptedException
+    public synchronized int getMnPos() throws InterruptedException, CardActivatedException
     {
-        while(mnPos==-1)
+        while(mnPos==-1 && !activationCardRequest)
             wait();
+        if(activationCardRequest)
+        {
+            activationCardRequest = false;
+            throw new CardActivatedException();
+        }
         int returnValue=mnPos;
         mnPos=-1;
         return returnValue;
@@ -101,10 +124,15 @@ public class DataBuffer
         mnPos=pos;
         notifyAll();
     }
-    public synchronized int getCloudPos() throws InterruptedException
+    public synchronized int getCloudPos() throws InterruptedException, CardActivatedException
     {
-        while(cloudPos==-1)
+        while(cloudPos==-1 && !activationCardRequest)
             wait();
+        if(activationCardRequest)
+        {
+            activationCardRequest = false;
+            throw new CardActivatedException();
+        }
         int returnValue=cloudPos;
         cloudPos=-1;
         return returnValue;
@@ -127,6 +155,11 @@ public class DataBuffer
     public synchronized void setStudentsColours(List<Colour> colours)
     {
         studentsColours.addAll(colours);
+        notifyAll();
+    }
+    public synchronized void activationCardRequest()
+    {
+        activationCardRequest=true;
         notifyAll();
     }
 }
