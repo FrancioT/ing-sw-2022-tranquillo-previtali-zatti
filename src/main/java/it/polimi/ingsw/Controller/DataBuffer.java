@@ -30,10 +30,10 @@ public class DataBuffer
     }
 
     public synchronized String getUID() { return uID; }
-    public synchronized int getCardPos()
+    public synchronized int getCardPos() throws InterruptedException
     {
         while(cardPos==-1)
-            try { wait(); } catch (InterruptedException ignored){}
+            wait();
         int returnValue= cardPos;
         cardPos=-1;
         return returnValue;
@@ -45,10 +45,10 @@ public class DataBuffer
         cardPos=pos;
         notifyAll();
     }
-    public synchronized boolean getTarget()
+    public synchronized boolean getTarget() throws InterruptedException
     {
         while(!target.isPresent())
-            try { wait(); } catch (InterruptedException ignored){}
+            wait();
         boolean returnValue=target.get();
         target=Optional.empty();
         return returnValue;
@@ -58,10 +58,10 @@ public class DataBuffer
         target=Optional.of(value);
         notifyAll();
     }
-    public synchronized Colour getStudentColour()
+    public synchronized Colour getStudentColour() throws InterruptedException
     {
         while(!studColour.isPresent())
-            try { wait(); } catch (InterruptedException ignored){}
+            wait();
         Colour returnValue=studColour.get();
         studColour=Optional.empty();
         return returnValue;
@@ -71,10 +71,10 @@ public class DataBuffer
         studColour=Optional.of(colour);
         notifyAll();
     }
-    public synchronized int getIslandPos()
+    public synchronized int getIslandPos() throws InterruptedException
     {
         while(islandPos==-1)
-            try { wait(); } catch (InterruptedException ignored){}
+            wait();
         int returnValue=islandPos;
         islandPos=-1;
         return returnValue;
@@ -86,10 +86,10 @@ public class DataBuffer
         islandPos=pos;
         notifyAll();
     }
-    public synchronized int getMnPos()
+    public synchronized int getMnPos() throws InterruptedException
     {
         while(mnPos==-1)
-            try { wait(); } catch (InterruptedException ignored){}
+            wait();
         int returnValue=mnPos;
         mnPos=-1;
         return returnValue;
@@ -101,10 +101,10 @@ public class DataBuffer
         mnPos=pos;
         notifyAll();
     }
-    public synchronized int getCloudPos()
+    public synchronized int getCloudPos() throws InterruptedException
     {
         while(cloudPos==-1)
-            try { wait(); } catch (InterruptedException ignored){}
+            wait();
         int returnValue=cloudPos;
         cloudPos=-1;
         return returnValue;
@@ -116,10 +116,10 @@ public class DataBuffer
         cloudPos=pos;
         notifyAll();
     }
-    public synchronized List<Colour> getStudentsColours()
+    public synchronized List<Colour> getStudentsColours() throws InterruptedException
     {
         while(studentsColours.size()==0)
-            try { wait(); } catch (InterruptedException ignored){}
+            wait();
         List<Colour> returnList= new ArrayList<>(studentsColours);
         studentsColours.clear();
         return returnList;
