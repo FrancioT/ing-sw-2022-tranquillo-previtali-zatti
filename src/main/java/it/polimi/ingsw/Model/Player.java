@@ -79,4 +79,5 @@ public class Player {
     public Student removeStudentClassroom(Colour colour) throws NoSuchStudentException {
         return playerDashboard.removeStudentClassroom(colour);
     }
+    public List<StandardCard> getHandCards() { return playerDeck.getHandCards(); }
 }

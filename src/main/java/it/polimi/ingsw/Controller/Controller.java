@@ -10,7 +10,8 @@ import java.util.*;
 
 public class Controller
 {
-    private final List<String> uIDsList;
+    private boolean endGame;
+    private List<String> uIDsList;
     private final Map<String, DataBuffer> usersData;
     private Model model;
     private boolean decorationFlag;
@@ -18,6 +19,7 @@ public class Controller
 
     public Controller(Map<String, DataBuffer> uIDs, boolean expertMode)
     {
+        endGame=false;
         model= new Model(new ArrayList<>(uIDs.keySet()), expertMode);
         uIDsList= new ArrayList<>(uIDs.keySet());
         decorationFlag=false;
@@ -30,41 +32,77 @@ public class Controller
         this.model=model;
         decorationFlag=true;
     }
-    public synchronized void cloudsFilling()
+    public synchronized void mainController()
+    {
+        try {
+            cloudsFilling();
+            cardsPhase();
+            for(String player: uIDsList)
+            {
+                moveStudents(player);
+                moveMN(player);
+            }
+            if(endGame)
+            { /*client.sendMessage("Game ended");*/ }  ///////////////////////////////////////////////////////////////////////
+        }
+        catch (Exception e) { /*client.sendMessage("Unexpected error!");*/ } /////////////////////////////////////////////////
+    }
+    void cloudsFilling()
     {
         int tmp=uIDsList.size()%2;
         // if there are 2 or 4 players the clouds must be filled with 3 students
         // if there are 3 players the clouds must be filled with 4 students
         model.cloudsFiller(tmp*4 + (1-tmp)*3);
     }
-    public synchronized List<String> cardsPhase(List<String> uIDsOrder) throws NoSuchPlayerException,
-                                                                               InterruptedException
+    void cardsPhase() throws NoSuchPlayerException, InterruptedException
     {
         List<String> order=new ArrayList<>();  // returning List
-        Map<String, Integer> posCards= new HashMap<>();  // used to map a player to his
-                                                         // played card position
-        // SortedMap used to save player and his card round value in order
-        SortedMap<Integer, String> playersOrder=new TreeMap<>();
+        // SortedMap used to save player and his card round value in order, if there is more than
+        // one player which played the same card it is saved (in order of first played to last one)
+        // in the list contained in the value of the map
+        SortedMap<Integer, List<String>> playersOrder=new TreeMap<>();
         int pos;
-        int cardValue;
-        for(String s: uIDsOrder)
+        List<Integer> playerCards;
+        boolean noOtherCard;
+        for(String s:uIDsList)
         {
+            noOtherCard=true;
+            playerCards= model.getCardsRoundValues(s);
+            if(playerCards.size()==1)
+                endGame=true;
             pos= usersData.get(s).getCardPos();
-            posCards.put(s, Integer.valueOf(pos));
+            // check if the card was already played by someone else in this round
+            if(playersOrder.containsKey(playerCards.get(pos)))
+                while (noOtherCard)
+                {
+                    for(int i: playerCards)
+                        if(!playersOrder.containsKey(i))
+                            noOtherCard=false;
+                    if(noOtherCard)
+                    {
+                        playersOrder.get(model.cardDiscarder(s, pos).getRoundValue()).add(s);
+                        noOtherCard=false;
+                    }
+                    else
+                    {
+                        noOtherCard=true;  // repeats the loop until the player choose a good card
+                        pos = usersData.get(s).getCardPos();
+                    }
+                }
+            else
+            {
+                List<String> tmp= new ArrayList<>();
+                tmp.add(s);
+                playersOrder.put(model.cardDiscarder(s, pos).getRoundValue(), tmp);
+            }
         }
-        for(String s:uIDsOrder)
-        {
-            cardValue=model.cardDiscarder(s, posCards.get(s)).getRoundValue();
-            playersOrder.put(cardValue, s);
-        }
-        // add players uIDs in proper order thanks to the iterator of TreeMap
-        // which iterate in the ascending order of the keys
-        for(String s: playersOrder.values())
-            order.add(s);
-
-        return order;
+        // add players uIDs in proper order thanks to the iterator of TreeMap, which iterate in the ascending order
+        // of the keys, and to the addAll which adds all element (at the end) in the old order of the collection
+        for(List<String> s: playersOrder.values())
+            order.addAll(s);
+        uIDsList= order;
     }
-    public synchronized void moveStudents(String uID) throws Exception
+    void moveStudents(String uID) throws Exception
     {
         int n=uIDsList.size()%2;  // n=number of students that can be moved
         n=n*4 + (1-n)*3;       // n=3 if number of players is 2 or 4
@@ -89,10 +127,10 @@ public class Controller
                         model.activateCard(uID, usersData.get(uID), this);
                     }
                     else
-                        throw new CardActivatedException();    //////////////////////////////////////////////////////////////////////
+                        throw new CardActivatedException();    ///////////////////////////////////////////////////////////////
                         // here you have to notify the client that he can't activate the card another time
                         // instead of throwing an exception
-                        /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////
                 }
             }
             if(target)
@@ -110,17 +148,17 @@ public class Controller
                             model.activateCard(uID, usersData.get(uID), this);
                         }
                         else
-                            throw new CardActivatedException();    //////////////////////////////////////////////////////////////////////
+                            throw new CardActivatedException();    ///////////////////////////////////////////////////////////
                         // here you have to notify the client that he can't activate the card another time
                         // instead of throwing an exception
-                        /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////
                     }
                 }
                 model.addStudentIsland(index, model.entranceEmptier(uID, colour));
             }
         }
     }
-    public synchronized void moveMN(String uID) throws Exception
+    void moveMN(String uID) throws Exception
     {
         int newPos=-1;
         while (newPos==-1)
@@ -134,10 +172,10 @@ public class Controller
                     model.activateCard(uID, usersData.get(uID), this);
                 }
                 else
-                    throw new CardActivatedException();    //////////////////////////////////////////////////////////////////////
+                    throw new CardActivatedException();    ///////////////////////////////////////////////////////////////////
                 // here you have to notify the client that he can't activate the card another time
                 // instead of throwing an exception
-                /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////
             }
         }
         int oldPos= model.getCurrPosMN();
@@ -152,7 +190,7 @@ public class Controller
             throw new IllegalMNMovementException();
         model.moveMN(delta_pos);
     }
-    public synchronized void chooseCloud(String uID) throws Exception
+    void chooseCloud(String uID) throws Exception
     {
         int index=-1;
         while (index==-1)
@@ -166,10 +204,10 @@ public class Controller
                     model.activateCard(uID, usersData.get(uID), this);
                 }
                 else
-                    throw new CardActivatedException();    //////////////////////////////////////////////////////////////////////
+                    throw new CardActivatedException();    ///////////////////////////////////////////////////////////////////
                 // here you have to notify the client that he can't activate the card another time
                 // instead of throwing an exception
-                /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////
             }
         }
         model.cloudEmptier(uID, index);

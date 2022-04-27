@@ -6,6 +6,7 @@ import it.polimi.ingsw.Model.CharacterCard.*;
 import it.polimi.ingsw.Model.Exceptions.*;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Model {
     protected List<Teacher> teachersList;
@@ -468,5 +469,17 @@ public class Model {
         if(!dataBuffer.getUID().equals(uID))
             throw new IllegalArgumentException();
         characterCardList.get(dataBuffer.getCardPos()).handle(uID, dataBuffer, controller);
+    }
+    public synchronized List<Integer> getCardsRoundValues(String uID) throws NoSuchPlayerException
+    {
+        if(uID==null) throw new NullPointerException();
+        Player player = null;
+        for (Player p : playersList)
+            if (p.getuID().equals(uID))
+                player = p;
+        if(player==null)
+            throw new NoSuchPlayerException();
+
+        return player.getHandCards().stream().map(StandardCard::getRoundValue).collect(Collectors.toList());
     }
 }

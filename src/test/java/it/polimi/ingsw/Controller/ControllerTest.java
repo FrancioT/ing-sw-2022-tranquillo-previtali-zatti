@@ -44,7 +44,7 @@ class ControllerTest
         orderedPlayers.add(p2);
         orderedPlayers.add(p3);
         orderedPlayers.add(p1);
-        controller.cardsPhase(orderedPlayers);
+        controller.cardsPhase();
     }
 
     @Test

@@ -40,4 +40,5 @@ class Deck {
         if(discardedStack.size()==0) throw new EmptyException();
         return discardedStack.peek().getMnValue();
     }
+    List<StandardCard> getHandCards() { return new ArrayList<>(handList); }
 }
