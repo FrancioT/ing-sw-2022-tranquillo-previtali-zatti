@@ -18,6 +18,7 @@ public class DataBuffer
     private int cloudPos;
     private final List<Colour> studentsColours;
     private boolean activationCardRequest;
+    private int characterCardID;
 
     public DataBuffer(String uID)
     {
@@ -30,6 +31,7 @@ public class DataBuffer
         cloudPos=-1;
         studentsColours= new ArrayList<>();
         activationCardRequest=false;
+        characterCardID=-1;
     }
 
     public synchronized String getUID() { return uID; }
@@ -160,6 +162,26 @@ public class DataBuffer
     public synchronized void activationCardRequest()
     {
         activationCardRequest=true;
+        notifyAll();
+    }
+    public synchronized int getCharacterCardID() throws InterruptedException, CardActivatedException
+    {
+        while(characterCardID==-1 && !activationCardRequest)
+            wait();
+        if(activationCardRequest)
+        {
+            activationCardRequest = false;
+            throw new CardActivatedException();
+        }
+        int returnValue=characterCardID;
+        characterCardID=-1;
+        return returnValue;
+    }
+    public synchronized void setCharacterCardID(int id)
+    {
+        if(id<0)
+            throw new IllegalArgumentException();
+        characterCardID=id;
         notifyAll();
     }
 }

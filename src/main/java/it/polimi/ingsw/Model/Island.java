@@ -106,4 +106,5 @@ public class Island extends Tile
         inhibitionCounter--;
     }
     public boolean getInhibition() { return inhibitionCounter>0; }
+    public int getInhibitionCounter() { return inhibitionCounter; }
 }

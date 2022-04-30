@@ -86,6 +86,7 @@ public class Controller
                     else
                     {
                         noOtherCard=true;  // repeats the loop until the player choose a good card
+                        // client.send("chose another card!") ////////////////////////////////////////////////////////////////
                         pos = usersData.get(s).getCardPos();
                     }
                 }

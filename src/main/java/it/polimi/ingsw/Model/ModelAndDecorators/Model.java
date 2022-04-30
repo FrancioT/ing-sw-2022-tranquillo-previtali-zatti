@@ -470,7 +470,7 @@ public class Model {
             throw new NullPointerException();
         if(!dataBuffer.getUID().equals(uID))
             throw new IllegalArgumentException();
-        characterCardList.get(dataBuffer.getCardPos()).handle(uID, dataBuffer, controller);
+        characterCardList.get(dataBuffer.getCharacterCardID()).handle(uID, dataBuffer, controller);
     }
     public synchronized List<Integer> getCardsRoundValues(String uID) throws NoSuchPlayerException
     {
