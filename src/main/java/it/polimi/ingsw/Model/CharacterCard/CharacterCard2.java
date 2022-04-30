@@ -20,6 +20,6 @@ public class CharacterCard2 extends CharacterCard
         model2.moveTeachers(uID);
 
         controller.getModel().payCard(uID, cardID);
-        overPrice++;
+        overPrice=true;
     }
 }

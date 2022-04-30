@@ -80,6 +80,6 @@ public class CharacterCard7 extends CharacterCardWithStudentsList {
         }
 
         model.payCard(uID, cardID);
-        overPrice ++;
+        overPrice=true;
     }
 }

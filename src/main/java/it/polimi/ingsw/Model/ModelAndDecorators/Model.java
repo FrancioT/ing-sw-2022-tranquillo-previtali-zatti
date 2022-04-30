@@ -33,7 +33,7 @@ public class Model {
         for(int i=0; i<uIDs.size(); i++)
         {
             Towers towers= towersList.pop();
-            playersList.add(new Player(uIDs.get(i), towers));
+            playersList.add(new Player(uIDs.get(i), towers, this));
             if(uIDs.size()==4 && i%2==0)
                 towersList.push(towers);
         }
@@ -132,6 +132,8 @@ public class Model {
 
         int price=characterCardList.get(chardPos).getPrice();
         player.pay(price);
+        if(!characterCardList.get(chardPos).getOverprice())
+            price--;
         unusedCoins+=price;
     }
 
@@ -482,4 +484,17 @@ public class Model {
 
         return player.getHandCards().stream().map(StandardCard::getRoundValue).collect(Collectors.toList());
     }
+    public synchronized void getCoin() throws NoMoreCoinsException
+    {
+        if(unusedCoins<=0)
+            throw new NoMoreCoinsException();
+        else
+            unusedCoins--;
+    }
+    public synchronized int getUnusedCoins() { return unusedCoins; }
+    public synchronized List<Teacher> getTeachersList() { return new ArrayList<>(teachersList); }
+    public synchronized List<Island> getIslandsList() { return new ArrayList<>(islandsList); }
+    public synchronized List<Cloud> getCloudsList() { return new ArrayList<>(cloudsList); }
+    public synchronized List<Player> getPlayersList() { return new ArrayList<>(playersList); }
+    public synchronized List<CharacterCard> getCharacterCardList() { return new ArrayList<>(characterCardList); }
 }

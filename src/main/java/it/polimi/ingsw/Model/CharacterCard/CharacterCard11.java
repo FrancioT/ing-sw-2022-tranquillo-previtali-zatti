@@ -31,6 +31,6 @@ public class CharacterCard11 extends CharacterCardWithStudentsList{
         studentsList.add(bag.randomExtraction());
 
         controller.getModel().payCard(uID, cardID);
-        overPrice ++;
+        overPrice=true;
     }
 }

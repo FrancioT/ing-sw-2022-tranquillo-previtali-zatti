@@ -46,7 +46,7 @@ class CharacterCard1Test {
 
         ModelTest.changeCard(controller.getModel(), card);
 
-        card.overPrice = 1;
+        card.overPrice = true;
 
         assertEquals(card.getPrice(), 2);
 
@@ -83,6 +83,6 @@ class CharacterCard1Test {
         card.handle("Aldo", datas, controller);
 
         assertEquals(card.studentsList.size(), 4);
-        assertEquals(card.overPrice, 2);
+        assertEquals(card.overPrice, true);
     }
 }

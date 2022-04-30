@@ -2,6 +2,8 @@ package it.polimi.ingsw.Model;
 
 import it.polimi.ingsw.Model.Dashboard.Dashboard;
 import it.polimi.ingsw.Model.Exceptions.*;
+import it.polimi.ingsw.Model.ModelAndDecorators.Model;
+
 import java.util.List;
 
 public class Player {
@@ -10,13 +12,15 @@ public class Player {
     private final Dashboard playerDashboard;
     private final Deck playerDeck;
     private int coins;
+    private final Model model;
 
-    public Player(String uID, Towers towers)
+    public Player(String uID, Towers towers, Model model)
     {
         this.uID=uID;
         this.playerDashboard=new Dashboard(towers);
         this.playerDeck=new Deck();
         this.coins=1;
+        this.model=model;
     }
     public void setNickName(String nickName) { this.nickName=nickName; }
 
@@ -36,7 +40,12 @@ public class Player {
     {
         playerDashboard.addStudent(student);
         if(getStudentNum(student.getColour())%3==0)
-            coins++;
+        {
+            try {
+                model.getCoin();
+                coins++;
+            } catch (NoMoreCoinsException ignored) {}
+        }
     }
     public void addTeacher(Teacher teacher) throws TooManyTeachersException, TeacherAlreadyInException
     {

@@ -21,6 +21,6 @@ public class CharacterCard9 extends CharacterCard
         controller.decorateModel(model2);
 
         controller.getModel().payCard(uID, cardID);
-        overPrice++;
+        overPrice=true;
     }
 }

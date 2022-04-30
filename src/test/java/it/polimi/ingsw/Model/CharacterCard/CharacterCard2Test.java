@@ -55,7 +55,7 @@ class CharacterCard2Test {
 
         controller.getModel().addStudentDashboard("Giovanni", new Student(Colour.pink));
 
-        assertEquals(card.overPrice, 1);
+        assertEquals(card.overPrice, true);
     }
 
 }

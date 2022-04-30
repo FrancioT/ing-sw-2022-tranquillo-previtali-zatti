@@ -32,7 +32,7 @@ public class CharacterCard12 extends CharacterCard
             throw new NotEnoughMoneyException();
 
         Colour colour=userData.getStudentColour();
-        synchronized (controller.getModel())
+        synchronized (model)
         {
             for (Player p : players)
             {
@@ -47,6 +47,6 @@ public class CharacterCard12 extends CharacterCard
         }
 
         model.payCard(uID, cardID);
-        overPrice++;
+        overPrice=true;
     }
 }

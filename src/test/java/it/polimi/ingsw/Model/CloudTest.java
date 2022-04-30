@@ -1,6 +1,5 @@
 package it.polimi.ingsw.Model;
 
-import it.polimi.ingsw.Model.*;
 import it.polimi.ingsw.Model.Exceptions.FullEntranceException;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +18,7 @@ class CloudTest {
         bag1=new Bag();
         cloud1=new Cloud(bag1);
         towers1=new Towers(ColourT.white,1);
-        player1=new Player("player1", towers1);
+        player1=new Player("player1", towers1, null);
 
         cloud1.cloudFiller(5);
         cloud1.cloudEmptier(player1);

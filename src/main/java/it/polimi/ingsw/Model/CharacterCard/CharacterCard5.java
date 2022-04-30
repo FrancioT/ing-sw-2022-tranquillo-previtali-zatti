@@ -33,7 +33,7 @@ public class CharacterCard5 extends CharacterCard{
             availableFlags --;
 
             model.payCard(uID, cardID);
-            overPrice++;
+            overPrice=true;
         }
         else throw new NoInhibitionFlagsAvailable();
     }

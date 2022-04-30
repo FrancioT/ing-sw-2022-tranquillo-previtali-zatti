@@ -42,6 +42,6 @@ public class CharacterCard10 extends CharacterCard{
         }
 
         model.payCard(uID, cardID);
-        overPrice++;
+        overPrice=true;
     }
 }

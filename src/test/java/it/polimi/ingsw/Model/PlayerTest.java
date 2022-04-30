@@ -1,7 +1,7 @@
 package it.polimi.ingsw.Model;
 
-import it.polimi.ingsw.Model.*;
 import it.polimi.ingsw.Model.Exceptions.*;
+import it.polimi.ingsw.Model.ModelAndDecorators.Model;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -9,10 +9,9 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
-
     @Test
     public void testGetStudentsNum() throws FullClassException {
-        Player player = new Player("test", new Towers(ColourT.black, 1));
+        Player player = new Player("test", new Towers(ColourT.black, 1), null);
         player.setNickName("test");
         int num = player.getStudentNum(Colour.red);
         assertEquals(num, 0);
@@ -30,7 +29,7 @@ class PlayerTest {
 
     @Test
     public void testEntranceFillerEmptier() throws EmptyException, NoSuchStudentException, FullEntranceException {
-        Player player = new Player("test", new Towers(ColourT.black, 1));
+        Player player = new Player("test", new Towers(ColourT.black, 1), null);
         Colour colour;
         List<Student> students= new ArrayList<>();
         students.add(new Student(Colour.blue));
@@ -51,7 +50,7 @@ class PlayerTest {
 
     @Test
     public void testTeacherMovements() throws TeacherAlreadyInException, TooManyTeachersException, NoSuchTeacherException {
-        Player player = new Player("test", new Towers(ColourT.black, 1));
+        Player player = new Player("test", new Towers(ColourT.black, 1), null);
         assertFalse(player.checkTeacherPresence(Colour.red));
         player.addTeacher(new Teacher(Colour.red));
         assertTrue(player.checkTeacherPresence(Colour.red));
@@ -75,7 +74,7 @@ class PlayerTest {
     @Test
     public void towersTest(){
         Towers towers = new Towers(ColourT.black, 1);
-        Player player = new Player("test", towers);
+        Player player = new Player("test", towers, null);
         assertTrue(player.getTowers().equals(towers));
         Towers towers1 = new Towers(ColourT.white, 1);
         assertFalse(player.getTowers().equals(towers1));
@@ -84,7 +83,7 @@ class PlayerTest {
     @Test
     public void getLastCardMNValuetest() throws EmptyException
     {
-        Player player = new Player("test", new Towers(ColourT.black, 1));
+        Player player = new Player("test", new Towers(ColourT.black, 1), null);
         StandardCard sc = player.cardDiscarder(0);
         int i = player.getLastCardMNValue();
         assertEquals(i, 1);
@@ -92,10 +91,10 @@ class PlayerTest {
 
     @Test
     public void paymentTest() throws FullClassException, CardPaymentException {
-        Player player = new Player("Gastani Frinzi", new Towers(ColourT.black, 1));
-        String uid;
-
-        uid = player.getuID();
+        List<String> uIDs= new ArrayList<>();
+        uIDs.add("1"); uIDs.add("2");
+        Model model= new Model(uIDs, false);
+        Player player = new Player("Gastani Frinzi", new Towers(ColourT.black, 1), model);
 
         try {
             player.pay(2);

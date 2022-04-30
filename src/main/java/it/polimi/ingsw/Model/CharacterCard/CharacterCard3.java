@@ -25,7 +25,7 @@ public class CharacterCard3 extends CharacterCard {
         {    Card3Actuator.card3Effect(index, controller.getModel());   }
 
         controller.getModel().payCard(uID, cardID);
-        overPrice++;
+        overPrice=true;
     }
 
 }
