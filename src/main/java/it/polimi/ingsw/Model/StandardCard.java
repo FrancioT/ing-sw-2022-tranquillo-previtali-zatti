@@ -1,8 +1,12 @@
 package it.polimi.ingsw.Model;
 
-public class StandardCard {
+import java.io.Serializable;
+
+public class StandardCard implements Serializable
+{
     private final int roundValue;
     private final int mnValue;
+    static final long serialVersionUID= 80221L;
 
     public StandardCard(int rv, int mnv)
     {

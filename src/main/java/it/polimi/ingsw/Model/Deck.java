@@ -2,18 +2,20 @@ package it.polimi.ingsw.Model;
 
 import it.polimi.ingsw.Model.Exceptions.EmptyException;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
-class Deck {
+class Deck implements Serializable
+{
     private List<StandardCard> handList;
-    private Stack<StandardCard> discardedStack;
+    private StandardCard discardedCard;
+    static final long serialVersionUID= 80220L;
 
     Deck()
     {
         handList=new ArrayList<>();
-        discardedStack=new Stack<>();
+        discardedCard=null;
 
         handList.add(new StandardCard(1,1));
         handList.add(new StandardCard(2,1));
@@ -32,13 +34,13 @@ class Deck {
         if(pos>=handList.size() || pos<0) throw new IndexOutOfBoundsException();
 
         StandardCard s = handList.remove(pos);
-        discardedStack.push(s);
+        discardedCard=s;
         return s;
     }
     int getLastCardMNValue() throws EmptyException
     {
-        if(discardedStack.size()==0) throw new EmptyException();
-        return discardedStack.peek().getMnValue();
+        if(discardedCard==null) throw new EmptyException();
+        return discardedCard.getMnValue();
     }
     List<StandardCard> getHandCards() { return new ArrayList<>(handList); }
 }

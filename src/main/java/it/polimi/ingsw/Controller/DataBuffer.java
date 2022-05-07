@@ -51,7 +51,7 @@ public class DataBuffer
         notifyAll();
     }
     public synchronized boolean getTarget() throws InterruptedException, CardActivatedException
-    {
+    {   // target==true -> dashboard       target==false -> island
         while(!target.isPresent() && !activationCardRequest)
             wait();
         if(activationCardRequest)

@@ -1,10 +1,13 @@
 package it.polimi.ingsw.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tile {
-    protected List<Student> studentsList;
+public class Tile implements Serializable
+{
+    transient protected List<Student> studentsList;
+    static final long serialVersionUID= 80000L;
 
     public Tile() { studentsList=new ArrayList<>(); }
 

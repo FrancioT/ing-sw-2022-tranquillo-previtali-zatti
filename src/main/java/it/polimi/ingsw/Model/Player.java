@@ -4,15 +4,18 @@ import it.polimi.ingsw.Model.Dashboard.Dashboard;
 import it.polimi.ingsw.Model.Exceptions.*;
 import it.polimi.ingsw.Model.ModelAndDecorators.Model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Player {
+public class Player implements Serializable
+{
     private final String uID;
     private String nickName;
     private final Dashboard playerDashboard;
     private final Deck playerDeck;
     private int coins;
-    private final Model model;
+    transient private final Model model;
+    static final long serialVersionUID= 80200L;
 
     public Player(String uID, Towers towers, Model model)
     {

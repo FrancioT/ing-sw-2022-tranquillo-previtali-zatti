@@ -8,10 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 abstract class CharacterCardWithStudentsList extends CharacterCard{
-    protected List<Student> studentsList;
+    protected final List<Student> studentsList;
+    static final long serialVersionUID= 80310L;
 
-    CharacterCardWithStudentsList(int cardID, int price) {
+    CharacterCardWithStudentsList(int cardID, int price)
+    {
         super(cardID, price);
+        studentsList=new ArrayList<>();
     }
 
     Student removeStudent(Colour colour) throws NoSuchStudentException {

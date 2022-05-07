@@ -6,12 +6,14 @@ import it.polimi.ingsw.Model.Exceptions.FullEntranceException;
 import it.polimi.ingsw.Model.Exceptions.NoSuchStudentException;
 import it.polimi.ingsw.Model.Student;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-class Entrance
+class Entrance implements Serializable
 {
     private List<Student> students;
+    static final long serialVersionUID= 80211L;
 
     Entrance()
     {

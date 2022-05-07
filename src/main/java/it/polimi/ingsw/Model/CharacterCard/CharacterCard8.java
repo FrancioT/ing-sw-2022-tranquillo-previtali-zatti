@@ -7,6 +7,8 @@ import it.polimi.ingsw.Model.ModelAndDecorators.Card8Decorator;
 
 public class CharacterCard8 extends CharacterCard
 {
+    static final long serialVersionUID= 80306L;
+
     public CharacterCard8() { super(8, 2); }
     @Override
     public void handle(String uID, DataBuffer userData, Controller controller) throws Exception

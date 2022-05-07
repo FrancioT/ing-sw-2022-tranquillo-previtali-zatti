@@ -6,16 +6,21 @@ import it.polimi.ingsw.Model.Exceptions.LinkFailedException;
 import it.polimi.ingsw.Model.Exceptions.RunOutOfTowersException;
 import it.polimi.ingsw.Model.ModelAndDecorators.Model;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Island extends Tile
+public class Island extends Tile implements Serializable
 {
-    private Towers towers;
+    transient private Towers towers;
     private int numTowers;
     private boolean motherNatureFlag;
     private int inhibitionCounter;
-    private final Model model;
+    transient private final Model model;
+    static final long serialVersionUID= 80100L;
 
     public Island(boolean MN_presence, Model model)
     {
@@ -102,9 +107,20 @@ public class Island extends Tile
     {
         if(inhibitionCounter<0)
             throw new IllegalAccessError("Tried to remove inhibition tile from island, " +
-                                        "but there was't any");
+                                        "but there wasn't any");
         inhibitionCounter--;
     }
     public boolean getInhibition() { return inhibitionCounter>0; }
     public int getInhibitionCounter() { return inhibitionCounter; }
+
+    private void writeObject(ObjectOutputStream oos) throws IOException
+    {
+        oos.writeObject(towers.getColour());
+        oos.defaultWriteObject();
+    }
+    private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException
+    {
+        this.towers= new Towers((ColourT) ois.readObject(), 0);
+        ois.defaultReadObject();
+    }
 }

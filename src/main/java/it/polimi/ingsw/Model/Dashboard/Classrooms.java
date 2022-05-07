@@ -4,13 +4,15 @@ import it.polimi.ingsw.Model.Exceptions.*;
 import it.polimi.ingsw.Model.Student;
 import it.polimi.ingsw.Model.Teacher;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-class Classrooms
+class Classrooms implements Serializable
 {
     private List<List<Student>> classrooms;
     private List<Teacher> teachers;
+    static final long serialVersionUID= 80212L;
 
     Classrooms()
     {

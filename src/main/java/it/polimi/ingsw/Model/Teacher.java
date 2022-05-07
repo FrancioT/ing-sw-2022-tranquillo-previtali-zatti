@@ -1,8 +1,10 @@
 package it.polimi.ingsw.Model;
 
-public class Teacher {
-    private Player currentPos;
+public class Teacher
+{
+    transient private Player currentPos;
     private final Colour colour;
+    static final long serialVersionUID= 70001L;
 
     public Teacher(Colour c)
     {

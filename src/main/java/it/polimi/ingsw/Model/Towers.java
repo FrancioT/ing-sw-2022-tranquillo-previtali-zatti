@@ -3,9 +3,13 @@ package it.polimi.ingsw.Model;
 import it.polimi.ingsw.Model.Exceptions.FullTowersException;
 import it.polimi.ingsw.Model.Exceptions.RunOutOfTowersException;
 
-public class Towers {
+import java.io.Serializable;
+
+public class Towers implements Serializable
+{
     private int availableTowers;
     private final ColourT colour;
+    static final long serialVersionUID= 80213L;
 
     public Towers(ColourT colour, int mod)  //mod=0 (there are 2 or 4 players)
                                             // mod=1 (there are 3 players)

@@ -8,7 +8,9 @@ import it.polimi.ingsw.Model.ModelAndDecorators.Model;
 
 import java.util.List;
 
-public class CharacterCard10 extends CharacterCard{
+public class CharacterCard10 extends CharacterCard
+{
+    static final long serialVersionUID= 80308L;
 
     public CharacterCard10(){ super(10, 1); }
 

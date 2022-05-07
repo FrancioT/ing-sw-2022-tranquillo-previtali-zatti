@@ -5,7 +5,9 @@ import it.polimi.ingsw.Controller.DataBuffer;
 import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
 import it.polimi.ingsw.Model.ModelAndDecorators.Card3Actuator;
 
-public class CharacterCard3 extends CharacterCard {
+public class CharacterCard3 extends CharacterCard
+{
+    static final long serialVersionUID= 80302L;
 
     public CharacterCard3() {
         super(3, 3);

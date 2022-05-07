@@ -3,10 +3,14 @@ package it.polimi.ingsw.Model.CharacterCard;
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.DataBuffer;
 
-abstract public class CharacterCard {
+import java.io.Serializable;
+
+abstract public class CharacterCard implements Serializable
+{
     protected final int price;
     protected boolean overPrice;
     protected final int cardID;
+    static final long serialVersionUID= 80300L;
 
     public CharacterCard(int cardID,int price)
     {

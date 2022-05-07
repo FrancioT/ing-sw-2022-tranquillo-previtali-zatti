@@ -491,10 +491,4 @@ public class Model {
         else
             unusedCoins--;
     }
-    public synchronized int getUnusedCoins() { return unusedCoins; }
-    public synchronized List<Teacher> getTeachersList() { return new ArrayList<>(teachersList); }
-    public synchronized List<Island> getIslandsList() { return new ArrayList<>(islandsList); }
-    public synchronized List<Cloud> getCloudsList() { return new ArrayList<>(cloudsList); }
-    public synchronized List<Player> getPlayersList() { return new ArrayList<>(playersList); }
-    public synchronized List<CharacterCard> getCharacterCardList() { return new ArrayList<>(characterCardList); }
 }

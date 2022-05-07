@@ -6,8 +6,10 @@ import it.polimi.ingsw.Model.Exceptions.NoInhibitionFlagsAvailable;
 import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
 import it.polimi.ingsw.Model.ModelAndDecorators.Model;
 
-public class CharacterCard5 extends CharacterCard{
+public class CharacterCard5 extends CharacterCard
+{
     private int availableFlags;
+    static final long serialVersionUID= 80304L;
 
     public CharacterCard5(){
         super(5, 2);

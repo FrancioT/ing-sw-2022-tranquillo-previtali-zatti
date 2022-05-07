@@ -8,13 +8,14 @@ import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
 import java.util.ArrayList;
 
 
-public class CharacterCard11 extends CharacterCardWithStudentsList{
-    final private Bag bag;
+public class CharacterCard11 extends CharacterCardWithStudentsList
+{
+    transient final private Bag bag;
+    static final long serialVersionUID= 80313L;
 
     public CharacterCard11(Bag bag) {
         super(11, 2);
         this.bag = bag;
-        studentsList = new ArrayList<>();
         for (int i = 0; i < 4; i++)
             studentsList.add(bag.randomExtraction());
     }

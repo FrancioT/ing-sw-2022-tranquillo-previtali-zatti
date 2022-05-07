@@ -15,8 +15,10 @@ import java.util.List;
 
 public class CharacterCard12 extends CharacterCard
 {
-    final private Bag bag;
-    final private List<Player> players;
+    transient final private Bag bag;
+    transient final private List<Player> players;
+    static final long serialVersionUID= 80309L;
+
     public CharacterCard12(Bag bag, List<Player> players){
         super(12 ,3);
         this.bag = bag;

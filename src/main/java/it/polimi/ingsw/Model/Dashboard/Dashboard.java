@@ -5,14 +5,16 @@ import it.polimi.ingsw.Model.Student;
 import it.polimi.ingsw.Model.Teacher;
 import it.polimi.ingsw.Model.Towers;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Dashboard
+public class Dashboard implements Serializable
 {
     private final Entrance entrance;
     private final Classrooms classrooms;
     private final Towers towers;
+    static final long serialVersionUID= 80210L;
 
     public Dashboard(Towers towers)
     {

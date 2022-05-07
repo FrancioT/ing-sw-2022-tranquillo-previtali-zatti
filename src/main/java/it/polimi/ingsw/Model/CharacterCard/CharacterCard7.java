@@ -12,11 +12,12 @@ import it.polimi.ingsw.Model.Student;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CharacterCard7 extends CharacterCardWithStudentsList {
+public class CharacterCard7 extends CharacterCardWithStudentsList
+{
+    static final long serialVersionUID= 80312L;
 
     public CharacterCard7(Bag bag){
         super(7, 1);
-        studentsList = new ArrayList<>();
         for( int i = 0; i < 6; i++){
             studentsList.add(bag.randomExtraction());
         }

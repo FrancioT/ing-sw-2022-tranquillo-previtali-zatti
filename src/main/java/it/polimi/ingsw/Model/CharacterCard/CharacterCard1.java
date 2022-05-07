@@ -9,11 +9,11 @@ import it.polimi.ingsw.Model.ModelAndDecorators.Model;
 import java.util.ArrayList;
 
 public class CharacterCard1 extends CharacterCardWithStudentsList{
-    final private Bag bag;
+    transient final private Bag bag;
+    static final long serialVersionUID= 80311L;
 
     public CharacterCard1(Bag bag) {
         super(1, 1);
-        studentsList = new ArrayList<>();
         this.bag = bag;
         for (int i = 0; i < 4; i++){
             studentsList.add(bag.randomExtraction());

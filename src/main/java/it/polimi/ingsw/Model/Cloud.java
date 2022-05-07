@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cloud extends Tile{
-    final private Bag bag;
+    transient final private Bag bag;
+    static final long serialVersionUID= 80001L;
 
     public Cloud(Bag bag)
     {
