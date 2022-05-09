@@ -396,12 +396,17 @@ public class ModelTest
         assertEquals(model.playersList.get(0).getStudentNum(Colour.blue), 0);
     }
 
-    public static void changeCard(Model model, CharacterCard card)
+    public static void changeCard(Model model, List<CharacterCard> cards)
     {
         if(model.characterCardList.size()==0)
             throw new IllegalAccessError("The passed model is not in expert mode!");
         model.characterCardList.clear();
-        model.characterCardList.add(card);
+        model.characterCardList.addAll(cards);
     }
     public static List<Player> getPlayers(Model model) { return new ArrayList<>(model.playersList); }
+    public static int getUnusedCoins(Model model) { return model.unusedCoins; }
+    public static List<Teacher> getTeachersList(Model model) { return new ArrayList<>(model.teachersList); }
+    public static List<Island> getIslandsList(Model model) { return new ArrayList<>(model.islandsList); }
+    public static List<Cloud> getCloudsList(Model model) { return new ArrayList<>(model.cloudsList); }
+    public static List<CharacterCard> getCharacterCardList(Model model) { return new ArrayList<>(model.characterCardList); }
 }

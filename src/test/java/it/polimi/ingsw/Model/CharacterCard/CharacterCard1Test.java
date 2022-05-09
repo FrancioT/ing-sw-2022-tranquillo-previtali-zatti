@@ -8,6 +8,7 @@ import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
 import it.polimi.ingsw.Model.ModelAndDecorators.ModelTest;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +38,8 @@ class CharacterCard1Test {
     @Test
     public void CharacterCard1Handle() throws Exception {
         CharacterCard1 card = new CharacterCard1(new Bag());
+        List<CharacterCard> cards = new ArrayList<>();
+        cards.add(card);
         Map<String, DataBuffer> uIDs = new HashMap<>();
         uIDs.put("Aldo", new DataBuffer("Aldo"));
         uIDs.put("Giovanni", new DataBuffer("Giovanni"));
@@ -44,7 +47,7 @@ class CharacterCard1Test {
 
         Controller controller = new Controller(uIDs, true);
 
-        ModelTest.changeCard(controller.getModel(), card);
+        ModelTest.changeCard(controller.getModel(), cards);
 
         card.overPrice = true;
 
@@ -83,6 +86,9 @@ class CharacterCard1Test {
         card.handle("Aldo", datas, controller);
 
         assertEquals(card.studentsList.size(), 4);
-        assertEquals(card.overPrice, true);
+        assertTrue(card.overPrice);
+
+        List<Colour> studentsOnIsland = new ArrayList<>(ModelTest.getIslandsList(controller.getModel()).get(2).getStudentsColours());
+        assertTrue(studentsOnIsland.get(studentsOnIsland.size()-1) == (Colour.red));
     }
 }

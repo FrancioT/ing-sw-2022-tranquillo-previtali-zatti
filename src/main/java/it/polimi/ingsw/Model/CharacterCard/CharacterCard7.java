@@ -12,62 +12,63 @@ import it.polimi.ingsw.Model.Student;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CharacterCard7 extends CharacterCardWithStudentsList
-{
-    static final long serialVersionUID= 80312L;
+public class CharacterCard7 extends CharacterCardWithStudentsList {
+    static final long serialVersionUID = 80312L;
 
-    public CharacterCard7(Bag bag){
+    public CharacterCard7(Bag bag) {
         super(7, 1);
-        for( int i = 0; i < 6; i++){
+        for (int i = 0; i < 6; i++) {
             studentsList.add(bag.randomExtraction());
         }
     }
 
     @Override
     public void handle(String uID, DataBuffer userData, Controller controller) throws Exception {
-        if(uID==null || userData==null || controller==null)
+        if (uID == null || userData == null || controller == null)
             throw new NullPointerException();
         Model model = controller.getModel();
-        if(!model.checkEnoughMoney(uID, cardID))
+        if (!model.checkEnoughMoney(uID, cardID))
             throw new NotEnoughMoneyException();
 
         boolean ok = false;
-        List<Colour> studentsToSwap= userData.getStudentsColours();
-        if(studentsToSwap.size()%2!=0 || studentsToSwap.size()>6)
+        List<Colour> studentsToSwap = userData.getStudentsColours();
+        if (studentsToSwap.size() % 2 != 0 || studentsToSwap.size() > 6)
             throw new IllegalArgumentException();
 
-        int studentsToMove = studentsToSwap.size()/2;
+        int studentsToMove = studentsToSwap.size() / 2;
         List<Colour> studentsToCard = new ArrayList<>();
         List<Colour> studentsToEntrance = new ArrayList<>();
 
-        for(int i = 0; i < studentsToMove; i++){
+        for (int i = 0; i < studentsToMove; i++) {
             studentsToCard.add(studentsToSwap.remove(0));
         }
 
-        for(int i = 0; i < studentsToMove; i++){
+        for (int i = 0; i < studentsToMove; i++) {
             studentsToEntrance.add(studentsToSwap.remove(0));
         }
 
-        for(Colour c : studentsToCard){
-            for(Colour colour : model.getStudents(uID)){
-                if(c.equals(colour))
-                    ok = true;
-            }
-            if(!ok)
+        for (Colour c : studentsToCard) {
+            int check = 0;
+            for(Colour colour1: studentsToCard)
+                if(c == colour1)
+                    check++;
+            for(Colour colour : model.getStudents(uID))
+                if(c == colour)
+                    check--;
+            if(check > 0)
                 throw new NoSuchStudentException();
-            else
-                ok = false;
         }
 
         for(Colour c : studentsToEntrance){
-            for(Colour colour : getColoursOnCard()){
-                if(c.equals(colour))
-                    ok = true;
-            }
-            if(!ok)
+            int check = 0;
+            for(Colour colour1: studentsToCard)
+                if(c == colour1)
+                    check++;
+            for(Colour colour : getColoursOnCard())
+                if(c == colour)
+                    check--;
+            if(check > 0)
                 throw new NoSuchStudentException();
-            else
-                ok = false;
         }
 
         for(int i = 0; i < studentsToMove; i++){

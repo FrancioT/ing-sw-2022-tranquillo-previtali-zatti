@@ -3,9 +3,11 @@ package it.polimi.ingsw.Model.CharacterCard;
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.DataBuffer;
 import it.polimi.ingsw.Model.Colour;
+import it.polimi.ingsw.Model.Exceptions.NoSuchStudentException;
 import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
 import it.polimi.ingsw.Model.ModelAndDecorators.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CharacterCard10 extends CharacterCard
@@ -21,6 +23,9 @@ public class CharacterCard10 extends CharacterCard
         Colour entranceStudentColour=null;
         Colour classroomStudentColour=null;
         List<Colour> studentsToMove;
+        List<Colour> studentsToEntrance = new ArrayList<>();
+        List<Colour> studentsToClassroom = new ArrayList<>();
+
         int studentsNum=0;
 
         if(uID==null || userData==null || controller==null)
@@ -31,8 +36,35 @@ public class CharacterCard10 extends CharacterCard
         model=controller.getModel();
         studentsToMove= userData.getStudentsColours();
         studentsNum=studentsToMove.size();
-        if(studentsNum%2!=0)
+        if(studentsNum%2!=0 || studentsNum>4)
             throw new IllegalArgumentException();
+
+        for(int i=0; i< studentsNum/2; i++){
+            studentsToClassroom.add(studentsToMove.get(2*i));
+            studentsToEntrance.add(studentsToMove.get(2*i+1));
+        }
+
+        for(Colour c : studentsToClassroom) {
+            int check = 0;
+            for (Colour colour : studentsToClassroom)
+                if (c == colour)
+                    check++;
+            for (Colour colour1 : model.getStudents(uID))
+                if (c == colour1)
+                    check--;
+            if (check > 0)
+                throw new NoSuchStudentException();
+        }
+
+        for(Colour c : studentsToEntrance) {
+            int check = 0;
+            for (Colour colour : studentsToEntrance)
+                if (c == colour)
+                    check++;
+            check = check - model.getStudentsNum(uID,c);
+            if (check > 0)
+                throw new NoSuchStudentException();
+        }
 
         for(int i=0; i<(studentsNum/2); i++)
         {

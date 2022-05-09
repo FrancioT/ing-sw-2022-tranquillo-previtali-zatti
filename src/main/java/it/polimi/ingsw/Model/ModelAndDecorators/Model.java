@@ -491,4 +491,15 @@ public class Model {
         else
             unusedCoins--;
     }
+
+    public synchronized int getStudentsNum(String uID, Colour colour) throws NoSuchPlayerException {
+        if(uID==null) throw new NullPointerException();
+        Player player = null;
+        for (Player p : playersList)
+            if (p.getuID().equals(uID))
+                player = p;
+        if(player==null)
+            throw new NoSuchPlayerException();
+        return player.getStudentNum(colour);
+    }
 }

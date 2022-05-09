@@ -4,11 +4,15 @@ import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.DataBuffer;
 import it.polimi.ingsw.Model.Bag;
 import it.polimi.ingsw.Model.Colour;
+import it.polimi.ingsw.Model.Exceptions.NoSuchStudentException;
+import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
 import it.polimi.ingsw.Model.ModelAndDecorators.ModelTest;
 import it.polimi.ingsw.Model.Student;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -23,19 +27,52 @@ class CharacterCard11Test
         String player3 = "Giacomo";
         Bag bag= new Bag();
         CharacterCard11 card = new CharacterCard11(bag);
+        List<CharacterCard> cards = new ArrayList<>();
+        cards.add(card);
         Map<String, DataBuffer> uIDs = new HashMap<>();
         uIDs.put(player1, new DataBuffer(player1));
         uIDs.put(player2, new DataBuffer(player2));
         uIDs.put(player3, new DataBuffer(player3));
-
         Controller controller = new Controller(uIDs, true);
-        ModelTest.changeCard(controller.getModel(), card);
-        for (int i = 0; i < 3; i++)
-            controller.getModel().addStudentDashboard(player1, new Student(Colour.green));
-        card.studentsList.remove(0);
+        ModelTest.changeCard(controller.getModel(), cards);
+
+        try{
+            card.handle(null, null, null);
+            fail();
+        }catch (NullPointerException n){};
+
+        try {
+            card.handle("Aldo", new DataBuffer(player1), controller);
+            fail();
+        }catch (NotEnoughMoneyException n){};
+
+        for(int i=0; i<6; i++)
+            controller.getModel().addStudentDashboard("Giacomo", new Student(Colour.yellow));
+
+        for(int i=0; i<2; i++){
+            controller.getModel().addStudentDashboard("Aldo", new Student(Colour.red));
+            controller.getModel().addStudentDashboard("Giacomo", new Student(Colour.red));
+        }
+
+        assertTrue(ModelTest.getPlayers(controller.getModel()).get(1).checkTeacherPresence(Colour.red));
+
+        card.studentsList.clear();
         card.studentsList.add(new Student(Colour.red));
-        DataBuffer data = new DataBuffer(player1);
+
+        DataBuffer data = new DataBuffer("Giacomo");
+
+        data.setStudColour(Colour.green);
+
+        try {
+            card.handle("Giacomo", data, controller);
+            fail();
+        }catch (NoSuchStudentException n){};
+
         data.setStudColour(Colour.red);
-        card.handle(player1, data, controller);
+
+        card.handle("Giacomo", data, controller);
+
+        assertTrue(card.getColoursOnCard().size() == 1);
+        assertTrue(ModelTest.getPlayers(controller.getModel()).get(0).checkTeacherPresence(Colour.red));
     }
 }
