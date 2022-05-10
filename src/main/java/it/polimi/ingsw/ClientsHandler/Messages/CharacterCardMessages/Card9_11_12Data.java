@@ -3,9 +3,11 @@ package it.polimi.ingsw.ClientsHandler.Messages.CharacterCardMessages;
 import it.polimi.ingsw.Controller.DataBuffer;
 import it.polimi.ingsw.Model.Colour;
 
-public class Card9_11_12Data extends CardMessage
+class Card9_11_12Data extends CardMessage
 {
     private final Colour studColour;
+    static final long serialVersionUID= 30104L;
+
     Card9_11_12Data(String uID, int cardID, Colour studentColour)
     {
         super(uID, cardID);
@@ -14,7 +16,7 @@ public class Card9_11_12Data extends CardMessage
         this.studColour=studentColour;
     }
     @Override
-    protected void handle(DataBuffer dataBuffer)
+    public void handle(DataBuffer dataBuffer)
     {
         super.checkDataBuffer(dataBuffer);
         dataBuffer.setStudColour(studColour);

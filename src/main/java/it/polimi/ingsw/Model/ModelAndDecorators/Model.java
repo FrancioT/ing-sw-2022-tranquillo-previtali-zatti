@@ -1,10 +1,13 @@
 package it.polimi.ingsw.Model.ModelAndDecorators;
+import it.polimi.ingsw.ClientsHandler.Messages.ModelMessage;
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.DataBuffer;
 import it.polimi.ingsw.Model.*;
 import it.polimi.ingsw.Model.CharacterCard.*;
 import it.polimi.ingsw.Model.Exceptions.*;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -17,10 +20,12 @@ public class Model {
     protected List<CharacterCard> characterCardList;
     protected int unusedCoins;
     protected CharacterCard5 card5;
+    protected final PropertyChangeSupport support;
 
     public Model(List<String> uIDs, boolean expertMode)
     {
         int characterCardNum=12;
+        support= new PropertyChangeSupport(this);
         teachersList=new ArrayList<>();
         islandsList=new ArrayList<>();
         cloudsList=new ArrayList<>();
@@ -109,6 +114,7 @@ public class Model {
         motherNature=model.motherNature;
         unusedCoins=model.unusedCoins;
         card5=model.card5;
+        support=model.support;
     }
 
     public synchronized void payCard(String uID, int cardID) throws NoSuchPlayerException, NoSuchCardException,
@@ -138,8 +144,8 @@ public class Model {
     }
 
     protected synchronized void teacherDominance(Player player, Colour colour) throws TooManyTeachersException,
-                                                                                TeacherAlreadyInException,
-                                                                                NoSuchTeacherException
+                                                                                      TeacherAlreadyInException,
+                                                                                      NoSuchTeacherException
     {
         if(colour==null || player==null) throw new NullPointerException();
 
@@ -170,7 +176,7 @@ public class Model {
     }
 
     public synchronized void addStudentDashboard(String uID, Student student)
-                                                    throws NoSuchPlayerException, FullClassException,
+                                                        throws NoSuchPlayerException, FullClassException,
                                                         TooManyTeachersException, TeacherAlreadyInException,
                                                         NoSuchTeacherException
     {
@@ -184,6 +190,10 @@ public class Model {
             throw new NoSuchPlayerException();
         tmp.addStudent(student);
         teacherDominance(tmp, student.getColour());
+
+        ModelMessage message= new ModelMessage(null, null, new ArrayList<>(playersList),
+                null, unusedCoins);
+        notify(message);
     }
 
     public synchronized void addStudentIsland(int index, Student student) throws IndexOutOfBoundsException
@@ -191,12 +201,21 @@ public class Model {
         if(index>islandsList.size() || index<0)
             throw new IndexOutOfBoundsException();
         islandsList.get(index).addStudent(student);
+
+        List<Island> island_updated= new ArrayList<>();
+        island_updated.add(islandsList.get(index));
+        ModelMessage message= new ModelMessage(island_updated, null, null,
+                null, unusedCoins);
+        notify(message);
     }
 
     public synchronized void cloudsFiller(int n){
         for(Cloud cloud : cloudsList){
             cloud.cloudFiller(n);
         }
+        ModelMessage message= new ModelMessage(null, new ArrayList<>(cloudsList), null,
+                null, unusedCoins);
+        notify(message);
     }
 
     public synchronized void cloudEmptier(String uID, int i_cloud) throws FullEntranceException,
@@ -212,6 +231,14 @@ public class Model {
         if(tmp==null)
             throw new NoSuchPlayerException();
         cloudsList.get(i_cloud).cloudEmptier(tmp);
+
+        List<Player> player_updated= new ArrayList<>();
+        player_updated.add(tmp);
+        List<Cloud> clouds_updated= new ArrayList<>();
+        clouds_updated.add(cloudsList.get(i_cloud));
+        ModelMessage message= new ModelMessage(null, clouds_updated, player_updated,
+                null, unusedCoins);
+        notify(message);
     }
 
     public synchronized StandardCard cardDiscarder(String uID, int pos) throws NoSuchPlayerException
@@ -226,6 +253,12 @@ public class Model {
         if(tmp==null)
             throw new NoSuchPlayerException();
         s = tmp.cardDiscarder(pos);
+
+        List<Player> player_updated= new ArrayList<>();
+        player_updated.add(tmp);
+        ModelMessage message= new ModelMessage(null, null, player_updated,
+                null, unusedCoins);
+        notify(message);
         return s;
     }
 
@@ -243,6 +276,12 @@ public class Model {
         if(tmp==null)
             throw new NoSuchPlayerException();
         s = tmp.entranceEmptier(c);
+
+        List<Player> player_updated= new ArrayList<>();
+        player_updated.add(tmp);
+        ModelMessage message= new ModelMessage(null, null, player_updated,
+                null, unusedCoins);
+        notify(message);
         return s;
     }
 
@@ -275,6 +314,10 @@ public class Model {
         i = (i + deltaPos)%islandsList.size();
         motherNature.jumpNextPos(islandsList.get(i));
         islandDominance(islandsList.get(i));
+
+        ModelMessage message= new ModelMessage(new ArrayList<>(islandsList), null,
+                new ArrayList<>(playersList), null, unusedCoins);
+        notify(message);
     }
 
     protected synchronized void islandDominance(Island island) throws FullTowersException,
@@ -401,12 +444,12 @@ public class Model {
         islandsList.get(islandPos).addInhibition();
     }
 
-    public synchronized void giveBackInhibitionFlag() { card5.giveBackInhibitionFlag(); }
+    protected synchronized void giveBackInhibitionFlag() { card5.giveBackInhibitionFlag(); }
 
     public synchronized void studentsSwap(String uID, Colour entranceStudentColour, Colour classroomStudentColour)
                                             throws NoSuchStudentException, EmptyException, FullEntranceException,
-                                                   FullClassException, NoSuchPlayerException, NoSuchTeacherException,
-                                                   TeacherAlreadyInException, TooManyTeachersException
+                                            FullClassException, NoSuchPlayerException, NoSuchTeacherException,
+                                            TeacherAlreadyInException, TooManyTeachersException
     {
         if(entranceStudentColour==null || classroomStudentColour==null || uID==null)
             throw new NullPointerException();
@@ -464,13 +507,27 @@ public class Model {
 
     public synchronized int getNumIslands() { return islandsList.size(); }
     public synchronized void activateCard(String uID, DataBuffer dataBuffer, Controller controller)
-                                        throws Exception
+                                                                                         throws Exception
     {
         if(uID==null || dataBuffer==null || controller==null)
             throw new NullPointerException();
         if(!dataBuffer.getUID().equals(uID))
             throw new IllegalArgumentException();
-        characterCardList.get(dataBuffer.getCharacterCardID()).handle(uID, dataBuffer, controller);
+
+        int cardID=dataBuffer.getCharacterCardID();
+        int index=-1;
+        for(int i=0; i<characterCardList.size(); i++)
+            if(characterCardList.get(i).getCardID()==cardID)
+                index=i;
+        if(index==-1)
+            throw new NoSuchCardException();
+        characterCardList.get(index).handle(uID, dataBuffer, controller);
+
+        List<CharacterCard> cc_updated= new ArrayList<>();
+        cc_updated.add(characterCardList.get(index));
+        ModelMessage message= new ModelMessage(new ArrayList<>(islandsList), new ArrayList<>(cloudsList),
+                new ArrayList<>(playersList), cc_updated, unusedCoins);
+        notify(message);
     }
     public synchronized List<Integer> getCardsRoundValues(String uID) throws NoSuchPlayerException
     {
@@ -491,7 +548,6 @@ public class Model {
         else
             unusedCoins--;
     }
-
     public synchronized int getStudentsNum(String uID, Colour colour) throws NoSuchPlayerException {
         if(uID==null) throw new NullPointerException();
         Player player = null;
@@ -501,5 +557,17 @@ public class Model {
         if(player==null)
             throw new NoSuchPlayerException();
         return player.getStudentNum(colour);
+    }
+    public void addPropertyChangeListener(PropertyChangeListener listener)
+    {
+        if(listener==null)
+            throw new NullPointerException();
+        support.addPropertyChangeListener(listener);
+    }
+    protected void notify(ModelMessage message)
+    {
+        if(message==null)
+            throw new NullPointerException();
+        support.firePropertyChange("ModelModifications", null, message);
     }
 }

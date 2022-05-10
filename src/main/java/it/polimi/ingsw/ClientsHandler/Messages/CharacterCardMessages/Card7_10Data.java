@@ -6,9 +6,11 @@ import it.polimi.ingsw.Model.Colour;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Card7_10Data extends CardMessage
+class Card7_10Data extends CardMessage
 {
     private final List<Colour> studColours;
+    static final long serialVersionUID= 30103L;
+
     Card7_10Data(String uID, int cardID, List<Colour> studentsColours)
     {
         super(uID, cardID);
@@ -17,7 +19,7 @@ public class Card7_10Data extends CardMessage
         this.studColours=new ArrayList<>(studentsColours);
     }
     @Override
-    protected void handle(DataBuffer dataBuffer)
+    public void handle(DataBuffer dataBuffer)
     {
         super.checkDataBuffer(dataBuffer);
         dataBuffer.setStudentsColours(studColours);

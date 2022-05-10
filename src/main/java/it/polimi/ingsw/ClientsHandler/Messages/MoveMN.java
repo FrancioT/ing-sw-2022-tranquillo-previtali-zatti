@@ -2,9 +2,11 @@ package it.polimi.ingsw.ClientsHandler.Messages;
 
 import it.polimi.ingsw.Controller.DataBuffer;
 
-public class MoveMN extends Message
+class MoveMN extends Message
 {
     private final int mnPos;
+    static final long serialVersionUID= 30003L;
+
     MoveMN(String uID, int mnPos)
     {
         super(uID);
@@ -13,7 +15,7 @@ public class MoveMN extends Message
         this.mnPos=mnPos;
     }
     @Override
-    protected void handle(DataBuffer dataBuffer)
+    public void handle(DataBuffer dataBuffer)
     {
         super.checkDataBuffer(dataBuffer);
         dataBuffer.setMnPos(mnPos);

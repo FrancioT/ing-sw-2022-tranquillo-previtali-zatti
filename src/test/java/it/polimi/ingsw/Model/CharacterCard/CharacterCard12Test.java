@@ -7,6 +7,7 @@ import it.polimi.ingsw.Model.Colour;
 import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
 import it.polimi.ingsw.Model.ModelAndDecorators.ModelTest;
 import it.polimi.ingsw.Model.Student;
+import it.polimi.ingsw.RemoteView.RemoteView;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ class CharacterCard12Test
         uIDs.put(player1, new DataBuffer(player1));
         uIDs.put(player2, new DataBuffer(player2));
         uIDs.put(player3, new DataBuffer(player3));
-        Controller controller = new Controller(uIDs, true);
+        Controller controller = new Controller(uIDs, true, new ArrayList<RemoteView>());
         CharacterCard12 card = new CharacterCard12(bag, ModelTest.getPlayers(controller.getModel()));
         List<CharacterCard> cards = new ArrayList<>();
         cards.add(card);

@@ -21,10 +21,18 @@ public class ModelMessage implements Serializable
     public ModelMessage(List<Island> islandList, List<Cloud> cloudList, List<Player> playerList,
                         List<CharacterCard> characterCardList, int unusedCoins)
     {
-        this.islandList= new ArrayList<>(islandList);
-        this.cloudList= new ArrayList<>(cloudList);
-        this.playerList= new ArrayList<>(playerList);
-        this.characterCardList= new ArrayList<>(characterCardList);
+        if(islandList==null)
+            islandList= new ArrayList<>();
+        this.islandList= islandList;
+        if(cloudList==null)
+            cloudList= new ArrayList<>();
+        this.cloudList= cloudList;
+        if(playerList==null)
+            playerList= new ArrayList<>();
+        this.playerList= playerList;
+        if(characterCardList==null)
+            characterCardList= new ArrayList<>();
+        this.characterCardList= characterCardList;
         this.unusedCoins=unusedCoins;
     }
     public List<Island> getIslandList() { return new ArrayList<>(islandList); }

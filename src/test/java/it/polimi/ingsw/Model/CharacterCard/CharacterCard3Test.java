@@ -9,6 +9,7 @@ import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
 import it.polimi.ingsw.Model.ModelAndDecorators.ModelTest;
 import it.polimi.ingsw.Model.Player;
 import it.polimi.ingsw.Model.Student;
+import it.polimi.ingsw.RemoteView.RemoteView;
 import org.junit.jupiter.api.Test;
 
 import javax.xml.crypto.Data;
@@ -37,7 +38,7 @@ class CharacterCard3Test
         uIDs.put(player2, new DataBuffer(player2));
         uIDs.put(player3, new DataBuffer(player3));
 
-        Controller controller = new Controller(uIDs, true);
+        Controller controller = new Controller(uIDs, true, new ArrayList<RemoteView>());
         ModelTest.changeCard(controller.getModel(), cards);
 
         DataBuffer datas= new DataBuffer("Giacomo");

@@ -2,9 +2,11 @@ package it.polimi.ingsw.ClientsHandler.Messages;
 
 import it.polimi.ingsw.Controller.DataBuffer;
 
-public class ChooseCloud extends Message
+class ChooseCloud extends Message
 {
     private final int cloudPos;
+    static final long serialVersionUID= 30002L;
+
     ChooseCloud(String uID, int cloudPos)
     {
         super(uID);
@@ -13,7 +15,7 @@ public class ChooseCloud extends Message
         this.cloudPos=cloudPos;
     }
     @Override
-    protected void handle(DataBuffer dataBuffer)
+    public void handle(DataBuffer dataBuffer)
     {
         super.checkDataBuffer(dataBuffer);
         dataBuffer.setCloudPos(cloudPos);

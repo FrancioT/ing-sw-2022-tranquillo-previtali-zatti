@@ -7,8 +7,10 @@ import java.io.Serializable;
 public abstract class Message implements Serializable
 {
     private final String uID;
+    static final long serialVersionUID= 30000L;
+
     protected Message(String uID) { this.uID=uID; }
-    protected abstract void handle(DataBuffer dataBuffer);
+    public abstract void handle(DataBuffer dataBuffer);
     protected void checkDataBuffer(DataBuffer dataBuffer)
     {
         if(dataBuffer==null)

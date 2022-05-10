@@ -5,6 +5,7 @@ import it.polimi.ingsw.Controller.Exceptions.IllegalMNMovementException;
 import it.polimi.ingsw.Model.Colour;
 import it.polimi.ingsw.Model.Exceptions.*;
 import it.polimi.ingsw.Model.ModelAndDecorators.Model;
+import it.polimi.ingsw.RemoteView.RemoteView;
 
 import java.util.*;
 
@@ -17,10 +18,12 @@ public class Controller
     private boolean decorationFlag;
     private boolean cardActivated;
 
-    public Controller(Map<String, DataBuffer> uIDs, boolean expertMode)
+    public Controller(Map<String, DataBuffer> uIDs, boolean expertMode, List<RemoteView> views)
     {
         endGame=false;
         model= new Model(new ArrayList<>(uIDs.keySet()), expertMode);
+        for(RemoteView v: views)
+            model.addPropertyChangeListener(v);
         uIDsList= new ArrayList<>(uIDs.keySet());
         decorationFlag=false;
         usersData=new HashMap<>(uIDs);

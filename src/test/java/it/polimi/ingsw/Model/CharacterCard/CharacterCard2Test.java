@@ -9,6 +9,7 @@ import it.polimi.ingsw.Model.ModelAndDecorators.Model;
 import it.polimi.ingsw.Model.ModelAndDecorators.ModelTest;
 import it.polimi.ingsw.Model.Player;
 import it.polimi.ingsw.Model.Student;
+import it.polimi.ingsw.RemoteView.RemoteView;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ class CharacterCard2Test {
         players.put("Giovanni", new DataBuffer("Giovanni"));
         players.put("Giacomo", new DataBuffer("Giacomo"));
 
-        Controller controller = new Controller(players, true);
+        Controller controller = new Controller(players, true, new ArrayList<RemoteView>());
         ModelTest.changeCard(controller.getModel(), cards);
 
         for(int i=0; i < 3; i++){

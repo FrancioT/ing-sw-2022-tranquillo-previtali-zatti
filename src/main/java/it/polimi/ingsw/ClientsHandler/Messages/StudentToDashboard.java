@@ -3,9 +3,11 @@ package it.polimi.ingsw.ClientsHandler.Messages;
 import it.polimi.ingsw.Controller.DataBuffer;
 import it.polimi.ingsw.Model.Colour;
 
-public class StudentToDashboard extends Message
+class StudentToDashboard extends Message
 {
     private final Colour studColour;
+    static final long serialVersionUID= 30004L;
+
     StudentToDashboard(String uID, Colour studentColour)
     {
         super(uID);
@@ -14,7 +16,7 @@ public class StudentToDashboard extends Message
         studColour=studentColour;
     }
     @Override
-    protected void handle(DataBuffer dataBuffer)
+    public void handle(DataBuffer dataBuffer)
     {
         super.checkDataBuffer(dataBuffer);
         synchronized (dataBuffer)

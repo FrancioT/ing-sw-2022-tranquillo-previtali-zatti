@@ -2,6 +2,7 @@ package it.polimi.ingsw.Controller;
 
 import it.polimi.ingsw.Controller.Exceptions.IllegalMNMovementException;
 import it.polimi.ingsw.Model.Colour;
+import it.polimi.ingsw.RemoteView.RemoteView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +27,7 @@ class ControllerTest
         users.put(p1, new DataBuffer(p1));
         users.put(p2, new DataBuffer(p2));
         users.put(p3, new DataBuffer(p3));
-        controller=new Controller(users, true);
+        controller=new Controller(users, true, new ArrayList<RemoteView>());
     }
     @Test
     void cloudsFilling()

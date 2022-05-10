@@ -3,10 +3,12 @@ package it.polimi.ingsw.ClientsHandler.Messages;
 import it.polimi.ingsw.Controller.DataBuffer;
 import it.polimi.ingsw.Model.Colour;
 
-public class StudentToIsland extends Message
+class StudentToIsland extends Message
 {
     private final Colour studColour;
     private final int islandPos;
+    static final long serialVersionUID= 30005L;
+
     StudentToIsland(String uID, Colour studentColour, int islandPos)
     {
         super(uID);
@@ -18,7 +20,7 @@ public class StudentToIsland extends Message
         this.islandPos=islandPos;
     }
     @Override
-    protected void handle(DataBuffer dataBuffer)
+    public void handle(DataBuffer dataBuffer)
     {
         super.checkDataBuffer(dataBuffer);
         synchronized (dataBuffer)

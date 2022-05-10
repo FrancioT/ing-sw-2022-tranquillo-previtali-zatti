@@ -2,11 +2,11 @@ package it.polimi.ingsw.ClientsHandler.Messages.CharacterCardMessages;
 
 import it.polimi.ingsw.ClientsHandler.Messages.Message;
 
-import java.io.Serializable;
-
-abstract public class CardMessage extends Message implements Serializable
+abstract class CardMessage extends Message
 {
     final int cardID;
+    static final long serialVersionUID= 30100L;
+
     CardMessage(String uID, int cardID)
     {
         super(uID);

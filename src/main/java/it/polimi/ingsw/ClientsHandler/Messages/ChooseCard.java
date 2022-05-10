@@ -2,9 +2,11 @@ package it.polimi.ingsw.ClientsHandler.Messages;
 
 import it.polimi.ingsw.Controller.DataBuffer;
 
-public class ChooseCard extends Message
+class ChooseCard extends Message
 {
     private final int cardPos;
+    static final long serialVersionUID= 30001L;
+
     ChooseCard(String uID, int cardPos)
     {
         super(uID);
@@ -13,7 +15,7 @@ public class ChooseCard extends Message
         this.cardPos=cardPos;
     }
     @Override
-    protected void handle(DataBuffer dataBuffer)
+    public void handle(DataBuffer dataBuffer)
     {
         super.checkDataBuffer(dataBuffer);
         dataBuffer.setCardPos(cardPos);

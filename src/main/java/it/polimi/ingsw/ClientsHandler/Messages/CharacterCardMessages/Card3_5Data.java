@@ -2,9 +2,11 @@ package it.polimi.ingsw.ClientsHandler.Messages.CharacterCardMessages;
 
 import it.polimi.ingsw.Controller.DataBuffer;
 
-public class Card3_5Data extends CardMessage
+class Card3_5Data extends CardMessage
 {
     private final int islandPos;
+    static final long serialVersionUID= 30102L;
+
     Card3_5Data(String uID, int cardID, int islandPos)
     {
         super(uID, cardID);
@@ -13,7 +15,7 @@ public class Card3_5Data extends CardMessage
         this.islandPos=islandPos;
     }
     @Override
-    protected void handle(DataBuffer dataBuffer)
+    public void handle(DataBuffer dataBuffer)
     {
         super.checkDataBuffer(dataBuffer);
         dataBuffer.setIslandPos(islandPos);
