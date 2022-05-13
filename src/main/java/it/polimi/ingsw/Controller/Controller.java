@@ -9,7 +9,7 @@ import it.polimi.ingsw.RemoteView.RemoteView;
 
 import java.util.*;
 
-public class Controller
+public class Controller extends Thread
 {
     private boolean endGame;
     private List<String> uIDsList;
@@ -18,15 +18,15 @@ public class Controller
     private boolean decorationFlag;
     private boolean cardActivated;
 
-    public Controller(Map<String, DataBuffer> uIDs, boolean expertMode, List<RemoteView> views)
+    public Controller(Map<String, DataBuffer> users, boolean expertMode, List<RemoteView> views)
     {
         endGame=false;
-        model= new Model(new ArrayList<>(uIDs.keySet()), expertMode);
+        model= new Model(new ArrayList<>(users.keySet()), expertMode);
         for(RemoteView v: views)
             model.addPropertyChangeListener(v);
-        uIDsList= new ArrayList<>(uIDs.keySet());
+        uIDsList= new ArrayList<>(users.keySet());
         decorationFlag=false;
-        usersData=new HashMap<>(uIDs);
+        usersData=new HashMap<>(users);
         cardActivated=false;
     }
     public synchronized Model getModel() { return model; }
@@ -35,7 +35,8 @@ public class Controller
         this.model=model;
         decorationFlag=true;
     }
-    public synchronized void mainController()
+    @Override
+    public synchronized void run()
     {
         try {
             cloudsFilling();

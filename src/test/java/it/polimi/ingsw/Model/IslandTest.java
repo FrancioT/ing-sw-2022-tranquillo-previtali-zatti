@@ -1,6 +1,5 @@
 package it.polimi.ingsw.Model;
 
-import it.polimi.ingsw.Model.*;
 import it.polimi.ingsw.Model.Exceptions.EmptyException;
 import it.polimi.ingsw.Model.Exceptions.FullTowersException;
 import it.polimi.ingsw.Model.Exceptions.LinkFailedException;

@@ -5,6 +5,7 @@ import it.polimi.ingsw.ClientsHandler.Messages.ModelMessage;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.IOException;
 
 public class RemoteView implements PropertyChangeListener
 {
@@ -20,4 +21,6 @@ public class RemoteView implements PropertyChangeListener
         if("ModelModifications".equals(eventName))
             client.send((ModelMessage) event.getNewValue());
     }
+    public void close() throws IOException
+    { client.close(); }
 }

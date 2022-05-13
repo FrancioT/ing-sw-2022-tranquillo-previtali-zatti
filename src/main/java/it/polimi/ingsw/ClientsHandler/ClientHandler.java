@@ -4,12 +4,13 @@ import it.polimi.ingsw.ClientsHandler.Messages.Message;
 import it.polimi.ingsw.ClientsHandler.Messages.ModelMessage;
 import it.polimi.ingsw.Controller.DataBuffer;
 
+import java.io.Closeable;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-public class ClientHandler extends Thread
+public class ClientHandler extends Thread implements Closeable
 {
     private final DataBuffer dataBuffer;
     private final Socket socket;
@@ -46,6 +47,9 @@ public class ClientHandler extends Thread
             out_stream.reset();
         } catch (IOException ignored){}
     }
+    @Override
+    public void close() throws IOException
+    { socket.close(); }
     @Override
     public void run()
     {
