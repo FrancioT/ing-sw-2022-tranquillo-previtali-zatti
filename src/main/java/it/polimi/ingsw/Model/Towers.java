@@ -42,4 +42,11 @@ public class Towers implements Serializable
     }
 
     public ColourT getColour() { return colour; }
+
+    public void towersPrinter()
+    {
+        System.out.println("You have " + this.availableTowers + this.colour.toString() + "towers" + "\n");
+    }
 }
+
+

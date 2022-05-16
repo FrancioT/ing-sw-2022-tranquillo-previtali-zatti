@@ -43,4 +43,16 @@ class Deck implements Serializable
         return discardedCard.getMnValue();
     }
     List<StandardCard> getHandCards() { return new ArrayList<>(handList); }
+
+    public void deckPrinter()
+    {
+        String deckString = null;
+
+        for(StandardCard sC: handList)
+        {
+            deckString = deckString + sC.getRoundValue() + "--" + sC.getMnValue() + " ";
+        }
+
+        System.out.println("Your deck contains:" + deckString + "\n");
+    }
 }

@@ -1,9 +1,6 @@
 package it.polimi.ingsw.Model;
 
-import it.polimi.ingsw.Model.Exceptions.EmptyException;
-import it.polimi.ingsw.Model.Exceptions.FullTowersException;
-import it.polimi.ingsw.Model.Exceptions.LinkFailedException;
-import it.polimi.ingsw.Model.Exceptions.RunOutOfTowersException;
+import it.polimi.ingsw.Model.Exceptions.*;
 import it.polimi.ingsw.Model.ModelAndDecorators.Model;
 
 import java.io.IOException;
@@ -122,5 +119,73 @@ public class Island extends Tile implements Serializable
     {
         this.towers= new Towers((ColourT) ois.readObject(), 0);
         ois.defaultReadObject();
+    }
+
+    public void islandPrinter() throws NoSuchStudentException, EmptyException {
+        final String sBlue = "\u001B[34m";
+        final String sRed = "\u001B[31m";
+        final String sGreen = "\u001B[32m";
+        final String sYellow = "\u001B[33m";
+        final String sPink = "\u001B[35m";
+        final String space = " ";
+
+        final String tBlack = "\u001B[34m";
+        final String tWhite = "\u001B[31m";
+        final String tGrey = "\u001B[32m";
+
+        int bSt=0,rSt=0,gSt=0,ySt=0,pSt=0;
+        int bTw=0,wTw=0,gTw=0;
+        ColourT cTw;
+
+        for(Colour c: this.getStudentsColours())
+        {
+            switch (c) {
+                case blue:
+                    bSt++;
+                    break;
+                case red:
+                    rSt++;
+                    break;
+                case green:
+                    gSt++;
+                    break;
+                case yellow:
+                    ySt++;
+                    break;
+                case pink:
+                    pSt++;
+                    break;
+                default:
+                    throw new NoSuchStudentException();
+            }
+        }
+
+        System.out.println("This tile is an Island with these students:" + sBlue + bSt + space + sRed + rSt + space + sGreen + gSt + space
+                + sYellow + ySt + space + sPink + pSt + "\n");
+
+        cTw = this.getTowersColour();
+        switch (cTw) {
+            case black:
+                System.out.println("This Island has " + this.getNumTowers() + tBlack + "towers" + "\n");
+                break;
+            case white:
+                System.out.println("This Island has " + this.getNumTowers() + tWhite + "towers" + "\n");
+                break;
+            case grey:
+                System.out.println("This Island has " + this.getNumTowers() + tGrey + "towers" + "\n");
+                break;
+            default:
+                throw new NoSuchStudentException();
+                // Cambiare questa eccezione con una apposita per il colore delle torri
+        }
+
+        if (motherNatureFlag)
+        {
+            System.out.println("MotherNature is on this Island and inhibition counter is: " + this.getInhibitionCounter() + "\n");
+        }
+        else
+        {
+            System.out.println("MotherNature is not on this Island and inhibition counter is: " + this.getInhibitionCounter() + "\n");
+        }
     }
 }

@@ -92,4 +92,13 @@ public class Player implements Serializable
         return playerDashboard.removeStudentClassroom(colour);
     }
     public List<StandardCard> getHandCards() { return playerDeck.getHandCards(); }
+
+    public void playerPrinter()
+    {
+        System.out.println("You are " + this.uID + "and in game you are called " + this.nickName + ", now you have " + this.coins + "\n");
+
+        System.out.println("On your entrance you have " + this.uID + "and in game you are called " + this.nickName + ", now you have " + this.coins + "\n");
+
+        // finire bene questo metodo per player
+    }
 }
