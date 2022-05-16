@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.SocketAddress;
 
 public class ClientHandler extends Thread implements Closeable
 {
@@ -17,7 +18,7 @@ public class ClientHandler extends Thread implements Closeable
     private ObjectInputStream in_stream;
     private ObjectOutputStream out_stream;
 
-    public ClientHandler(Socket socket, DataBuffer dataBuffer)
+    public ClientHandler(Socket socket, DataBuffer dataBuffer) throws IOException
     {
         if(socket==null || dataBuffer==null)
             throw new NullPointerException();
@@ -26,29 +27,28 @@ public class ClientHandler extends Thread implements Closeable
         try {
             in_stream= new ObjectInputStream(socket.getInputStream());
             out_stream= new ObjectOutputStream(socket.getOutputStream());
-        } catch (IOException e) { /*//////////////////////////////////////////////////////////////////////////////////////
-            ////////////////////////////////////////////////////// send error message /////////////////////////////////*/
+        } catch (IOException e) {
             try{ socket.close(); } catch (IOException ignored){}
+            throw e;
         }
     }
     private void receive()
     {
-        Message message;
+        Object message;
         try{
-            message= (Message) in_stream.readObject();
-            message.handle(dataBuffer);
-        } catch (Exception ignored) {}
+            message= in_stream.readObject();
+            if(message instanceof Message)
+                ((Message)message).handle(dataBuffer);
+        } catch (IOException | ClassNotFoundException ignored) {}
     }
-    public void send(ModelMessage message)
+    public synchronized void send(ModelMessage message) throws IOException
     {
-        try {
-            out_stream.writeObject(message);
-            out_stream.flush();
-            out_stream.reset();
-        } catch (IOException ignored){}
+        out_stream.writeObject(message);
+        out_stream.flush();
+        out_stream.reset();
     }
     @Override
-    public void close() throws IOException
+    public synchronized void close() throws IOException
     { socket.close(); }
     @Override
     public void run()
@@ -56,4 +56,6 @@ public class ClientHandler extends Thread implements Closeable
         while(!socket.isClosed())
             receive();
     }
+    public SocketAddress getIP()
+    { return socket.getRemoteSocketAddress(); }
 }

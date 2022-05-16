@@ -6,7 +6,6 @@ import it.polimi.ingsw.Controller.DataBuffer;
 import it.polimi.ingsw.RemoteView.RemoteView;
 
 import java.io.*;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,16 +17,16 @@ public class GameQueue
     private final boolean expertMode;
     private final int players_num;
     private final Map<Socket, String> clients;
-    private final ServerSocket serverSocket;
+    private final Server server;
 
     public GameQueue(boolean expertModeFlag, int playersNum, Socket firstClient, String nickname,
-                     ServerSocket serverSocket)
+                     Server server)
     {
         this.players_num=playersNum;
         this.expertMode=expertModeFlag;
         clients= new HashMap<>();
         clients.put(firstClient, nickname);
-        this.serverSocket=serverSocket;
+        this.server=server;
     }
     public Thread waitForClients() throws IOException
     {
@@ -51,8 +50,7 @@ public class GameQueue
 
     public void acceptConnection() throws IOException
     {
-        Socket accepted = serverSocket.accept();
-        System.out.println("Connection accepted: " + accepted.getRemoteSocketAddress());
+        Socket accepted = server.acceptConnection();
         OutputStream os = null;
         InputStream is = null;
         is = accepted.getInputStream();

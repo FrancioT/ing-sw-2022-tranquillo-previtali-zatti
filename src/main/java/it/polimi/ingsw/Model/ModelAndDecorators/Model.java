@@ -191,8 +191,8 @@ public class Model {
         tmp.addStudent(student);
         teacherDominance(tmp, student.getColour());
 
-        ModelMessage message= new ModelMessage(null, null, new ArrayList<>(playersList),
-                null, unusedCoins);
+        ModelMessage message= new ModelMessage(characterCardList.size()!=0, null, null,
+                     new ArrayList<>(playersList), null, unusedCoins, false);
         notify(message);
     }
 
@@ -204,8 +204,8 @@ public class Model {
 
         List<Island> island_updated= new ArrayList<>();
         island_updated.add(islandsList.get(index));
-        ModelMessage message= new ModelMessage(island_updated, null, null,
-                null, unusedCoins);
+        ModelMessage message= new ModelMessage(characterCardList.size()!=0, island_updated,
+                  null, null, null, unusedCoins, false);
         notify(message);
     }
 
@@ -213,8 +213,8 @@ public class Model {
         for(Cloud cloud : cloudsList){
             cloud.cloudFiller(n);
         }
-        ModelMessage message= new ModelMessage(null, new ArrayList<>(cloudsList), null,
-                null, unusedCoins);
+        ModelMessage message= new ModelMessage(characterCardList.size()!=0, null,
+                new ArrayList<>(cloudsList), null, null, unusedCoins, false);
         notify(message);
     }
 
@@ -236,8 +236,8 @@ public class Model {
         player_updated.add(tmp);
         List<Cloud> clouds_updated= new ArrayList<>();
         clouds_updated.add(cloudsList.get(i_cloud));
-        ModelMessage message= new ModelMessage(null, clouds_updated, player_updated,
-                null, unusedCoins);
+        ModelMessage message= new ModelMessage(characterCardList.size()!=0, null,
+                clouds_updated, player_updated, null, unusedCoins, false);
         notify(message);
     }
 
@@ -256,8 +256,8 @@ public class Model {
 
         List<Player> player_updated= new ArrayList<>();
         player_updated.add(tmp);
-        ModelMessage message= new ModelMessage(null, null, player_updated,
-                null, unusedCoins);
+        ModelMessage message= new ModelMessage(characterCardList.size()!=0,null,
+                null, player_updated, null, unusedCoins, false);
         notify(message);
         return s;
     }
@@ -279,8 +279,8 @@ public class Model {
 
         List<Player> player_updated= new ArrayList<>();
         player_updated.add(tmp);
-        ModelMessage message= new ModelMessage(null, null, player_updated,
-                null, unusedCoins);
+        ModelMessage message= new ModelMessage(characterCardList.size()!=0, null,
+                null, player_updated, null, unusedCoins, false);
         notify(message);
         return s;
     }
@@ -315,8 +315,8 @@ public class Model {
         motherNature.jumpNextPos(islandsList.get(i));
         islandDominance(islandsList.get(i));
 
-        ModelMessage message= new ModelMessage(new ArrayList<>(islandsList), null,
-                new ArrayList<>(playersList), null, unusedCoins);
+        ModelMessage message= new ModelMessage(characterCardList.size()!=0, new ArrayList<>(islandsList),
+                null, new ArrayList<>(playersList), null, unusedCoins, false);
         notify(message);
     }
 
@@ -525,8 +525,8 @@ public class Model {
 
         List<CharacterCard> cc_updated= new ArrayList<>();
         cc_updated.add(characterCardList.get(index));
-        ModelMessage message= new ModelMessage(new ArrayList<>(islandsList), new ArrayList<>(cloudsList),
-                new ArrayList<>(playersList), cc_updated, unusedCoins);
+        ModelMessage message= new ModelMessage(true, new ArrayList<>(islandsList),
+              new ArrayList<>(cloudsList), new ArrayList<>(playersList), cc_updated, unusedCoins, false);
         notify(message);
     }
     public synchronized List<Integer> getCardsRoundValues(String uID) throws NoSuchPlayerException

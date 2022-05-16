@@ -7,15 +7,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Server extends Thread implements Closeable{
-    private final int port;
+    private static final int port=12345;
     private ServerSocket serverSocket;
     List<Thread> games;
 
-    public Server(int port)
+    public Server()
     {
-        this.port = port;
         serverSocket=null;
         games=new ArrayList<>();
+    }
+    public static void main(String[] args) throws InterruptedException
+    {
+        Thread server= new Server();
+        server.start();
+        server.join();
     }
 
     public void init() throws IOException
@@ -50,7 +55,7 @@ public class Server extends Thread implements Closeable{
         String nickname= in.readLine();
         int mode= Integer.parseInt(in.readLine());
         GameQueue queue= new GameQueue(mode%10==1, mode/10, clientConnection,
-                                       nickname, serverSocket);
+                                       nickname, this);
         games.add(queue.waitForClients());
     }
 
@@ -58,13 +63,20 @@ public class Server extends Thread implements Closeable{
     {
         try {
             init();
-
+        } catch (IOException ignored)
+        {
+            System.out.println("Error during in initialization of Server socket");
+        }
+        try {
             while(true)
             {
                 Socket socket = acceptConnection();
                 gameModeAndWaitPlayers(socket);
             }
-        } catch (IOException ignored){}
+        } catch (IOException ignored)
+        {
+            System.out.println("Error during game creation");
+        }
     }
 
     public void close() throws IOException
