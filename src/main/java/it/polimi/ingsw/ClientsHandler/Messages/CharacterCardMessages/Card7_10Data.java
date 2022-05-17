@@ -6,12 +6,12 @@ import it.polimi.ingsw.Model.Colour;
 import java.util.ArrayList;
 import java.util.List;
 
-class Card7_10Data extends CardMessage
+public class Card7_10Data extends CardMessage
 {
     private final List<Colour> studColours;
     static final long serialVersionUID= 30103L;
 
-    Card7_10Data(String uID, int cardID, List<Colour> studentsColours)
+    public Card7_10Data(String uID, int cardID, List<Colour> studentsColours)
     {
         super(uID, cardID);
         if(studentsColours==null)
