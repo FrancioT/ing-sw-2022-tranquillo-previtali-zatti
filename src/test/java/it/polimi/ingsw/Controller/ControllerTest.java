@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Controller;
 
+import it.polimi.ingsw.Controller.Exceptions.CardActivatedException;
 import it.polimi.ingsw.Controller.Exceptions.IllegalMNMovementException;
 import it.polimi.ingsw.Model.Colour;
 import it.polimi.ingsw.RemoteView.RemoteView;
@@ -98,5 +99,6 @@ class ControllerTest
         controller.chooseCloud(p1);
         controller.chooseCloud(p2);
         controller.chooseCloud(p3);
+
     }
 }

@@ -36,4 +36,11 @@ public class CharacterCard1 extends CharacterCardWithStudentsList{
         model.payCard(uID, cardID);
         overPrice=true;
     }
+
+    @Override
+    public void ccPrinter()
+    {
+        super.ccPrinter();
+        System.out.println("cc Description");
+    }
 }

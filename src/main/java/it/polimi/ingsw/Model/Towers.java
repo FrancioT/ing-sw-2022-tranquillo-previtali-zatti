@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Model;
 
 import it.polimi.ingsw.Model.Exceptions.FullTowersException;
+import it.polimi.ingsw.Model.Exceptions.NoSuchStudentException;
 import it.polimi.ingsw.Model.Exceptions.RunOutOfTowersException;
 
 import java.io.Serializable;
@@ -43,9 +44,30 @@ public class Towers implements Serializable
 
     public ColourT getColour() { return colour; }
 
-    public void towersPrinter()
-    {
-        System.out.println("You have " + this.availableTowers + this.colour.toString() + "towers" + "\n");
+    public void towersPrinter() throws NoSuchStudentException {
+
+        final String tBlack = "\u001B[30m";
+        final String tWhite = "\u001B[37m";
+        final String tGrey = "\u001B[38m";
+
+        final String tBlack_BACKGROUND = "\u001B[40m";
+        final String tWhite_BACKGROUND = "\u001B[47m";
+
+        switch (this.colour) {
+            case black:
+                System.out.println(tWhite_BACKGROUND + tBlack + "You have " + this.availableTowers + this.colour.toString() + " towers" + "\n");
+                break;
+            case white:
+                System.out.println(tBlack_BACKGROUND + tWhite + "You have " + this.availableTowers + this.colour.toString() + " towers" + "\n");
+                break;
+            case grey:
+                System.out.println(tWhite_BACKGROUND + tGrey + "You have " + this.availableTowers + this.colour.toString() + " towers" + "\n");
+                break;
+            default:
+                break;
+                // Cambiare questa eccezione con una apposita per il colore delle torri
+                // ALLA FINE HO TENUTO LO SWITCH PERCHE' SE NO NON RIESCO A STAMPARE BENE I COLORI
+        }
     }
 }
 

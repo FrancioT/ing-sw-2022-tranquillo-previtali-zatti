@@ -30,4 +30,11 @@ public class CharacterCard3 extends CharacterCard
         overPrice=true;
     }
 
+    @Override
+    public void ccPrinter()
+    {
+        super.ccPrinter();
+        System.out.println("cc Description");
+    }
+
 }

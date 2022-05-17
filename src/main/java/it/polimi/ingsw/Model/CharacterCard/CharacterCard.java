@@ -24,4 +24,18 @@ abstract public class CharacterCard implements Serializable
     public int getCardID() { return cardID; }
     public boolean getOverprice() { return overPrice; }
     abstract public void handle(String uID, DataBuffer userData, Controller controller) throws Exception;
+
+    public void ccPrinter()
+    {
+        System.out.println("This is the " + this.cardID + "°" + "character card and its effect costs: ");
+
+        if (overPrice)
+        {
+            System.out.println((this.price + 1) + "\n");
+        }
+        else
+        {
+            System.out.println(this.price + "\n");
+        }
+    }
 }

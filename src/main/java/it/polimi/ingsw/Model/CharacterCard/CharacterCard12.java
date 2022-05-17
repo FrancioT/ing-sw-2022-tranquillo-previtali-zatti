@@ -51,4 +51,11 @@ public class CharacterCard12 extends CharacterCard
         model.payCard(uID, cardID);
         overPrice=true;
     }
+
+    @Override
+    public void ccPrinter()
+    {
+        super.ccPrinter();
+        System.out.println("cc Description");
+    }
 }

@@ -39,4 +39,11 @@ public class CharacterCard5 extends CharacterCard
         }
         else throw new NoInhibitionFlagsAvailable();
     }
+
+    @Override
+    public void ccPrinter()
+    {
+        super.ccPrinter();
+        System.out.println("cc Description");
+    }
 }
