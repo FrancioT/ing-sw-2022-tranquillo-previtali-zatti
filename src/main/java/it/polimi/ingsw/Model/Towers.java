@@ -44,7 +44,7 @@ public class Towers implements Serializable
 
     public ColourT getColour() { return colour; }
 
-    public void towersPrinter() throws NoSuchStudentException {
+    public void towersPrinter(){
 
         final String tBlack = "\u001B[30m";
         final String tWhite = "\u001B[37m";

@@ -37,7 +37,7 @@ public class Cloud extends Tile{
         player.entranceFiller(studentsTmp);
     }
 
-    public void cloudPrinter() throws NoSuchStudentException
+    public void cloudPrinter()
     {
         System.out.println("This tile is a Cloud with these students: ");
         this.tilePrinter();

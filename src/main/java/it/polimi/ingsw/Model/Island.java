@@ -125,7 +125,7 @@ public class Island extends Tile implements Serializable
         ois.defaultReadObject();
     }
 
-    public void islandPrinter() throws NoSuchStudentException, EmptyException {
+    public void islandPrinter() {
 
         System.out.println("This tile is an Island with these students: ");
         this.tilePrinter();
