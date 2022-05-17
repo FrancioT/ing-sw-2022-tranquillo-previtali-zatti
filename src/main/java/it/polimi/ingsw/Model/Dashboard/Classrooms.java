@@ -6,7 +6,9 @@ import it.polimi.ingsw.Model.Teacher;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 class Classrooms implements Serializable
 {
@@ -105,5 +107,44 @@ class Classrooms implements Serializable
                 return true;
         }
         return false;
+    }
+
+    public void classroomPrinter()
+    {
+        final String sBlue = "\u001B[34m";
+        final String sRed = "\u001B[31m";
+        final String sGreen = "\u001B[32m";
+        final String sYellow = "\u001B[33m";
+        final String sPink = "\u001B[35m";
+        final String space = " ";
+
+        final String cRESET = "\u001B[0m";
+
+        Map<Colour, String> coloursTMap=new HashMap<>();
+
+        for(Colour c: Colour.values())
+        {
+            if(this.checkTeacherPresence(c))
+            {
+                coloursTMap.put(c, "T");
+            }
+            else
+            {
+                coloursTMap.put(c, "-");
+            }
+        }
+
+        System.out.println(sBlue + this.getStudentNum(Colour.blue)
+                + space + sRed + this.getStudentNum(Colour.red)
+                + space + sGreen + this.getStudentNum(Colour.green)
+                + space + sYellow + this.getStudentNum(Colour.yellow)
+                + space + sPink + this.getStudentNum(Colour.pink) + cRESET +
+                " students. \n Your teachers are "
+                + sBlue + coloursTMap.get(Colour.blue)
+                + space + sRed + coloursTMap.get(Colour.red)
+                + space + sGreen + coloursTMap.get(Colour.green)
+                + space + sYellow + coloursTMap.get(Colour.yellow)
+                + space + sPink + coloursTMap.get(Colour.pink) + cRESET + "\n");
+
     }
 }

@@ -25,8 +25,8 @@ public class Player implements Serializable
         this.coins=1;
         this.model=model;
     }
-    public void setNickName(String nickName) { this.nickName=nickName; }
 
+    public void setNickName(String nickName) { this.nickName=nickName; }
     public void entranceFiller(List<Student> students) throws FullEntranceException
     {
         playerDashboard.entranceFiller(students);
@@ -95,10 +95,16 @@ public class Player implements Serializable
 
     public void playerPrinter()
     {
-        System.out.println("You are " + this.uID + "and in game you are called " + this.nickName + ", now you have " + this.coins + "\n");
+        final String coinsYellow = "\u001B[33m";
+        final String space = " ";
 
-        System.out.println("On your entrance you have " + this.uID + "and in game you are called " + this.nickName + ", now you have " + this.coins + "\n");
+        final String cRESET = "\u001B[0m";
 
-        // finire bene questo metodo per player
+        System.out.println("You are " + this.uID + " and in game you are called " + this.nickName + ", now you have " + coinsYellow + this.coins + cRESET + "\n");
+
+        System.out.println("On your entrance you have ");
+
+        this.playerDashboard.dashboardPrinter();
+
     }
 }
