@@ -106,7 +106,7 @@ public class Island extends Tile implements Serializable
     public void addInhibition() { inhibitionCounter++; }
     public void subInhibition()
     {
-        if(inhibitionCounter<0)
+        if(inhibitionCounter<1)
             throw new IllegalAccessError("Tried to remove inhibition tile from island, " +
                                         "but there wasn't any");
         inhibitionCounter--;

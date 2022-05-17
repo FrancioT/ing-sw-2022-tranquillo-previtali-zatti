@@ -10,7 +10,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -394,6 +396,86 @@ public class ModelTest
         assertEquals(model.getStudents(P1).size(), 3);
         assertEquals(model.playersList.get(0).getStudentNum(Colour.pink), 1);
         assertEquals(model.playersList.get(0).getStudentNum(Colour.blue), 0);
+    }
+
+    @Test
+    public void checkIslandLinkingTest() throws Exception{
+        for(int i=0; i<5; i++){
+            model.islandsList.get(5).addStudent(new Student(Colour.red));
+            model.islandsList.get(5).addStudent(new Student(Colour.green));
+            model.islandsList.get(6).addStudent(new Student(Colour.green));
+        }
+
+        model.islandsList.get(5).addStudent(new Student(Colour.green));
+
+        ColourT colourT1 = model.playersList.get(0).getTowers().getColour();
+        ColourT colourT2 = model.playersList.get(1).getTowers().getColour();
+
+        assertTrue(colourT1 != colourT2);
+
+        Map<Colour, Integer> coloursMap=new HashMap<>();
+
+        for(Colour c: Colour.values())
+            coloursMap.put(c, Integer.valueOf(0));
+
+        for(Colour c: model.islandsList.get(5).getStudentsColours())
+        {
+            coloursMap.replace(c, coloursMap.get(c)+1);
+        }
+
+        int expectedGreens = coloursMap.get(Colour.green) + 5;
+
+        model.islandsList.get(5).towersSwitcher(getPlayers(model).get(0).getTowers());
+        model.islandsList.get(6).towersSwitcher(getPlayers(model).get(0).getTowers());
+
+        assertEquals(model.islandsList.get(5).getNumTowers(), 2);
+        assertEquals(model.islandsList.get(5).getStudentsColours().size(), 17);
+
+        assertTrue(model.islandsList.get(5).getTowersColour() == colourT1);
+
+        for(Colour c: Colour.values())
+            coloursMap.put(c, Integer.valueOf(0));
+
+        for(Colour c: model.islandsList.get(5).getStudentsColours())
+        {
+            coloursMap.replace(c, coloursMap.get(c)+1);
+        }
+
+        int effectiveGreens = coloursMap.get(Colour.green);
+
+        assertEquals(effectiveGreens, expectedGreens);
+
+        for(Colour c: Colour.values())
+            coloursMap.put(c, Integer.valueOf(0));
+
+        for(Colour c: model.islandsList.get(6).getStudentsColours())
+        {
+            coloursMap.replace(c, coloursMap.get(c)+1);
+        }
+
+        expectedGreens = expectedGreens + coloursMap.get(Colour.green);
+
+        for(int i=0; i<5; i++){
+        model.islandsList.get(6).addStudent(new Student(Colour.blue));
+        }
+
+        model.islandsList.get(6).towersSwitcher(getPlayers(model).get(0).getTowers());
+
+        assertEquals(model.islandsList.get(5).getStudentsColours().size(), 23);
+
+        for(Colour c: Colour.values())
+            coloursMap.put(c, Integer.valueOf(0));
+
+        for(Colour c: model.islandsList.get(5).getStudentsColours())
+        {
+            coloursMap.replace(c, coloursMap.get(c)+1);
+        }
+
+        effectiveGreens = coloursMap.get(Colour.green);
+
+        assertEquals(expectedGreens, effectiveGreens);
+        assertEquals(model.islandsList.get(5).getNumTowers(), 3);
+        assertTrue(model.islandsList.get(5).getTowersColour() == colourT1);
     }
 
     public static void changeCard(Model model, List<CharacterCard> cards)

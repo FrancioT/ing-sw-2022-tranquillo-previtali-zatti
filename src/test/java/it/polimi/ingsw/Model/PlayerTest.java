@@ -1,7 +1,11 @@
 package it.polimi.ingsw.Model;
 
+import it.polimi.ingsw.Controller.Controller;
+import it.polimi.ingsw.Controller.DataBuffer;
 import it.polimi.ingsw.Model.Exceptions.*;
 import it.polimi.ingsw.Model.ModelAndDecorators.Model;
+import it.polimi.ingsw.Model.ModelAndDecorators.ModelTest;
+import it.polimi.ingsw.RemoteView.RemoteView;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -38,14 +42,12 @@ class PlayerTest {
         colours = player.getStudents();
         for(int i=0; i < colours.size(); i++){
             colour = colours.get(i);
-            if (colour.equals(Colour.blue))
-                assertTrue(true);
+            if (!colour.equals(Colour.blue))
+                fail();
         }
         Colour colour1 = player.entranceEmptier(Colour.blue).getColour();
-        if(colour1.equals(Colour.blue))
-            assertTrue(true);
-        else
-            assertTrue(false);
+        if(!colour1.equals(Colour.blue))
+            fail();
     }
 
     @Test
@@ -56,19 +58,17 @@ class PlayerTest {
         assertTrue(player.checkTeacherPresence(Colour.red));
         try{
             player.removeTeacher(Colour.blue);
-            assertTrue(false);
+            fail();
         } catch (NoSuchTeacherException n){};
 
         try{
             player.removeTeacher(null);
-            assertTrue(false);
+            fail();
         } catch (NullPointerException n){};
 
         Teacher teachertest = player.removeTeacher(Colour.red);
-        if (teachertest.getColour().equals(Colour.red))
-            assertTrue(true);
-        else
-            assertTrue(false);
+        if (!teachertest.getColour().equals(Colour.red))
+            fail();
     }
 
     @Test
@@ -90,22 +90,34 @@ class PlayerTest {
     }
 
     @Test
-    public void paymentTest() throws FullClassException, CardPaymentException {
-        List<String> uIDs= new ArrayList<>();
-        uIDs.add("1"); uIDs.add("2");
-        Model model= new Model(uIDs, false);
-        Player player = new Player("Gastani Frinzi", new Towers(ColourT.black, 1), model);
+    public void paymentTest() throws FullClassException, CardPaymentException, NoSuchStudentException {
+        Map<String, DataBuffer> uIDs = new HashMap<>();
+        uIDs.put("Aldo", new DataBuffer("Aldo"));
+        uIDs.put("Giovanni", new DataBuffer("Giovanni"));
+        uIDs.put("Giacomo", new DataBuffer("Giacomo"));
+
+        Controller controller = new Controller(uIDs, true, new ArrayList<RemoteView>());
 
         try {
-            player.pay(2);
+            ModelTest.getPlayers(controller.getModel()).get(0).pay(2);
             fail();
         } catch (CardPaymentException c){}
 
         for (int i = 0; i < 4; i++){
-            player.addStudent(new Student(Colour.red));
+            ModelTest.getPlayers(controller.getModel()).get(0).addStudent(new Student(Colour.red));
         }
 
-        player.pay(1);
+        ModelTest.getPlayers(controller.getModel()).get(0).removeStudentClassroom(Colour.red);
+
+        assertEquals(ModelTest.getPlayers(controller.getModel()).get(0).getStudentNum(Colour.red), 3);
+
+        assertEquals(ModelTest.getPlayers(controller.getModel()).get(0).getCoins(),2);
+
+        ModelTest.getPlayers(controller.getModel()).get(0).pay(2);
+
+        assertEquals(ModelTest.getPlayers(controller.getModel()).get(0).getCoins(),0);
+
+        assertEquals(ModelTest.getPlayers(controller.getModel()).get(0).getHandCards().size(), 10);
     }
 
 }

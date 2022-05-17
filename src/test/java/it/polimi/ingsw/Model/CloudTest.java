@@ -21,23 +21,26 @@ class CloudTest {
         player1=new Player("player1", towers1, null);
 
         cloud1.cloudFiller(5);
+        assertEquals(cloud1.getStudentsColours().size(), 5);
+
         cloud1.cloudEmptier(player1);
         assertEquals(player1.getStudents().size(), 5);
+        assertEquals(cloud1.getStudentsColours().size(), 0);
 
         try{
             cloud1.cloudFiller(-7);
-            assertTrue(false);
+            fail();
         }catch (IndexOutOfBoundsException e){}
 
         try{
             cloud1.cloudEmptier(null);
-            assertTrue(false);
+            fail();
         }catch (NullPointerException e1){}
 
         try{
             cloud1.cloudFiller(5);
             cloud1.cloudEmptier(player1);
-            assertTrue(false);
+            fail();
         }catch (FullEntranceException e){}
 
     }

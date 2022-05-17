@@ -2,6 +2,7 @@ package it.polimi.ingsw.Model.CharacterCard;
 
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.DataBuffer;
+import it.polimi.ingsw.Controller.Exceptions.CardActivatedException;
 import it.polimi.ingsw.Model.Colour;
 import it.polimi.ingsw.Model.ColourT;
 import it.polimi.ingsw.Model.Exceptions.EmptyException;
@@ -59,6 +60,9 @@ class CharacterCard6Test
 
         card.handle("Giacomo", null, controller);
 
+        DataBuffer datas = new DataBuffer("Giacomo");
+        datas.setCharacterCardID(6);
+
         controller.getModel().moveMN(8);
         controller.getModel().moveMN(((0 - controller.getModel().getCurrPosMN()) + 12) %12);
 
@@ -71,9 +75,12 @@ class CharacterCard6Test
 
         DataBuffer data = new DataBuffer("Giovanni");
         data.setIslandPos(0);
+        data.setCharacterCardID(5);
 
         controller.getModel().moveMN(8);
-        card5.handle("Giovanni", data, controller);
+        controller.getModel().activateCard("Giovanni", data, controller);
+
+        assertEquals(ModelTest.getIslandsList(controller.getModel()).get(0).getInhibitionCounter(), 1);
 
         controller.getModel().moveMN(((0 - controller.getModel().getCurrPosMN()) + 12) %12);
 

@@ -14,7 +14,7 @@ class DeckTest {
 
         try{
             deck.cardDiscarder(11);
-            assertTrue(false);
+            fail();
         }
         catch (IndexOutOfBoundsException e){};
 
@@ -24,8 +24,16 @@ class DeckTest {
         mnv = deck.getLastCardMNValue();
         assertEquals(rv, 3);
         assertEquals(mnv, 2);
+
         mnv = deck.cardDiscarder(0).getMnValue();
         assertEquals(mnv, 1);
+
+        rv = deck.cardDiscarder(2).getRoundValue();
+        mnv = deck.getLastCardMNValue();
+        assertEquals(rv, 5);
+        assertEquals(mnv, 3);
+
+        assertEquals(deck.getHandCards().size(), 7);
     }
 
 }
