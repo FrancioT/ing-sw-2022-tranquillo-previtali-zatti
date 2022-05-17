@@ -1,10 +1,8 @@
 package it.polimi.ingsw.Model;
 
-import it.polimi.ingsw.Model.Exceptions.EmptyException;
-import it.polimi.ingsw.Model.Exceptions.FullTowersException;
-import it.polimi.ingsw.Model.Exceptions.LinkFailedException;
-import it.polimi.ingsw.Model.Exceptions.RunOutOfTowersException;
+import it.polimi.ingsw.Model.Exceptions.*;
 import it.polimi.ingsw.Model.ModelAndDecorators.Model;
+import it.polimi.ingsw.Model.ModelAndDecorators.ModelTest;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -16,8 +14,7 @@ class IslandTest
 {
     @Test
     public void islTest() throws FullTowersException, RunOutOfTowersException,
-                                EmptyException, LinkFailedException
-    {
+            EmptyException, LinkFailedException, NoSuchStudentException {
         List<String> uIDs=new ArrayList<>();
         uIDs.add("Francio"); uIDs.add("Tarallo");
         Model model=new Model(uIDs, false);
@@ -124,5 +121,48 @@ class IslandTest
             island3.islandsLinker(islandTmp);
             assertTrue(false);
         } catch (LinkFailedException e){}
+    }
+
+    @Test
+    public void testIslandLinker() throws Exception{
+        List<String> uIDs=new ArrayList<>();
+        uIDs.add("Francio"); uIDs.add("Tarallo");
+        Model model=new Model(uIDs, false);
+        Island island1;
+        Island island2;
+        Bag bag=new Bag();
+        island1=new Island(true, model);
+        island2=new Island(false, model);
+
+        island1.towersSwitcher(ModelTest.getPlayers(model).get(0).getTowers());
+        island2.towersSwitcher(ModelTest.getPlayers(model).get(0).getTowers());
+
+        ColourT colourT = ModelTest.getPlayers(model).get(0).getTowers().getColour();
+
+        for (int i=0; i<5; i++)
+            island1.addStudent(new Student(Colour.red));
+
+        for (int i=0; i<3; i++)
+            island2.addStudent(new Student(Colour.green));
+
+        List<Colour> studentsOnIsland1 = new ArrayList<>(island1.getStudentsColours());
+        List<Colour> studentsOnIsland2 = new ArrayList<>(island2.getStudentsColours());
+
+        assertEquals(studentsOnIsland1.size(), 5);
+        assertEquals(studentsOnIsland2.size(), 3);
+
+        Island island = island1.islandsLinker(island2);
+
+        List<Colour> studentsOnIsland = new ArrayList<>(island.getStudentsColours());
+        assertEquals(studentsOnIsland.size(), 8);
+        int numOfTowers = island.getNumTowers();
+
+        assertEquals(numOfTowers, 2);
+        assertTrue(island.getTowersColour() == colourT);
+
+        try {
+            island.subInhibition();
+            fail();
+        }catch (IllegalAccessError i){}
     }
 }
