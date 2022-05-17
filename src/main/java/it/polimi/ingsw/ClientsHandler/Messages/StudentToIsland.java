@@ -3,13 +3,13 @@ package it.polimi.ingsw.ClientsHandler.Messages;
 import it.polimi.ingsw.Controller.DataBuffer;
 import it.polimi.ingsw.Model.Colour;
 
-class StudentToIsland extends Message
+public class StudentToIsland extends Message
 {
     private final Colour studColour;
     private final int islandPos;
     static final long serialVersionUID= 30005L;
 
-    StudentToIsland(String uID, Colour studentColour, int islandPos)
+    public StudentToIsland(String uID, Colour studentColour, int islandPos)
     {
         super(uID);
         if(studentColour==null)

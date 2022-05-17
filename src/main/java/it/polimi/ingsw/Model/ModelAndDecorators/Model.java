@@ -20,6 +20,7 @@ public class Model {
     protected List<CharacterCard> characterCardList;
     protected int unusedCoins;
     protected CharacterCard5 card5;
+    protected Player currentPlayer;
     protected final PropertyChangeSupport support;
 
     public Model(List<String> uIDs, boolean expertMode)
@@ -30,6 +31,7 @@ public class Model {
         islandsList=new ArrayList<>();
         cloudsList=new ArrayList<>();
         playersList=new ArrayList<>();
+        currentPlayer=null;
         // creation of players and towers
         Stack<Towers> towersList= new Stack<>();
         int mod=uIDs.size()%2;
@@ -102,6 +104,12 @@ public class Model {
             while(randIndex3==randIndex1 || randIndex3==randIndex2);
             characterCardList.add(cardListTmp.get(randIndex3));
         }
+
+        // send to clients the first model
+        ModelMessage message= new ModelMessage(expertMode, new ArrayList<>(islandsList), new ArrayList<>(cloudsList),
+                new ArrayList<>(playersList), new ArrayList<>(characterCardList), currentPlayer.getuID(),
+                unusedCoins, false);
+        notify(message);
     }
 
     public Model(Model model)
@@ -112,6 +120,7 @@ public class Model {
         playersList=new ArrayList<>(model.playersList);
         characterCardList=new ArrayList<>(model.characterCardList);
         motherNature=model.motherNature;
+        currentPlayer=model.currentPlayer;
         unusedCoins=model.unusedCoins;
         card5=model.card5;
         support=model.support;
@@ -192,7 +201,8 @@ public class Model {
         teacherDominance(tmp, student.getColour());
 
         ModelMessage message= new ModelMessage(characterCardList.size()!=0, null, null,
-                     new ArrayList<>(playersList), null, unusedCoins, false);
+                     new ArrayList<>(playersList), null, currentPlayer.getuID(),
+                     unusedCoins, false);
         notify(message);
     }
 
@@ -202,10 +212,9 @@ public class Model {
             throw new IndexOutOfBoundsException();
         islandsList.get(index).addStudent(student);
 
-        List<Island> island_updated= new ArrayList<>();
-        island_updated.add(islandsList.get(index));
-        ModelMessage message= new ModelMessage(characterCardList.size()!=0, island_updated,
-                  null, null, null, unusedCoins, false);
+        ModelMessage message= new ModelMessage(characterCardList.size()!=0, new ArrayList<>(islandsList),
+                  null, null, null, currentPlayer.getuID(),
+                    unusedCoins, false);
         notify(message);
     }
 
@@ -214,7 +223,8 @@ public class Model {
             cloud.cloudFiller(n);
         }
         ModelMessage message= new ModelMessage(characterCardList.size()!=0, null,
-                new ArrayList<>(cloudsList), null, null, unusedCoins, false);
+                new ArrayList<>(cloudsList), null, null, currentPlayer.getuID(),
+                unusedCoins, false);
         notify(message);
     }
 
@@ -234,10 +244,9 @@ public class Model {
 
         List<Player> player_updated= new ArrayList<>();
         player_updated.add(tmp);
-        List<Cloud> clouds_updated= new ArrayList<>();
-        clouds_updated.add(cloudsList.get(i_cloud));
         ModelMessage message= new ModelMessage(characterCardList.size()!=0, null,
-                clouds_updated, player_updated, null, unusedCoins, false);
+                new ArrayList<>(cloudsList), player_updated, null, currentPlayer.getuID(),
+                unusedCoins, false);
         notify(message);
     }
 
@@ -257,7 +266,8 @@ public class Model {
         List<Player> player_updated= new ArrayList<>();
         player_updated.add(tmp);
         ModelMessage message= new ModelMessage(characterCardList.size()!=0,null,
-                null, player_updated, null, unusedCoins, false);
+                null, player_updated, null, currentPlayer.getuID(),
+                unusedCoins, false);
         notify(message);
         return s;
     }
@@ -280,7 +290,8 @@ public class Model {
         List<Player> player_updated= new ArrayList<>();
         player_updated.add(tmp);
         ModelMessage message= new ModelMessage(characterCardList.size()!=0, null,
-                null, player_updated, null, unusedCoins, false);
+                null, player_updated, null, currentPlayer.getuID(),
+                unusedCoins, false);
         notify(message);
         return s;
     }
@@ -316,7 +327,8 @@ public class Model {
         islandDominance(islandsList.get(i));
 
         ModelMessage message= new ModelMessage(characterCardList.size()!=0, new ArrayList<>(islandsList),
-                null, new ArrayList<>(playersList), null, unusedCoins, false);
+                null, new ArrayList<>(playersList), null,currentPlayer.getuID(),
+                unusedCoins, false);
         notify(message);
     }
 
@@ -526,7 +538,8 @@ public class Model {
         List<CharacterCard> cc_updated= new ArrayList<>();
         cc_updated.add(characterCardList.get(index));
         ModelMessage message= new ModelMessage(true, new ArrayList<>(islandsList),
-              new ArrayList<>(cloudsList), new ArrayList<>(playersList), cc_updated, unusedCoins, false);
+              new ArrayList<>(cloudsList), new ArrayList<>(playersList), cc_updated, currentPlayer.getuID(),
+              unusedCoins, false);
         notify(message);
     }
     public synchronized List<Integer> getCardsRoundValues(String uID) throws NoSuchPlayerException
@@ -569,5 +582,16 @@ public class Model {
         if(message==null)
             throw new NullPointerException();
         support.firePropertyChange("ModelModifications", null, message);
+    }
+    public void setCurrentPlayer(String uID) throws NoSuchPlayerException
+    {
+        if(uID==null) throw new NullPointerException();
+        Player player = null;
+        for (Player p : playersList)
+            if (p.getuID().equals(uID))
+                player = p;
+        if(player==null)
+            throw new NoSuchPlayerException();
+        currentPlayer= player;
     }
 }

@@ -15,13 +15,15 @@ public class ModelMessage implements Serializable
     private final List<Cloud> cloudList;
     private final List<Player> playerList;
     private final List<CharacterCard> characterCardList;
+    private final String currPlayerNickname;
     private final int unusedCoins;
     private final boolean gameEndedFlag;
     private final boolean expertModeFlag;
     static final long serialVersionUID= 90000L;
 
     public ModelMessage(boolean expertModeFlag, List<Island> islandList, List<Cloud> cloudList, List<Player> playerList,
-                        List<CharacterCard> characterCardList, int unusedCoins, boolean gameEndedFlag)
+                        List<CharacterCard> characterCardList, String currPlayerNickname, int unusedCoins,
+                        boolean gameEndedFlag)
     {
         this.expertModeFlag=expertModeFlag;
         if(islandList==null)
@@ -35,6 +37,7 @@ public class ModelMessage implements Serializable
         this.playerList= playerList;
         if(characterCardList==null)
             characterCardList= new ArrayList<>();
+        this.currPlayerNickname=currPlayerNickname;
         this.characterCardList= characterCardList;
         this.unusedCoins= unusedCoins;
         this.gameEndedFlag= gameEndedFlag;
@@ -43,6 +46,7 @@ public class ModelMessage implements Serializable
     public List<Cloud> getCloudList() { return new ArrayList<>(cloudList); }
     public List<Player> getPlayerList() { return new ArrayList<>(playerList); }
     public List<CharacterCard> getCharacterCardList() { return new ArrayList<>(characterCardList); }
+    public String getCurrPlayerNickname() { return currPlayerNickname; }
     public int getUnusedCoins() { return unusedCoins; }
     public boolean isExpertMode() { return expertModeFlag; }
     public boolean hasGameEnded() { return gameEndedFlag; }

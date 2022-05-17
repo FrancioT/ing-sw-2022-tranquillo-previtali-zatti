@@ -2,12 +2,12 @@ package it.polimi.ingsw.ClientsHandler.Messages;
 
 import it.polimi.ingsw.Controller.DataBuffer;
 
-class ChooseCloud extends Message
+public class ChooseCloud extends Message
 {
     private final int cloudPos;
     static final long serialVersionUID= 30002L;
 
-    ChooseCloud(String uID, int cloudPos)
+    public ChooseCloud(String uID, int cloudPos)
     {
         super(uID);
         if(cloudPos<0)

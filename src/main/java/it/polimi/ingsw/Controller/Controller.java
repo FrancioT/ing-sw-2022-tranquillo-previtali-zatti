@@ -43,6 +43,7 @@ public class Controller extends Thread
             cardsPhase();
             for(String player: uIDsList)
             {
+                model.setCurrentPlayer(player);
                 moveStudents(player);
                 moveMN(player);
             }
@@ -68,13 +69,14 @@ public class Controller extends Thread
         int pos;
         List<Integer> playerCards;
         boolean noOtherCard;
-        for(String s:uIDsList)
+        for(String currPlayer:uIDsList)
         {
+            model.setCurrentPlayer(currPlayer);
             noOtherCard=true;
-            playerCards= model.getCardsRoundValues(s);
+            playerCards= model.getCardsRoundValues(currPlayer);
             if(playerCards.size()==1)
                 endGame=true;
-            pos= usersData.get(s).getCardPos();
+            pos= usersData.get(currPlayer).getCardPos();
             // check if the card was already played by someone else in this round
             if(playersOrder.containsKey(playerCards.get(pos)))
                 while (noOtherCard)
@@ -84,21 +86,21 @@ public class Controller extends Thread
                             noOtherCard=false;
                     if(noOtherCard)
                     {
-                        playersOrder.get(model.cardDiscarder(s, pos).getRoundValue()).add(s);
+                        playersOrder.get(model.cardDiscarder(currPlayer, pos).getRoundValue()).add(currPlayer);
                         noOtherCard=false;
                     }
                     else
                     {
                         noOtherCard=true;  // repeats the loop until the player choose a good card
                         // client.send("chose another card!") ////////////////////////////////////////////////////////////////
-                        pos = usersData.get(s).getCardPos();
+                        pos = usersData.get(currPlayer).getCardPos();
                     }
                 }
             else
             {
                 List<String> tmp= new ArrayList<>();
-                tmp.add(s);
-                playersOrder.put(model.cardDiscarder(s, pos).getRoundValue(), tmp);
+                tmp.add(currPlayer);
+                playersOrder.put(model.cardDiscarder(currPlayer, pos).getRoundValue(), tmp);
             }
         }
         // add players uIDs in proper order thanks to the iterator of TreeMap, which iterate in the ascending order
