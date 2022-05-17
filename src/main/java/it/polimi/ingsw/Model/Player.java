@@ -93,8 +93,7 @@ public class Player implements Serializable
     }
     public List<StandardCard> getHandCards() { return playerDeck.getHandCards(); }
 
-    public void playerPrinter()
-    {
+    public void playerPrinter(){
         final String coinsYellow = "\u001B[33m";
         final String space = " ";
 

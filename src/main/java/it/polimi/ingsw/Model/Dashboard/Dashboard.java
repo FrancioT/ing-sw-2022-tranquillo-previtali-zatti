@@ -81,7 +81,8 @@ public class Dashboard implements Serializable
         return classrooms.removeStudent(colour);
     }
 
-    public void dashboardPrinter() throws NoSuchStudentException {
+    public void dashboardPrinter()
+    {
         final String sBlue = "\u001B[34m";
         final String sRed = "\u001B[31m";
         final String sGreen = "\u001B[32m";
