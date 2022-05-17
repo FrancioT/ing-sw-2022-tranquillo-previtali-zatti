@@ -53,15 +53,17 @@ public class Towers implements Serializable
         final String tBlack_BACKGROUND = "\u001B[40m";
         final String tWhite_BACKGROUND = "\u001B[47m";
 
+        final String cRESET = "\u001B[0m";
+
         switch (this.colour) {
             case black:
-                System.out.println(tWhite_BACKGROUND + tBlack + "You have " + this.availableTowers + this.colour.toString() + " towers" + "\n");
+                System.out.println(tWhite_BACKGROUND + tBlack + "You have " + this.availableTowers + " " + this.colour.toString() + " towers" + cRESET + "\n");
                 break;
             case white:
-                System.out.println(tBlack_BACKGROUND + tWhite + "You have " + this.availableTowers + this.colour.toString() + " towers" + "\n");
+                System.out.println(tBlack_BACKGROUND + tWhite + "You have " + this.availableTowers + " " + this.colour.toString() + " towers" + cRESET + "\n");
                 break;
             case grey:
-                System.out.println(tWhite_BACKGROUND + tGrey + "You have " + this.availableTowers + this.colour.toString() + " towers" + "\n");
+                System.out.println(tWhite_BACKGROUND + tGrey + "You have " + this.availableTowers + " " + this.colour.toString() + " towers" + cRESET + "\n");
                 break;
             default:
                 break;

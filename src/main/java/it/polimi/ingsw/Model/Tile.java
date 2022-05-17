@@ -39,6 +39,8 @@ public class Tile implements Serializable
         final String sPink = "\u001B[35m";
         final String space = " ";
 
+        final String cRESET = "\u001B[0m";
+
         Map<Colour, Integer> coloursMap=new HashMap<>();
 
         for(Colour c: Colour.values())
@@ -53,6 +55,6 @@ public class Tile implements Serializable
                            + space + sRed + coloursMap.get(Colour.red)
                            + space + sGreen + coloursMap.get(Colour.green)
                            + space + sYellow + coloursMap.get(Colour.yellow)
-                           + space + sPink + coloursMap.get(Colour.pink) + "\n");
+                           + space + sPink + coloursMap.get(Colour.pink) + cRESET + "\n");
     }
 }
