@@ -53,6 +53,8 @@ public class Server extends Thread implements Closeable{
         out.flush();
 
         String nickname= in.readLine();
+        out.println(nickname);
+        out.flush();
         int mode= Integer.parseInt(in.readLine());
         GameQueue queue= new GameQueue(mode%10==1, mode/10, clientConnection,
                                        nickname, this);

@@ -23,8 +23,8 @@ public class Receiver extends Thread implements Closeable
     {
         support= new PropertyChangeSupport(this);
         connection = socket;
-        in_stream = new ObjectInputStream(connection.getInputStream());
         out_stream = new ObjectOutputStream(connection.getOutputStream());
+        in_stream = new ObjectInputStream(connection.getInputStream());
     }
     private void receiveModel() throws BadMessageException
     {
@@ -55,6 +55,7 @@ public class Receiver extends Thread implements Closeable
             }catch (BadMessageException e)
             {
                 System.out.println("Server sent a malformed or incomprehensible message");
+                try{ connection.close(); }catch(IOException ignored){}
             }
         }
     }

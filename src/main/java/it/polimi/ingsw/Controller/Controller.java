@@ -21,10 +21,10 @@ public class Controller extends Thread
     public Controller(Map<String, DataBuffer> users, boolean expertMode, List<RemoteView> views)
     {
         endGame=false;
-        model= new Model(new ArrayList<>(users.keySet()), expertMode);
+        uIDsList= new ArrayList<>(users.keySet());
+        model= new Model(new ArrayList<>(uIDsList), expertMode);
         for(RemoteView v: views)
             model.addPropertyChangeListener(v);
-        uIDsList= new ArrayList<>(users.keySet());
         decorationFlag=false;
         usersData=new HashMap<>(users);
         cardActivated=false;

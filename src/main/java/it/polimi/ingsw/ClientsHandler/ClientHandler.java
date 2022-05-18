@@ -25,8 +25,8 @@ public class ClientHandler extends Thread implements Closeable
         this.dataBuffer=dataBuffer;
         this.socket=socket;
         try {
-            in_stream= new ObjectInputStream(socket.getInputStream());
             out_stream= new ObjectOutputStream(socket.getOutputStream());
+            in_stream= new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
             try{ socket.close(); } catch (IOException ignored){}
             throw e;

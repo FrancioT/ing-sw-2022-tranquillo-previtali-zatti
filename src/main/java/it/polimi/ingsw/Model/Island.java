@@ -116,13 +116,17 @@ public class Island extends Tile implements Serializable
 
     private void writeObject(ObjectOutputStream oos) throws IOException
     {
-        oos.writeObject(towers.getColour());
         oos.defaultWriteObject();
+        if(numTowers!=0)
+            oos.writeObject(towers.getColour());
     }
     private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException
     {
-        this.towers= new Towers((ColourT) ois.readObject(), 0);
         ois.defaultReadObject();
+        if(numTowers!=0)
+            this.towers= new Towers((ColourT) ois.readObject(), 0);
+        else
+            this.towers= null;
     }
 
     public void islandPrinter() {

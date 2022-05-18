@@ -6,6 +6,7 @@ import it.polimi.ingsw.Model.*;
 import it.polimi.ingsw.Model.CharacterCard.*;
 import it.polimi.ingsw.Model.Exceptions.*;
 
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.*;
@@ -104,12 +105,6 @@ public class Model {
             while(randIndex3==randIndex1 || randIndex3==randIndex2);
             characterCardList.add(cardListTmp.get(randIndex3));
         }
-
-        // send to clients the first model
-        ModelMessage message= new ModelMessage(expertMode, new ArrayList<>(islandsList), new ArrayList<>(cloudsList),
-                new ArrayList<>(playersList), new ArrayList<>(characterCardList), currentPlayer.getuID(),
-                unusedCoins, false);
-        notify(message);
     }
 
     public Model(Model model)
@@ -571,18 +566,6 @@ public class Model {
             throw new NoSuchPlayerException();
         return player.getStudentNum(colour);
     }
-    public void addPropertyChangeListener(PropertyChangeListener listener)
-    {
-        if(listener==null)
-            throw new NullPointerException();
-        support.addPropertyChangeListener(listener);
-    }
-    protected void notify(ModelMessage message)
-    {
-        if(message==null)
-            throw new NullPointerException();
-        support.firePropertyChange("ModelModifications", null, message);
-    }
     public void setCurrentPlayer(String uID) throws NoSuchPlayerException
     {
         if(uID==null) throw new NullPointerException();
@@ -593,5 +576,25 @@ public class Model {
         if(player==null)
             throw new NoSuchPlayerException();
         currentPlayer= player;
+    }
+    public void addPropertyChangeListener(PropertyChangeListener listener)
+    {
+        if(listener==null)
+            throw new NullPointerException();
+        support.addPropertyChangeListener(listener);
+
+        // send to client the first model
+        ModelMessage message= new ModelMessage(characterCardList.size()!=0, new ArrayList<>(islandsList),
+                                               new ArrayList<>(cloudsList), new ArrayList<>(playersList),
+                                               new ArrayList<>(characterCardList), playersList.get(0).getuID(),
+                                               unusedCoins, false);
+        listener.propertyChange(new PropertyChangeEvent(this, "ModelModifications",
+                                                        null, message));
+    }
+    protected void notify(ModelMessage message)
+    {
+        if(message==null)
+            throw new NullPointerException();
+        support.firePropertyChange("ModelModifications", null, message);
     }
 }

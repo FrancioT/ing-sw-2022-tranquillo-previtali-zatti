@@ -24,17 +24,16 @@ public class CLI extends Thread implements PropertyChangeListener
 {
     private Socket connection;
     private String nickName;
-    private ModelMessage game;
+    private Optional<ModelMessage> game;
     private Receiver receiver;
     private static final String serverIP="127.0.0.1";
     private static final int serverPort=12345;
     private static final String firstPlayerMessage="Choose game mode";
-    private static final String okMessae= "ok";
 
     public CLI()
     {
         connection=null;
-        game= null;
+        game= Optional.empty();
         receiver=null;
         nickName="";
     }
@@ -51,24 +50,43 @@ public class CLI extends Thread implements PropertyChangeListener
         System.out.println("\nWrite \"help\" to get the commands\n");
         try {
             receiver= new Receiver(connection);
-            receiver.start();
             receiver.addPropertyChangeListener(this);
+            receiver.start();
         }catch (IOException e)
         {
             System.out.println("Failed to create a stable connection with the server");
             return;
         }
-        while (game==null)
-            try { sleep(100); } catch (InterruptedException ignored){}
-        while(!game.hasGameEnded() && game.getCurrPlayerNickname().equals(nickName))
+        boolean gameEnded=false;
+        String currPlayerNickname="";
+        synchronized(game){
+            while (!game.isPresent())
+                try{ game.wait(); }
+                catch(InterruptedException e)
+                {
+                    System.out.println("Error: thread interrupted");
+                    try{ receiver.close(); }catch(IOException ignored){}
+                    return;
+                }
+            gameEnded=game.orElse(null).hasGameEnded();
+            currPlayerNickname=game.orElse(null).getCurrPlayerNickname();
+        }
+        while(!gameEnded && currPlayerNickname.equals(this.nickName))
+        {
             try {
                 handleCommands();
             }catch (IOException e)
             {
-                System.out.println("Error in comunicating");
+                System.out.println("Error in communicating with the server");
                 try{ receiver.close(); } catch(IOException ignored){}
                 return;
             }
+            synchronized(game)
+            {
+                gameEnded=game.orElse(null).hasGameEnded();
+                currPlayerNickname=game.orElse(null).getCurrPlayerNickname();
+            }
+        }
         System.out.println("Game finished!");
         try{ receiver.close(); } catch(IOException ignored){}
     }
@@ -93,11 +111,11 @@ public class CLI extends Thread implements PropertyChangeListener
             System.out.println("1) 2 players ");
             System.out.println("2) 3 players ");
             System.out.println("3) 4 players ");
-            mode = keyboardInput.nextLine();
+            mode = Integer.toString(Integer.parseInt(keyboardInput.nextLine())+1);
             System.out.println("Will it be in expert or simple mode?");
             System.out.println("1) expert mode");
             System.out.println("2) simple mode");
-            mode.concat(keyboardInput.nextLine());
+            mode=mode.concat(keyboardInput.nextLine());
         }
         try {
             String newNickName= sendInfo(nickName, mode);
@@ -225,8 +243,16 @@ public class CLI extends Thread implements PropertyChangeListener
                     receiver.send(new Card9_11_12Data(nickName, 12, colour));
                     break;
                 }
+            case "help":
+                System.out.println("\n\n\nList of commands:");
+                System.out.println("chooseCard [position of the card]");
+                System.out.println("chooseCloud [position of the cloud]");
+                System.out.println("studentToDashboard [colour of the student]");
+                System.out.println("studentToIsland [colour of the student] [position of the island]");
+                System.out.println("moveMN [new position of mother nature]");
+                System.out.println("card[num]Effect [[parameters specified by the card]]");
             default:
-                System.out.println("Malformed command, write /help to get all available commands");
+                System.out.println("Malformed command, write help to get all available commands");
                 break;
         }
     }
@@ -259,72 +285,77 @@ public class CLI extends Thread implements PropertyChangeListener
         if(!mode.isEmpty())
             out.println(mode);
         String newNickName= in.readLine();
-        if(nickname.equals(okMessae))
-            return nickname;
-        else
-            return newNickName;
+        return newNickName;
     }
     @Override
-    public synchronized void propertyChange(PropertyChangeEvent event)
+    public void propertyChange(PropertyChangeEvent event)
     {
         String eventName=event.getPropertyName();
         if("ModelModifications".equals(eventName))
         {
-            ModelMessage message= (ModelMessage)event.getNewValue();
-            List<Island> islandList= game.getIslandList();
-            List<Cloud> cloudList= game.getCloudList();
-            List<Player> playerList= game.getPlayerList();
-            List<CharacterCard> characterCardList= game.getCharacterCardList();
-            if(message.getIslandList().size()!=0)
-                islandList= message.getIslandList();
-            if(message.getCloudList().size()!=0)
-                cloudList= message.getCloudList();
-            if(message.getPlayerList().size()!=0)
+            synchronized(game)
             {
-                for(Player newPlayer: message.getPlayerList())
-                    for(Player oldPlayer: playerList)
-                        if(oldPlayer.getuID().equals(newPlayer.getuID()))
-                            playerList.set(playerList.indexOf(oldPlayer), newPlayer);
+                ModelMessage message = (ModelMessage) event.getNewValue();
+                if (game.isPresent()) {
+                    List<Island> islandList = game.orElse(null).getIslandList();
+                    List<Cloud> cloudList = game.orElse(null).getCloudList();
+                    List<Player> playerList = game.orElse(null).getPlayerList();
+                    List<CharacterCard> characterCardList = game.orElse(null).getCharacterCardList();
+                    if (message.getIslandList().size() != 0)
+                        islandList = message.getIslandList();
+                    if (message.getCloudList().size() != 0)
+                        cloudList = message.getCloudList();
+                    if (message.getPlayerList().size() != 0) {
+                        for (Player newPlayer : message.getPlayerList())
+                            for (Player oldPlayer : playerList)
+                                if (oldPlayer.getuID().equals(newPlayer.getuID()))
+                                    playerList.set(playerList.indexOf(oldPlayer), newPlayer);
+                    }
+                    if (message.getCharacterCardList().size() != 0) {
+                        for (CharacterCard newCard : message.getCharacterCardList())
+                            for (CharacterCard oldCard : characterCardList)
+                                if (oldCard.getCardID() == newCard.getCardID())
+                                    characterCardList.set(characterCardList.indexOf(oldCard), newCard);
+                    }
+                    game = Optional.of(new ModelMessage(message.isExpertMode(), islandList, cloudList, playerList,
+                                                        characterCardList, message.getCurrPlayerNickname(),
+                                                        message.getUnusedCoins(), message.hasGameEnded()));
+                } else {
+                    game = Optional.of(new ModelMessage(message.isExpertMode(), message.getIslandList(),
+                                message.getCloudList(), message.getPlayerList(), message.getCharacterCardList(),
+                                message.getCurrPlayerNickname(), message.getUnusedCoins(), message.hasGameEnded()));
+                }
             }
-            if(message.getCharacterCardList().size()!=0)
-            {
-                for(CharacterCard newCard: message.getCharacterCardList())
-                    for(CharacterCard oldCard: characterCardList)
-                        if(oldCard.getCardID()==newCard.getCardID())
-                            characterCardList.set(characterCardList.indexOf(oldCard), newCard);
-            }
-            game= new ModelMessage(message.isExpertMode(), islandList, cloudList, playerList,
-                                   characterCardList, message.getCurrPlayerNickname(),
-                                   message.getUnusedCoins(), message.hasGameEnded());
             printGame();
+            game.notify();
         }
     }
     private void printGame()
     {
-        System.out.println("\n\n\nClouds: ");
-        int i=0;
-        for(Cloud cloud: game.getCloudList())
+        synchronized(game)
         {
-            i++;
-            System.out.print("cloud "+i+"   ");
-            cloud.cloudPrinter();
+            System.out.println("\n\n\nClouds: ");
+            int i = 0;
+            for (Cloud cloud : game.orElse(null).getCloudList()) {
+                i++;
+                System.out.print("cloud " + i + "   ");
+                cloud.cloudPrinter();
+            }
+            i = 0;
+            System.out.println("\nIslands: ");
+            for (Island island : game.orElse(null).getIslandList()) {
+                i++;
+                island.islandPrinter();
+            }
+            if (game.orElse(null).isExpertMode()) {
+                System.out.println("\nCharacter cards: ");
+                for (CharacterCard card : game.orElse(null).getCharacterCardList())
+                    card.ccPrinter();
+                System.out.println("\nTotal available coins: " + game.orElse(null).getUnusedCoins());
+            }
+            System.out.println("\nPlayers: ");
+            for (Player player : game.orElse(null).getPlayerList())
+                player.playerPrinter();
         }
-        i=0;
-        System.out.println("\nIslands: ");
-        for(Island island: game.getIslandList())
-        {
-            i++;
-            island.islandPrinter();
-        }
-        if(game.isExpertMode())
-        {
-            System.out.println("\nCharacter cards: ");
-            for (CharacterCard card : game.getCharacterCardList())
-                card.ccPrinter();
-            System.out.println("\nTotal available coins: " + game.getUnusedCoins());
-        }
-        System.out.println("\nPlayers: ");
-        for(Player player: game.getPlayerList())
-            player.playerPrinter();
     }
 }
