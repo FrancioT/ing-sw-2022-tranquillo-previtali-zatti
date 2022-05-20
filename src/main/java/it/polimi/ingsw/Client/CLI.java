@@ -60,7 +60,6 @@ public class CLI extends Thread implements PropertyChangeListener
             return;
         }
         boolean gameEnded=false;
-        String currPlayerNickname="";
         synchronized(gameLock)
         {
             while (!game.isPresent())
@@ -72,9 +71,9 @@ public class CLI extends Thread implements PropertyChangeListener
                     return;
                 }
             gameEnded=game.orElse(null).hasGameEnded();
-            currPlayerNickname=game.orElse(null).getCurrPlayerNickname();
         }
         while(!gameEnded)
+        {
             try {
                 handleCommands();
             }catch (IOException e)
@@ -86,8 +85,8 @@ public class CLI extends Thread implements PropertyChangeListener
             synchronized(gameLock)
             {
                 gameEnded=game.orElse(null).hasGameEnded();
-                currPlayerNickname=game.orElse(null).getCurrPlayerNickname();
             }
+        }
         System.out.println("Game finished!");
         try{ receiver.close(); } catch(IOException ignored){}
     }
@@ -344,13 +343,14 @@ public class CLI extends Thread implements PropertyChangeListener
             System.out.println("\n\n\nClouds: ");
             int i = 0;
             for (Cloud cloud : game.orElse(null).getCloudList()) {
-                i++;
                 System.out.print("cloud " + i + "   ");
+                i++;
                 cloud.cloudPrinter();
             }
             i = 0;
             System.out.println("\nIslands: ");
             for (Island island : game.orElse(null).getIslandList()) {
+                System.out.print("Island " + i + "   ");
                 i++;
                 island.islandPrinter();
             }

@@ -39,22 +39,20 @@ public class Controller extends Thread
     public synchronized void run()
     {
         try {
-            cloudsFilling();
-            cardsPhase();
-            for(String player: uIDsList)
+            while(!endGame)
             {
-                System.out.println("turn of "+player);
-                System.out.flush();
-                model.setCurrentPlayer(player);
-                System.out.println("ok");
-                System.out.flush();
-                moveStudents(player);
-                System.out.println("ok2");
-                System.out.flush();
-                moveMN(player);
+                cloudsFilling();
+                cardsPhase();
+                for(String player: uIDsList)
+                {
+                    model.setCurrentPlayer(player);
+                    moveStudents(player);
+                    moveMN(player);
+                    if(!endGame)
+                        chooseCloud(player);
+                }
             }
-            if(endGame)
-            { /*client.sendMessage("Game ended");*/ }  ///////////////////////////////////////////////////////////////////////
+            /*client.sendMessage("Game ended");*/  ///////////////////////////////////////////////////////////////
         }
         catch (Exception e) { /*client.sendMessage("Unexpected error!");*/ } /////////////////////////////////////////////////
     }
@@ -78,12 +76,12 @@ public class Controller extends Thread
         for(String currPlayer:uIDsList)
         {
             model.setCurrentPlayer(currPlayer);
-            noOtherCard=true;
             playerCards= model.getCardsRoundValues(currPlayer);
             if(playerCards.size()==1)
                 endGame=true;
             pos= usersData.get(currPlayer).getCardPos();
             // check if the card was already played by someone else in this round
+            noOtherCard=true;
             if(playersOrder.containsKey(playerCards.get(pos)))
                 while (noOtherCard)
                 {
