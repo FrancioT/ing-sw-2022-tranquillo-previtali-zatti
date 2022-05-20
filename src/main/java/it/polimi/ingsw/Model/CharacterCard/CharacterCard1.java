@@ -5,14 +5,15 @@ import it.polimi.ingsw.Controller.DataBuffer;
 import it.polimi.ingsw.Model.Bag;
 import it.polimi.ingsw.Model.Colour;
 import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
+import it.polimi.ingsw.Model.Exceptions.RunOutOfStudentsException;
 import it.polimi.ingsw.Model.ModelAndDecorators.Model;
-import java.util.ArrayList;
 
 public class CharacterCard1 extends CharacterCardWithStudentsList{
     transient final private Bag bag;
     static final long serialVersionUID= 80311L;
 
-    public CharacterCard1(Bag bag) {
+    public CharacterCard1(Bag bag) throws RunOutOfStudentsException
+    {
         super(1, 1);
         this.bag = bag;
         for (int i = 0; i < 4; i++){

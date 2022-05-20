@@ -3,7 +3,6 @@ package it.polimi.ingsw.Model;
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.DataBuffer;
 import it.polimi.ingsw.Model.Exceptions.*;
-import it.polimi.ingsw.Model.ModelAndDecorators.Model;
 import it.polimi.ingsw.Model.ModelAndDecorators.ModelTest;
 import it.polimi.ingsw.RemoteView.RemoteView;
 import org.junit.jupiter.api.Test;

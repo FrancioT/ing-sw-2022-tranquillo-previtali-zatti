@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Model;
 
 import it.polimi.ingsw.Model.Exceptions.FullEntranceException;
+import it.polimi.ingsw.Model.Exceptions.RunOutOfStudentsException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CloudTest {
 
     @Test
-    public void cloudTest() throws FullEntranceException, IndexOutOfBoundsException, NullPointerException
+    public void cloudTest() throws FullEntranceException, IndexOutOfBoundsException, NullPointerException, RunOutOfStudentsException
     {
         Bag bag1;
         Towers towers1;

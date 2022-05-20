@@ -1,5 +1,7 @@
 package it.polimi.ingsw.Model;
 
+import it.polimi.ingsw.Model.Exceptions.RunOutOfStudentsException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +32,10 @@ public class Bag {
         }
         this.studentsList.addAll(bag.studentsList);
     }
-    public synchronized Student randomExtraction(){
+    public synchronized Student randomExtraction() throws RunOutOfStudentsException
+    {
+        if(studentsList.size()<=0)
+            throw new RunOutOfStudentsException();
         int index = (int) (Math.random()*studentsList.size());
         return studentsList.remove(index);
     }

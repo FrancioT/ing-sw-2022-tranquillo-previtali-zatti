@@ -1,12 +1,10 @@
 package it.polimi.ingsw.Model;
 
 import it.polimi.ingsw.Model.Exceptions.FullEntranceException;
-import it.polimi.ingsw.Model.Exceptions.NoSuchStudentException;
+import it.polimi.ingsw.Model.Exceptions.RunOutOfStudentsException;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Cloud extends Tile{
     transient final private Bag bag;
@@ -18,7 +16,7 @@ public class Cloud extends Tile{
         this.bag=bag;
     }
 
-    public void cloudFiller(int n) throws IndexOutOfBoundsException
+    public void cloudFiller(int n) throws IndexOutOfBoundsException, RunOutOfStudentsException
     {
         if(n<0) throw new IndexOutOfBoundsException();
 

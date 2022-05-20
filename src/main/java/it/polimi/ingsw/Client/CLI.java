@@ -84,7 +84,7 @@ public class CLI extends Thread implements PropertyChangeListener
                 gameEnded=game.orElse(null).hasGameEnded();
             }
         }
-        System.out.println("Game finished!");
+        System.out.println("\n\nGame finished!");
         try{ receiver.close(); } catch(IOException ignored){}
     }
     private void beginning() throws IOException

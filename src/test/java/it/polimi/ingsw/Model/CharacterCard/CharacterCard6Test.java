@@ -2,7 +2,6 @@ package it.polimi.ingsw.Model.CharacterCard;
 
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.DataBuffer;
-import it.polimi.ingsw.Controller.Exceptions.CardActivatedException;
 import it.polimi.ingsw.Model.Colour;
 import it.polimi.ingsw.Model.ColourT;
 import it.polimi.ingsw.Model.Exceptions.EmptyException;

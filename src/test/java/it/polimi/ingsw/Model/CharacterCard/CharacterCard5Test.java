@@ -4,7 +4,6 @@ import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.DataBuffer;
 import it.polimi.ingsw.Model.Colour;
 import it.polimi.ingsw.Model.ColourT;
-import it.polimi.ingsw.Model.Exceptions.EmptyException;
 import it.polimi.ingsw.Model.Exceptions.NoInhibitionFlagsAvailable;
 import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
 import it.polimi.ingsw.Model.ModelAndDecorators.ModelTest;

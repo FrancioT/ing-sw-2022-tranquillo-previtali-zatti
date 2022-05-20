@@ -6,6 +6,7 @@ import it.polimi.ingsw.Model.Bag;
 import it.polimi.ingsw.Model.Colour;
 import it.polimi.ingsw.Model.Exceptions.NoSuchStudentException;
 import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
+import it.polimi.ingsw.Model.Exceptions.RunOutOfStudentsException;
 import it.polimi.ingsw.Model.ModelAndDecorators.Model;
 import it.polimi.ingsw.Model.Student;
 
@@ -15,7 +16,8 @@ import java.util.List;
 public class CharacterCard7 extends CharacterCardWithStudentsList {
     static final long serialVersionUID = 80312L;
 
-    public CharacterCard7(Bag bag) {
+    public CharacterCard7(Bag bag) throws RunOutOfStudentsException
+    {
         super(7, 1);
         for (int i = 0; i < 6; i++) {
             studentsList.add(bag.randomExtraction());

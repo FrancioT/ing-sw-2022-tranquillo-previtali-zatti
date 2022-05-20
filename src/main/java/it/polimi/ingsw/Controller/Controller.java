@@ -52,7 +52,7 @@ public class Controller extends Thread
                         chooseCloud(player);
                 }
             }
-            /*client.sendMessage("Game ended");*/  ///////////////////////////////////////////////////////////////
+            model.endGame();
         }
         catch (Exception e) { /*client.sendMessage("Unexpected error!");*/ } /////////////////////////////////////////////////
     }
@@ -61,7 +61,10 @@ public class Controller extends Thread
         int tmp=uIDsList.size()%2;
         // if there are 2 or 4 players the clouds must be filled with 3 students
         // if there are 3 players the clouds must be filled with 4 students
-        model.cloudsFiller(tmp*4 + (1-tmp)*3);
+        try {
+            model.cloudsFiller(tmp*4 + (1-tmp)*3);
+        }catch(RunOutOfStudentsException e)
+        { endGame=true; }
     }
     void cardsPhase() throws NoSuchPlayerException, InterruptedException
     {
@@ -202,7 +205,14 @@ public class Controller extends Thread
             delta_pos= model.getNumIslands()-oldPos+newPos;
         if(delta_pos > model.getLastCardValue(uID) )
             throw new IllegalMNMovementException();
-        model.moveMN(delta_pos);
+        try {
+            model.moveMN(delta_pos);
+        }catch(RunOutOfTowersException e)
+        {
+            endGame=true;
+        }
+        if(model.getNumIslands()<=3)
+            endGame=true;
     }
     void chooseCloud(String uID) throws Exception
     {

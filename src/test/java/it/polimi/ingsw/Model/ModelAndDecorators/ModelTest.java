@@ -125,8 +125,7 @@ public class ModelTest
     }
 
     @Test
-    void cloudsFill_empty() throws FullEntranceException,
-            NoSuchPlayerException
+    void cloudsFill_empty() throws FullEntranceException, NoSuchPlayerException, RunOutOfStudentsException
     {
         model.cloudsFiller(3);
         try {
@@ -182,7 +181,7 @@ public class ModelTest
 
     @Test
     void entranceEmptier() throws EmptyException, FullEntranceException,
-            NoSuchStudentException, NoSuchPlayerException
+            NoSuchStudentException, NoSuchPlayerException, RunOutOfStudentsException
     {
         try {
             model.getStudents(null);

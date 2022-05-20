@@ -51,7 +51,10 @@ public class Model {
         for(int i=1; i<12; i++)
         {
             if (i != 6)
-                islandsList.add(new Island(bag.randomExtraction(), this));
+            {
+                try{ islandsList.add(new Island(bag.randomExtraction(), this)); }
+                catch(RunOutOfStudentsException e) { throw new RuntimeException(); }
+            }
             else
                 islandsList.add(new Island(false, this));
         }
@@ -69,7 +72,10 @@ public class Model {
         int mode=uIDs.size()%2;
         for(String uID : uIDs){
             for(int i = 0; i < 7*(1-mode)+9*mode; i++)
-                entranceStudents.add(bag.randomExtraction());
+            {
+                try{ entranceStudents.add(bag.randomExtraction()); }
+                catch(RunOutOfStudentsException e) { throw new RuntimeException(); }
+            }
             try { entranceFiller(uID, entranceStudents); }
             catch (FullEntranceException | NoSuchPlayerException e)
             { throw new RuntimeException("Failed while filling entrances"); }
@@ -83,17 +89,20 @@ public class Model {
         {
             unusedCoins=20-playersList.size();
             List<CharacterCard> cardListTmp= new ArrayList<>();
-            cardListTmp.add(new CharacterCard1(bag));
+            try{ cardListTmp.add(new CharacterCard1(bag)); }
+            catch(RunOutOfStudentsException e) { throw new RuntimeException(); }
             cardListTmp.add(new CharacterCard2());
             cardListTmp.add(new CharacterCard3());
             cardListTmp.add(new CharacterCard4());
             cardListTmp.add(new CharacterCard5());
             cardListTmp.add(new CharacterCard6());
-            cardListTmp.add(new CharacterCard7(bag));
+            try{ cardListTmp.add(new CharacterCard7(bag)); }
+            catch(RunOutOfStudentsException e) { throw new RuntimeException(); }
             cardListTmp.add(new CharacterCard8());
             cardListTmp.add(new CharacterCard9());
             cardListTmp.add(new CharacterCard10());
-            cardListTmp.add(new CharacterCard11(bag));
+            try{ cardListTmp.add(new CharacterCard11(bag)); }
+            catch(RunOutOfStudentsException e) { throw new RuntimeException(); }
             cardListTmp.add(new CharacterCard12(bag, new ArrayList<>(playersList)));
             int randIndex1= (int)Math.floor(Math.random()*characterCardNum);
             int randIndex2, randIndex3;
@@ -213,7 +222,8 @@ public class Model {
         notify(message);
     }
 
-    public synchronized void cloudsFiller(int n){
+    public synchronized void cloudsFiller(int n) throws RunOutOfStudentsException
+    {
         for(Cloud cloud : cloudsList){
             cloud.cloudFiller(n);
         }
@@ -579,6 +589,14 @@ public class Model {
         ModelMessage message= new ModelMessage(characterCardList.size()!=0, null,
                 null, null, null, currentPlayer.getuID(),
                 unusedCoins, false);
+        notify(message);
+    }
+    public void endGame()
+    {
+        ModelMessage message= new ModelMessage(characterCardList.size()!=0, new ArrayList<>(islandsList),
+                                               new ArrayList<>(cloudsList), new ArrayList<>(playersList),
+                                               new ArrayList<>(characterCardList), currentPlayer.getuID(),
+                                               unusedCoins, true);
         notify(message);
     }
     public void addPropertyChangeListener(PropertyChangeListener listener)

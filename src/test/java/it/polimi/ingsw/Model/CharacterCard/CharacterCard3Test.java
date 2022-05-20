@@ -7,12 +7,10 @@ import it.polimi.ingsw.Model.ColourT;
 import it.polimi.ingsw.Model.Exceptions.EmptyException;
 import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
 import it.polimi.ingsw.Model.ModelAndDecorators.ModelTest;
-import it.polimi.ingsw.Model.Player;
 import it.polimi.ingsw.Model.Student;
 import it.polimi.ingsw.RemoteView.RemoteView;
 import org.junit.jupiter.api.Test;
 
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

@@ -5,6 +5,7 @@ import it.polimi.ingsw.Controller.DataBuffer;
 import it.polimi.ingsw.Model.*;
 import it.polimi.ingsw.Model.Exceptions.NoSuchStudentException;
 import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
+import it.polimi.ingsw.Model.Exceptions.RunOutOfStudentsException;
 import it.polimi.ingsw.Model.ModelAndDecorators.ModelTest;
 import it.polimi.ingsw.RemoteView.RemoteView;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CharacterCard1Test {
     @Test
-    public void CharacterCard1Colours(){
+    public void CharacterCard1Colours() throws RunOutOfStudentsException {
         CharacterCard1 card = new CharacterCard1(new Bag());
 
         assertEquals(card.getCardID(), 1);

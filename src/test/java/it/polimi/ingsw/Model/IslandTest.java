@@ -14,7 +14,7 @@ class IslandTest
 {
     @Test
     public void islTest() throws FullTowersException, RunOutOfTowersException,
-            EmptyException, LinkFailedException, NoSuchStudentException {
+            EmptyException, LinkFailedException, RunOutOfStudentsException {
         List<String> uIDs=new ArrayList<>();
         uIDs.add("Francio"); uIDs.add("Tarallo");
         Model model=new Model(uIDs, false);
