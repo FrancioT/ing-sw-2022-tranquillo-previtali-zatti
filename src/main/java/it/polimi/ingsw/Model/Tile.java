@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class Tile implements Serializable
 {
-    transient protected List<Student> studentsList;
+    protected List<Student> studentsList;
     static final long serialVersionUID= 80000L;
 
     public Tile() { studentsList=new ArrayList<>(); }

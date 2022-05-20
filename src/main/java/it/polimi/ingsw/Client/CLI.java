@@ -25,6 +25,7 @@ public class CLI extends Thread implements PropertyChangeListener
     private Socket connection;
     private String nickName;
     private Optional<ModelMessage> game;
+    private final Boolean gameLock;
     private Receiver receiver;
     private static final String serverIP="127.0.0.1";
     private static final int serverPort=12345;
@@ -36,6 +37,7 @@ public class CLI extends Thread implements PropertyChangeListener
         game= Optional.empty();
         receiver=null;
         nickName="";
+        gameLock=false;
     }
     public static void main(String[] args) throws InterruptedException
     {
@@ -59,9 +61,10 @@ public class CLI extends Thread implements PropertyChangeListener
         }
         boolean gameEnded=false;
         String currPlayerNickname="";
-        synchronized(game){
+        synchronized(gameLock)
+        {
             while (!game.isPresent())
-                try{ game.wait(); }
+                try{ gameLock.wait(); }
                 catch(InterruptedException e)
                 {
                     System.out.println("Error: thread interrupted");
@@ -71,8 +74,7 @@ public class CLI extends Thread implements PropertyChangeListener
             gameEnded=game.orElse(null).hasGameEnded();
             currPlayerNickname=game.orElse(null).getCurrPlayerNickname();
         }
-        while(!gameEnded && currPlayerNickname.equals(this.nickName))
-        {
+        while(!gameEnded)
             try {
                 handleCommands();
             }catch (IOException e)
@@ -81,12 +83,11 @@ public class CLI extends Thread implements PropertyChangeListener
                 try{ receiver.close(); } catch(IOException ignored){}
                 return;
             }
-            synchronized(game)
+            synchronized(gameLock)
             {
                 gameEnded=game.orElse(null).hasGameEnded();
                 currPlayerNickname=game.orElse(null).getCurrPlayerNickname();
             }
-        }
         System.out.println("Game finished!");
         try{ receiver.close(); } catch(IOException ignored){}
     }
@@ -142,24 +143,24 @@ public class CLI extends Thread implements PropertyChangeListener
         {
             case "chooseCard":
                 pos= Integer.parseInt(command[1]);
-                System.out.println("your command is: "+command[0]+pos);
+                System.out.println("your command is: "+command[0]+" "+pos);
                 receiver.send(new ChooseCard(nickName, pos));
                 break;
             case "chooseCloud":
                 pos= Integer.parseInt(command[1]);
-                System.out.println("your command is: "+command[0]+pos);
+                System.out.println("your command is: "+command[0]+" "+pos);
                 receiver.send(new ChooseCloud(nickName, pos));
                 break;
             case "moveMN":
                 pos= Integer.parseInt(command[1]);
-                System.out.println("your command is: "+command[0]+pos);
+                System.out.println("your command is: "+command[0]+" "+pos);
                 receiver.send(new MoveMN(nickName, pos));
                 break;
             case "studentToDashboard":
                 colour= toColour(command[1]);
                 if(colour!=null)
                 {
-                    System.out.println("your command is: "+command[0]+colour);
+                    System.out.println("your command is: "+command[0]+" "+colour);
                     receiver.send(new StudentToDashboard(nickName, colour));
                     break;
                 }
@@ -168,7 +169,7 @@ public class CLI extends Thread implements PropertyChangeListener
                 if(colour!=null)
                 {
                     pos= Integer.parseInt(command[2]);
-                    System.out.println("your command is: "+command[0]+colour+pos);
+                    System.out.println("your command is: "+command[0]+" "+colour+" "+pos);
                     receiver.send(new StudentToIsland(nickName, colour, pos));
                     break;
                 }
@@ -177,18 +178,18 @@ public class CLI extends Thread implements PropertyChangeListener
                 if(colour!=null)
                 {
                     pos= Integer.parseInt(command[2]);
-                    System.out.println("your command is: "+command[0]+colour+pos);
+                    System.out.println("your command is: "+command[0]+" "+colour+" "+pos);
                     receiver.send(new Card1Data(nickName, 1, pos, colour));
                     break;
                 }
             case "card3Effect":
                 pos= Integer.parseInt(command[1]);
-                System.out.println("your command is: "+command[0]+pos);
+                System.out.println("your command is: "+command[0]+" "+pos);
                 receiver.send(new Card3_5Data(nickName, 3, pos));
                 break;
             case "card5Effect":
                 pos= Integer.parseInt(command[1]);
-                System.out.println("your command is: "+command[0]+pos);
+                System.out.println("your command is: "+command[0]+" "+pos);
                 receiver.send(new Card3_5Data(nickName, 5, pos));
                 break;
             case "card7Effect":
@@ -202,7 +203,7 @@ public class CLI extends Thread implements PropertyChangeListener
                     }
                     colourList.add(colour);
                 }
-                System.out.println("your command is: "+command[0]+colourList);
+                System.out.println("your command is: "+command[0]+" "+colourList);
                 receiver.send(new Card7_10Data(nickName, 7, colourList));
                 break;
             case "card10Effect":
@@ -216,14 +217,14 @@ public class CLI extends Thread implements PropertyChangeListener
                     }
                     colourList.add(colour);
                 }
-                System.out.println("your command is: "+command[0]+colourList);
+                System.out.println("your command is: "+command[0]+" "+colourList);
                 receiver.send(new Card7_10Data(nickName, 10, colourList));
                 break;
             case "card9Effect":
                 colour= toColour(command[1]);
                 if(colour!=null)
                 {
-                    System.out.println("your command is: "+command[0]+colour);
+                    System.out.println("your command is: "+command[0]+" "+colour);
                     receiver.send(new Card9_11_12Data(nickName, 9, colour));
                     break;
                 }
@@ -231,7 +232,7 @@ public class CLI extends Thread implements PropertyChangeListener
                 colour= toColour(command[1]);
                 if(colour!=null)
                 {
-                    System.out.println("your command is: "+command[0]+colour);
+                    System.out.println("your command is: "+command[0]+" "+colour);
                     receiver.send(new Card9_11_12Data(nickName, 11, colour));
                     break;
                 }
@@ -239,7 +240,7 @@ public class CLI extends Thread implements PropertyChangeListener
                 colour= toColour(command[1]);
                 if(colour!=null)
                 {
-                    System.out.println("your command is: "+command[0]+colour);
+                    System.out.println("your command is: "+command[0]+" "+colour);
                     receiver.send(new Card9_11_12Data(nickName, 12, colour));
                     break;
                 }
@@ -251,6 +252,12 @@ public class CLI extends Thread implements PropertyChangeListener
                 System.out.println("studentToIsland [colour of the student] [position of the island]");
                 System.out.println("moveMN [new position of mother nature]");
                 System.out.println("card[num]Effect [[parameters specified by the card]]");
+                System.out.println("\nMoves order:");
+                System.out.println("1) choose the card you want to play");
+                System.out.println("2) move the students from your entrance");
+                System.out.println("3) move mother nature");
+                System.out.println("4) choose the cloud with which you want to refill your entrance");
+                break;
             default:
                 System.out.println("Malformed command, write help to get all available commands");
                 break;
@@ -293,7 +300,7 @@ public class CLI extends Thread implements PropertyChangeListener
         String eventName=event.getPropertyName();
         if("ModelModifications".equals(eventName))
         {
-            synchronized(game)
+            synchronized(gameLock)
             {
                 ModelMessage message = (ModelMessage) event.getNewValue();
                 if (game.isPresent()) {
@@ -325,14 +332,14 @@ public class CLI extends Thread implements PropertyChangeListener
                                 message.getCloudList(), message.getPlayerList(), message.getCharacterCardList(),
                                 message.getCurrPlayerNickname(), message.getUnusedCoins(), message.hasGameEnded()));
                 }
+                printGame();
+                gameLock.notifyAll();
             }
-            printGame();
-            game.notify();
         }
     }
     private void printGame()
     {
-        synchronized(game)
+        synchronized(gameLock)
         {
             System.out.println("\n\n\nClouds: ");
             int i = 0;
@@ -356,6 +363,7 @@ public class CLI extends Thread implements PropertyChangeListener
             System.out.println("\nPlayers: ");
             for (Player player : game.orElse(null).getPlayerList())
                 player.playerPrinter();
+            System.out.println("It's the turn of: "+game.orElse(null).getCurrPlayerNickname());
         }
     }
 }

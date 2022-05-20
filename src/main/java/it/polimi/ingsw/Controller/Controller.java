@@ -43,8 +43,14 @@ public class Controller extends Thread
             cardsPhase();
             for(String player: uIDsList)
             {
+                System.out.println("turn of "+player);
+                System.out.flush();
                 model.setCurrentPlayer(player);
+                System.out.println("ok");
+                System.out.flush();
                 moveStudents(player);
+                System.out.println("ok2");
+                System.out.flush();
                 moveMN(player);
             }
             if(endGame)

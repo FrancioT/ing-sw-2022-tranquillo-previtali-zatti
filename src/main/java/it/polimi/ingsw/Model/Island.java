@@ -8,11 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import static it.polimi.ingsw.Model.ColourT.*;
 
 public class Island extends Tile implements Serializable
 {
@@ -134,7 +130,8 @@ public class Island extends Tile implements Serializable
         System.out.println("This tile is an Island with these students: ");
         this.tilePrinter();
 
-        this.towers.towersPrinter();
+        if(numTowers!=0)
+            this.towers.towersPrinter();
 
         if (motherNatureFlag)
         {

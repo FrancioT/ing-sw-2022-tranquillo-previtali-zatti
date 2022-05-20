@@ -32,7 +32,6 @@ public class Model {
         islandsList=new ArrayList<>();
         cloudsList=new ArrayList<>();
         playersList=new ArrayList<>();
-        currentPlayer=null;
         // creation of players and towers
         Stack<Towers> towersList= new Stack<>();
         int mod=uIDs.size()%2;
@@ -45,6 +44,7 @@ public class Model {
             if(uIDs.size()==4 && i%2==0)
                 towersList.push(towers);
         }
+        currentPlayer=playersList.get(0);
         // creation of islands and mother nature
         Bag bag=new Bag();
         islandsList.add(new Island(true, this));
@@ -576,6 +576,10 @@ public class Model {
         if(player==null)
             throw new NoSuchPlayerException();
         currentPlayer= player;
+        ModelMessage message= new ModelMessage(characterCardList.size()!=0, null,
+                null, null, null, currentPlayer.getuID(),
+                unusedCoins, false);
+        notify(message);
     }
     public void addPropertyChangeListener(PropertyChangeListener listener)
     {
@@ -586,7 +590,7 @@ public class Model {
         // send to client the first model
         ModelMessage message= new ModelMessage(characterCardList.size()!=0, new ArrayList<>(islandsList),
                                                new ArrayList<>(cloudsList), new ArrayList<>(playersList),
-                                               new ArrayList<>(characterCardList), playersList.get(0).getuID(),
+                                               new ArrayList<>(characterCardList), currentPlayer.getuID(),
                                                unusedCoins, false);
         listener.propertyChange(new PropertyChangeEvent(this, "ModelModifications",
                                                         null, message));

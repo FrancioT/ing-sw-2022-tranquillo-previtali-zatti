@@ -1,6 +1,8 @@
 package it.polimi.ingsw.Model;
 
-public class Teacher
+import java.io.Serializable;
+
+public class Teacher implements Serializable
 {
     transient private Player currentPos;
     private final Colour colour;

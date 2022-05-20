@@ -26,15 +26,14 @@ public class Receiver extends Thread implements Closeable
         out_stream = new ObjectOutputStream(connection.getOutputStream());
         in_stream = new ObjectInputStream(connection.getInputStream());
     }
-    private void receiveModel() throws BadMessageException
+    private void receiveModel() throws BadMessageException, IOException
     {
         Object message;
         try{
             message= in_stream.readObject();
             if(message instanceof ModelMessage)
                 notify((ModelMessage)message);
-        } catch (Exception ignored) {}
-        throw new BadMessageException();
+        } catch (ClassNotFoundException e) { throw new BadMessageException(); }
     }
     public synchronized void send(Message message) throws IOException
     {
@@ -55,6 +54,11 @@ public class Receiver extends Thread implements Closeable
             }catch (BadMessageException e)
             {
                 System.out.println("Server sent a malformed or incomprehensible message");
+                try{ connection.close(); }catch(IOException ignored){}
+            }
+            catch (IOException e1)
+            {
+                System.out.println("Connection error");
                 try{ connection.close(); }catch(IOException ignored){}
             }
         }
