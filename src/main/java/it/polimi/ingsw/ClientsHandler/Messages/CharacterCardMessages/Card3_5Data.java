@@ -18,6 +18,10 @@ public class Card3_5Data extends CardMessage
     public void handle(DataBuffer dataBuffer)
     {
         super.checkDataBuffer(dataBuffer);
-        dataBuffer.setIslandPos(islandPos);
+        synchronized (dataBuffer)
+        {
+            dataBuffer.setCharacterCardID(cardID);
+            dataBuffer.setIslandPos(islandPos);
+        }
     }
 }

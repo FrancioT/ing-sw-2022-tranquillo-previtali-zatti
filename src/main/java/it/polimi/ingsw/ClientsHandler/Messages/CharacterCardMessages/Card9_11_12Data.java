@@ -19,6 +19,10 @@ public class Card9_11_12Data extends CardMessage
     public void handle(DataBuffer dataBuffer)
     {
         super.checkDataBuffer(dataBuffer);
-        dataBuffer.setStudColour(studColour);
+        synchronized (dataBuffer)
+        {
+            dataBuffer.setCharacterCardID(cardID);
+            dataBuffer.setStudColour(studColour);
+        }
     }
 }

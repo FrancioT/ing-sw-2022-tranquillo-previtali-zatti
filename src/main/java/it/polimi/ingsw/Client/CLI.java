@@ -1,10 +1,7 @@
 package it.polimi.ingsw.Client;
 
 import it.polimi.ingsw.ClientsHandler.Messages.*;
-import it.polimi.ingsw.ClientsHandler.Messages.CharacterCardMessages.Card1Data;
-import it.polimi.ingsw.ClientsHandler.Messages.CharacterCardMessages.Card3_5Data;
-import it.polimi.ingsw.ClientsHandler.Messages.CharacterCardMessages.Card7_10Data;
-import it.polimi.ingsw.ClientsHandler.Messages.CharacterCardMessages.Card9_11_12Data;
+import it.polimi.ingsw.ClientsHandler.Messages.CharacterCardMessages.*;
 import it.polimi.ingsw.Model.CharacterCard.CharacterCard;
 import it.polimi.ingsw.Model.Cloud;
 import it.polimi.ingsw.Model.Colour;
@@ -173,6 +170,11 @@ public class CLI extends Thread implements PropertyChangeListener
                     break;
                 }
             case "card1Effect":
+                if(!checkCharacterCardPresence(1))
+                {
+                    System.out.println("This character card ID doesn't correspond to any card!");
+                    break;
+                }
                 colour= toColour(command[1]);
                 if(colour!=null)
                 {
@@ -182,16 +184,31 @@ public class CLI extends Thread implements PropertyChangeListener
                     break;
                 }
             case "card3Effect":
+                if(!checkCharacterCardPresence(3))
+                {
+                    System.out.println("This character card ID doesn't correspond to any card!");
+                    break;
+                }
                 pos= Integer.parseInt(command[1]);
                 System.out.println("your command is: "+command[0]+" "+pos);
                 receiver.send(new Card3_5Data(nickName, 3, pos));
                 break;
             case "card5Effect":
+                if(!checkCharacterCardPresence(5))
+                {
+                    System.out.println("This character card ID doesn't correspond to any card!");
+                    break;
+                }
                 pos= Integer.parseInt(command[1]);
                 System.out.println("your command is: "+command[0]+" "+pos);
                 receiver.send(new Card3_5Data(nickName, 5, pos));
                 break;
             case "card7Effect":
+                if(!checkCharacterCardPresence(7))
+                {
+                    System.out.println("This character card ID doesn't correspond to any card!");
+                    break;
+                }
                 for(int i=0; i<command.length; i++)
                 {
                     colour= toColour(command[i]);
@@ -206,6 +223,11 @@ public class CLI extends Thread implements PropertyChangeListener
                 receiver.send(new Card7_10Data(nickName, 7, colourList));
                 break;
             case "card10Effect":
+                if(!checkCharacterCardPresence(10))
+                {
+                    System.out.println("This character card ID doesn't correspond to any card!");
+                    break;
+                }
                 for(int i=0; i<command.length; i++)
                 {
                     colour= toColour(command[i]);
@@ -220,6 +242,11 @@ public class CLI extends Thread implements PropertyChangeListener
                 receiver.send(new Card7_10Data(nickName, 10, colourList));
                 break;
             case "card9Effect":
+                if(!checkCharacterCardPresence(9))
+                {
+                    System.out.println("This character card ID doesn't correspond to any card!");
+                    break;
+                }
                 colour= toColour(command[1]);
                 if(colour!=null)
                 {
@@ -228,6 +255,11 @@ public class CLI extends Thread implements PropertyChangeListener
                     break;
                 }
             case "card11Effect":
+                if(!checkCharacterCardPresence(11))
+                {
+                    System.out.println("This character card ID doesn't correspond to any card!");
+                    break;
+                }
                 colour= toColour(command[1]);
                 if(colour!=null)
                 {
@@ -236,6 +268,11 @@ public class CLI extends Thread implements PropertyChangeListener
                     break;
                 }
             case "card12Effect":
+                if(!checkCharacterCardPresence(12))
+                {
+                    System.out.println("This character card ID doesn't correspond to any card!");
+                    break;
+                }
                 colour= toColour(command[1]);
                 if(colour!=null)
                 {
@@ -243,6 +280,42 @@ public class CLI extends Thread implements PropertyChangeListener
                     receiver.send(new Card9_11_12Data(nickName, 12, colour));
                     break;
                 }
+            case "card2Effect":
+                if(!checkCharacterCardPresence(2))
+                {
+                    System.out.println("This character card ID doesn't correspond to any card!");
+                    break;
+                }
+                System.out.println("your command is: "+command[0]);
+                receiver.send(new Card2_4_6_8(nickName, 2));
+                break;
+            case "card4Effect":
+                if(!checkCharacterCardPresence(4))
+                {
+                    System.out.println("This character card ID doesn't correspond to any card!");
+                    break;
+                }
+                System.out.println("your command is: "+command[0]);
+                receiver.send(new Card2_4_6_8(nickName, 4));
+                break;
+            case "card6Effect":
+                if(!checkCharacterCardPresence(6))
+                {
+                    System.out.println("This character card ID doesn't correspond to any card!");
+                    break;
+                }
+                System.out.println("your command is: "+command[0]);
+                receiver.send(new Card2_4_6_8(nickName, 6));
+                break;
+            case "card8Effect":
+                if(!checkCharacterCardPresence(8))
+                {
+                    System.out.println("This character card ID doesn't correspond to any card!");
+                    break;
+                }
+                System.out.println("your command is: "+command[0]);
+                receiver.send(new Card2_4_6_8(nickName, 8));
+                break;
             case "help":
                 System.out.println("\n\n\nList of commands:");
                 System.out.println("chooseCard [position of the card]");
@@ -365,5 +438,14 @@ public class CLI extends Thread implements PropertyChangeListener
                 player.playerPrinter();
             System.out.println("It's the turn of: "+game.orElse(null).getCurrPlayerNickname());
         }
+    }
+    private boolean checkCharacterCardPresence(int ID)
+    {
+        if(!game.orElse(null).isExpertMode())
+            return false;
+        for(CharacterCard card: game.orElse(null).getCharacterCardList())
+            if(card.getCardID()==ID)
+                return true;
+        return false;
     }
 }

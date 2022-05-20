@@ -72,7 +72,6 @@ public class Controller extends Thread
         SortedMap<Integer, List<String>> playersOrder=new TreeMap<>();
         int pos;
         List<Integer> playerCards;
-        boolean noOtherCard;
         for(String currPlayer:uIDsList)
         {
             model.setCurrentPlayer(currPlayer);
@@ -81,8 +80,11 @@ public class Controller extends Thread
                 endGame=true;
             pos= usersData.get(currPlayer).getCardPos();
             // check if the card was already played by someone else in this round
-            noOtherCard=true;
-            if(playersOrder.containsKey(playerCards.get(pos)))
+            boolean finished= false;    // flag used to end the external loop
+            boolean noOtherCard= true;  // flag used to end the internal loop
+            while(playersOrder.containsKey(playerCards.get(pos)) && !finished)
+            {
+                noOtherCard=true;
                 while (noOtherCard)
                 {
                     for(int i: playerCards)
@@ -92,15 +94,16 @@ public class Controller extends Thread
                     {
                         playersOrder.get(model.cardDiscarder(currPlayer, pos).getRoundValue()).add(currPlayer);
                         noOtherCard=false;
+                        finished=true;
                     }
                     else
                     {
-                        noOtherCard=true;  // repeats the loop until the player choose a good card
                         // client.send("chose another card!") ////////////////////////////////////////////////////////////////
                         pos = usersData.get(currPlayer).getCardPos();
                     }
                 }
-            else
+            }
+            if(!finished)   // if this card wasn't played by anyone else
             {
                 List<String> tmp= new ArrayList<>();
                 tmp.add(currPlayer);
