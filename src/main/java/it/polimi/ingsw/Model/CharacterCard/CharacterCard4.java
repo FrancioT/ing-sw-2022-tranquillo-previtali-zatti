@@ -28,6 +28,11 @@ public class CharacterCard4 extends CharacterCard
     public void ccPrinter()
     {
         super.ccPrinter();
-        System.out.println("cc Description");
+        System.out.println("Effect: You may move " +
+                "Mother Nature up to " +
+                "2 " +
+                "additional Islands than is indicated by the Assistant " +
+                "card you've played.");
+        System.out.println("No parameters");
     }
 }

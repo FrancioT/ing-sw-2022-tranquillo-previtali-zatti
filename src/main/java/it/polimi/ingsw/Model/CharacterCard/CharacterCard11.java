@@ -40,6 +40,8 @@ public class CharacterCard11 extends CharacterCardWithStudentsList
     public void ccPrinter()
     {
         super.ccPrinter();
-        System.out.println("cc Description");
+        System.out.println("Effect: Take 1 Student from this card and place it in your Dining Room. \nThen," +
+                " draw a new Student from the Bag and place it on this card.");
+        System.out.println("Parameters: Student's colour");
     }
 }

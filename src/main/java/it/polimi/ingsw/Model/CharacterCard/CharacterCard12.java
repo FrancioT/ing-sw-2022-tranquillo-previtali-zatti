@@ -56,6 +56,9 @@ public class CharacterCard12 extends CharacterCard
     public void ccPrinter()
     {
         super.ccPrinter();
-        System.out.println("cc Description");
+        System.out.println("Effect: Choose a type of Student: every player (including yourself) must return 3 Students \n" +
+                "of that type from their Dining Room to the bag. If any player has fewer than 3 Students of that type, \n" +
+                "return as many Students as they have.");
+        System.out.println("Parameters: Student's colour");
     }
 }

@@ -28,6 +28,8 @@ public class CharacterCard6 extends CharacterCard
     public void ccPrinter()
     {
         super.ccPrinter();
-        System.out.println("cc Description");
+        System.out.println("Effect: When resolving a Conquering on an Island, " +
+                "Towers do not count towards influence.");
+        System.out.println("No parameters");
     }
 }

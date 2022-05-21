@@ -30,6 +30,8 @@ public class CharacterCard9 extends CharacterCard
     public void ccPrinter()
     {
         super.ccPrinter();
-        System.out.println("cc Description");
+        System.out.println("Effect: Choose a color of Student: during the influence " +
+                "calculation this turn, that color adds no influence.");
+        System.out.println("Parameters: Student's colour");
     }
 }

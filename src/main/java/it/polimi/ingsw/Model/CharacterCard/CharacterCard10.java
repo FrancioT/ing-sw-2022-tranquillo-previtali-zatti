@@ -86,6 +86,9 @@ public class CharacterCard10 extends CharacterCard
     public void ccPrinter()
     {
         super.ccPrinter();
-        System.out.println("cc Description");
+        System.out.println("Effect: You may exchange up to 2 Students between your Entrance and your classroom.");
+        System.out.println("Parameters: list of colours (order must be: up to 2 pairs of colours, the first colour of\n" +
+                "the pair represents the student in the classroom that must be swapped with the student from\n" +
+                "the entrance whose colour is the second one of the pair)");
     }
 }

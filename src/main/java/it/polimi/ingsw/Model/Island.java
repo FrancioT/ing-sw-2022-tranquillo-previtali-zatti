@@ -140,7 +140,7 @@ public class Island extends Tile implements Serializable
 
         if(numTowers!=0)
         {
-            System.out.print("With have "+numTowers+" ");
+            System.out.print("With "+numTowers+" ");
             this.towers.towersPrinter();
         }
 

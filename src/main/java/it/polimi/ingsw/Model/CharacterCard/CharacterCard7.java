@@ -93,6 +93,11 @@ public class CharacterCard7 extends CharacterCardWithStudentsList {
     public void ccPrinter()
     {
         super.ccPrinter();
-        System.out.println("cc Description");
+        System.out.println("Effect: You may take up to 3 Students from this card " +
+                "and replace them with the same number of Students " +
+                "from your Entrance.");
+        System.out.println("Parameters: list of colours (order must be: the first up to 3 colours are the ones \n" +
+                "that must be moved from the entrance to the card, \n" +
+                "the last up to 3 colours are moved to the entrance from the card)");
     }
 }

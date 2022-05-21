@@ -28,6 +28,8 @@ public class CharacterCard8 extends CharacterCard
     public void ccPrinter()
     {
         super.ccPrinter();
-        System.out.println("cc Description");
+        System.out.println("Effect: During the influence calculation this turn, you " +
+                "count as having 2 more influence.");
+        System.out.println("No parameters");
     }
 }
