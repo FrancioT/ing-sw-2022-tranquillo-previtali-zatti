@@ -46,13 +46,15 @@ class Deck implements Serializable
 
     public void deckPrinter()
     {
-        String deckString = null;
+        String deckString = " ";
 
         for(StandardCard sC: handList)
         {
             deckString = deckString + sC.getRoundValue() + "--" + sC.getMnValue() + " ";
         }
 
-        System.out.println("Your deck contains:" + deckString + "\n");
+        System.out.println("Your deck contains:" + deckString);
+
+        System.out.println("Your last card:" + this.discardedCard.getRoundValue() + "--" + this.discardedCard.getMnValue() + "\n\n");
     }
 }
