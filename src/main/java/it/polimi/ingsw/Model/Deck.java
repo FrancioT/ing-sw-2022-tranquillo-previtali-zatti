@@ -56,6 +56,8 @@ class Deck implements Serializable
         System.out.println("Your deck contains:" + deckString);
 
         if(this.discardedCard!=null)
-            System.out.println("Your last card:" + this.discardedCard.getRoundValue() + "--" + this.discardedCard.getMnValue() + "\n\n");
+            System.out.println("Your last card:" + this.discardedCard.getRoundValue() + "--" + this.discardedCard.getMnValue());
+
+        System.out.println("\n");
     }
 }
