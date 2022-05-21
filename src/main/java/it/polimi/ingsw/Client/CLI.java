@@ -532,7 +532,10 @@ public class CLI extends Thread implements PropertyChangeListener
             if (game.orElse(null).isExpertMode()) {
                 System.out.println("\nCharacter cards: ");
                 for (CharacterCard card : game.orElse(null).getCharacterCardList())
+                {
+                    System.out.println();
                     card.ccPrinter();
+                }
                 System.out.println("\nTotal available coins: " + game.orElse(null).getUnusedCoins());
             }
             System.out.println("Clouds: ");
