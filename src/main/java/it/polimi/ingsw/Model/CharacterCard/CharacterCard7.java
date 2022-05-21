@@ -33,6 +33,8 @@ public class CharacterCard7 extends CharacterCardWithStudentsList {
             throw new NotEnoughMoneyException();
 
         boolean ok = false;
+        // The order of studentToSwap must be: the first up to 3 colours are the ones that must be moved from
+        // the entrance to the card, the last up to 3 colours are moved to the entrance from the card
         List<Colour> studentsToSwap = userData.getStudentsColours();
         if (studentsToSwap.size() % 2 != 0 || studentsToSwap.size() > 6)
             throw new IllegalArgumentException();

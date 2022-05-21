@@ -135,14 +135,14 @@ public class Island extends Tile implements Serializable
         if(expertModeFlag)
             System.out.println("Inhibition counter is: " + this.getInhibitionCounter());
 
+        if (motherNatureFlag)
+            System.out.println("MotherNature is on this Island");
+
         if(numTowers!=0)
         {
             System.out.print("With have "+numTowers+" ");
             this.towers.towersPrinter();
         }
-
-        if (motherNatureFlag)
-            System.out.println("MotherNature is on this Island");
 
         System.out.println();
     }

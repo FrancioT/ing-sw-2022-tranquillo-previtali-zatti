@@ -34,6 +34,9 @@ public class CharacterCard10 extends CharacterCard
             throw new NotEnoughMoneyException();
 
         model=controller.getModel();
+        // The order of studentToSwap must be: up to 2 pairs of colours, the first colour of the pair represents
+        // the student in the classroom that must be swapped with the student from the entrance whose colour is
+        // the second one of the pair
         studentsToMove= userData.getStudentsColours();
         studentsNum=studentsToMove.size();
         if(studentsNum%2!=0 || studentsNum>4)

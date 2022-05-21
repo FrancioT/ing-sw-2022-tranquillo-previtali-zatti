@@ -44,6 +44,7 @@ abstract class CharacterCardWithStudentsList extends CharacterCard{
     @Override
     public void ccPrinter()
     {
+        super.ccPrinter();
         final String sBlue = "\u001B[34m";
         final String sRed = "\u001B[31m";
         final String sGreen = "\u001B[32m";

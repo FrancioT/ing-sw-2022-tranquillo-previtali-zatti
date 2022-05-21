@@ -27,17 +27,7 @@ abstract public class CharacterCard implements Serializable
 
     public void ccPrinter()
     {
-        final String cRESET = "\u001B[0m";
-
-        System.out.println("This is the " + this.cardID + "°" + "character card and its effect costs: " + cRESET);
-
-        if (overPrice)
-        {
-            System.out.println((this.price + 1) + "\n");
-        }
-        else
-        {
-            System.out.println(this.price + "\n");
-        }
+        System.out.println("This is the "+this.cardID+"character card and it costs: "+price);
+        System.out.println("Overprice: "+(overPrice?1:0));
     }
 }

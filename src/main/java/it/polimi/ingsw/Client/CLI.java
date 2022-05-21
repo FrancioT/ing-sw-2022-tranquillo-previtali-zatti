@@ -143,6 +143,7 @@ public class CLI extends Thread implements PropertyChangeListener
                 if(command.length==2)
                 {
                     pos= Integer.parseInt(command[1]);
+                    pos--;
                     commandList.add("chooseCard "+pos);
                     System.out.println("your command is: "+commandList.get(commandList.size()-1));
                     receiver.send(new ChooseCard(nickName, pos));
@@ -154,6 +155,7 @@ public class CLI extends Thread implements PropertyChangeListener
                 if(command.length==2)
                 {
                     pos= Integer.parseInt(command[1]);
+                    pos--;
                     commandList.add("chooseCloud "+pos);
                     System.out.println("your command is: "+commandList.get(commandList.size()-1));
                     receiver.send(new ChooseCloud(nickName, pos));
@@ -165,6 +167,7 @@ public class CLI extends Thread implements PropertyChangeListener
                 if(command.length==2)
                 {
                     pos= Integer.parseInt(command[1]);
+                    pos--;
                     commandList.add("moveMN "+pos);
                     System.out.println("your command is: "+commandList.get(commandList.size()-1));
                     receiver.send(new MoveMN(nickName, pos));
@@ -193,6 +196,7 @@ public class CLI extends Thread implements PropertyChangeListener
                     if(colour!=null)
                     {
                         pos= Integer.parseInt(command[2]);
+                        pos--;
                         commandList.add("studentToIsland "+colour+" "+pos);
                         System.out.println("your command is: "+commandList.get(commandList.size()-1));
                         receiver.send(new StudentToIsland(nickName, colour, pos));
@@ -213,6 +217,7 @@ public class CLI extends Thread implements PropertyChangeListener
                     if(colour!=null)
                     {
                         pos= Integer.parseInt(command[2]);
+                        pos--;
                         commandList.add("card1Effect "+colour+" "+pos);
                         System.out.println("your command is: "+commandList.get(commandList.size()-1));
                         receiver.send(new Card1Data(nickName, 1, pos, colour));
@@ -230,6 +235,7 @@ public class CLI extends Thread implements PropertyChangeListener
                 if(command.length==2)
                 {
                     pos= Integer.parseInt(command[1]);
+                    pos--;
                     commandList.add("card3Effect "+pos);
                     System.out.println("your command is: "+commandList.get(commandList.size()-1));
                     receiver.send(new Card3_5Data(nickName, 3, pos));
@@ -246,6 +252,7 @@ public class CLI extends Thread implements PropertyChangeListener
                 if(command.length==2)
                 {
                     pos= Integer.parseInt(command[1]);
+                    pos--;
                     commandList.add("card5Effect "+pos);
                     System.out.println("your command is: "+commandList.get(commandList.size()-1));
                     receiver.send(new Card3_5Data(nickName, 5, pos));
@@ -523,13 +530,13 @@ public class CLI extends Thread implements PropertyChangeListener
             System.out.print("\033[H\033[2J");
             System.out.flush();
             System.out.println("Clouds: ");
-            int i = 0;
+            int i = 1;
             for (Cloud cloud : game.orElse(null).getCloudList()) {
                 System.out.print("cloud " + i + "   ");
                 i++;
                 cloud.cloudPrinter();
             }
-            i = 0;
+            i = 1;
             System.out.println("\nIslands: ");
             for (Island island : game.orElse(null).getIslandList()) {
                 System.out.print("Island " + i + "   ");
