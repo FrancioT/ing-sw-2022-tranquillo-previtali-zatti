@@ -81,9 +81,9 @@ class IslandTest
         island1.towersSwitcher(new Towers(ColourT.black, 1));
         assertEquals(island1.getTowersColour(), ColourT.black);
         assertTrue(island1.isMotherNatureFlag());
-        island1.setMotherNatureFlag();
+        island1.removeMotherNature();
         assertFalse(island1.isMotherNatureFlag());
-        island1.setMotherNatureFlag();
+        island1.setMotherNature();
         assertTrue(island1.isMotherNatureFlag());
         assertFalse(island1.getInhibition());
         island1.addInhibition();

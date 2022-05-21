@@ -57,13 +57,13 @@ public class Towers implements Serializable
 
         switch (this.colour) {
             case black:
-                System.out.println(tWhite_BACKGROUND + tBlack + "You have " + this.availableTowers + " " + this.colour.toString() + " towers" + cRESET + "\n");
+                System.out.println(tWhite_BACKGROUND + tBlack + this.colour.toString() + " towers" + cRESET);
                 break;
             case white:
-                System.out.println(tBlack_BACKGROUND + tWhite + "You have " + this.availableTowers + " " + this.colour.toString() + " towers" + cRESET + "\n");
+                System.out.println(tBlack_BACKGROUND + tWhite + this.colour.toString() + " towers" + cRESET);
                 break;
             case grey:
-                System.out.println(tWhite_BACKGROUND + tGrey + "You have " + this.availableTowers + " " + this.colour.toString() + " towers" + cRESET + "\n");
+                System.out.println(tWhite_BACKGROUND + tGrey + this.colour.toString() + " towers" + cRESET);
                 break;
             default:
                 break;

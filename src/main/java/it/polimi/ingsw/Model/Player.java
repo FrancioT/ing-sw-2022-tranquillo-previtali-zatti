@@ -99,7 +99,7 @@ public class Player implements Serializable
 
         final String cRESET = "\u001B[0m";
 
-        System.out.println("You are " + this.uID + " and in game you are called " + this.nickName + ", now you have " + coinsYellow + this.coins + cRESET + "\n");
+        System.out.println(this.uID + " and in game you are called " + this.nickName + ", now you have " + coinsYellow + this.coins + cRESET);
 
         System.out.println("On your entrance you have ");
 

@@ -106,12 +106,13 @@ public class Dashboard implements Serializable
                 + space + sRed + coloursMap.get(Colour.red)
                 + space + sGreen + coloursMap.get(Colour.green)
                 + space + sYellow + coloursMap.get(Colour.yellow)
-                + space + sPink + coloursMap.get(Colour.pink) + cRESET + "\n");
+                + space + sPink + coloursMap.get(Colour.pink) + cRESET);
 
-        System.out.println(" and in your classroom you have ");
+        System.out.println("and in your classroom you have ");
 
         this.classrooms.classroomPrinter();
 
+        System.out.print("You have "+towers.availabilityChecker()+" ");
         this.towers.towersPrinter();
     }
 }

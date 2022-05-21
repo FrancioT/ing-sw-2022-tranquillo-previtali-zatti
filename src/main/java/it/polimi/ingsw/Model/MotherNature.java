@@ -15,9 +15,9 @@ public class MotherNature {
     {
         if(island==null) throw new NullPointerException();
 
-        currentPos.setMotherNatureFlag(); /*sets the flag of the old island to false*/
+        currentPos.removeMotherNature(); /*sets the flag of the old island to false*/
         currentPos=island;
-        currentPos.setMotherNatureFlag(); /*sets the flag of the new island to true*/
+        currentPos.setMotherNature(); /*sets the flag of the new island to true*/
     }
 
 }

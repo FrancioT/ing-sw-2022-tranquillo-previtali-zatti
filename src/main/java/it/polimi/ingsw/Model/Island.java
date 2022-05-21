@@ -36,13 +36,13 @@ public class Island extends Tile implements Serializable
         numTowers=0;
         this.model=model;
     }
-    public Island(List<Student> students, Towers towers, int numT,
-                  int inhibitionCounter, Model model)
+    private Island(List<Student> students, Towers towers, int numT,
+                  int inhibitionCounter, Model model, boolean mnFlag)
     {
         super();
         this.towers=towers;
         numTowers=numT;
-        motherNatureFlag=true;
+        motherNatureFlag=mnFlag;
         this.inhibitionCounter=inhibitionCounter;
         this.model=model;
         for(Student s: students)
@@ -64,7 +64,8 @@ public class Island extends Tile implements Serializable
         List<Student> tmp1=new ArrayList<>(studentsList);
         tmp1.addAll(island.studentsList);
         return new Island(tmp1, towers, numTowers + island.numTowers,
-              island.inhibitionCounter + this.inhibitionCounter, this.model);
+                island.inhibitionCounter + this.inhibitionCounter, this.model,
+                          this.motherNatureFlag || island.motherNatureFlag);
     }
 
     public int getNumTowers() { return numTowers; }
@@ -97,7 +98,8 @@ public class Island extends Tile implements Serializable
         model.checkIslandLinking();
     }
 
-    public void setMotherNatureFlag() { motherNatureFlag=!motherNatureFlag; }
+    public void setMotherNature() { motherNatureFlag=true; }
+    public void removeMotherNature() { motherNatureFlag=false; }
     public boolean isMotherNatureFlag() { return motherNatureFlag; }
     public void addInhibition() { inhibitionCounter++; }
     public void subInhibition()
@@ -127,19 +129,17 @@ public class Island extends Tile implements Serializable
 
     public void islandPrinter() {
 
-        System.out.println("This tile is an Island with these students: ");
+        System.out.print("students list: ");
         this.tilePrinter();
 
         if(numTowers!=0)
+        {
+            System.out.print("With have "+numTowers+" ");
             this.towers.towersPrinter();
+        }
 
         if (motherNatureFlag)
-        {
-            System.out.println("MotherNature is on this Island and inhibition counter is: " + this.getInhibitionCounter() + "\n");
-        }
-        else
-        {
-            System.out.println("MotherNature is not on this Island and inhibition counter is: " + this.getInhibitionCounter() + "\n");
-        }
+            System.out.println("MotherNature is on this Island");
+        System.out.println("Inhibition counter is: " + this.getInhibitionCounter() + "\n");
     }
 }

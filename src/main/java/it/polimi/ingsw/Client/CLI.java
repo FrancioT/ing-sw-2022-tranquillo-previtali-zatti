@@ -24,6 +24,7 @@ public class CLI extends Thread implements PropertyChangeListener
     private Optional<ModelMessage> game;
     private final Boolean gameLock;
     private Receiver receiver;
+    private List<String> commandList;
     private static final String serverIP="127.0.0.1";
     private static final int serverPort=12345;
     private static final String firstPlayerMessage="Choose game mode";
@@ -35,6 +36,7 @@ public class CLI extends Thread implements PropertyChangeListener
         receiver=null;
         nickName="";
         gameLock=false;
+        commandList=new ArrayList<>();
     }
     public static void main(String[] args) throws InterruptedException
     {
@@ -138,60 +140,102 @@ public class CLI extends Thread implements PropertyChangeListener
         switch(command[0])
         {
             case "chooseCard":
-                pos= Integer.parseInt(command[1]);
-                System.out.println("your command is: "+command[0]+" "+pos);
-                receiver.send(new ChooseCard(nickName, pos));
+                if(command.length==2)
+                {
+                    pos= Integer.parseInt(command[1]);
+                    commandList.add(command[0]+" "+pos);
+                    System.out.println("your command is: "+commandList.get(commandList.size()-1));
+                    receiver.send(new ChooseCard(nickName, pos));
+                    break;
+                }
+                System.out.println("Malformed command, write help to get all available commands");
                 break;
             case "chooseCloud":
-                pos= Integer.parseInt(command[1]);
-                System.out.println("your command is: "+command[0]+" "+pos);
-                receiver.send(new ChooseCloud(nickName, pos));
+                if(command.length==2)
+                {
+                    pos= Integer.parseInt(command[1]);
+                    commandList.add(command[0]+" "+pos);
+                    System.out.println("your command is: "+commandList.get(commandList.size()-1));
+                    receiver.send(new ChooseCloud(nickName, pos));
+                    break;
+                }
+                System.out.println("Malformed command, write help to get all available commands");
                 break;
             case "moveMN":
-                pos= Integer.parseInt(command[1]);
-                System.out.println("your command is: "+command[0]+" "+pos);
-                receiver.send(new MoveMN(nickName, pos));
+                if(command.length==2)
+                {
+                    pos= Integer.parseInt(command[1]);
+                    commandList.add(command[0]+" "+pos);
+                    System.out.println("your command is: "+commandList.get(commandList.size()-1));
+                    receiver.send(new MoveMN(nickName, pos));
+                    break;
+                }
+                System.out.println("Malformed command, write help to get all available commands");
                 break;
             case "studentToDashboard":
-                colour= toColour(command[1]);
-                if(colour!=null)
+                if(command.length==2)
                 {
-                    System.out.println("your command is: "+command[0]+" "+colour);
-                    receiver.send(new StudentToDashboard(nickName, colour));
-                    break;
+                    colour= toColour(command[1]);
+                    if(colour!=null)
+                    {
+                        commandList.add(command[0]+" "+colour);
+                        System.out.println("your command is: "+commandList.get(commandList.size()-1));
+                        receiver.send(new StudentToDashboard(nickName, colour));
+                        break;
+                    }
                 }
+                System.out.println("Malformed command, write help to get all available commands");
+                break;
             case "studentToIsland":
-                colour= toColour(command[1]);
-                if(colour!=null)
+                if(command.length==3)
                 {
-                    pos= Integer.parseInt(command[2]);
-                    System.out.println("your command is: "+command[0]+" "+colour+" "+pos);
-                    receiver.send(new StudentToIsland(nickName, colour, pos));
-                    break;
+                    colour= toColour(command[1]);
+                    if(colour!=null)
+                    {
+                        pos= Integer.parseInt(command[2]);
+                        commandList.add(command[0]+" "+colour+" "+pos);
+                        System.out.println("your command is: "+commandList.get(commandList.size()-1));
+                        receiver.send(new StudentToIsland(nickName, colour, pos));
+                        break;
+                    }
                 }
+                System.out.println("Malformed command, write help to get all available commands");
+                break;
             case "card1Effect":
                 if(!checkCharacterCardPresence(1))
                 {
                     System.out.println("This character card ID doesn't correspond to any card!");
                     break;
                 }
-                colour= toColour(command[1]);
-                if(colour!=null)
+                if(command.length==3)
                 {
-                    pos= Integer.parseInt(command[2]);
-                    System.out.println("your command is: "+command[0]+" "+colour+" "+pos);
-                    receiver.send(new Card1Data(nickName, 1, pos, colour));
-                    break;
+                    colour= toColour(command[1]);
+                    if(colour!=null)
+                    {
+                        pos= Integer.parseInt(command[2]);
+                        commandList.add(command[0]+" "+colour+" "+pos);
+                        System.out.println("your command is: "+commandList.get(commandList.size()-1));
+                        receiver.send(new Card1Data(nickName, 1, pos, colour));
+                        break;
+                    }
                 }
+                System.out.println("Malformed command, write help to get all available commands");
+                break;
             case "card3Effect":
                 if(!checkCharacterCardPresence(3))
                 {
                     System.out.println("This character card ID doesn't correspond to any card!");
                     break;
                 }
-                pos= Integer.parseInt(command[1]);
-                System.out.println("your command is: "+command[0]+" "+pos);
-                receiver.send(new Card3_5Data(nickName, 3, pos));
+                if(command.length==2)
+                {
+                    pos= Integer.parseInt(command[1]);
+                    commandList.add(command[0]+" "+pos);
+                    System.out.println("your command is: "+commandList.get(commandList.size()-1));
+                    receiver.send(new Card3_5Data(nickName, 3, pos));
+                    break;
+                }
+                System.out.println("Malformed command, write help to get all available commands");
                 break;
             case "card5Effect":
                 if(!checkCharacterCardPresence(5))
@@ -199,9 +243,15 @@ public class CLI extends Thread implements PropertyChangeListener
                     System.out.println("This character card ID doesn't correspond to any card!");
                     break;
                 }
-                pos= Integer.parseInt(command[1]);
-                System.out.println("your command is: "+command[0]+" "+pos);
-                receiver.send(new Card3_5Data(nickName, 5, pos));
+                if(command.length==2)
+                {
+                    pos= Integer.parseInt(command[1]);
+                    commandList.add(command[0]+" "+pos);
+                    System.out.println("your command is: "+commandList.get(commandList.size()-1));
+                    receiver.send(new Card3_5Data(nickName, 5, pos));
+                    break;
+                }
+                System.out.println("Malformed command, write help to get all available commands");
                 break;
             case "card7Effect":
                 if(!checkCharacterCardPresence(7))
@@ -209,18 +259,24 @@ public class CLI extends Thread implements PropertyChangeListener
                     System.out.println("This character card ID doesn't correspond to any card!");
                     break;
                 }
-                for(int i=0; i<command.length; i++)
+                if(command.length%2==1 && command.length<=7)
                 {
-                    colour= toColour(command[i]);
-                    if(colour==null)
+                    for(int i=0; i<command.length; i++)
                     {
-                        System.out.println("Malformed command, write /help to get all available commands");
-                        break;
+                        colour= toColour(command[i]);
+                        if(colour==null)
+                        {
+                            System.out.println("Malformed command, write /help to get all available commands");
+                            break;
+                        }
+                        colourList.add(colour);
                     }
-                    colourList.add(colour);
+                    commandList.add(command[0]+" "+colourList);
+                    System.out.println("your command is: "+commandList.get(commandList.size()-1));
+                    receiver.send(new Card7_10Data(nickName, 7, colourList));
+                    break;
                 }
-                System.out.println("your command is: "+command[0]+" "+colourList);
-                receiver.send(new Card7_10Data(nickName, 7, colourList));
+                System.out.println("Malformed command, write help to get all available commands");
                 break;
             case "card10Effect":
                 if(!checkCharacterCardPresence(10))
@@ -228,18 +284,24 @@ public class CLI extends Thread implements PropertyChangeListener
                     System.out.println("This character card ID doesn't correspond to any card!");
                     break;
                 }
-                for(int i=0; i<command.length; i++)
+                if(command.length%2==1 && command.length<=5)
                 {
-                    colour= toColour(command[i]);
-                    if(colour==null)
+                    for(int i=0; i<command.length; i++)
                     {
-                        System.out.println("Malformed command, write /help to get all available commands");
-                        break;
+                        colour= toColour(command[i]);
+                        if(colour==null)
+                        {
+                            System.out.println("Malformed command, write /help to get all available commands");
+                            break;
+                        }
+                        colourList.add(colour);
                     }
-                    colourList.add(colour);
+                    commandList.add(command[0]+" "+colourList);
+                    System.out.println("your command is: "+commandList.get(commandList.size()-1));
+                    receiver.send(new Card7_10Data(nickName, 10, colourList));
+                    break;
                 }
-                System.out.println("your command is: "+command[0]+" "+colourList);
-                receiver.send(new Card7_10Data(nickName, 10, colourList));
+                System.out.println("Malformed command, write help to get all available commands");
                 break;
             case "card9Effect":
                 if(!checkCharacterCardPresence(9))
@@ -247,47 +309,71 @@ public class CLI extends Thread implements PropertyChangeListener
                     System.out.println("This character card ID doesn't correspond to any card!");
                     break;
                 }
-                colour= toColour(command[1]);
-                if(colour!=null)
+                if(command.length==2)
                 {
-                    System.out.println("your command is: "+command[0]+" "+colour);
-                    receiver.send(new Card9_11_12Data(nickName, 9, colour));
-                    break;
+                    colour= toColour(command[1]);
+                    if(colour!=null)
+                    {
+                        commandList.add(command[0]+" "+colour);
+                        System.out.println("your command is: "+commandList.get(commandList.size()-1));
+                        receiver.send(new Card9_11_12Data(nickName, 9, colour));
+                        break;
+                    }
                 }
+                System.out.println("Malformed command, write help to get all available commands");
+                break;
             case "card11Effect":
                 if(!checkCharacterCardPresence(11))
                 {
                     System.out.println("This character card ID doesn't correspond to any card!");
                     break;
                 }
-                colour= toColour(command[1]);
-                if(colour!=null)
+                if(command.length==2)
                 {
-                    System.out.println("your command is: "+command[0]+" "+colour);
-                    receiver.send(new Card9_11_12Data(nickName, 11, colour));
-                    break;
+                    colour= toColour(command[1]);
+                    if(colour!=null)
+                    {
+                        commandList.add(command[0]+" "+colour);
+                        System.out.println("your command is: "+commandList.get(commandList.size()-1));
+                        receiver.send(new Card9_11_12Data(nickName, 11, colour));
+                        break;
+                    }
                 }
+                System.out.println("Malformed command, write help to get all available commands");
+                break;
             case "card12Effect":
                 if(!checkCharacterCardPresence(12))
                 {
                     System.out.println("This character card ID doesn't correspond to any card!");
                     break;
                 }
-                colour= toColour(command[1]);
-                if(colour!=null)
+                if(command.length==2)
                 {
-                    System.out.println("your command is: "+command[0]+" "+colour);
-                    receiver.send(new Card9_11_12Data(nickName, 12, colour));
-                    break;
+                    colour= toColour(command[1]);
+                    if(colour!=null)
+                    {
+                        commandList.add(command[0]+" "+colour);
+                        System.out.println("your command is: "+commandList.get(commandList.size()-1));
+                        receiver.send(new Card9_11_12Data(nickName, 12, colour));
+                        break;
+                    }
                 }
+                System.out.println("Malformed command, write help to get all available commands");
+                break;
             case "card2Effect":
                 if(!checkCharacterCardPresence(2))
                 {
                     System.out.println("This character card ID doesn't correspond to any card!");
                     break;
                 }
-                System.out.println("your command is: "+command[0]);
-                receiver.send(new Card2_4_6_8(nickName, 2));
+                if(command.length==1)
+                {
+                    commandList.add(command[0]);
+                    System.out.println("your command is: "+commandList.get(commandList.size()-1));
+                    receiver.send(new Card2_4_6_8(nickName, 2));
+                    break;
+                }
+                System.out.println("Malformed command, write help to get all available commands");
                 break;
             case "card4Effect":
                 if(!checkCharacterCardPresence(4))
@@ -295,8 +381,14 @@ public class CLI extends Thread implements PropertyChangeListener
                     System.out.println("This character card ID doesn't correspond to any card!");
                     break;
                 }
-                System.out.println("your command is: "+command[0]);
-                receiver.send(new Card2_4_6_8(nickName, 4));
+                if(command.length==1)
+                {
+                    commandList.add(command[0]);
+                    System.out.println("your command is: "+commandList.get(commandList.size()-1));
+                    receiver.send(new Card2_4_6_8(nickName, 4));
+                    break;
+                }
+                System.out.println("Malformed command, write help to get all available commands");
                 break;
             case "card6Effect":
                 if(!checkCharacterCardPresence(6))
@@ -304,8 +396,14 @@ public class CLI extends Thread implements PropertyChangeListener
                     System.out.println("This character card ID doesn't correspond to any card!");
                     break;
                 }
-                System.out.println("your command is: "+command[0]);
-                receiver.send(new Card2_4_6_8(nickName, 6));
+                if(command.length==1)
+                {
+                    commandList.add(command[0]);
+                    System.out.println("your command is: "+commandList.get(commandList.size()-1));
+                    receiver.send(new Card2_4_6_8(nickName, 6));
+                    break;
+                }
+                System.out.println("Malformed command, write help to get all available commands");
                 break;
             case "card8Effect":
                 if(!checkCharacterCardPresence(8))
@@ -313,8 +411,14 @@ public class CLI extends Thread implements PropertyChangeListener
                     System.out.println("This character card ID doesn't correspond to any card!");
                     break;
                 }
-                System.out.println("your command is: "+command[0]);
-                receiver.send(new Card2_4_6_8(nickName, 8));
+                if(command.length==1)
+                {
+                    commandList.add(command[0]);
+                    System.out.println("your command is: "+commandList.get(commandList.size()-1));
+                    receiver.send(new Card2_4_6_8(nickName, 8));
+                    break;
+                }
+                System.out.println("Malformed command, write help to get all available commands");
                 break;
             case "help":
                 System.out.println("\n\n\nList of commands:");
@@ -324,11 +428,18 @@ public class CLI extends Thread implements PropertyChangeListener
                 System.out.println("studentToIsland [colour of the student] [position of the island]");
                 System.out.println("moveMN [new position of mother nature]");
                 System.out.println("card[num]Effect [[parameters specified by the card]]");
+                System.out.println("Write \"command list\" to get the full list of your inputted commands");
                 System.out.println("\nMoves order:");
                 System.out.println("1) choose the card you want to play");
                 System.out.println("2) move the students from your entrance");
                 System.out.println("3) move mother nature");
                 System.out.println("4) choose the cloud with which you want to refill your entrance");
+                break;
+            case "command list":
+                System.out.println("\n");
+                for(String c: commandList)
+                    System.out.println(c);
+                System.out.println("\n");
                 break;
             default:
                 System.out.println("Malformed command, write help to get all available commands");
@@ -413,7 +524,9 @@ public class CLI extends Thread implements PropertyChangeListener
     {
         synchronized(gameLock)
         {
-            System.out.println("\n\n\nClouds: ");
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+            System.out.println("Clouds: ");
             int i = 0;
             for (Cloud cloud : game.orElse(null).getCloudList()) {
                 System.out.print("cloud " + i + "   ");
@@ -435,7 +548,11 @@ public class CLI extends Thread implements PropertyChangeListener
             }
             System.out.println("\nPlayers: ");
             for (Player player : game.orElse(null).getPlayerList())
+            {
+                if(player.getuID().equals(nickName))
+                    System.out.print("You are ");
                 player.playerPrinter();
+            }
             System.out.println("It's the turn of: "+game.orElse(null).getCurrPlayerNickname());
         }
     }

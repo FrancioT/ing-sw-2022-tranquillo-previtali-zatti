@@ -139,7 +139,7 @@ class Classrooms implements Serializable
                 + space + sGreen + this.getStudentNum(Colour.green)
                 + space + sYellow + this.getStudentNum(Colour.yellow)
                 + space + sPink + this.getStudentNum(Colour.pink) + cRESET +
-                " students. \n Your teachers are "
+                " students. \nYour teachers are "
                 + sBlue + coloursTMap.get(Colour.blue)
                 + space + sRed + coloursTMap.get(Colour.red)
                 + space + sGreen + coloursTMap.get(Colour.green)
