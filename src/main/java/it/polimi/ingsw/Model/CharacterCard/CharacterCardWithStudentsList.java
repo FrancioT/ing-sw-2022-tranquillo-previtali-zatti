@@ -64,8 +64,6 @@ abstract class CharacterCardWithStudentsList extends CharacterCard{
             coloursMap.replace(c1, coloursMap.get(c1)+1);
         }
 
-        this.ccPrinter();
-
         System.out.println("This card has also these students on her: " + sBlue + coloursMap.get(Colour.blue)
                 + space + sRed + coloursMap.get(Colour.red)
                 + space + sGreen + coloursMap.get(Colour.green)

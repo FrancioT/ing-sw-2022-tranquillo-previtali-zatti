@@ -25,7 +25,7 @@ public class CLI extends Thread implements PropertyChangeListener
     private final Boolean gameLock;
     private Receiver receiver;
     private List<String> commandList;
-    private static final String serverIP="127.0.0.1";
+    private static final String serverIP="192.168.1.92";
     private static final int serverPort=12345;
     private static final String firstPlayerMessage="Choose game mode";
 
@@ -529,6 +529,12 @@ public class CLI extends Thread implements PropertyChangeListener
             System.out.println("\n");
             System.out.print("\033[H\033[2J");
             System.out.flush();
+            if (game.orElse(null).isExpertMode()) {
+                System.out.println("\nCharacter cards: ");
+                for (CharacterCard card : game.orElse(null).getCharacterCardList())
+                    card.ccPrinter();
+                System.out.println("\nTotal available coins: " + game.orElse(null).getUnusedCoins());
+            }
             System.out.println("Clouds: ");
             int i = 1;
             for (Cloud cloud : game.orElse(null).getCloudList()) {
@@ -542,12 +548,6 @@ public class CLI extends Thread implements PropertyChangeListener
                 System.out.print("Island " + i + "   ");
                 i++;
                 island.islandPrinter(game.orElse(null).isExpertMode());
-            }
-            if (game.orElse(null).isExpertMode()) {
-                System.out.println("\nCharacter cards: ");
-                for (CharacterCard card : game.orElse(null).getCharacterCardList())
-                    card.ccPrinter();
-                System.out.println("\nTotal available coins: " + game.orElse(null).getUnusedCoins());
             }
             System.out.println("\nPlayers: ");
             for (Player player : game.orElse(null).getPlayerList())
