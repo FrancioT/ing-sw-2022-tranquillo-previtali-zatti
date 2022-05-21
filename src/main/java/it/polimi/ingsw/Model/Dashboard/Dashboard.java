@@ -112,7 +112,7 @@ public class Dashboard implements Serializable
 
         this.classrooms.classroomPrinter();
 
-        System.out.print("You have "+towers.availabilityChecker()+" ");
+        System.out.print("With "+towers.availabilityChecker()+" ");
         this.towers.towersPrinter();
     }
 }

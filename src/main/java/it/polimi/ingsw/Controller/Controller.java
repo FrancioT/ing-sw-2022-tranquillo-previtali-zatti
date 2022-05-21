@@ -131,6 +131,7 @@ public class Controller extends Thread
         {
             target=null;
             colour=null;
+            index=-1;
             while (target==null || colour==null)
             {
                 try {

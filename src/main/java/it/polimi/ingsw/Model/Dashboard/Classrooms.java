@@ -144,7 +144,7 @@ class Classrooms implements Serializable
                 + space + sRed + coloursTMap.get(Colour.red)
                 + space + sGreen + coloursTMap.get(Colour.green)
                 + space + sYellow + coloursTMap.get(Colour.yellow)
-                + space + sPink + coloursTMap.get(Colour.pink) + cRESET + "\n");
+                + space + sPink + coloursTMap.get(Colour.pink) + cRESET);
 
     }
 }
