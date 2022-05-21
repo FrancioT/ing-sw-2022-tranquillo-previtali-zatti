@@ -127,10 +127,13 @@ public class Island extends Tile implements Serializable
             this.towers= null;
     }
 
-    public void islandPrinter() {
+    public void islandPrinter(boolean expertModeFlag) {
 
         System.out.print("students list: ");
         this.tilePrinter();
+
+        if(expertModeFlag)
+            System.out.println("Inhibition counter is: " + this.getInhibitionCounter());
 
         if(numTowers!=0)
         {
@@ -140,6 +143,7 @@ public class Island extends Tile implements Serializable
 
         if (motherNatureFlag)
             System.out.println("MotherNature is on this Island");
-        System.out.println("Inhibition counter is: " + this.getInhibitionCounter() + "\n");
+
+        System.out.println();
     }
 }

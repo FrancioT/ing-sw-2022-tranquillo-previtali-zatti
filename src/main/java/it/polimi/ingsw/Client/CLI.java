@@ -524,6 +524,7 @@ public class CLI extends Thread implements PropertyChangeListener
     {
         synchronized(gameLock)
         {
+            System.out.println("\n");
             System.out.print("\033[H\033[2J");
             System.out.flush();
             System.out.println("Clouds: ");
@@ -538,7 +539,7 @@ public class CLI extends Thread implements PropertyChangeListener
             for (Island island : game.orElse(null).getIslandList()) {
                 System.out.print("Island " + i + "   ");
                 i++;
-                island.islandPrinter();
+                island.islandPrinter(game.orElse(null).isExpertMode());
             }
             if (game.orElse(null).isExpertMode()) {
                 System.out.println("\nCharacter cards: ");
@@ -551,7 +552,7 @@ public class CLI extends Thread implements PropertyChangeListener
             {
                 if(player.getuID().equals(nickName))
                     System.out.print("You are ");
-                player.playerPrinter();
+                player.playerPrinter(game.orElse(null).isExpertMode());
             }
             System.out.println("It's the turn of: "+game.orElse(null).getCurrPlayerNickname());
         }

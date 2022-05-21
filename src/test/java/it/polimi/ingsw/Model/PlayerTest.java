@@ -15,7 +15,7 @@ class PlayerTest {
     @Test
     public void testGetStudentsNum() throws FullClassException {
         Player player = new Player("test", new Towers(ColourT.black, 1), null);
-        player.setNickName("test");
+        //player.setNickName("test");
         int num = player.getStudentNum(Colour.red);
         assertEquals(num, 0);
         player.addStudent(new Student(Colour.red));

@@ -10,7 +10,7 @@ import java.util.List;
 public class Player implements Serializable
 {
     private final String uID;
-    private String nickName;
+    //private String nickName;
     private final Dashboard playerDashboard;
     private final Deck playerDeck;
     private int coins;
@@ -26,7 +26,7 @@ public class Player implements Serializable
         this.model=model;
     }
 
-    public void setNickName(String nickName) { this.nickName=nickName; }
+    //public void setNickName(String nickName) { this.nickName=nickName; }
     public void entranceFiller(List<Student> students) throws FullEntranceException
     {
         playerDashboard.entranceFiller(students);
@@ -93,17 +93,25 @@ public class Player implements Serializable
     }
     public List<StandardCard> getHandCards() { return playerDeck.getHandCards(); }
 
-    public void playerPrinter(){
+    public void playerPrinter(boolean expertModeFlag){
+
         final String coinsYellow = "\u001B[33m";
         final String space = " ";
 
         final String cRESET = "\u001B[0m";
 
-        System.out.println(this.uID + " and in game you are called " + this.nickName + ", now you have " + coinsYellow + this.coins + cRESET);
+        System.out.print(this.uID);
+
+        if(expertModeFlag)
+            System.out.print(" now you have " + coinsYellow + this.coins + " coins" + cRESET);
+
+        System.out.println();
 
         System.out.println("On your entrance you have ");
 
         this.playerDashboard.dashboardPrinter();
+
+        this.playerDeck.deckPrinter();
 
     }
 }
