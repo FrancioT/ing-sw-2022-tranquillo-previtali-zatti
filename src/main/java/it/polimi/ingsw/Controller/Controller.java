@@ -6,6 +6,7 @@ import it.polimi.ingsw.Controller.Exceptions.IllegalMNMovementException;
 import it.polimi.ingsw.Model.Colour;
 import it.polimi.ingsw.Model.Exceptions.*;
 import it.polimi.ingsw.Model.ModelAndDecorators.Model;
+import it.polimi.ingsw.Model.Student;
 import it.polimi.ingsw.RemoteView.RemoteView;
 
 import java.util.*;
@@ -198,6 +199,12 @@ public class Controller extends Thread
                 catch(FullClassException e)
                 {
                     model.errorMessage("The classroom is full!", false);
+                    // re-adding the student to the entrance
+                    List<Student> removedStudent= new ArrayList<>();
+                    removedStudent.add(new Student(colour));
+                    try {
+                        model.entranceFiller(uID, removedStudent);
+                    }catch (NoSuchPlayerException|FullEntranceException e1){ throw new RuntimeException(); }
                     i--;
                 }
                 catch(Exception e)
@@ -245,6 +252,12 @@ public class Controller extends Thread
                 catch(IndexOutOfBoundsException e)
                 {
                     model.errorMessage("No such island with that index", false);
+                    // re-adding the student to the entrance
+                    List<Student> removedStudent= new ArrayList<>();
+                    removedStudent.add(new Student(colour));
+                    try {
+                        model.entranceFiller(uID, removedStudent);
+                    }catch (NoSuchPlayerException|FullEntranceException e1){ throw new RuntimeException(); }
                     i--;
                 }
                 catch(Exception e)
@@ -305,6 +318,7 @@ public class Controller extends Thread
                 }catch(RunOutOfTowersException e)
                 {
                     endGame=true;
+                    return;
                 }
                 catch(IndexOutOfBoundsException e)
                 {
