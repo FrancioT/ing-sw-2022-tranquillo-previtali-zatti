@@ -34,26 +34,6 @@ class DataBufferTest
         assertEquals(1,dataBufferP1.getCardPos());
         assertEquals(2,dataBufferP2.getCardPos());
 
-        try {
-            dataBufferP1.setCardPos(-1);
-            assertTrue(false);
-        } catch (IllegalArgumentException e){}
-
-        try {
-            dataBufferP1.setMnPos(-1);
-            assertTrue(false);
-        } catch (IllegalArgumentException e){}
-
-        try {
-            dataBufferP1.setCloudPos(-1);
-            assertTrue(false);
-        } catch (IllegalArgumentException e){}
-
-        try {
-            dataBufferP1.setIslandPos(-1);
-            assertTrue(false);
-        } catch (IllegalArgumentException e){}
-
         dataBufferP1.setTarget(true);
         dataBufferP2.setTarget(false);
         assertTrue(dataBufferP1.getTarget());
