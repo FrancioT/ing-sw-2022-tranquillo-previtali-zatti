@@ -5,11 +5,15 @@ import it.polimi.ingsw.Controller.DataBuffer;
 import it.polimi.ingsw.Model.Bag;
 import it.polimi.ingsw.Model.Colour;
 import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
+import it.polimi.ingsw.Model.Exceptions.RunOutOfStudentsException;
+import it.polimi.ingsw.Model.ModelAndDecorators.Model;
 import it.polimi.ingsw.Model.ModelAndDecorators.ModelTest;
 import it.polimi.ingsw.Model.Student;
 import it.polimi.ingsw.RemoteView.RemoteView;
 import org.junit.jupiter.api.Test;
 
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -66,5 +70,24 @@ class CharacterCard12Test
         assertTrue(controller.getModel().getStudentsNum("Aldo", Colour.red) == 2);
         assertTrue(controller.getModel().getStudentsNum("Giovanni", Colour.red) == 0);
         assertTrue(ModelTest.getPlayers(controller.getModel()).get(1).checkTeacherPresence(Colour.red));
+    }
+
+    @Test
+    public void printerTest() throws RunOutOfStudentsException
+    {
+        List<String> uIDs=new ArrayList<>();
+        uIDs.add("Francio"); uIDs.add("Tarallo");
+        Model model=new Model(uIDs, true);
+        CharacterCard12 card12 = new CharacterCard12(new Bag(), ModelTest.getPlayers(model));
+        System.setOut(new PrintStream(new OutputStream()
+        {
+            public void close() {}
+            public void flush() {}
+            public void write(byte[] b) {}
+            public void write(byte[] b, int off, int len) {}
+            public void write(int b) {}
+        }
+        ));
+        card12.ccPrinter();
     }
 }

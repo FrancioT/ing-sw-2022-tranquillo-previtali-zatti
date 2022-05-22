@@ -429,6 +429,8 @@ public class ModelTest
 
         assertEquals(model.islandsList.get(5).getNumTowers(), 2);
         assertEquals(model.islandsList.get(5).getStudentsColours().size(), 17);
+        assertTrue(model.motherNature.getCurrentPos() == getIslandsList(model).get(5));
+        assertTrue(getIslandsList(model).get(5).isMotherNatureFlag());
 
         assertTrue(model.islandsList.get(5).getTowersColour() == colourT1);
 
@@ -475,6 +477,18 @@ public class ModelTest
         assertEquals(expectedGreens, effectiveGreens);
         assertEquals(model.islandsList.get(5).getNumTowers(), 3);
         assertTrue(model.islandsList.get(5).getTowersColour() == colourT1);
+
+        model.endGame();
+
+        try {
+            model.activateCard(null, null, null);
+            fail();
+        }catch (NullPointerException n){}
+
+        try {
+            model.notify(null);
+            fail();
+        }catch (NullPointerException n){}
     }
 
     public static void changeCard(Model model, List<CharacterCard> cards)
@@ -490,4 +504,5 @@ public class ModelTest
     public static List<Island> getIslandsList(Model model) { return new ArrayList<>(model.islandsList); }
     public static List<Cloud> getCloudsList(Model model) { return new ArrayList<>(model.cloudsList); }
     public static List<CharacterCard> getCharacterCardList(Model model) { return new ArrayList<>(model.characterCardList); }
+    public static MotherNature getMN(Model model) {return model.motherNature;}
 }

@@ -3,10 +3,13 @@ package it.polimi.ingsw.Model;
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.DataBuffer;
 import it.polimi.ingsw.Model.Exceptions.*;
+import it.polimi.ingsw.Model.ModelAndDecorators.Model;
 import it.polimi.ingsw.Model.ModelAndDecorators.ModelTest;
 import it.polimi.ingsw.RemoteView.RemoteView;
 import org.junit.jupiter.api.Test;
 
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -119,4 +122,32 @@ class PlayerTest {
         assertEquals(ModelTest.getPlayers(controller.getModel()).get(0).getHandCards().size(), 10);
     }
 
+    @Test
+    public void printerTest() throws Exception{
+        List<String> uIDs=new ArrayList<>();
+        uIDs.add("Francio"); uIDs.add("Tarallo");
+        Model model=new Model(uIDs, true);
+        Player player = new Player("Aldo", new Towers(ColourT.black, 0), model);
+        Player player1 = new Player("Giovanni", new Towers(ColourT.white, 0), model);
+        Player player2 = new Player("Giacomo", new Towers(ColourT.grey, 0), model);
+        player.addTeacher(new Teacher(Colour.red));
+        player.addStudent(new Student(Colour.red));
+        List<Student> students = new ArrayList<>();
+        students.add(new Student(Colour.red));
+        students.add(new Student(Colour.red));
+        students.add(new Student(Colour.blue));
+        player.entranceFiller(students);
+        System.setOut(new PrintStream(new OutputStream()
+        {
+            public void close() {}
+            public void flush() {}
+            public void write(byte[] b) {}
+            public void write(byte[] b, int off, int len) {}
+            public void write(int b) {}
+        }
+        ));
+        player.playerPrinter(true);
+        player1.playerPrinter(true);
+        player2.playerPrinter(true);
+    }
 }

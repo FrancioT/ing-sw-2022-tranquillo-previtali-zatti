@@ -3,13 +3,13 @@ package it.polimi.ingsw.Model.CharacterCard;
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.DataBuffer;
 import it.polimi.ingsw.Model.*;
-import it.polimi.ingsw.Model.Exceptions.NoSuchStudentException;
-import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
-import it.polimi.ingsw.Model.Exceptions.RunOutOfStudentsException;
+import it.polimi.ingsw.Model.Exceptions.*;
 import it.polimi.ingsw.Model.ModelAndDecorators.ModelTest;
 import it.polimi.ingsw.RemoteView.RemoteView;
 import org.junit.jupiter.api.Test;
 
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,7 +39,8 @@ class CharacterCard1Test {
 
     @Test
     public void CharacterCard1Handle() throws Exception {
-        CharacterCard1 card = new CharacterCard1(new Bag());
+        Bag bag = new Bag();
+        CharacterCard1 card = new CharacterCard1(bag);
         List<CharacterCard> cards = new ArrayList<>();
         cards.add(card);
         Map<String, DataBuffer> uIDs = new HashMap<>();
@@ -92,5 +93,34 @@ class CharacterCard1Test {
 
         List<Colour> studentsOnIsland = new ArrayList<>(ModelTest.getIslandsList(controller.getModel()).get(2).getStudentsColours());
         assertTrue(studentsOnIsland.get(studentsOnIsland.size()-1) == (Colour.red));
+
+        for(int i=0; i<5; i++)
+            bag.randomExtraction();
+
+        try {
+            bag.randomExtraction();
+            fail();
+        }catch (RunOutOfStudentsException r){}
+
+        try {
+            controller.getModel().activateCard("Pippo", datas, controller);
+            fail();
+        }catch (IllegalArgumentException i){}
+    }
+
+    @Test
+    public void printerTest() throws RunOutOfStudentsException, FullTowersException, RunOutOfTowersException, LinkFailedException {
+        CharacterCard1 card = new CharacterCard1(new Bag());
+
+        System.setOut(new PrintStream(new OutputStream()
+        {
+            public void close() {}
+            public void flush() {}
+            public void write(byte[] b) {}
+            public void write(byte[] b, int off, int len) {}
+            public void write(int b) {}
+        }
+        ));
+        card.ccPrinter();
     }
 }

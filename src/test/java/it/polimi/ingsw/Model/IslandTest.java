@@ -5,6 +5,9 @@ import it.polimi.ingsw.Model.ModelAndDecorators.Model;
 import it.polimi.ingsw.Model.ModelAndDecorators.ModelTest;
 import org.junit.jupiter.api.Test;
 
+import java.io.*;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -155,6 +158,7 @@ class IslandTest
 
         List<Colour> studentsOnIsland = new ArrayList<>(island.getStudentsColours());
         assertEquals(studentsOnIsland.size(), 8);
+        assertTrue(island.isMotherNatureFlag());
         int numOfTowers = island.getNumTowers();
 
         assertEquals(numOfTowers, 2);
@@ -164,5 +168,59 @@ class IslandTest
             island.subInhibition();
             fail();
         }catch (IllegalAccessError i){}
+    }
+
+    @Test
+    public void printerTest() throws RunOutOfStudentsException, FullTowersException, RunOutOfTowersException, LinkFailedException {
+        List<String> uIDs=new ArrayList<>();
+        uIDs.add("Francio"); uIDs.add("Tarallo");
+        Model model=new Model(uIDs, true);
+        Island island= new Island(true, model);
+        island.towersSwitcher(new Towers(ColourT.black, 0));
+        System.setOut(new PrintStream(new OutputStream()
+        {
+            public void close() {}
+            public void flush() {}
+            public void write(byte[] b) {}
+            public void write(byte[] b, int off, int len) {}
+            public void write(int b) {}
+        }
+        ));
+        island.islandPrinter(true);
+    }
+
+    @Test
+    public void serializationTest() throws IOException, IOException, FullTowersException, RunOutOfTowersException, LinkFailedException {
+        List<String> uIDs=new ArrayList<>();
+        uIDs.add("Francio"); uIDs.add("Tarallo");
+        Model model = new Model(uIDs, false);
+        Island island= new Island(true, model);
+        island.addStudent(new Student(Colour.pink));
+        island.addStudent(new Student(Colour.red));
+        island.towersSwitcher(new Towers(ColourT.black, 0));
+        ServerSocket serverSocket= new ServerSocket(55132);
+        Thread server= new Thread(){
+            public void run()
+            {
+                Socket client;
+                try {
+                    client= serverSocket.accept();
+                    ObjectInputStream in= new ObjectInputStream(client.getInputStream());
+                    Object message= in.readObject();
+                    Island receivedIsland= (Island)message;
+                    assertFalse(receivedIsland.getInhibition());
+                    assertTrue(receivedIsland.isMotherNatureFlag());
+                    assertEquals(receivedIsland.getNumTowers(), 1);
+                    assertEquals(receivedIsland.getInhibitionCounter(), 0);
+                    assertEquals(receivedIsland.getStudentsColours().size(), 2);
+                    assertTrue(receivedIsland.getStudentsColours().contains(Colour.red));
+                    assertTrue(receivedIsland.getStudentsColours().contains(Colour.pink));
+                }catch (Exception e) { throw new RuntimeException(e.toString()); }
+            }
+        };
+        server.start();
+        Socket socket= new Socket("127.0.0.1", 55132);
+        ObjectOutputStream out= new ObjectOutputStream(socket.getOutputStream());
+        out.writeObject(island);
     }
 }
