@@ -4,6 +4,10 @@ import it.polimi.ingsw.Model.Exceptions.FullEntranceException;
 import it.polimi.ingsw.Model.Exceptions.RunOutOfStudentsException;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class CloudTest {
@@ -44,5 +48,21 @@ class CloudTest {
             fail();
         }catch (FullEntranceException e){}
 
+    }
+    @Test
+    public void printerTest() throws RunOutOfStudentsException
+    {
+        Cloud c= new Cloud(new Bag());
+        c.cloudFiller(4);
+        System.setOut(new PrintStream(new OutputStream()
+            {
+                public void close() {}
+                public void flush() {}
+                public void write(byte[] b) {}
+                public void write(byte[] b, int off, int len) {}
+                public void write(int b) {}
+            }
+        ));
+        c.cloudPrinter();
     }
 }
