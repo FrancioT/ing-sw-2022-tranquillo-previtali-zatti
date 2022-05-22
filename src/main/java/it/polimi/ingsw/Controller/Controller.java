@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Controller;
 
 import it.polimi.ingsw.Controller.Exceptions.CardActivatedException;
+import it.polimi.ingsw.Controller.Exceptions.ConnectionErrorException;
 import it.polimi.ingsw.Controller.Exceptions.IllegalMNMovementException;
 import it.polimi.ingsw.Model.Colour;
 import it.polimi.ingsw.Model.Exceptions.*;
@@ -17,6 +18,8 @@ public class Controller extends Thread
     private Model model;
     private boolean decorationFlag;
     private boolean cardActivated;
+    private final List<Integer> chosenClouds; //list used to remember the indexes of the cloud already chosen by another
+                                        //player in this round
 
     public Controller(Map<String, DataBuffer> users, boolean expertMode, List<RemoteView> views)
     {
@@ -28,6 +31,7 @@ public class Controller extends Thread
         decorationFlag=false;
         usersData=new HashMap<>(users);
         cardActivated=false;
+        chosenClouds=new ArrayList<>();
     }
     public synchronized Model getModel() { return model; }
     public synchronized void decorateModel(Model model)
@@ -51,10 +55,20 @@ public class Controller extends Thread
                     if(!endGame)
                         chooseCloud(player);
                 }
+                chosenClouds.clear();
             }
-            model.endGame();
         }
-        catch (Exception e) { /*client.sendMessage("Unexpected error!");*/ } /////////////////////////////////////////////////
+        catch(ConnectionErrorException e)
+        {
+            model.errorMessage("A player disconnected", true);
+        }
+        catch (Exception e)
+        {
+            System.out.println("An exception occurred"+e.getClass());
+            model.errorMessage("An unexpected error occurred", true);
+        }
+        model.endGame();
+        System.out.println("Closing game");
     }
     void cloudsFilling()
     {
@@ -66,22 +80,31 @@ public class Controller extends Thread
         }catch(RunOutOfStudentsException e)
         { endGame=true; }
     }
-    void cardsPhase() throws NoSuchPlayerException, InterruptedException
+    void cardsPhase() throws InterruptedException, NoSuchPlayerException, ConnectionErrorException
     {
         List<String> order=new ArrayList<>();  // returning List
         // SortedMap used to save player and his card round value in order, if there is more than
         // one player which played the same card it is saved (in order of first played to last one)
         // in the list contained in the value of the map
         SortedMap<Integer, List<String>> playersOrder=new TreeMap<>();
-        int pos;
+        int pos= -1;
         List<Integer> playerCards;
         for(String currPlayer:uIDsList)
         {
+            pos= -1;
             model.setCurrentPlayer(currPlayer);
             playerCards= model.getCardsRoundValues(currPlayer);
             if(playerCards.size()==1)
                 endGame=true;
-            pos= usersData.get(currPlayer).getCardPos();
+            while (pos==-1)
+            {
+                pos = usersData.get(currPlayer).getCardPos();
+                if(pos<0 || pos>=playerCards.size())
+                {
+                    pos=-1;
+                    model.errorMessage("There is no card with the chosen index", false);
+                }
+            }
             // check if the card was already played by someone else in this round
             boolean finished= false;    // flag used to end the external loop
             boolean noOtherCard= true;  // flag used to end the internal loop
@@ -101,7 +124,8 @@ public class Controller extends Thread
                     }
                     else
                     {
-                        // client.send("chose another card!") ////////////////////////////////////////////////////////////////
+                        model.errorMessage("This card was already chosen by someone else in this turn, "
+                                        +"please choose another one", false);
                         pos = usersData.get(currPlayer).getCardPos();
                     }
                 }
@@ -119,7 +143,7 @@ public class Controller extends Thread
             order.addAll(s);
         uIDsList= order;
     }
-    void moveStudents(String uID) throws Exception
+    void moveStudents(String uID) throws InterruptedException, ConnectionErrorException
     {
         int n=uIDsList.size()%2;  // n=number of students that can be moved
         n=n*4 + (1-n)*3;       // n=3 if number of players is 2 or 4
@@ -131,116 +155,239 @@ public class Controller extends Thread
         {
             target=null;
             colour=null;
-            index=-1;
             while (target==null || colour==null)
             {
                 try {
                     if(target==null)
+                    {
                         target = usersData.get(uID).getTarget();
+                    }
                     colour = usersData.get(uID).getStudentColour();
-                } catch (CardActivatedException e) {
+                }
+                catch (CardActivatedException e)
+                {
                     if (!cardActivated)
                     {
                         cardActivated=true;
-                        model.activateCard(uID, usersData.get(uID), this);
+                        try {
+                            model.activateCard(uID, usersData.get(uID), this);
+                        }
+                        catch (Exception e1)
+                        {
+                            model.errorMessage("An error occurred during the activation of the card, "
+                                        +"please try again or move on", false);
+                            cardActivated=false;
+                        }
                     }
                     else
-                        throw new CardActivatedException();    ///////////////////////////////////////////////////////////////
-                        // here you have to notify the client that he can't activate the card another time
-                        // instead of throwing an exception
-                        //////////////////////////////////////////////////////////////////////////////////////////////////////
+                    {
+                        model.errorMessage("Another card was already activated in this turn", false);
+                    }
                 }
             }
             if(target)
-                model.addStudentDashboard(uID, model.entranceEmptier(uID, colour));
+            {
+                try {
+                    model.addStudentDashboard(uID, model.entranceEmptier(uID, colour));
+                }
+                catch(NoSuchStudentException e)
+                {
+                    model.errorMessage("No such student with that colour in your entrance", false);
+                    i--;
+                }
+                catch(FullClassException e)
+                {
+                    model.errorMessage("The classroom is full!", false);
+                    i--;
+                }
+                catch(Exception e)
+                {
+                    throw new RuntimeException();
+                }
+            }
             else
             {
+                index=-1;
                 while (index==-1)
                 {
                     try {
                         index= usersData.get(uID).getIslandPos();
-                    } catch (CardActivatedException e) {
+                    }
+                    catch (CardActivatedException e)
+                    {
                         if (!cardActivated)
                         {
                             cardActivated=true;
-                            model.activateCard(uID, usersData.get(uID), this);
+                            try {
+                                model.activateCard(uID, usersData.get(uID), this);
+                            }
+                            catch (Exception e1)
+                            {
+                                model.errorMessage("An error occurred during the activation of the card, "
+                                        +"please try again or move on", false);
+                                cardActivated=false;
+                            }
                         }
                         else
-                            throw new CardActivatedException();    ///////////////////////////////////////////////////////////
-                        // here you have to notify the client that he can't activate the card another time
-                        // instead of throwing an exception
-                        //////////////////////////////////////////////////////////////////////////////////////////////////////
+                        {
+                            model.errorMessage("Another card was already activated in this turn", false);
+                        }
                     }
                 }
-                model.addStudentIsland(index, model.entranceEmptier(uID, colour));
+                try {
+                    model.addStudentIsland(index, model.entranceEmptier(uID, colour));
+                }
+                catch(NoSuchStudentException e)
+                {
+                    model.errorMessage("No such student with that colour in your entrance", false);
+                    i--;
+                }
+                catch(IndexOutOfBoundsException e)
+                {
+                    model.errorMessage("No such island with that index", false);
+                    i--;
+                }
+                catch(Exception e)
+                {
+                    throw new RuntimeException();
+                }
             }
         }
     }
-    void moveMN(String uID) throws Exception
+    void moveMN(String uID) throws InterruptedException, EmptyException, NoSuchPlayerException, ConnectionErrorException
     {
-        int newPos=-1;
-        while (newPos==-1)
+        boolean badChoice=true; // flag used in case the user asked for an unacceptable movement of mother
+                                // nature, in this case we ask again to choose a movement
+        while(badChoice)
         {
-            try {
-                newPos = usersData.get(uID).getMnPos();
-            } catch (CardActivatedException e){
-                if (!cardActivated)
-                {
-                    cardActivated=true;
-                    model.activateCard(uID, usersData.get(uID), this);
+            badChoice=false;
+            int newPos=-1;
+            while (newPos==-1)
+            {
+                try {
+                    newPos = usersData.get(uID).getMnPos();
                 }
+                catch (CardActivatedException e)
+                {
+                    if (!cardActivated)
+                    {
+                        cardActivated=true;
+                        try {
+                            model.activateCard(uID, usersData.get(uID), this);
+                        }
+                        catch (Exception e1)
+                        {
+                            model.errorMessage("An error occurred during the activation of the card, "
+                                    +"please try again or move on", false);
+                            cardActivated=false;
+                        }
+                    }
+                    else
+                    {
+                        model.errorMessage("Another card was already activated in this turn", false);
+                    }
+                }
+            }
+            int oldPos= model.getCurrPosMN();
+            try
+            {
+                if(newPos==oldPos)
+                    throw new IllegalMNMovementException();
+                int delta_pos;
+                if(newPos>oldPos)
+                    delta_pos= newPos-oldPos;
                 else
-                    throw new CardActivatedException();    ///////////////////////////////////////////////////////////////////
-                // here you have to notify the client that he can't activate the card another time
-                // instead of throwing an exception
-                //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    delta_pos= model.getNumIslands()-oldPos+newPos;
+                if(delta_pos > model.getLastCardValue(uID) )
+                    throw new IllegalMNMovementException();
+                try {
+                    model.moveMN(delta_pos);
+                }catch(RunOutOfTowersException e)
+                {
+                    endGame=true;
+                }
+                catch(IndexOutOfBoundsException e)
+                {
+                    throw new IllegalMNMovementException();
+                }
+                catch(Exception e)
+                {
+                    throw new RuntimeException();
+                }
+                if(model.getNumIslands()<=3)
+                    endGame=true;
+            }catch(IllegalMNMovementException e)
+            {
+                model.errorMessage("Unacceptable new mother nature position, please choose again",
+                                    false);
+                badChoice=true;
             }
         }
-        int oldPos= model.getCurrPosMN();
-        if(newPos==oldPos)
-            throw new IllegalMNMovementException();
-        int delta_pos;
-        if(newPos>oldPos)
-            delta_pos= newPos-oldPos;
-        else
-            delta_pos= model.getNumIslands()-oldPos+newPos;
-        if(delta_pos > model.getLastCardValue(uID) )
-            throw new IllegalMNMovementException();
-        try {
-            model.moveMN(delta_pos);
-        }catch(RunOutOfTowersException e)
-        {
-            endGame=true;
-        }
-        if(model.getNumIslands()<=3)
-            endGame=true;
     }
-    void chooseCloud(String uID) throws Exception
+    void chooseCloud(String uID) throws InterruptedException, ConnectionErrorException
     {
-        int index=-1;
-        while (index==-1)
+        boolean badChoice=true; // flag used in case the user asked for an unacceptable could index,
+                                // in this case we ask again to choose a cloud
+        while(badChoice)
         {
-            try {
-                index = usersData.get(uID).getCloudPos();
-            } catch (CardActivatedException e){
-                if (!cardActivated)
-                {
-                    cardActivated=true;
-                    model.activateCard(uID, usersData.get(uID), this);
+            badChoice=false;
+            int index=-1;
+            while (index==-1)
+            {
+                try {
+                    index = usersData.get(uID).getCloudPos();
+                    if(chosenClouds.contains(index))
+                    {
+                        model.errorMessage("This cloud was already taken, please choose again",
+                                            false);
+                        index=-1;   // repeat the loop and the choice
+                    }
+                    else
+                        chosenClouds.add(index);
                 }
-                else
-                    throw new CardActivatedException();    ///////////////////////////////////////////////////////////////////
-                // here you have to notify the client that he can't activate the card another time
-                // instead of throwing an exception
-                //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                catch (CardActivatedException e)
+                {
+                    if (!cardActivated)
+                    {
+                        cardActivated=true;
+                        try {
+                            model.activateCard(uID, usersData.get(uID), this);
+                        }
+                        catch (Exception e1)
+                        {
+                            model.errorMessage("An error occurred during the activation of the card, "
+                                    +"please try again or move on", false);
+                            cardActivated=false;
+                        }
+                    }
+                    else
+                    {
+                        model.errorMessage("Another card was already activated in this turn", false);
+                    }
+                }
+            }
+            try {
+                model.cloudEmptier(uID, index);
+            }catch(NoSuchPlayerException|FullEntranceException e)
+            {
+                throw new RuntimeException();
+            }
+            catch(IndexOutOfBoundsException e)
+            {
+                model.errorMessage("There is no cloud with that index, please choose again", false);
+                badChoice=true;
             }
         }
-        model.cloudEmptier(uID, index);
 
         if(decorationFlag) {
             model = new Model(model);
             decorationFlag=false;
         }
         cardActivated=false;
+    }
+    public void notifyDisconnection()
+    {
+        for(DataBuffer dataBuffer: usersData.values())
+            dataBuffer.setErrorStatus();
     }
 }

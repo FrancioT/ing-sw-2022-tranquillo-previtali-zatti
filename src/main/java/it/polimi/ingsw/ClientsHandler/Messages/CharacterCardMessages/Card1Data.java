@@ -28,6 +28,7 @@ public class Card1Data extends CardMessage
             dataBuffer.setCharacterCardID(cardID);
             dataBuffer.setIslandPos(islandPos);
             dataBuffer.setStudColour(studColour);
+            dataBuffer.activationCardRequest();
         }
     }
 }

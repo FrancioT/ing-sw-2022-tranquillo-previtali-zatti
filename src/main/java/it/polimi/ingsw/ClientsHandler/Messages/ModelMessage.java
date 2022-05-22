@@ -19,6 +19,7 @@ public class ModelMessage implements Serializable
     private final int unusedCoins;
     private final boolean gameEndedFlag;
     private final boolean expertModeFlag;
+    private final ExceptionMessage error;
     static final long serialVersionUID= 90000L;
 
     public ModelMessage(boolean expertModeFlag, List<Island> islandList, List<Cloud> cloudList, List<Player> playerList,
@@ -41,6 +42,19 @@ public class ModelMessage implements Serializable
         this.characterCardList= characterCardList;
         this.unusedCoins= unusedCoins;
         this.gameEndedFlag= gameEndedFlag;
+        this.error= null;
+    }
+    public ModelMessage(ExceptionMessage message)
+    {
+        this.expertModeFlag= false;
+        this.islandList= null;
+        this.cloudList= null;
+        this.playerList= null;
+        this.currPlayerNickname= null;
+        this.characterCardList= null;
+        this.unusedCoins= -1;
+        this.gameEndedFlag= false;
+        this.error= message;
     }
     public List<Island> getIslandList() { return new ArrayList<>(islandList); }
     public List<Cloud> getCloudList() { return new ArrayList<>(cloudList); }
@@ -50,4 +64,6 @@ public class ModelMessage implements Serializable
     public int getUnusedCoins() { return unusedCoins; }
     public boolean isExpertMode() { return expertModeFlag; }
     public boolean hasGameEnded() { return gameEndedFlag; }
+    public boolean errorStatus() { return error!=null; }
+    public ExceptionMessage getErrorMessage() { return error; }
 }

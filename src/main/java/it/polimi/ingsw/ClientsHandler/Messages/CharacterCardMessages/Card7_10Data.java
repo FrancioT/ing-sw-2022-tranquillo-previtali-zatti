@@ -26,6 +26,7 @@ public class Card7_10Data extends CardMessage
         {
             dataBuffer.setCharacterCardID(cardID);
             dataBuffer.setStudentsColours(studColours);
+            dataBuffer.activationCardRequest();
         }
     }
 }

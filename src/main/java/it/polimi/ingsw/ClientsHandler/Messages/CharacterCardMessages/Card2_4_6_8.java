@@ -13,6 +13,10 @@ public class Card2_4_6_8 extends CardMessage
     public void handle(DataBuffer dataBuffer)
     {
         super.checkDataBuffer(dataBuffer);
-        dataBuffer.setCharacterCardID(cardID);
+        synchronized (dataBuffer)
+        {
+            dataBuffer.setCharacterCardID(cardID);
+            dataBuffer.activationCardRequest();
+        }
     }
 }

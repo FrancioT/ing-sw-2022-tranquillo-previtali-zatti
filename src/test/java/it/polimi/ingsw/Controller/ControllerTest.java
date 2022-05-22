@@ -1,7 +1,5 @@
 package it.polimi.ingsw.Controller;
 
-import it.polimi.ingsw.Controller.Exceptions.CardActivatedException;
-import it.polimi.ingsw.Controller.Exceptions.IllegalMNMovementException;
 import it.polimi.ingsw.Model.Colour;
 import it.polimi.ingsw.RemoteView.RemoteView;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,8 +9,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ControllerTest
 {
@@ -83,10 +79,6 @@ class ControllerTest
         controller.moveMN(p1);
         controller.moveMN(p2);
         controller.moveMN(p3);
-        users.get(p1).setMnPos(5);
-        assertThrows(IllegalMNMovementException.class, ()->controller.moveMN(p1));
-        users.get(p1).setMnPos(8);
-        assertThrows(IllegalMNMovementException.class, ()->controller.moveMN(p1));
     }
 
     @Test
@@ -99,6 +91,5 @@ class ControllerTest
         controller.chooseCloud(p1);
         controller.chooseCloud(p2);
         controller.chooseCloud(p3);
-
     }
 }

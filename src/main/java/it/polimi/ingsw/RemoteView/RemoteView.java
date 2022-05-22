@@ -20,14 +20,21 @@ public class RemoteView implements PropertyChangeListener
         String eventName=event.getPropertyName();
         if("ModelModifications".equals(eventName))
         {
+            ModelMessage message= (ModelMessage) event.getNewValue();
             try {
-                client.send((ModelMessage) event.getNewValue());
+                client.send(message);
             } catch (IOException e)
             {
-                System.out.println("Failed to send Model modifications to client: " + client.getIP().toString());
-            }
-            if(((ModelMessage) event.getNewValue()).hasGameEnded())
+                System.out.println("Failed to send Model modifications to client: " + client.getIP());
                 try{ close(); } catch(IOException ignored){}
+            }
+            if(message.errorStatus())
+            {
+                if(message.getErrorMessage().isFatal())
+                    try{ close(); } catch(IOException ignored){}
+            }
+            else if(message.hasGameEnded())
+                    try{ close(); } catch(IOException ignored){}
         }
     }
     private void close() throws IOException

@@ -22,6 +22,7 @@ public class Card3_5Data extends CardMessage
         {
             dataBuffer.setCharacterCardID(cardID);
             dataBuffer.setIslandPos(islandPos);
+            dataBuffer.activationCardRequest();
         }
     }
 }

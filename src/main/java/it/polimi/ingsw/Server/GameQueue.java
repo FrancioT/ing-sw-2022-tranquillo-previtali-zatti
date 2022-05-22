@@ -33,6 +33,7 @@ public class GameQueue
         for(int i=1; i<players_num; i++)
             acceptConnection();
         List<RemoteView> remoteViews= new ArrayList<>();
+        List<ClientHandler> clientHandlerList= new ArrayList<>();
         Map<String, DataBuffer> players= new HashMap<>();
         for(Socket client: clients.keySet())
         {
@@ -40,9 +41,14 @@ public class GameQueue
             players.put(clients.get(client), dataBuffer);
             ClientHandler clientHandler= new ClientHandler(client, dataBuffer);
             remoteViews.add(new RemoteView(clientHandler));
-            clientHandler.start();
+            clientHandlerList.add(clientHandler);
         }
-        Thread game= new Controller(players, expertMode, remoteViews);
+        Controller game= new Controller(players, expertMode, remoteViews);
+        for(ClientHandler c: clientHandlerList)
+        {
+            c.setController(game);
+            c.start();
+        }
         game.start();
         return game;
     }

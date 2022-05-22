@@ -25,7 +25,7 @@ public class CLI extends Thread implements PropertyChangeListener
     private final Boolean gameLock;
     private Receiver receiver;
     private List<String> commandList;
-    private static final String serverIP="192.168.1.92";
+    private static final String serverIP="127.0.0.1";
     private static final int serverPort=12345;
     private static final String firstPlayerMessage="Choose game mode";
 
@@ -75,7 +75,8 @@ public class CLI extends Thread implements PropertyChangeListener
         {
             try {
                 handleCommands();
-            }catch (IOException e)
+            }
+            catch (IOException e)
             {
                 System.out.println("Error in communicating with the server");
                 try{ receiver.close(); } catch(IOException ignored){}
@@ -143,11 +144,14 @@ public class CLI extends Thread implements PropertyChangeListener
                 if(command.length==2)
                 {
                     pos= Integer.parseInt(command[1]);
-                    pos--;
-                    commandList.add("chooseCard "+pos);
-                    System.out.println("your command is: "+commandList.get(commandList.size()-1));
-                    receiver.send(new ChooseCard(nickName, pos));
-                    break;
+                    if(pos>0)
+                    {
+                        commandList.add("chooseCard "+pos);
+                        System.out.println("your command is: "+commandList.get(commandList.size()-1));
+                        pos--;
+                        receiver.send(new ChooseCard(nickName, pos));
+                        break;
+                    }
                 }
                 System.out.println("Malformed command, write help to get all available commands");
                 break;
@@ -155,11 +159,14 @@ public class CLI extends Thread implements PropertyChangeListener
                 if(command.length==2)
                 {
                     pos= Integer.parseInt(command[1]);
-                    pos--;
-                    commandList.add("chooseCloud "+pos);
-                    System.out.println("your command is: "+commandList.get(commandList.size()-1));
-                    receiver.send(new ChooseCloud(nickName, pos));
-                    break;
+                    if(pos>0)
+                    {
+                        commandList.add("chooseCloud "+pos);
+                        System.out.println("your command is: "+commandList.get(commandList.size()-1));
+                        pos--;
+                        receiver.send(new ChooseCloud(nickName, pos));
+                        break;
+                    }
                 }
                 System.out.println("Malformed command, write help to get all available commands");
                 break;
@@ -167,11 +174,14 @@ public class CLI extends Thread implements PropertyChangeListener
                 if(command.length==2)
                 {
                     pos= Integer.parseInt(command[1]);
-                    pos--;
-                    commandList.add("moveMN "+pos);
-                    System.out.println("your command is: "+commandList.get(commandList.size()-1));
-                    receiver.send(new MoveMN(nickName, pos));
-                    break;
+                    if(pos>0)
+                    {
+                        commandList.add("moveMN "+pos);
+                        System.out.println("your command is: "+commandList.get(commandList.size()-1));
+                        pos--;
+                        receiver.send(new MoveMN(nickName, pos));
+                        break;
+                    }
                 }
                 System.out.println("Malformed command, write help to get all available commands");
                 break;
@@ -196,11 +206,14 @@ public class CLI extends Thread implements PropertyChangeListener
                     if(colour!=null)
                     {
                         pos= Integer.parseInt(command[2]);
-                        pos--;
-                        commandList.add("studentToIsland "+colour+" "+pos);
-                        System.out.println("your command is: "+commandList.get(commandList.size()-1));
-                        receiver.send(new StudentToIsland(nickName, colour, pos));
-                        break;
+                        if(pos>0)
+                        {
+                            commandList.add("studentToIsland "+colour+" "+pos);
+                            System.out.println("your command is: "+commandList.get(commandList.size()-1));
+                            pos--;
+                            receiver.send(new StudentToIsland(nickName, colour, pos));
+                            break;
+                        }
                     }
                 }
                 System.out.println("Malformed command, write help to get all available commands");
@@ -217,11 +230,14 @@ public class CLI extends Thread implements PropertyChangeListener
                     if(colour!=null)
                     {
                         pos= Integer.parseInt(command[2]);
-                        pos--;
-                        commandList.add("card1Effect "+colour+" "+pos);
-                        System.out.println("your command is: "+commandList.get(commandList.size()-1));
-                        receiver.send(new Card1Data(nickName, 1, pos, colour));
-                        break;
+                        if(pos>0)
+                        {
+                            commandList.add("card1Effect "+colour+" "+pos);
+                            System.out.println("your command is: "+commandList.get(commandList.size()-1));
+                            pos--;
+                            receiver.send(new Card1Data(nickName, 1, pos, colour));
+                            break;
+                        }
                     }
                 }
                 System.out.println("Malformed command, write help to get all available commands");
@@ -235,11 +251,14 @@ public class CLI extends Thread implements PropertyChangeListener
                 if(command.length==2)
                 {
                     pos= Integer.parseInt(command[1]);
-                    pos--;
-                    commandList.add("card3Effect "+pos);
-                    System.out.println("your command is: "+commandList.get(commandList.size()-1));
-                    receiver.send(new Card3_5Data(nickName, 3, pos));
-                    break;
+                    if(pos>0)
+                    {
+                        commandList.add("card3Effect "+pos);
+                        System.out.println("your command is: "+commandList.get(commandList.size()-1));
+                        pos--;
+                        receiver.send(new Card3_5Data(nickName, 3, pos));
+                        break;
+                    }
                 }
                 System.out.println("Malformed command, write help to get all available commands");
                 break;
@@ -252,11 +271,14 @@ public class CLI extends Thread implements PropertyChangeListener
                 if(command.length==2)
                 {
                     pos= Integer.parseInt(command[1]);
-                    pos--;
-                    commandList.add("card5Effect "+pos);
-                    System.out.println("your command is: "+commandList.get(commandList.size()-1));
-                    receiver.send(new Card3_5Data(nickName, 5, pos));
-                    break;
+                    if(pos>0)
+                    {
+                        commandList.add("card5Effect "+pos);
+                        System.out.println("your command is: "+commandList.get(commandList.size()-1));
+                        pos--;
+                        receiver.send(new Card3_5Data(nickName, 5, pos));
+                        break;
+                    }
                 }
                 System.out.println("Malformed command, write help to get all available commands");
                 break;
@@ -485,9 +507,44 @@ public class CLI extends Thread implements PropertyChangeListener
         String eventName=event.getPropertyName();
         if("ModelModifications".equals(eventName))
         {
+            ModelMessage message = (ModelMessage) event.getNewValue();
+            if(message.errorStatus())
+            {
+                if(message.getErrorMessage().isFatal())
+                {
+                    System.out.println(message.getErrorMessage().getMessage());
+                    this.interrupt();
+                    // in order to end the main thread we modify game and set gameEndedFlag to true
+                    synchronized(gameLock)
+                    {
+                        ModelMessage tmp= game.orElse(null);
+                        if(tmp!=null)
+                        {
+                            game = Optional.of(new ModelMessage(tmp.isExpertMode(), tmp.getIslandList(),
+                                    tmp.getCloudList(), tmp.getPlayerList(), tmp.getCharacterCardList(),
+                                    tmp.getCurrPlayerNickname(), tmp.getUnusedCoins(), true));
+                        }
+                        else
+                        {
+                            game= Optional.of(new ModelMessage(false, null, null, null, null, null, 0, true));
+                        }
+                    }
+                }
+                else
+                {
+                    synchronized(gameLock)
+                    {
+                        if(game.orElse(null).getCurrPlayerNickname().equals(nickName))
+                        {
+                            commandList.remove(commandList.size()-1);
+                            System.out.println(message.getErrorMessage().getMessage());
+                        }
+                    }
+                }
+                return;
+            }
             synchronized(gameLock)
             {
-                ModelMessage message = (ModelMessage) event.getNewValue();
                 if (game.isPresent()) {
                     List<Island> islandList = game.orElse(null).getIslandList();
                     List<Cloud> cloudList = game.orElse(null).getCloudList();

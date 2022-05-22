@@ -1,4 +1,5 @@
 package it.polimi.ingsw.Model.ModelAndDecorators;
+import it.polimi.ingsw.ClientsHandler.Messages.ExceptionMessage;
 import it.polimi.ingsw.ClientsHandler.Messages.ModelMessage;
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.DataBuffer;
@@ -523,8 +524,7 @@ public class Model {
     }
 
     public synchronized int getNumIslands() { return islandsList.size(); }
-    public synchronized void activateCard(String uID, DataBuffer dataBuffer, Controller controller)
-                                                                                         throws Exception
+    public synchronized void activateCard(String uID, DataBuffer dataBuffer, Controller controller) throws Exception
     {
         if(uID==null || dataBuffer==null || controller==null)
             throw new NullPointerException();
@@ -597,6 +597,11 @@ public class Model {
                                                new ArrayList<>(cloudsList), new ArrayList<>(playersList),
                                                new ArrayList<>(characterCardList), currentPlayer.getuID(),
                                                unusedCoins, true);
+        notify(message);
+    }
+    public void errorMessage(String errorMessage, boolean isFatal)
+    {
+        ModelMessage message= new ModelMessage(new ExceptionMessage(errorMessage, isFatal));
         notify(message);
     }
     public void addPropertyChangeListener(PropertyChangeListener listener)

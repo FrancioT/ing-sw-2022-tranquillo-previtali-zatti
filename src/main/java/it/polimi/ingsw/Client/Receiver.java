@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Client;
 
 import it.polimi.ingsw.Client.Exceptions.BadMessageException;
+import it.polimi.ingsw.ClientsHandler.Messages.ExceptionMessage;
 import it.polimi.ingsw.ClientsHandler.Messages.Message;
 import it.polimi.ingsw.ClientsHandler.Messages.ModelMessage;
 
@@ -55,11 +56,13 @@ public class Receiver extends Thread implements Closeable
             {
                 System.out.println("Server sent a malformed or incomprehensible message");
                 try{ connection.close(); }catch(IOException ignored){}
+                notify(new ModelMessage(new ExceptionMessage("", true)));
             }
             catch (IOException e1)
             {
                 System.out.println("Connection error");
                 try{ connection.close(); }catch(IOException ignored){}
+                notify(new ModelMessage(new ExceptionMessage("", true)));
             }
         }
     }
