@@ -14,7 +14,7 @@ import java.util.*;
 public class Controller extends Thread
 {
     private boolean endGame;
-    private List<String> uIDsList;
+    protected List<String> uIDsList;
     private final Map<String, DataBuffer> usersData;
     private Model model;
     private boolean decorationFlag;

@@ -5,11 +5,14 @@ import it.polimi.ingsw.Controller.DataBuffer;
 import it.polimi.ingsw.Model.Colour;
 import it.polimi.ingsw.Model.Exceptions.NoSuchPlayerException;
 import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
+import it.polimi.ingsw.Model.Exceptions.RunOutOfStudentsException;
 import it.polimi.ingsw.Model.ModelAndDecorators.ModelTest;
 import it.polimi.ingsw.Model.Student;
 import it.polimi.ingsw.RemoteView.RemoteView;
 import org.junit.jupiter.api.Test;
 
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -105,4 +108,19 @@ class CharacterCard2Test {
         assertTrue(card.overPrice);
     }
 
+    @Test
+    public void printerTest() throws RunOutOfStudentsException
+    {
+        CharacterCard2 card2 = new CharacterCard2();
+        System.setOut(new PrintStream(new OutputStream()
+        {
+            public void close() {}
+            public void flush() {}
+            public void write(byte[] b) {}
+            public void write(byte[] b, int off, int len) {}
+            public void write(int b) {}
+        }
+        ));
+        card2.ccPrinter();
+    }
 }

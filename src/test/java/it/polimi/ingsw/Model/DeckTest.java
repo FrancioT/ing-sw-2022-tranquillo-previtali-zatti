@@ -1,7 +1,10 @@
 package it.polimi.ingsw.Model;
 
-import it.polimi.ingsw.Model.Exceptions.EmptyException;
+import it.polimi.ingsw.Model.Exceptions.*;
 import org.junit.jupiter.api.Test;
+
+import java.io.OutputStream;
+import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -36,4 +39,19 @@ class DeckTest {
         assertEquals(deck.getHandCards().size(), 7);
     }
 
+    @Test
+    public void printerTest() throws RunOutOfStudentsException, FullTowersException, RunOutOfTowersException, LinkFailedException {
+        Deck deck = new Deck();
+        deck.cardDiscarder(1);
+        System.setOut(new PrintStream(new OutputStream()
+        {
+            public void close() {}
+            public void flush() {}
+            public void write(byte[] b) {}
+            public void write(byte[] b, int off, int len) {}
+            public void write(int b) {}
+        }
+        ));
+        deck.deckPrinter();
+    }
 }

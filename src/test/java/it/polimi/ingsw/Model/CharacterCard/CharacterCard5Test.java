@@ -6,11 +6,14 @@ import it.polimi.ingsw.Model.Colour;
 import it.polimi.ingsw.Model.ColourT;
 import it.polimi.ingsw.Model.Exceptions.NoInhibitionFlagsAvailable;
 import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
+import it.polimi.ingsw.Model.Exceptions.RunOutOfStudentsException;
 import it.polimi.ingsw.Model.ModelAndDecorators.ModelTest;
 import it.polimi.ingsw.Model.Student;
 import it.polimi.ingsw.RemoteView.RemoteView;
 import org.junit.jupiter.api.Test;
 
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -97,5 +100,21 @@ class CharacterCard5Test
             card.handle("Aldo", data1, controller);
             fail();
         }catch (NoInhibitionFlagsAvailable n){};
+    }
+
+    @Test
+    public void printerTest() throws RunOutOfStudentsException
+    {
+        CharacterCard5 card5 = new CharacterCard5();
+        System.setOut(new PrintStream(new OutputStream()
+        {
+            public void close() {}
+            public void flush() {}
+            public void write(byte[] b) {}
+            public void write(byte[] b, int off, int len) {}
+            public void write(int b) {}
+        }
+        ));
+        card5.ccPrinter();
     }
 }

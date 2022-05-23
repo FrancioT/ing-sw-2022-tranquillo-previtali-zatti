@@ -3,10 +3,13 @@ package it.polimi.ingsw.Model.CharacterCard;
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.DataBuffer;
 import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
+import it.polimi.ingsw.Model.Exceptions.RunOutOfStudentsException;
 import it.polimi.ingsw.Model.ModelAndDecorators.ModelTest;
 import it.polimi.ingsw.RemoteView.RemoteView;
 import org.junit.jupiter.api.Test;
 
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -49,5 +52,21 @@ class CharacterCard4Test {
         card.handle(player3, null, controller);
         controller.getModel().cardDiscarder(player3, 2);
         assertEquals(controller.getModel().getLastCardValue(player3), 4);
+    }
+
+    @Test
+    public void printerTest() throws RunOutOfStudentsException
+    {
+        CharacterCard4 card4 = new CharacterCard4();
+        System.setOut(new PrintStream(new OutputStream()
+        {
+            public void close() {}
+            public void flush() {}
+            public void write(byte[] b) {}
+            public void write(byte[] b, int off, int len) {}
+            public void write(int b) {}
+        }
+        ));
+        card4.ccPrinter();
     }
 }

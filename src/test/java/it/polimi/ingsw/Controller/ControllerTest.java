@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Controller;
 
 import it.polimi.ingsw.Model.Colour;
+import it.polimi.ingsw.Model.ModelAndDecorators.ModelTest;
 import it.polimi.ingsw.RemoteView.RemoteView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ControllerTest
 {
@@ -27,22 +29,20 @@ class ControllerTest
         controller=new Controller(users, true, new ArrayList<RemoteView>());
     }
     @Test
-    void cloudsFilling()
-    {
+    void cloudsFilling() {
         controller.cloudsFilling();
+        assertTrue(ModelTest.getCloudsList(controller.getModel()).get(0).getStudentsColours().size() == 4);
     }
 
     @Test
-    void cardsPhase() throws Exception
-    {
+    void cardsPhase() throws Exception {
         users.get(p1).setCardPos(4);
         users.get(p2).setCardPos(1);
         users.get(p3).setCardPos(8);
-        List<String> orderedPlayers= new ArrayList<>();
-        orderedPlayers.add(p2);
-        orderedPlayers.add(p3);
-        orderedPlayers.add(p1);
         controller.cardsPhase();
+        assertTrue(ControllerTest.getUIDsList(controller).get(0) == p2);
+        assertTrue(ControllerTest.getUIDsList(controller).get(1) == p1);
+        assertTrue(ControllerTest.getUIDsList(controller).get(2) == p3);
     }
 
     @Test
@@ -92,4 +92,5 @@ class ControllerTest
         controller.chooseCloud(p2);
         controller.chooseCloud(p3);
     }
+    public static List<String> getUIDsList(Controller controller) { return new ArrayList<>(controller.uIDsList); }
 }
