@@ -1,8 +1,8 @@
 package it.polimi.ingsw.Controller;
 
+import it.polimi.ingsw.Controller.Exceptions.CardActivatedException;
+import it.polimi.ingsw.Controller.Exceptions.ConnectionErrorException;
 import it.polimi.ingsw.Model.Colour;
-import it.polimi.ingsw.Model.Exceptions.EmptyException;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -56,6 +56,88 @@ class DataBufferTest
         lista1 = lista2;
         dataBufferP1.setStudentsColours(lista2);
         assertEquals(lista1, dataBufferP1.getStudentsColours());
-    }
 
+        dataBufferP1.activationCardRequest();
+        dataBufferP1.setErrorStatus();
+
+        try {
+            dataBufferP1.getCardPos();
+            fail();
+        }catch (ConnectionErrorException c){}
+
+        try {
+            dataBufferP1.getTarget();
+            fail();
+        }catch (CardActivatedException c){}
+
+        try {
+            dataBufferP1.getTarget();
+            fail();
+        }catch (ConnectionErrorException c){}
+
+        dataBufferP1.activationCardRequest();
+
+        try {
+            dataBufferP1.getStudentColour();
+            fail();
+        }catch (CardActivatedException c){}
+
+        try {
+            dataBufferP1.getStudentColour();
+            fail();
+        }catch (ConnectionErrorException c){}
+
+        dataBufferP1.activationCardRequest();
+
+        try {
+            dataBufferP1.getIslandPos();
+            fail();
+        }catch (CardActivatedException c){}
+
+        try {
+            dataBufferP1.getIslandPos();
+            fail();
+        }catch (ConnectionErrorException c){}
+
+        dataBufferP1.activationCardRequest();
+
+        try {
+            dataBufferP1.getMnPos();
+            fail();
+        }catch (CardActivatedException c){}
+
+        try {
+            dataBufferP1.getMnPos();
+            fail();
+        }catch (ConnectionErrorException c){}
+
+        dataBufferP1.activationCardRequest();
+
+        try {
+            dataBufferP1.getCloudPos();
+            fail();
+        }catch (CardActivatedException c){}
+
+        try {
+            dataBufferP1.getCloudPos();
+            fail();
+        }catch (ConnectionErrorException c){}
+
+        try {
+            dataBufferP1.getStudentsColours();
+            fail();
+        }catch (ConnectionErrorException c){}
+
+        dataBufferP1.activationCardRequest();
+
+        try {
+            dataBufferP1.getCharacterCardID();
+            fail();
+        }catch (CardActivatedException c){}
+
+        try {
+            dataBufferP1.getCharacterCardID();
+            fail();
+        }catch (ConnectionErrorException c){}
+    }
 }

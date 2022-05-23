@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Controller;
 
+import it.polimi.ingsw.Controller.Exceptions.IllegalMNMovementException;
 import it.polimi.ingsw.Model.Colour;
 import it.polimi.ingsw.Model.ModelAndDecorators.ModelTest;
 import it.polimi.ingsw.RemoteView.RemoteView;
@@ -36,13 +37,24 @@ class ControllerTest
 
     @Test
     void cardsPhase() throws Exception {
-        users.get(p1).setCardPos(4);
-        users.get(p2).setCardPos(1);
-        users.get(p3).setCardPos(8);
+        Thread thread= new Thread(() -> {
+            while (true)
+            {
+                users.get(p2).setCardPos(1);
+                try{ Thread.sleep(500); } catch (InterruptedException e){ return; }
+                users.get(p3).setCardPos(8);
+                try{ Thread.sleep(500); } catch (InterruptedException e){ return; }
+                users.get(p1).setCardPos(15);
+                try{ Thread.sleep(500); } catch (InterruptedException e){ return; }
+                users.get(p1).setCardPos(4);
+            }
+        });
+        thread.start();
         controller.cardsPhase();
         assertTrue(ControllerTest.getUIDsList(controller).get(0) == p2);
         assertTrue(ControllerTest.getUIDsList(controller).get(1) == p1);
         assertTrue(ControllerTest.getUIDsList(controller).get(2) == p3);
+        thread.interrupt();
     }
 
     @Test
@@ -72,13 +84,36 @@ class ControllerTest
     @Test
     void moveMN() throws Exception
     {
-        cardsPhase();
+        assertTrue(ModelTest.getMN(controller.getModel()).getCurrentPos() == ModelTest.getIslandsList(controller.getModel()).get(0));
+
+        users.get(p1).setCardPos(4);
+        users.get(p2).setCardPos(1);
+        users.get(p3).setCardPos(8);
+        controller.cardsPhase();
+
         users.get(p1).setMnPos(2);
         users.get(p2).setMnPos(3);
-        users.get(p3).setMnPos(8);
+
         controller.moveMN(p1);
+        assertTrue(ModelTest.getMN(controller.getModel()).getCurrentPos() == ModelTest.getIslandsList(controller.getModel()).get(2));
+
         controller.moveMN(p2);
+        assertTrue(ModelTest.getMN(controller.getModel()).getCurrentPos() == ModelTest.getIslandsList(controller.getModel()).get(3));
+
+        Thread thread= new Thread(() -> {
+            while (true)
+            {
+                users.get(p3).activationCardRequest();
+                try{ Thread.sleep(500); } catch (InterruptedException e){ return; }
+                users.get(p3).setMnPos(10);
+                try{ Thread.sleep(500); } catch (InterruptedException e){ return; }
+                users.get(p3).setMnPos(5);
+            }
+        });
+        thread.start();
         controller.moveMN(p3);
+        assertTrue(ModelTest.getMN(controller.getModel()).getCurrentPos() == ModelTest.getIslandsList(controller.getModel()).get(5));
+        thread.interrupt();
     }
 
     @Test
