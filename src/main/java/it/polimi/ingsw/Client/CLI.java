@@ -290,16 +290,19 @@ public class CLI extends Thread implements PropertyChangeListener
                 }
                 if(command.length%2==1 && command.length<=7)
                 {
-                    for(int i=0; i<command.length; i++)
+                    boolean commandError=false;
+                    for(int i=1; i<command.length && !commandError; i++)
                     {
                         colour= toColour(command[i]);
                         if(colour==null)
                         {
                             System.out.println("Malformed command, write /help to get all available commands");
-                            break;
+                            commandError=true;
                         }
                         colourList.add(colour);
                     }
+                    if(commandError)
+                        break;
                     commandList.add("card7Effect "+colourList);
                     System.out.println("your command is: "+commandList.get(commandList.size()-1));
                     receiver.send(new Card7_10Data(nickName, 7, colourList));
@@ -315,16 +318,19 @@ public class CLI extends Thread implements PropertyChangeListener
                 }
                 if(command.length%2==1 && command.length<=5)
                 {
-                    for(int i=0; i<command.length; i++)
+                    boolean commandError=false;
+                    for(int i=1; i<command.length && !commandError; i++)
                     {
                         colour= toColour(command[i]);
                         if(colour==null)
                         {
                             System.out.println("Malformed command, write /help to get all available commands");
-                            break;
+                            commandError=true;
                         }
                         colourList.add(colour);
                     }
+                    if(commandError)
+                        break;
                     commandList.add("card10Effect "+colourList);
                     System.out.println("your command is: "+commandList.get(commandList.size()-1));
                     receiver.send(new Card7_10Data(nickName, 10, colourList));
