@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Server extends Thread implements Closeable{
-    private static final int port=12345;
+    private static final int port=55790;
     private ServerSocket serverSocket;
     List<Thread> games;
 

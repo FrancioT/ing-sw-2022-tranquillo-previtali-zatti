@@ -331,6 +331,9 @@ public class Model {
         i = (i + deltaPos)%islandsList.size();
         motherNature.jumpNextPos(islandsList.get(i));
         islandDominance(islandsList.get(i));
+        for(Player player: playersList)
+            if(player.getTowers().availabilityChecker()==0)
+                throw new RuntimeException();
 
         ModelMessage message= new ModelMessage(characterCardList.size()!=0, new ArrayList<>(islandsList),
                 null, new ArrayList<>(playersList), null,currentPlayer.getuID(),

@@ -26,7 +26,7 @@ public class CLI extends Thread implements PropertyChangeListener
     private Receiver receiver;
     private List<String> commandList;
     private static final String serverIP="127.0.0.1";
-    private static final int serverPort=12345;
+    private static final int serverPort=55790;
     private static final String firstPlayerMessage="Choose game mode";
 
     public CLI()
