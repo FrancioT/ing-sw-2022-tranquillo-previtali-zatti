@@ -22,9 +22,11 @@ public class CLI extends Thread implements PropertyChangeListener
     private Socket connection;
     private String nickName;
     private Optional<ModelMessage> game;
+    private boolean gameEnded;
+    private boolean errorFlag;
     private final Boolean gameLock;
     private Receiver receiver;
-    private List<String> commandList;
+    private final List<String> commandList;
     private static final String serverIP="127.0.0.1";
     private static final int serverPort=55790;
     private static final String firstPlayerMessage="Choose game mode";
@@ -33,6 +35,8 @@ public class CLI extends Thread implements PropertyChangeListener
     {
         connection=null;
         game= Optional.empty();
+        gameEnded=false;
+        errorFlag=false;
         receiver=null;
         nickName="";
         gameLock=false;
@@ -58,7 +62,6 @@ public class CLI extends Thread implements PropertyChangeListener
             System.out.println("Failed to create a stable connection with the server");
             return;
         }
-        boolean gameEnded=false;
         synchronized(gameLock)
         {
             while (!game.isPresent())
@@ -69,9 +72,9 @@ public class CLI extends Thread implements PropertyChangeListener
                     try{ receiver.close(); }catch(IOException ignored){}
                     return;
                 }
-            gameEnded=game.orElse(null).hasGameEnded();
+            gameEnded=game.orElse(null).hasGameEnded() && !errorFlag;
         }
-        while(!gameEnded)
+        while(!gameEnded && !errorFlag)
         {
             try {
                 handleCommands();
@@ -84,9 +87,11 @@ public class CLI extends Thread implements PropertyChangeListener
             }
             synchronized(gameLock)
             {
-                gameEnded=game.orElse(null).hasGameEnded();
+                gameEnded=game.orElse(null).hasGameEnded() && !errorFlag;
             }
         }
+        if(gameEnded)
+            printWinner();
         System.out.println("\n\nGame finished!");
         try{ receiver.close(); } catch(IOException ignored){}
     }
@@ -133,8 +138,10 @@ public class CLI extends Thread implements PropertyChangeListener
     }
     private void handleCommands() throws IOException
     {
-        Scanner keyboardInput= new Scanner(System.in);
-        String[] command= keyboardInput.nextLine().toLowerCase().split(" ");
+        BufferedReader keyboardInput= new BufferedReader(new InputStreamReader(System.in));
+        String[] command= keyboardInput.readLine().toLowerCase().split(" ");
+        if(gameEnded || errorFlag)
+            return;
         int pos=0;
         Colour colour;
         List<Colour> colourList= new ArrayList<>();
@@ -518,23 +525,12 @@ public class CLI extends Thread implements PropertyChangeListener
             {
                 if(message.getErrorMessage().isFatal())
                 {
-                    System.out.println(message.getErrorMessage().getMessage());
-                    this.interrupt();
-                    // in order to end the main thread we modify game and set gameEndedFlag to true
-                    synchronized(gameLock)
+                    if(!gameEnded)
                     {
-                        ModelMessage tmp= game.orElse(null);
-                        if(tmp!=null)
-                        {
-                            game = Optional.of(new ModelMessage(tmp.isExpertMode(), tmp.getIslandList(),
-                                    tmp.getCloudList(), tmp.getPlayerList(), tmp.getCharacterCardList(),
-                                    tmp.getCurrPlayerNickname(), tmp.getUnusedCoins(), true));
-                        }
-                        else
-                        {
-                            game= Optional.of(new ModelMessage(false, null, null, null, null, null, 0, true));
-                        }
+                        System.out.println(message.getErrorMessage().getMessage());
+                        errorFlag= true;
                     }
+                    this.interrupt();
                 }
                 else
                 {
@@ -633,5 +629,43 @@ public class CLI extends Thread implements PropertyChangeListener
             if(card.getCardID()==ID)
                 return true;
         return false;
+    }
+    private void printWinner()
+    {
+        int maxScore=0;
+        List<String> winners= new ArrayList<>();
+        ModelMessage model= game.orElse(null);
+        if(model==null)
+            return;
+
+        // calculating the number of towers with which a player start the game
+        int mode= model.getPlayerList().size()%2;  // mode==0 => 8 towers
+                                                   // mode==1 => 6 towers
+        final int maxTowers= (mode)*6 + (1-mode)*8;
+        for(Player player: model.getPlayerList())
+        {
+            int score= 0;
+            for(Colour c: Colour.values())
+                if(player.checkTeacherPresence(c))
+                    score++;
+            score+= (maxTowers - player.getTowers().availabilityChecker())*10;
+            if(score==maxScore)
+                winners.add(player.getuID());
+            else if(score>maxScore)
+            {
+                maxScore=score;
+                winners.clear();
+                winners.add(player.getuID());
+            }
+        }
+        if(winners.size()>1)
+        {
+            System.out.print("The winners are: ");
+            for(String winner: winners)
+                System.out.print(winner+" ");
+            System.out.println();
+        }
+        else
+            System.out.println("The winner is: "+winners.get(0));
     }
 }

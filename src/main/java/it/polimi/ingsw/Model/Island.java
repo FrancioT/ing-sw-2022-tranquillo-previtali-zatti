@@ -83,17 +83,20 @@ public class Island extends Tile implements Serializable
     {
         if(newTowers==null) throw new NullPointerException();
 
-        if(numTowers==0)
+        try {
+            if (numTowers == 0) {
+                towers = newTowers;
+                numTowers = 1;
+                newTowers.availabilityModifier(-1);
+            } else {
+                towers.availabilityModifier(numTowers);
+                towers = newTowers;
+                newTowers.availabilityModifier(-numTowers);
+            }
+        }catch (RunOutOfTowersException e)
         {
-            towers = newTowers;
-            numTowers=1;
-            newTowers.availabilityModifier(-1);
-        }
-        else
-        {
-            towers.availabilityModifier(numTowers);
-            newTowers.availabilityModifier(-numTowers);
-            towers = newTowers;
+            model.checkIslandLinking();
+            throw e;
         }
         model.checkIslandLinking();
     }

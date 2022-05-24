@@ -60,9 +60,8 @@ public class Receiver extends Thread implements Closeable
             }
             catch (IOException e1)
             {
-                System.out.println("Connection error");
                 try{ connection.close(); }catch(IOException ignored){}
-                notify(new ModelMessage(new ExceptionMessage("", true)));
+                notify(new ModelMessage(new ExceptionMessage("Connection error", true)));
             }
         }
     }
