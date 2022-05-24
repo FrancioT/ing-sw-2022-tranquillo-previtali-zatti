@@ -90,9 +90,6 @@ public class CLI extends Thread implements PropertyChangeListener
                 gameEnded=game.orElse(null).hasGameEnded() && !errorFlag;
             }
         }
-        if(gameEnded)
-            printWinner();
-        System.out.println("\n\nGame finished!");
         try{ receiver.close(); } catch(IOException ignored){}
     }
     private void beginning() throws IOException
@@ -571,6 +568,9 @@ public class CLI extends Thread implements PropertyChangeListener
                     game = Optional.of(new ModelMessage(message.isExpertMode(), islandList, cloudList, playerList,
                                                         characterCardList, message.getCurrPlayerNickname(),
                                                         message.getUnusedCoins(), message.hasGameEnded()));
+                    gameEnded=message.hasGameEnded();
+                    printWinner();
+                    System.out.println("\n\nGame finished!");
                 } else {
                     game = Optional.of(new ModelMessage(message.isExpertMode(), message.getIslandList(),
                                 message.getCloudList(), message.getPlayerList(), message.getCharacterCardList(),
