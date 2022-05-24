@@ -25,8 +25,9 @@ public class Towers implements Serializable
 
     public void availabilityModifier(int delta) throws FullTowersException, RunOutOfTowersException
     {
-        if(availableTowers + delta < 0)
+        if(availableTowers + delta <= 0)
         {
+            availableTowers=0;
             throw new RunOutOfTowersException();
         }
 
