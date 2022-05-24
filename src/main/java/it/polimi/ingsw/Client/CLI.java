@@ -72,7 +72,6 @@ public class CLI extends Thread implements PropertyChangeListener
                     try{ receiver.close(); }catch(IOException ignored){}
                     return;
                 }
-            gameEnded=game.orElse(null).hasGameEnded() && !errorFlag;
         }
         while(!gameEnded && !errorFlag)
         {
@@ -84,10 +83,6 @@ public class CLI extends Thread implements PropertyChangeListener
                 System.out.println("Error in communicating with the server");
                 try{ receiver.close(); } catch(IOException ignored){}
                 return;
-            }
-            synchronized(gameLock)
-            {
-                gameEnded=game.orElse(null).hasGameEnded() && !errorFlag;
             }
         }
         try{ receiver.close(); } catch(IOException ignored){}
@@ -569,8 +564,6 @@ public class CLI extends Thread implements PropertyChangeListener
                                                         characterCardList, message.getCurrPlayerNickname(),
                                                         message.getUnusedCoins(), message.hasGameEnded()));
                     gameEnded=message.hasGameEnded();
-                    printWinner();
-                    System.out.println("\n\nGame finished!");
                 } else {
                     game = Optional.of(new ModelMessage(message.isExpertMode(), message.getIslandList(),
                                 message.getCloudList(), message.getPlayerList(), message.getCharacterCardList(),
@@ -618,7 +611,14 @@ public class CLI extends Thread implements PropertyChangeListener
                     System.out.print("You are ");
                 player.playerPrinter(game.orElse(null).isExpertMode());
             }
-            System.out.println("It's the turn of: "+game.orElse(null).getCurrPlayerNickname());
+            if(gameEnded)
+            {
+                System.out.println();
+                printWinner();
+                System.out.println("\n\nGame finished!");
+            }
+            else
+                System.out.println("It's the turn of: "+game.orElse(null).getCurrPlayerNickname());
         }
     }
     private boolean checkCharacterCardPresence(int ID)
