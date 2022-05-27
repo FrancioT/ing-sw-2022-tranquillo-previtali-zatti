@@ -13,14 +13,15 @@ import java.util.*;
 
 public class Controller extends Thread
 {
-    private boolean endGame;
+    private boolean endGame;   // flag used if an end game condition is met
+    private boolean breakEnd;  // flag used if an end game condition which must instantly stop the game is met
     protected List<String> uIDsList;
     private final Map<String, DataBuffer> usersData;
     private Model model;
     private boolean decorationFlag;
     private boolean cardActivated;
-    private final List<Integer> chosenClouds; //list used to remember the indexes of the cloud already chosen by another
-                                        //player in this round
+    private final List<Integer> chosenClouds; // list used to remember the indexes of the cloud already chosen by
+                                              // another player in this round
 
     public Controller(Map<String, DataBuffer> users, boolean expertMode, List<RemoteView> views)
     {
@@ -55,6 +56,8 @@ public class Controller extends Thread
                     moveMN(player);
                     if(!endGame)
                         chooseCloud(player);
+                    if(breakEnd)
+                        break;
                 }
                 chosenClouds.clear();
             }
@@ -317,6 +320,7 @@ public class Controller extends Thread
                     model.moveMN(delta_pos);
                 }catch(RunOutOfTowersException e)
                 {
+                    breakEnd= true;
                     endGame=true;
                     return;
                 }
@@ -329,7 +333,10 @@ public class Controller extends Thread
                     throw new RuntimeException();
                 }
                 if(model.getNumIslands()<=3)
+                {
+                    breakEnd= true;
                     endGame=true;
+                }
             }catch(IllegalMNMovementException e)
             {
                 model.errorMessage("Unacceptable new mother nature position, please choose again",
