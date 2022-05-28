@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView id="dashboardPlayer1" fitHeight="268.0" fitWidth="430.0" layoutX="-95.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+         <image>
+            <Image url="@../../../../../../resources/dashboardImage.png" />
+         </image>
+      </ImageView>
+      <ImageView id="dashboardPlayer2" fitHeight="268.0" fitWidth="430.0" layoutX="145.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+         <image>
+            <Image url="@../../../../../../resources/dashboardImage.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="returnToIslands" layoutY="412.0" mnemonicParsing="false" onAction="#returnToIsland" text="Return To Islands">
+         <font>
+            <Font size="9.0" />
+         </font>
+      </Button>
+      <Text fx:id="nickPlayer1" fill="#e01b1b" layoutX="1.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NickPlayer1">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Text>
+      <Text fx:id="nickPlayer11" fill="#0a5aee" layoutX="242.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NickPlayer2">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
