@@ -11,9 +11,6 @@ import javafx.stage.Stage;
 
 public class FirstMenuController
 {
-    //Non so ancora se la devo mettere qui o nella GUI (credo GUI)
-    CLI currentCLI = new CLI();
-
     @FXML
     private TextField nickname;
     @FXML
@@ -39,9 +36,7 @@ public class FirstMenuController
 
         if(!(nickname.getText().isEmpty() && serverIP.getText().isEmpty() && serverPort.getText().isEmpty()) && checkPort(port))
         {
-            currentCLI.setNickName(nickname.getText());
-            currentCLI.setServerIP(serverIP.getText());
-            currentCLI.setServerPort(Integer.valueOf(port));
+
         }
         else
         {

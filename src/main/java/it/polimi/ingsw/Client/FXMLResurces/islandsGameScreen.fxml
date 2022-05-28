@@ -1,14 +1,455 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="it.polimi.ingsw.Client.FXMLResurces.IslandsGameScreen"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="1080.0" prefWidth="1906.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.Client.FXMLResurces.IslandsGameScreen">
+   <children>
+      <ImageView fitHeight="1123.0" fitWidth="1987.0" layoutX="-3.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../resources/sky.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="cloud1" fitHeight="299.0" fitWidth="327.0" layoutX="801.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../resources/c1.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="cloud2" fitHeight="279.0" fitWidth="307.0" layoutX="831.0" layoutY="519.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../resources/c2.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="cloud3" fitHeight="299.0" fitWidth="341.0" layoutX="599.0" layoutY="421.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../resources/c3.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="cloud4" fitHeight="320.0" fitWidth="417.0" layoutX="1031.0" layoutY="365.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../resources/c4.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="is1" fitHeight="350.0" fitWidth="385.0" layoutX="760.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../resources/is1.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="is7" fitHeight="366.0" fitWidth="439.0" layoutX="745.0" layoutY="736.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../resources/is1.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="is4" fitHeight="350.0" fitWidth="377.0" layoutX="1486.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../resources/is1.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="is10" fitHeight="332.0" fitWidth="494.0" layoutX="153.0" layoutY="363.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../resources/is1.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="is2" fitHeight="323.0" fitWidth="364.0" layoutX="1054.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../resources/is2.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="is5" fitHeight="388.0" fitWidth="417.0" layoutX="1350.0" layoutY="616.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../resources/is2.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="is8" fitHeight="366.0" fitWidth="432.0" layoutX="431.0" layoutY="728.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../resources/is2.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="is11" fitHeight="343.0" fitWidth="384.0" layoutX="239.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../resources/is2.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="is12" fitHeight="350.0" fitWidth="423.0" layoutX="489.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../resources/is3.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="is3" fitHeight="350.0" fitWidth="423.0" layoutX="1306.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../resources/is3.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="is6" fitHeight="376.0" fitWidth="402.0" layoutX="1068.0" layoutY="692.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../resources/is3.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="is9" fitHeight="366.0" fitWidth="402.0" layoutX="191.0" layoutY="577.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../resources/is3.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="bluIs1" layoutX="860.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text fx:id="greenIs1" layoutX="930.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text fx:id="pinkIs1" layoutX="1008.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text fx:id="redIs1" layoutX="877.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text fx:id="yellowIs1" layoutX="976.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text fx:id="bluIs7" layoutX="848.0" layoutY="905.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text fx:id="greenIs7" layoutX="918.0" layoutY="912.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text fx:id="pinkIs7" layoutX="996.0" layoutY="912.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text fx:id="redIs7" layoutX="865.0" layoutY="979.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text fx:id="yellowIs7" layoutX="964.0" layoutY="982.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text fx:id="bluIs4" layoutX="1578.0" layoutY="522.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text fx:id="greenIs4" layoutX="1648.0" layoutY="529.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text fx:id="pinkIs4" layoutX="1726.0" layoutY="529.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text fx:id="redIs4" layoutX="1595.0" layoutY="596.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text fx:id="yellowIs4" layoutX="1694.0" layoutY="599.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text fx:id="bluIs10" layoutX="238.0" layoutY="513.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text fx:id="greenIs10" layoutX="308.0" layoutY="520.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text fx:id="pinkIs10" layoutX="386.0" layoutY="520.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text fx:id="redIs10" layoutX="255.0" layoutY="587.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text fx:id="yellowIs10" layoutX="354.0" layoutY="590.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text fx:id="bluIs11" layoutX="324.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text fx:id="greenIs11" layoutX="408.0" layoutY="311.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text fx:id="pinkIs11" layoutX="494.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text fx:id="redIs11" layoutX="347.0" layoutY="372.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text fx:id="yellowIs11" layoutX="443.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text fx:id="bluIs2" layoutX="1131.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text fx:id="greenIs2" layoutX="1215.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text fx:id="pinkIs2" layoutX="1301.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text fx:id="redIs2" layoutX="1154.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text fx:id="yellowIs2" layoutX="1250.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text fx:id="bluIs5" layoutX="1443.0" layoutY="795.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="greenIs5" layoutX="1527.0" layoutY="802.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="pinkIs5" layoutX="1625.0" layoutY="787.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="redIs5" layoutX="1466.0" layoutY="863.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="yellowIs5" layoutX="1562.0" layoutY="870.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="bluIs8" layoutX="529.0" layoutY="906.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="greenIs8" layoutX="613.0" layoutY="913.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="pinkIs8" layoutX="713.0" layoutY="898.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="redIs8" layoutX="552.0" layoutY="974.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="yellowIs8" layoutX="648.0" layoutY="981.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="bluIs6" layoutX="1147.0" layoutY="884.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="greenIs6" layoutX="1227.0" layoutY="891.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="pinkIs6" layoutX="1324.0" layoutY="884.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="redIs6" layoutX="1181.0" layoutY="955.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="yellowIs6" layoutX="1278.0" layoutY="962.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="bluIs3" layoutX="1385.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="greenIs3" layoutX="1465.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="pinkIs3" layoutX="1562.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="redIs3" layoutX="1419.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="yellowIs3" layoutX="1512.0" layoutY="403.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="bluIs9" layoutX="267.0" layoutY="762.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="greenIs9" layoutX="347.0" layoutY="769.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="pinkIs9" layoutX="444.0" layoutY="762.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="redIs9" layoutX="301.0" layoutY="833.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="yellowIs9" layoutX="398.0" layoutY="840.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="bluIs12" layoutX="559.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="greenIs12" layoutX="639.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="pinkIs12" layoutX="736.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="redIs12" layoutX="593.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="yellowIs12" layoutX="690.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="mnIs1" fitHeight="91.0" fitWidth="68.0" layoutX="985.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../resources/mn.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="mnIs2" fitHeight="91.0" fitWidth="68.0" layoutX="1267.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../resources/mn.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="mnIs3" fitHeight="91.0" fitWidth="68.0" layoutX="1528.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../resources/mn.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="mnIs4" fitHeight="91.0" fitWidth="68.0" layoutX="1715.0" layoutY="409.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../resources/mn.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="mnIs5" fitHeight="91.0" fitWidth="68.0" layoutX="1591.0" layoutY="659.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../resources/mn.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="mnIs6" fitHeight="91.0" fitWidth="68.0" layoutX="1301.0" layoutY="758.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../resources/mn.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="mnIs7" fitHeight="91.0" fitWidth="68.0" layoutX="985.0" layoutY="784.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../resources/mn.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="mnIs8" fitHeight="91.0" fitWidth="68.0" layoutX="679.0" layoutY="772.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../resources/mn.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="mnIs9" fitHeight="91.0" fitWidth="68.0" layoutX="410.0" layoutY="634.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../resources/mn.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="mnIs10" fitHeight="91.0" fitWidth="68.0" layoutX="364.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../resources/mn.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="mnIs11" fitHeight="91.0" fitWidth="68.0" layoutX="460.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../resources/mn.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="mnIs12" fitHeight="91.0" fitWidth="68.0" layoutX="711.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../resources/mn.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="towerIs1" fitHeight="150.0" fitWidth="200.0" layoutX="841.0" layoutY="-20.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="towerIs2" fitHeight="150.0" fitWidth="200.0" layoutX="1136.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="towerIs3" fitHeight="150.0" fitWidth="200.0" layoutX="1385.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="towerIs4" fitHeight="150.0" fitWidth="200.0" layoutX="1575.0" layoutY="334.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="towerIs5" fitHeight="150.0" fitWidth="200.0" layoutX="1442.0" layoutY="592.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="towerIs6" fitHeight="150.0" fitWidth="200.0" layoutX="1150.0" layoutY="687.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="towerIs7" fitHeight="150.0" fitWidth="200.0" layoutX="841.0" layoutY="709.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="towerIs8" fitHeight="150.0" fitWidth="200.0" layoutX="523.0" layoutY="701.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="towerIs9" fitHeight="150.0" fitWidth="200.0" layoutX="270.0" layoutY="569.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="towerIs10" fitHeight="150.0" fitWidth="200.0" layoutX="231.0" layoutY="325.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="towerIs11" fitHeight="150.0" fitWidth="200.0" layoutX="321.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="towerIs12" fitHeight="150.0" fitWidth="200.0" layoutX="559.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="s1cloud1" fitHeight="84.0" fitWidth="81.0" layoutX="865.0" layoutY="342.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="s2cloud1" fitHeight="84.0" fitWidth="81.0" layoutX="956.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="s3cloud1" fitHeight="84.0" fitWidth="81.0" layoutX="882.0" layoutY="421.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="s4cloud1" fitHeight="84.0" fitWidth="81.0" layoutX="958.0" layoutY="409.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="s1cloud4" fitHeight="84.0" fitWidth="81.0" layoutX="1094.0" layoutY="447.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="s2cloud4" fitHeight="84.0" fitWidth="81.0" layoutX="1185.0" layoutY="428.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="s3cloud4" fitHeight="84.0" fitWidth="81.0" layoutX="1111.0" layoutY="526.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="s4cloud4" fitHeight="84.0" fitWidth="81.0" layoutX="1187.0" layoutY="514.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="s1cloud2" fitHeight="84.0" fitWidth="81.0" layoutX="889.0" layoutY="584.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="s2cloud2" fitHeight="84.0" fitWidth="81.0" layoutX="980.0" layoutY="565.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="s3cloud2" fitHeight="84.0" fitWidth="81.0" layoutX="906.0" layoutY="663.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="s4cloud2" fitHeight="84.0" fitWidth="81.0" layoutX="982.0" layoutY="651.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="s1cloud3" fitHeight="84.0" fitWidth="81.0" layoutX="658.0" layoutY="493.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="s2cloud3" fitHeight="84.0" fitWidth="81.0" layoutX="749.0" layoutY="474.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="s3cloud3" fitHeight="84.0" fitWidth="81.0" layoutX="675.0" layoutY="572.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="s4cloud3" fitHeight="84.0" fitWidth="81.0" layoutX="751.0" layoutY="560.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
 </AnchorPane>
