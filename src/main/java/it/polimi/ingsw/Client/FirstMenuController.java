@@ -25,9 +25,6 @@ public class FirstMenuController
     @FXML
     private AnchorPane errorAnhorPane;
 
-    @FXML
-
-
     public void firstButton(ActionEvent event)
     {
         //Questa funzione prende l'ip la porta e il nickname e verifica
