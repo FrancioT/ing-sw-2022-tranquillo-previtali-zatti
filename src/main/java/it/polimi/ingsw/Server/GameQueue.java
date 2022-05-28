@@ -66,17 +66,19 @@ public class GameQueue
         out.flush();
         String nickname= in.readLine();
         boolean changedName=true;
+        String newNickname= nickname;
         for(int i=1; i<100 && changedName; i++)
         {
             changedName=false;
             for(String name: clients.values())
-                if(nickname.equals(name))
+                if(newNickname.equals(name))
                 {
-                    nickname=nickname+i;
+                    newNickname=nickname+i;
                     changedName=true;
                     break;
                 }
         }
+        nickname=newNickname;
         out.println(nickname);
         out.flush();
         clients.put(accepted, nickname);

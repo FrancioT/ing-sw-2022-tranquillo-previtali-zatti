@@ -6,6 +6,7 @@ import it.polimi.ingsw.Controller.Exceptions.IllegalMNMovementException;
 import it.polimi.ingsw.Model.Colour;
 import it.polimi.ingsw.Model.Exceptions.*;
 import it.polimi.ingsw.Model.ModelAndDecorators.Model;
+import it.polimi.ingsw.Model.ModelAndDecorators.Phase;
 import it.polimi.ingsw.Model.Student;
 import it.polimi.ingsw.RemoteView.RemoteView;
 
@@ -47,15 +48,21 @@ public class Controller extends Thread
         try {
             while(!endGame)
             {
+                model.setPhase(Phase.choose_card);
                 cloudsFilling();
                 cardsPhase();
                 for(String player: uIDsList)
                 {
                     model.setCurrentPlayer(player);
+                    model.setPhase(Phase.move_students);
                     moveStudents(player);
+                    model.setPhase(Phase.move_mother_nature);
                     moveMN(player);
                     if(!endGame)
+                    {
+                        model.setPhase(Phase.choose_cloud);
                         chooseCloud(player);
+                    }
                     if(breakEnd)
                         break;
                 }

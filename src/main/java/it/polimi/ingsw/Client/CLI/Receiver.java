@@ -1,4 +1,4 @@
-package it.polimi.ingsw.Client;
+package it.polimi.ingsw.Client.CLI;
 
 import it.polimi.ingsw.Client.Exceptions.BadMessageException;
 import it.polimi.ingsw.ClientsHandler.Messages.ExceptionMessage;
