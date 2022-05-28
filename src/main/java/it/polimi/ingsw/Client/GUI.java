@@ -3,13 +3,15 @@ package it.polimi.ingsw.Client;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class GUI extends Application {
-    Button button;
+
     public static void main(String[] args)
     {
         launch(args);
@@ -18,15 +20,10 @@ public class GUI extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception
     {
-        primaryStage.setTitle("Zatti culo");
-        button= new Button();
-        button.setText("Click me");
-
-        StackPane layout= new StackPane();
-        layout.getChildren().add(button);
-
-        Scene scene= new Scene(layout, 300, 250);
-        primaryStage.setScene(scene);
+        Parent firstMenu = FXMLLoader.load(getClass().getResource("firstMenu.fxml"));
+        primaryStage.setTitle("Eriantys");
+        primaryStage.setScene(new Scene(firstMenu, 1280, 720));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 }

@@ -27,8 +27,8 @@ public class CLI extends Thread implements PropertyChangeListener
     private final Boolean gameLock;
     private Receiver receiver;
     private final List<String> commandList;
-    private static final String serverIP="151.30.144.218";
-    private static final int serverPort=55790;
+    private String serverIP="151.30.144.218";
+    private int serverPort=55790;
     private static final String firstPlayerMessage="Choose game mode";
 
     public CLI()
@@ -667,5 +667,20 @@ public class CLI extends Thread implements PropertyChangeListener
         }
         else
             System.out.println("The winner is: "+winners.get(0));
+    }
+
+    public void setServerIP(String iP)
+    {
+        serverIP=iP;
+    }
+
+    public void setServerPort(int port)
+    {
+        serverPort=port;
+    }
+
+    public void setNickName(String name)
+    {
+        nickName=name;
     }
 }
