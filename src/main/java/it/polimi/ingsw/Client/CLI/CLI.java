@@ -628,8 +628,16 @@ public class CLI extends Thread implements PropertyChangeListener
     {
         synchronized(gameLock)
         {
-            System.out.println("\n");
-            System.out.print("\033[H\033[2J");
+            try {
+                System.out.println("\n\n");
+                String operatingSystem = System.getProperty("os.name"); //Check the current operating system
+
+                if (operatingSystem.contains("Windows")) {
+                    new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                } else {
+                    new ProcessBuilder("clear").inheritIO().start().waitFor();
+                }
+            } catch (IOException | InterruptedException ignored) {}
             System.out.flush();
             if (game.orElse(null).isExpertMode()) {
                 System.out.println("\nCharacter cards: ");
