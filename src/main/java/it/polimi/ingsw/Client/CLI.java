@@ -27,7 +27,7 @@ public class CLI extends Thread implements PropertyChangeListener
     private final Boolean gameLock;
     private Receiver receiver;
     private final List<String> commandList;
-    private String serverIP="151.30.144.218";
+    private String serverIP="127.0.0.1";
     private int serverPort=55790;
     private static final String firstPlayerMessage="Choose game mode";
 
@@ -578,8 +578,15 @@ public class CLI extends Thread implements PropertyChangeListener
     {
         synchronized(gameLock)
         {
-            System.out.println("\n");
-            System.out.print("\033[H\033[2J");
+            try {
+                String operatingSystem = System.getProperty("os.name"); //Check the current operating system
+
+                if (operatingSystem.contains("Windows")) {
+                    new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                } else {
+                    new ProcessBuilder("clear").inheritIO().start().waitFor();
+                }
+            } catch (Exception e) {}
             System.out.flush();
             if (game.orElse(null).isExpertMode()) {
                 System.out.println("\nCharacter cards: ");
