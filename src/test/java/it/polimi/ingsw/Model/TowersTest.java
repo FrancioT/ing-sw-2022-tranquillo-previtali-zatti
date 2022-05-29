@@ -10,6 +10,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TowersTest {
 
+    /**
+     * In this test two sets of towers are created, one with 6 of them and one with 8 of them: this is to simulate
+     * a game with 3 players and a game with 2/4 players. Then the quantities of towers are modified with the defined
+     * methods and their correctness is checked with asserts.
+     * Also all the exceptions are tested by using wrong values.
+     */
     @Test
     public void towersTest() throws FullTowersException, RunOutOfTowersException {
         Towers towers0;

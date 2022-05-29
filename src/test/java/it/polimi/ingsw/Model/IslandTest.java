@@ -15,6 +15,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class IslandTest
 {
+    /**
+     * This test tests all the setter methods of the class island by calling them to add students/towers/inhibition
+     * tiles/mother nature; it checks their correctness with getter and assert methods.
+     * It also tests all the possible exceptions by creating wrong situations.
+     */
     @Test
     public void islTest() throws FullTowersException, RunOutOfTowersException,
             EmptyException, LinkFailedException, RunOutOfStudentsException {
@@ -126,6 +131,12 @@ class IslandTest
         } catch (LinkFailedException e){}
     }
 
+    /**
+     * This test creates two islands, adds some students and towers on them, and adds mother nature on one of the two.
+     * Then, the method islandLinker is called and the test checks if the island have been merged in a single
+     * one with the correct number of students and towers.
+     * Also the possible exceptions are tested.
+     */
     @Test
     public void testIslandLinker() throws Exception{
         List<String> uIDs=new ArrayList<>();
@@ -170,6 +181,9 @@ class IslandTest
         }catch (IllegalAccessError i){}
     }
 
+    /**
+     * test for printer methods
+     */
     @Test
     public void printerTest() throws RunOutOfStudentsException, FullTowersException, RunOutOfTowersException, LinkFailedException {
         List<String> uIDs=new ArrayList<>();
@@ -189,6 +203,10 @@ class IslandTest
         island.islandPrinter(true);
     }
 
+    /**
+     * Tests the correct functioning of the custom serialization by serializing an island and checking if the
+     * parameters are sent correctly.
+     */
     @Test
     public void serializationTest() throws IOException, IOException, FullTowersException, RunOutOfTowersException, LinkFailedException {
         List<String> uIDs=new ArrayList<>();

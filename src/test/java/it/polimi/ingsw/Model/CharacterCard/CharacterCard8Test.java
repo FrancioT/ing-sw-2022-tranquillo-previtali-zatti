@@ -24,6 +24,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CharacterCard8Test
 {
+    /**
+     * This test in first instance creates a controller, which creates a model with the charactercards I need.
+     * Once the card is created I check if it has the correct values.
+     * Then, I test all the cases in which it fails (e.g. not enough money, null pointer, no such player).
+     * Finally, I check that everything works correctly by checking the values of dominance of various players
+     * using Assert methods.
+     */
     @Test
     public void CharacterCard8Handle() throws Exception {
         String player1 = "Aldo";
@@ -106,6 +113,9 @@ class CharacterCard8Test
         }catch (EmptyException e){};
     }
 
+    /**
+     * test the printer methods
+     */
     @Test
     public void printerTest() throws RunOutOfStudentsException
     {
