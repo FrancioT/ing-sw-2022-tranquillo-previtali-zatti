@@ -10,87 +10,87 @@
    <children>
       <ImageView fitHeight="1123.0" fitWidth="1987.0" layoutX="-3.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/sky.jpg" />
+            <Image url="@sky.jpg" />
          </image>
       </ImageView>
       <ImageView fx:id="cloud1" fitHeight="299.0" fitWidth="327.0" layoutX="801.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/c1.png" />
+            <Image url="@c1.png" />
          </image>
       </ImageView>
       <ImageView fx:id="cloud2" fitHeight="279.0" fitWidth="307.0" layoutX="831.0" layoutY="519.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/c2.png" />
+            <Image url="@c2.png" />
          </image>
       </ImageView>
       <ImageView fx:id="cloud3" fitHeight="299.0" fitWidth="341.0" layoutX="599.0" layoutY="421.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/c3.png" />
+            <Image url="@c3.png" />
          </image>
       </ImageView>
       <ImageView fx:id="cloud4" fitHeight="320.0" fitWidth="417.0" layoutX="1031.0" layoutY="365.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/c4.png" />
+            <Image url="@c4.png" />
          </image>
       </ImageView>
       <ImageView fx:id="is1" fitHeight="350.0" fitWidth="385.0" layoutX="760.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/is1.png" />
+            <Image url="@is1.png" />
          </image>
       </ImageView>
       <ImageView fx:id="is7" fitHeight="366.0" fitWidth="439.0" layoutX="745.0" layoutY="736.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/is1.png" />
+            <Image url="@is1.png" />
          </image>
       </ImageView>
       <ImageView fx:id="is4" fitHeight="350.0" fitWidth="377.0" layoutX="1486.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/is1.png" />
+            <Image url="@is1.png" />
          </image>
       </ImageView>
       <ImageView fx:id="is10" fitHeight="332.0" fitWidth="494.0" layoutX="153.0" layoutY="363.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/is1.png" />
+            <Image url="@is1.png" />
          </image>
       </ImageView>
       <ImageView fx:id="is2" fitHeight="323.0" fitWidth="364.0" layoutX="1054.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/is2.png" />
+            <Image url="@is2.png" />
          </image>
       </ImageView>
       <ImageView fx:id="is5" fitHeight="388.0" fitWidth="417.0" layoutX="1350.0" layoutY="616.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/is2.png" />
+            <Image url="@is2.png" />
          </image>
       </ImageView>
       <ImageView fx:id="is8" fitHeight="366.0" fitWidth="432.0" layoutX="431.0" layoutY="728.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/is2.png" />
+            <Image url="@is2.png" />
          </image>
       </ImageView>
       <ImageView fx:id="is11" fitHeight="343.0" fitWidth="384.0" layoutX="239.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/is2.png" />
+            <Image url="@is2.png" />
          </image>
       </ImageView>
       <ImageView fx:id="is12" fitHeight="350.0" fitWidth="423.0" layoutX="489.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/is3.png" />
+            <Image url="@is3.png" />
          </image>
       </ImageView>
       <ImageView fx:id="is3" fitHeight="350.0" fitWidth="423.0" layoutX="1306.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/is3.png" />
+            <Image url="@is3.png" />
          </image>
       </ImageView>
       <ImageView fx:id="is6" fitHeight="376.0" fitWidth="402.0" layoutX="1068.0" layoutY="692.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/is3.png" />
+            <Image url="@is3.png" />
          </image>
       </ImageView>
       <ImageView fx:id="is9" fitHeight="366.0" fitWidth="402.0" layoutX="191.0" layoutY="577.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/is3.png" />
+            <Image url="@is3.png" />
          </image>
       </ImageView>
       <Text fx:id="bluIs1" layoutX="860.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
@@ -365,62 +365,62 @@
       </Text>
       <ImageView fx:id="mnIs1" fitHeight="91.0" fitWidth="68.0" layoutX="985.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/mn.png" />
+            <Image url="@mn.png" />
          </image>
       </ImageView>
       <ImageView fx:id="mnIs2" fitHeight="91.0" fitWidth="68.0" layoutX="1267.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/mn.png" />
+            <Image url="@mn.png" />
          </image>
       </ImageView>
       <ImageView fx:id="mnIs3" fitHeight="91.0" fitWidth="68.0" layoutX="1528.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/mn.png" />
+            <Image url="@mn.png" />
          </image>
       </ImageView>
       <ImageView fx:id="mnIs4" fitHeight="91.0" fitWidth="68.0" layoutX="1715.0" layoutY="409.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/mn.png" />
+            <Image url="@mn.png" />
          </image>
       </ImageView>
       <ImageView fx:id="mnIs5" fitHeight="91.0" fitWidth="68.0" layoutX="1591.0" layoutY="659.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/mn.png" />
+            <Image url="@mn.png" />
          </image>
       </ImageView>
       <ImageView fx:id="mnIs6" fitHeight="91.0" fitWidth="68.0" layoutX="1301.0" layoutY="758.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/mn.png" />
+            <Image url="@mn.png" />
          </image>
       </ImageView>
       <ImageView fx:id="mnIs7" fitHeight="91.0" fitWidth="68.0" layoutX="985.0" layoutY="784.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/mn.png" />
+            <Image url="@mn.png" />
          </image>
       </ImageView>
       <ImageView fx:id="mnIs8" fitHeight="91.0" fitWidth="68.0" layoutX="679.0" layoutY="772.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/mn.png" />
+            <Image url="@mn.png" />
          </image>
       </ImageView>
       <ImageView fx:id="mnIs9" fitHeight="91.0" fitWidth="68.0" layoutX="410.0" layoutY="634.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/mn.png" />
+            <Image url="@mn.png" />
          </image>
       </ImageView>
       <ImageView fx:id="mnIs10" fitHeight="91.0" fitWidth="68.0" layoutX="364.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/mn.png" />
+            <Image url="@mn.png" />
          </image>
       </ImageView>
       <ImageView fx:id="mnIs11" fitHeight="91.0" fitWidth="68.0" layoutX="460.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/mn.png" />
+            <Image url="@mn.png" />
          </image>
       </ImageView>
       <ImageView fx:id="mnIs12" fitHeight="91.0" fitWidth="68.0" layoutX="711.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/mn.png" />
+            <Image url="@mn.png" />
          </image>
       </ImageView>
       <ImageView fx:id="towerIs1" fitHeight="150.0" fitWidth="200.0" layoutX="841.0" layoutY="-20.0" pickOnBounds="true" preserveRatio="true" />
@@ -451,5 +451,73 @@
       <ImageView fx:id="s2cloud3" fitHeight="84.0" fitWidth="81.0" layoutX="749.0" layoutY="474.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="s3cloud3" fitHeight="84.0" fitWidth="81.0" layoutX="675.0" layoutY="572.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="s4cloud3" fitHeight="84.0" fitWidth="81.0" layoutX="751.0" layoutY="560.0" pickOnBounds="true" preserveRatio="true" />
+      <Text fx:id="currentPlayer" fill="WHITE" layoutX="15.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Player:" wrappingWidth="537.2369995117188">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="characterCard1" fitHeight="150.0" fitWidth="200.0" layoutX="15.0" layoutY="202.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="characterCard2" fitHeight="150.0" fitWidth="200.0" layoutX="15.0" layoutY="447.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="characterCard3" fitHeight="150.0" fitWidth="200.0" layoutX="15.0" layoutY="660.0" pickOnBounds="true" preserveRatio="true" />
+      <Text fx:id="Player1" fill="RED" layoutX="1648.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Player:" wrappingWidth="319.7799377441408">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Text>
+      <Text fx:id="towersP1" fill="RED" layoutX="1648.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Towers:" wrappingWidth="319.7799377441408">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Text>
+      <Text fx:id="coinsP1" fill="RED" layoutX="1648.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coins:" wrappingWidth="319.7799377441408">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Text>
+      <Text fx:id="Player2" fill="#d90fb3" layoutX="1648.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Player:" wrappingWidth="319.7799377441408">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Text>
+      <Text fx:id="towersP2" fill="#d90fb3" layoutX="1648.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Towers:" wrappingWidth="319.7799377441408">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Text>
+      <Text fx:id="coinsP2" fill="#d90fb3" layoutX="1648.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coins:" wrappingWidth="319.7799377441408">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Text>
+      <Text fx:id="Player3" fill="#1900ff" layoutX="1648.0" layoutY="872.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Player:" wrappingWidth="319.7799377441408">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Text>
+      <Text fx:id="towersP3" fill="#1900ff" layoutX="1648.0" layoutY="910.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Towers:" wrappingWidth="319.7799377441408">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Text>
+      <Text fx:id="coinsP3" fill="#1900ff" layoutX="1648.0" layoutY="947.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coins:" wrappingWidth="319.7799377441408">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Text>
+      <Text fx:id="Player4" fill="#2d884d" layoutX="1648.0" layoutY="1009.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Player:" wrappingWidth="319.7799377441408">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Text>
+      <Text fx:id="towersP4" fill="#2d884d" layoutX="1648.0" layoutY="1047.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Towers:" wrappingWidth="319.7799377441408">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Text>
+      <Text fx:id="coinsP4" fill="#2d884d" layoutX="1648.0" layoutY="1084.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coins:" wrappingWidth="319.7799377441408">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

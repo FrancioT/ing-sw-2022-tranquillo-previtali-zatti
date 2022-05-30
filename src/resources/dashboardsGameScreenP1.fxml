@@ -11,7 +11,7 @@
    <children>
       <ImageView fitHeight="732.0" fitWidth="1010.0" layoutX="-222.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
          <image>
-            <Image url="@../../../../../../resources/dashboardImage.png" />
+            <Image url="@dashboardImage.png" />
          </image>
       </ImageView>
       <Button fx:id="returnToIslands" layoutX="14.0" layoutY="965.0" mnemonicParsing="false" onAction="#returnToIsland" text="Return To Islands">
@@ -26,502 +26,502 @@
       </Text>
       <ImageView fx:id="pinkT" fitHeight="156.0" fitWidth="170.0" layoutX="298.0" layoutY="-17.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/pinkT.png" />
+            <Image url="@pinkT.png" />
          </image>
       </ImageView>
       <ImageView fx:id="gs1" fitHeight="134.0" fitWidth="160.0" layoutX="15.0" layoutY="676.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/green_student.png" />
+            <Image url="@green_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="gs2" fitHeight="134.0" fitWidth="160.0" layoutX="15.0" layoutY="614.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/green_student.png" />
+            <Image url="@green_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="gs3" fitHeight="134.0" fitWidth="160.0" layoutX="15.0" layoutY="552.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/green_student.png" />
+            <Image url="@green_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="gs4" fitHeight="134.0" fitWidth="160.0" layoutX="15.0" layoutY="490.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/green_student.png" />
+            <Image url="@green_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="gs5" fitHeight="134.0" fitWidth="160.0" layoutX="15.0" layoutY="428.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/green_student.png" />
+            <Image url="@green_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="gs6" fitHeight="134.0" fitWidth="160.0" layoutX="15.0" layoutY="365.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/green_student.png" />
+            <Image url="@green_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="gs7" fitHeight="134.0" fitWidth="160.0" layoutX="15.0" layoutY="304.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/green_student.png" />
+            <Image url="@green_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="gs8" fitHeight="134.0" fitWidth="160.0" layoutX="15.0" layoutY="242.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/green_student.png" />
+            <Image url="@green_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="gs9" fitHeight="134.0" fitWidth="160.0" layoutX="15.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/green_student.png" />
+            <Image url="@green_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="gs10" fitHeight="134.0" fitWidth="160.0" layoutX="15.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/green_student.png" />
+            <Image url="@green_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="greenT" fitHeight="138.0" fitWidth="154.0" layoutX="25.0" layoutY="-11.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/greenT.png" />
+            <Image url="@greenT.png" />
          </image>
       </ImageView>
       <ImageView fx:id="redT" fitHeight="112.0" fitWidth="109.0" layoutX="136.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/redT.png" />
+            <Image url="@redT.png" />
          </image>
       </ImageView>
       <ImageView fx:id="yellowT" fitHeight="138.0" fitWidth="135.0" layoutX="221.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/yellowT.png" />
+            <Image url="@yellowT.png" />
          </image>
       </ImageView>
       <ImageView fx:id="blueT" fitHeight="112.0" fitWidth="101.0" layoutX="418.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/blueT.png" />
+            <Image url="@blueT.png" />
          </image>
       </ImageView>
       <ImageView fx:id="rs10" fitHeight="215.0" fitWidth="187.0" layoutX="98.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/red_student.png" />
+            <Image url="@red_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="rs9" fitHeight="215.0" fitWidth="187.0" layoutX="98.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/red_student.png" />
+            <Image url="@red_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="rs8" fitHeight="215.0" fitWidth="187.0" layoutX="98.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/red_student.png" />
+            <Image url="@red_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="rs7" fitHeight="215.0" fitWidth="187.0" layoutX="98.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/red_student.png" />
+            <Image url="@red_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="rs6" fitHeight="215.0" fitWidth="187.0" layoutX="98.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/red_student.png" />
+            <Image url="@red_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="rs5" fitHeight="215.0" fitWidth="187.0" layoutX="98.0" layoutY="384.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/red_student.png" />
+            <Image url="@red_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="rs4" fitHeight="215.0" fitWidth="187.0" layoutX="98.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/red_student.png" />
+            <Image url="@red_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="rs3" fitHeight="215.0" fitWidth="187.0" layoutX="98.0" layoutY="508.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/red_student.png" />
+            <Image url="@red_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="rs2" fitHeight="215.0" fitWidth="187.0" layoutX="98.0" layoutY="570.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/red_student.png" />
+            <Image url="@red_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="rs1" fitHeight="215.0" fitWidth="187.0" layoutX="98.0" layoutY="632.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/red_student.png" />
+            <Image url="@red_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ys10" fitHeight="239.0" fitWidth="239.0" layoutX="184.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/yellow_student.png" />
+            <Image url="@yellow_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ys9" fitHeight="239.0" fitWidth="239.0" layoutX="184.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/yellow_student.png" />
+            <Image url="@yellow_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ys8" fitHeight="239.0" fitWidth="239.0" layoutX="184.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/yellow_student.png" />
+            <Image url="@yellow_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ys7" fitHeight="239.0" fitWidth="239.0" layoutX="184.0" layoutY="306.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/yellow_student.png" />
+            <Image url="@yellow_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ys6" fitHeight="239.0" fitWidth="239.0" layoutX="184.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/yellow_student.png" />
+            <Image url="@yellow_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ys5" fitHeight="239.0" fitWidth="239.0" layoutX="184.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/yellow_student.png" />
+            <Image url="@yellow_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ys4" fitHeight="239.0" fitWidth="239.0" layoutX="184.0" layoutY="493.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/yellow_student.png" />
+            <Image url="@yellow_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ys3" fitHeight="239.0" fitWidth="239.0" layoutX="184.0" layoutY="554.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/yellow_student.png" />
+            <Image url="@yellow_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ys2" fitHeight="239.0" fitWidth="239.0" layoutX="184.0" layoutY="617.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/yellow_student.png" />
+            <Image url="@yellow_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ys1" fitHeight="239.0" fitWidth="239.0" layoutX="184.0" layoutY="679.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/yellow_student.png" />
+            <Image url="@yellow_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ps10" fitHeight="461.0" fitWidth="469.0" layoutX="148.0" layoutY="-46.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/pink_student.png" />
+            <Image url="@pink_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ps9" fitHeight="461.0" fitWidth="469.0" layoutX="148.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/pink_student.png" />
+            <Image url="@pink_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ps8" fitHeight="461.0" fitWidth="469.0" layoutX="148.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/pink_student.png" />
+            <Image url="@pink_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ps7" fitHeight="461.0" fitWidth="469.0" layoutX="148.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/pink_student.png" />
+            <Image url="@pink_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ps6" fitHeight="461.0" fitWidth="469.0" layoutX="149.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/pink_student.png" />
+            <Image url="@pink_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ps5" fitHeight="461.0" fitWidth="469.0" layoutX="148.0" layoutY="265.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/pink_student.png" />
+            <Image url="@pink_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ps4" fitHeight="461.0" fitWidth="469.0" layoutX="149.0" layoutY="326.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/pink_student.png" />
+            <Image url="@pink_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ps3" fitHeight="461.0" fitWidth="469.0" layoutX="149.0" layoutY="388.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/pink_student.png" />
+            <Image url="@pink_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ps2" fitHeight="461.0" fitWidth="469.0" layoutX="148.0" layoutY="450.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/pink_student.png" />
+            <Image url="@pink_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ps1" fitHeight="461.0" fitWidth="469.0" layoutX="148.0" layoutY="512.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/pink_student.png" />
+            <Image url="@pink_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="eps1" fitHeight="461.0" fitWidth="469.0" layoutX="-130.0" layoutY="637.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/pink_student.png" />
+            <Image url="@pink_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="eps2" fitHeight="461.0" fitWidth="469.0" layoutX="-37.0" layoutY="637.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/pink_student.png" />
+            <Image url="@pink_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="eps3" fitHeight="461.0" fitWidth="469.0" layoutX="55.0" layoutY="637.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/pink_student.png" />
+            <Image url="@pink_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="eps4" fitHeight="461.0" fitWidth="469.0" layoutX="148.0" layoutY="637.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/pink_student.png" />
+            <Image url="@pink_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="eps5" fitHeight="461.0" fitWidth="469.0" layoutX="240.0" layoutY="637.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/pink_student.png" />
+            <Image url="@pink_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="eps6" fitHeight="461.0" fitWidth="469.0" layoutX="240.0" layoutY="713.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/pink_student.png" />
+            <Image url="@pink_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="eps7" fitHeight="461.0" fitWidth="469.0" layoutX="148.0" layoutY="713.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/pink_student.png" />
+            <Image url="@pink_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="eps8" fitHeight="461.0" fitWidth="469.0" layoutX="55.0" layoutY="713.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/pink_student.png" />
+            <Image url="@pink_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="eps9" fitHeight="461.0" fitWidth="469.0" layoutX="-37.0" layoutY="713.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/pink_student.png" />
+            <Image url="@pink_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="bs10" fitHeight="187.0" fitWidth="263.0" layoutX="378.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/blue_student.png" />
+            <Image url="@blue_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="bs9" fitHeight="187.0" fitWidth="263.0" layoutX="378.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/blue_student.png" />
+            <Image url="@blue_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="bs8" fitHeight="187.0" fitWidth="263.0" layoutX="378.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/blue_student.png" />
+            <Image url="@blue_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="bs7" fitHeight="187.0" fitWidth="263.0" layoutX="378.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/blue_student.png" />
+            <Image url="@blue_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="bs6" fitHeight="187.0" fitWidth="263.0" layoutX="378.0" layoutY="332.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/blue_student.png" />
+            <Image url="@blue_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="bs5" fitHeight="187.0" fitWidth="263.0" layoutX="378.0" layoutY="394.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/blue_student.png" />
+            <Image url="@blue_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="bs4" fitHeight="187.0" fitWidth="263.0" layoutX="378.0" layoutY="456.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/blue_student.png" />
+            <Image url="@blue_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="bs3" fitHeight="187.0" fitWidth="263.0" layoutX="378.0" layoutY="518.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/blue_student.png" />
+            <Image url="@blue_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="bs2" fitHeight="187.0" fitWidth="263.0" layoutX="378.0" layoutY="580.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/blue_student.png" />
+            <Image url="@blue_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="bs1" fitHeight="187.0" fitWidth="263.0" layoutX="378.0" layoutY="642.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/blue_student.png" />
+            <Image url="@blue_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ebs1" fitHeight="187.0" fitWidth="263.0" layoutX="10.0" layoutY="763.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/blue_student.png" />
+            <Image url="@blue_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ebs2" fitHeight="187.0" fitWidth="263.0" layoutX="101.0" layoutY="762.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/blue_student.png" />
+            <Image url="@blue_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ebs3" fitHeight="187.0" fitWidth="263.0" layoutX="192.0" layoutY="763.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/blue_student.png" />
+            <Image url="@blue_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ebs4" fitHeight="187.0" fitWidth="263.0" layoutX="286.0" layoutY="763.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/blue_student.png" />
+            <Image url="@blue_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ebs5" fitHeight="187.0" fitWidth="263.0" layoutX="378.0" layoutY="762.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/blue_student.png" />
+            <Image url="@blue_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ebs6" fitHeight="187.0" fitWidth="263.0" layoutX="101.0" layoutY="840.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/blue_student.png" />
+            <Image url="@blue_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ebs7" fitHeight="187.0" fitWidth="263.0" layoutX="194.0" layoutY="840.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/blue_student.png" />
+            <Image url="@blue_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ebs8" fitHeight="187.0" fitWidth="263.0" layoutX="285.0" layoutY="840.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/blue_student.png" />
+            <Image url="@blue_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ebs9" fitHeight="187.0" fitWidth="263.0" layoutX="378.0" layoutY="840.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/blue_student.png" />
+            <Image url="@blue_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="egs1" fitHeight="134.0" fitWidth="160.0" layoutX="16.0" layoutY="798.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/green_student.png" />
+            <Image url="@green_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="egs2" fitHeight="134.0" fitWidth="160.0" layoutX="107.0" layoutY="797.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/green_student.png" />
+            <Image url="@green_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="egs3" fitHeight="134.0" fitWidth="160.0" layoutX="199.0" layoutY="798.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/green_student.png" />
+            <Image url="@green_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="egs4" fitHeight="134.0" fitWidth="160.0" layoutX="292.0" layoutY="798.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/green_student.png" />
+            <Image url="@green_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="egs5" fitHeight="134.0" fitWidth="160.0" layoutX="385.0" layoutY="797.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/green_student.png" />
+            <Image url="@green_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="egs6" fitHeight="134.0" fitWidth="160.0" layoutX="108.0" layoutY="875.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/green_student.png" />
+            <Image url="@green_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="egs7" fitHeight="134.0" fitWidth="160.0" layoutX="200.0" layoutY="875.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/green_student.png" />
+            <Image url="@green_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="egs8" fitHeight="134.0" fitWidth="160.0" layoutX="292.0" layoutY="875.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/green_student.png" />
+            <Image url="@green_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="egs9" fitHeight="134.0" fitWidth="160.0" layoutX="385.0" layoutY="875.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/green_student.png" />
+            <Image url="@green_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ers1" fitHeight="215.0" fitWidth="187.0" layoutX="5.0" layoutY="756.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/red_student.png" />
+            <Image url="@red_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ers2" fitHeight="215.0" fitWidth="187.0" layoutX="97.0" layoutY="756.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/red_student.png" />
+            <Image url="@red_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ers3" fitHeight="215.0" fitWidth="187.0" layoutX="190.0" layoutY="756.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/red_student.png" />
+            <Image url="@red_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ers4" fitHeight="215.0" fitWidth="187.0" layoutX="281.0" layoutY="756.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/red_student.png" />
+            <Image url="@red_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ers5" fitHeight="215.0" fitWidth="187.0" layoutX="376.0" layoutY="756.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/red_student.png" />
+            <Image url="@red_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ers6" fitHeight="215.0" fitWidth="187.0" layoutX="98.0" layoutY="834.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/red_student.png" />
+            <Image url="@red_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ers7" fitHeight="215.0" fitWidth="187.0" layoutX="191.0" layoutY="834.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/red_student.png" />
+            <Image url="@red_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ers8" fitHeight="215.0" fitWidth="187.0" layoutX="284.0" layoutY="834.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/red_student.png" />
+            <Image url="@red_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ers9" fitHeight="215.0" fitWidth="187.0" layoutX="376.0" layoutY="834.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/red_student.png" />
+            <Image url="@red_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="eys1" fitHeight="239.0" fitWidth="239.0" layoutY="799.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/yellow_student.png" />
+            <Image url="@yellow_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="eys2" fitHeight="239.0" fitWidth="239.0" layoutX="94.0" layoutY="799.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/yellow_student.png" />
+            <Image url="@yellow_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="eys3" fitHeight="239.0" fitWidth="239.0" layoutX="184.0" layoutY="799.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/yellow_student.png" />
+            <Image url="@yellow_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="eys4" fitHeight="239.0" fitWidth="239.0" layoutX="276.0" layoutY="800.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/yellow_student.png" />
+            <Image url="@yellow_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="eys5" fitHeight="239.0" fitWidth="239.0" layoutX="369.0" layoutY="800.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/yellow_student.png" />
+            <Image url="@yellow_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="eys6" fitHeight="239.0" fitWidth="239.0" layoutX="94.0" layoutY="877.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/yellow_student.png" />
+            <Image url="@yellow_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="eys7" fitHeight="239.0" fitWidth="239.0" layoutX="184.0" layoutY="876.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/yellow_student.png" />
+            <Image url="@yellow_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="eys8" fitHeight="239.0" fitWidth="239.0" layoutX="276.0" layoutY="876.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/yellow_student.png" />
+            <Image url="@yellow_student.png" />
          </image>
       </ImageView>
       <ImageView fx:id="eys9" fitHeight="239.0" fitWidth="239.0" layoutX="369.0" layoutY="877.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../resources/yellow_student.png" />
+            <Image url="@yellow_student.png" />
          </image>
       </ImageView>
    </children>
