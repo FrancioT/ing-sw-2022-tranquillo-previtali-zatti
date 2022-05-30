@@ -6,6 +6,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TeacherTest {
 
+    /**
+     * In this test a teacher and two players are created; at first the teacher is assigned to one of them and is
+     * checked that the setter and getter methods work; then the teacher is moved to the other player and the methods
+     * are tested aging.
+     */
     @Test
     public void teacherTest()
     {

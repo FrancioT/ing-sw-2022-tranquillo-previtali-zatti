@@ -10,8 +10,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DeckTest {
 
+    /**
+     * This test tests the correct creation of a new deck and the methods to discard a selected card by getting its
+     * values with the getter method and assert methods. In this way also the getter methods are tested.
+     * It also tests all the possible exceptions.
+     */
     @Test
-    public void testCardDiscarderAndReturn() throws EmptyException
+    public void testCardDiscarder() throws EmptyException
     {
         Deck deck = new Deck();
 
@@ -20,6 +25,8 @@ class DeckTest {
             fail();
         }
         catch (IndexOutOfBoundsException e){};
+
+        assertEquals(deck.getHandCards().size(),10);
 
         int rv = 0;
         int mnv = 0;

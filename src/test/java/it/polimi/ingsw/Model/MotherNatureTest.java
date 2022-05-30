@@ -8,6 +8,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MotherNatureTest {
 
+    /**
+     * Tests the correct functioning of the methods of mother nature by creating two islands and adding on one of them
+     * MN; then it's checked its position to test its correctness, and finally MN is moved on the other island and
+     * checked again its position.
+     */
     @Test
     public void motherNatureTest() throws NullPointerException
     {

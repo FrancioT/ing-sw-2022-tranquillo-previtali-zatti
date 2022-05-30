@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Model.Dashboard;
 
 import it.polimi.ingsw.Model.*;
+import it.polimi.ingsw.Model.Dashboard.Dashboard;
 import it.polimi.ingsw.Model.Exceptions.*;
 import org.junit.jupiter.api.Test;
 
@@ -11,6 +12,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DashboardTest
 {
+    /**
+     * This test checks the correct functioning of the methods to move students and teachers in the classrooms.
+     * It also tests the correct functioning of the exceptions by forcing all possible cases.
+     */
     @Test
     public void testClassrooms() throws TooManyTeachersException, TeacherAlreadyInException,
                                         NoSuchTeacherException, FullClassException
@@ -84,6 +89,11 @@ class DashboardTest
         } catch (FullClassException e){}
     }
 
+    /**
+     * This test checks the correct functioning of the methods to add and remove students in the entrance;
+     * the correctness of the methods is validated by Assert methods.
+     * It also tests the correct functioning of the exceptions by forcing all possible cases.
+     */
     @Test
     void testEntrance() throws EmptyException, NoSuchStudentException, FullEntranceException
     {

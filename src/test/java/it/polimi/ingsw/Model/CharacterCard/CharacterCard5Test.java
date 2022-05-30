@@ -23,6 +23,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CharacterCard5Test
 {
+    /**
+     * This test in first instance creates a controller, which creates a model with the charactercards I need.
+     * Then, I test all the cases in which it fails (e.g. not enough money, null pointer, no inhibition
+     * flags available).
+     * Finally, I set everything I need to check the correct functioning of the card: I place some students on an
+     * island so that a player has a dominance on it; then I activate the card on that island, I move MN on it,
+     * and I check that nothing has changed. I also check that the inhibition tile is correctly removed from
+     * the island and given back to the cc.
+     */
     @Test
     public void CharacterCard5Handle() throws Exception
     {
@@ -102,6 +111,9 @@ class CharacterCard5Test
         }catch (NoInhibitionFlagsAvailable n){};
     }
 
+    /**
+     * test the printer methods
+     */
     @Test
     public void printerTest() throws RunOutOfStudentsException
     {

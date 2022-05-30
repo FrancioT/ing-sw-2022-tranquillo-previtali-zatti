@@ -23,6 +23,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CharacterCard11Test
 {
+    /**
+     * This test in first instance creates a controller, which creates a model with the charactercards I need.
+     * Once the card is created I check if it has the correct values.
+     * Then, I test all the cases in which it fails (e.g. not enough money, null pointer, no such student).
+     * Finally, I activate the card and I check that the student has been added to the player's classroom.
+     */
     @Test
     public void CharacterCard11Handle() throws Exception
     {
@@ -80,6 +86,9 @@ class CharacterCard11Test
         assertTrue(ModelTest.getPlayers(controller.getModel()).get(0).checkTeacherPresence(Colour.red));
     }
 
+    /**
+     * test the printer methods
+     */
     @Test
     public void printerTest() throws RunOutOfStudentsException
     {

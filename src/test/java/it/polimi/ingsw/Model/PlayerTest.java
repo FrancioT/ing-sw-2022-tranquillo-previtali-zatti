@@ -15,6 +15,12 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
+    /**
+     * This test sets a specified number of students in a player's classroom; then, with the method that is under
+     * testing, we get the number of students of a specified color in the classroom, which must correspond to the number
+     * of students that we added at start.
+     * The exceptions are also tested.
+     */
     @Test
     public void testGetStudentsNum() throws FullClassException {
         Player player = new Player("test", new Towers(ColourT.black, 1), null);
@@ -33,6 +39,11 @@ class PlayerTest {
         catch (NullPointerException n){};
     }
 
+    /**
+     * In this method we create a list of student so that we know which students should be added in the entrance;
+     * at this point we call the method entranceFiller so that the students are added in the entrance; then, with
+     * a getter and an assert methods we see if the students have been added correctly.
+     */
     @Test
     public void testEntranceFillerEmptier() throws EmptyException, NoSuchStudentException, FullEntranceException {
         Player player = new Player("test", new Towers(ColourT.black, 1), null);
@@ -52,6 +63,11 @@ class PlayerTest {
             fail();
     }
 
+    /**
+     * In this test we try to add and remove teachers from the dashboard to see if the methods work correctly.
+     * The correctness is verified with assert methods.
+     * Also, the exceptions are called.
+     */
     @Test
     public void testTeacherMovements() throws TeacherAlreadyInException, TooManyTeachersException, NoSuchTeacherException {
         Player player = new Player("test", new Towers(ColourT.black, 1), null);
@@ -73,6 +89,10 @@ class PlayerTest {
             fail();
     }
 
+    /**
+     * In this test we create a set of towers and a player, and we check the correct assignment of both. Then, we
+     * create another set of towers, and we check that is different from the one that the player has.
+     */
     @Test
     public void towersTest(){
         Towers towers = new Towers(ColourT.black, 1);
@@ -82,6 +102,10 @@ class PlayerTest {
         assertFalse(player.getTowers().equals(towers1));
     }
 
+    /**
+     * In this test we check that the methods to play a card and the one to control its MN value are correct with
+     * an assert method.
+     */
     @Test
     public void getLastCardMNValuetest() throws EmptyException
     {
@@ -91,6 +115,12 @@ class PlayerTest {
         assertEquals(i, 1);
     }
 
+    /**
+     * In this test we check the correct assignment of coins to the player by obtaining multiple of 3 students;
+     * then, we try to pay a card with a player that does not have enough coins and we catch the expected exception;
+     * finally we try to pay a card being sure that the player has enough money.
+     * Everything is checked with assert methods and by catching exceptions.
+     */
     @Test
     public void paymentTest() throws FullClassException, CardPaymentException, NoSuchStudentException {
         Map<String, DataBuffer> uIDs = new HashMap<>();
@@ -122,6 +152,9 @@ class PlayerTest {
         assertEquals(ModelTest.getPlayers(controller.getModel()).get(0).getHandCards().size(), 10);
     }
 
+    /**
+     * test for printer methods
+     */
     @Test
     public void printerTest() throws Exception{
         List<String> uIDs=new ArrayList<>();

@@ -17,6 +17,10 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test the correct creation of the charactercard and test the correct throw of an exception if the method
+ * Handle is called with null parameters
+ */
 class CharacterCard1Test {
     @Test
     public void CharacterCard1Colours() throws RunOutOfStudentsException {
@@ -37,6 +41,20 @@ class CharacterCard1Test {
         assertThrows(NullPointerException.class, () -> card.handle(null, null, null));
     }
 
+
+    /**
+     * This test tests the only method of the card: handle;
+     * First, I create a controller, which creates a model with the charactercard that I want to test;
+     * then, I set up everything I need to make the card work or fail.
+     * In a first try I make the card fail by calling it with a student that does not exist, then I activate it
+     * with a player that does not have enough money, and finally I try to activate it with a player that
+     * does not exist.
+     * After trying all the cases that make the card fail I call it with all correct parameters,
+     * and I check if it does what I expect.
+     * Finally I also test a case that would start the "endgame phase" by emptying the bag.
+     *
+     * @throws Exception
+     */
     @Test
     public void CharacterCard1Handle() throws Exception {
         Bag bag = new Bag();
@@ -108,6 +126,10 @@ class CharacterCard1Test {
         }catch (IllegalArgumentException i){}
     }
 
+
+    /**
+     * test the printer methods
+     */
     @Test
     public void printerTest() throws RunOutOfStudentsException, FullTowersException, RunOutOfTowersException, LinkFailedException {
         CharacterCard1 card = new CharacterCard1(new Bag());
