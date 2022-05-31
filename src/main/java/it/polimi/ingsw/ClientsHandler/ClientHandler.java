@@ -19,6 +19,7 @@ public class ClientHandler extends Thread implements PingWaiter
     private final String clientIP;
     private boolean pingReceived;
     private final PongWaiting waitingPong;
+    private final PingSender pingSender;
     private Controller controller;
 
     public ClientHandler(Socket socket, DataBuffer dataBuffer) throws IOException
@@ -37,6 +38,7 @@ public class ClientHandler extends Thread implements PingWaiter
         clientIP=socket.getRemoteSocketAddress().toString();
         pingReceived=false;
         waitingPong= new PongWaiting(this);
+        pingSender= new PingSender(this);
         controller=null;
     }
     public void setController(Controller controller)
@@ -52,11 +54,8 @@ public class ClientHandler extends Thread implements PingWaiter
             if(message instanceof Message)
                 ((Message)message).handle(dataBuffer);
             else
-            {   // ping received
+                // pong received (treated as a ping)
                 pingReceived= true;
-                // pong
-                out_stream.writeObject(1);
-            }
         } catch (IOException | ClassNotFoundException e)
         {
             System.out.println(getIP()+" disconnected");
@@ -69,10 +68,15 @@ public class ClientHandler extends Thread implements PingWaiter
         out_stream.flush();
         out_stream.reset();
     }
+    public synchronized void ping() throws IOException
+    {
+        out_stream.writeObject(1);
+    }
     @Override
     public synchronized void close() throws IOException
     {
         waitingPong.interrupt();
+        pingSender.interrupt();
         controller.notifyDisconnection();
         socket.close();
     }
@@ -90,6 +94,7 @@ public class ClientHandler extends Thread implements PingWaiter
     @Override
     public void run()
     {
+        pingSender.start();
         waitingPong.start();
         if(controller==null)
             throw new IllegalArgumentException("The controller wasn't set");
