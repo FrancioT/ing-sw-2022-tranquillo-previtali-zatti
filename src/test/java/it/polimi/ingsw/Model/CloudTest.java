@@ -12,6 +12,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CloudTest {
 
+    /**
+     * This test tests all the methods of cloud by calling them and checking their functioning with assert methods.
+     * It also tests if the exceptions are called correctly.
+     */
     @Test
     public void cloudTest() throws FullEntranceException, IndexOutOfBoundsException, NullPointerException, RunOutOfStudentsException
     {
@@ -49,6 +53,10 @@ class CloudTest {
         }catch (FullEntranceException e){}
 
     }
+
+    /**
+     * test for printer methods
+     */
     @Test
     public void printerTest() throws RunOutOfStudentsException
     {

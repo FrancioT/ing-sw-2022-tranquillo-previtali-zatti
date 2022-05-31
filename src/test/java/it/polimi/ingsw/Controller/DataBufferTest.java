@@ -18,6 +18,11 @@ class DataBufferTest
     List<Colour> lista1, lista2;
     DataBuffer dataBufferP1, dataBufferP2;
 
+    /**
+     * In this test all the setter and getter methods are simply tested by calling the setter before and the getter
+     * after and by checking that the values are correct.
+     * Secondly, all the possible exceptions are tested by forcing erroneous situations or by modifying parameters.
+     */
     @Test
     void testAllDataBuffer() throws Exception
     {

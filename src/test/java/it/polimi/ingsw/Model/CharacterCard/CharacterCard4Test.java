@@ -18,6 +18,13 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CharacterCard4Test {
+
+    /**
+     * This test in first instance creates a controller, which creates a model with the charactercard I need.
+     * Once the card is created I check if it has the correct values.
+     * Then, I test all the cases in which it fails (e.g. not enough money, null pointer).
+     * Finally, I activate it correctly and check if the value that has been modified is correct.
+     */
     @Test
     public void CharacterCard4Handle() throws Exception
     {
@@ -54,6 +61,9 @@ class CharacterCard4Test {
         assertEquals(controller.getModel().getLastCardValue(player3), 4);
     }
 
+    /**
+     * test the printer methods
+     */
     @Test
     public void printerTest() throws RunOutOfStudentsException
     {

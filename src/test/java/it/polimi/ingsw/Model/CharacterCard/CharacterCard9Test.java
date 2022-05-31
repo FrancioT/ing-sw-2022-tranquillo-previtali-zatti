@@ -24,6 +24,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CharacterCard9Test
 {
+    /**
+     * This test in first instance creates a controller, which creates a model with the charactercards I need.
+     * Once the card is created I check if it has the correct values.
+     * Then, I test all the cases in which it fails (e.g. not enough money, null pointer, no such player).
+     * Finally, I place various students on an island, activate the card ,move mn on it, and check that the calculation
+     * of dominance is correct.
+     */
     @Test
     public void CharacterCard9Handle() throws Exception
     {
@@ -109,6 +116,9 @@ class CharacterCard9Test
         }catch (EmptyException e){};
     }
 
+    /**
+     * test the printer methods
+     */
     @Test
     public void printerTest() throws RunOutOfStudentsException
     {

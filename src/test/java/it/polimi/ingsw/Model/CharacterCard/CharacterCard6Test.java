@@ -23,6 +23,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CharacterCard6Test
 {
+    /**
+     * This test in first instance creates a controller, which creates a model with the charactercards I need.
+     * Once the card is created I check if it has the correct values.
+     * Then, I test all the cases in which it fails (e.g. not enough money, null pointer).
+     * Finally, I set everything I need to make the card work and check its correctness: I check that the towers are
+     * not considered in the value of the dominance by checking that the towers are not swapped.
+     * I also consider the case in which is present the cc 5 with its inhibition tiles.
+     */
     @Test
     public void CharacterCard6Handle() throws Exception
     {
@@ -106,6 +114,9 @@ class CharacterCard6Test
         assertTrue(ModelTest.getIslandsList(controller.getModel()).get(6).getTowersColour() == ColourT.white);
     }
 
+    /**
+     * test the printer methods
+     */
     @Test
     public void printerTest() throws RunOutOfStudentsException
     {

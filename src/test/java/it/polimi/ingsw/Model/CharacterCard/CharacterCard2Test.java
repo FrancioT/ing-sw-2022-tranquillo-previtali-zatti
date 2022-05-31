@@ -20,6 +20,13 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This test in first instance creates a controller, which creates a model with the charactercards I need.
+ * Once the card is created I check if it has the correct values.
+ * Then, I test all the cases in which it fails (e.g. not enough money, null pointer, no such player).
+ * Finally, I test the correct functioning of the method by calling it, moving students that make teachers move;
+ * I also check the correctness of every movement using Assert methods.
+ */
 class CharacterCard2Test {
     @Test
     public void CharacterCard2Handle() throws Exception {
@@ -108,6 +115,9 @@ class CharacterCard2Test {
         assertTrue(card.overPrice);
     }
 
+    /**
+     * test the printer methods
+     */
     @Test
     public void printerTest() throws RunOutOfStudentsException
     {

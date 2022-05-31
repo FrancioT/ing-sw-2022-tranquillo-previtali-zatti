@@ -22,6 +22,9 @@ public class ModelTest
     final private static String P1="Francio";
     final private static String P2="Tarallo";
 
+    /**
+     * A model is created and a basic check is done
+     */
     @BeforeEach
     void initialization() throws Exception
     {
@@ -39,6 +42,10 @@ public class ModelTest
         assertEquals(model.getStudents(P2).size(), 0);
     }
 
+    /**
+     * This test checks the correctness of all exception in payment by forcing incorrect situations.
+     * It also tests the correctness of a valid payment and if the coins are correctly decreased.
+     */
     @Test
     void payCard() throws Exception
     {
@@ -63,6 +70,10 @@ public class ModelTest
         assertThrows(NoSuchCardException.class, () -> model2.checkEnoughMoney(P1, -1));
     }
 
+    /**
+     * This test tests the correctness of the method that is called whenever a student is added or removed in a
+     * classroom. It controls whether the teacher is added or removed and checks its correctness with assert methods.
+     */
     @Test
     void teacherDominance() throws TooManyTeachersException, TeacherAlreadyInException,
             NoSuchTeacherException, NoSuchPlayerException, FullClassException
@@ -95,10 +106,15 @@ public class ModelTest
                 assertEquals(t.getCurrentPos(), model.playersList.get(0));
     }
 
+    /**
+     * This test tests specifically the method which adds student in a dashboard.
+     * It checks the correct addition of a student and the exceptions which it can throw.
+     */
     @Test
     void addStudentDashboard() throws Exception
     {
         model.addStudentDashboard(P1, new Student(Colour.green));
+        assertEquals(model.getStudentsNum(P1, Colour.green), 1);
         try {
             model.addStudentDashboard(null, null);
             assertTrue(false);
@@ -109,11 +125,15 @@ public class ModelTest
         } catch (NoSuchPlayerException e){}
     }
 
+    /**
+     * Tests the specific method to add a student to an island. It checks if it's added correctly or if it throws
+     * an exception.
+     */
     @Test
     void addStudentIsland()
     {
         model.addStudentIsland(0, new Student(Colour.pink));
-        model.addStudentIsland(11, new Student(Colour.blue));
+        assertEquals(ModelTest.getIslandsList(model).get(0).getStudentsColours().size(), 1);
         try {
             model.addStudentIsland(-1, new Student(Colour.red));
             assertTrue(false);
@@ -124,6 +144,11 @@ public class ModelTest
         } catch (IndexOutOfBoundsException e){}
     }
 
+
+    /**
+     * Tests the cloudFiller and cloudEmptier methods with assert methods.
+     * It also checks the correct functioning of the exceptions.
+     */
     @Test
     void cloudsFill_empty() throws FullEntranceException, NoSuchPlayerException, RunOutOfStudentsException
     {
@@ -165,10 +190,14 @@ public class ModelTest
     }
 
 
+    /**
+     * Test the cardDiscarder method and controls that the correct value has been saved.
+     * It also tests the correct throw of the exceptions.
+     */
     @Test
-    void cardDiscarder() throws NoSuchPlayerException
-    {
+    void cardDiscarder() throws NoSuchPlayerException, EmptyException {
         model.cardDiscarder(P1, 3);
+        assertEquals(model.getLastCardValue(P1), 2);
         try {
             model.cardDiscarder(null, 9);
             assertTrue(false);
@@ -179,6 +208,11 @@ public class ModelTest
         } catch (NoSuchPlayerException e){}
     }
 
+    /**
+     * Tests the entranceEmptier method by adding known students to the entrance, emptying it and checking
+     * the correctness of the students removed.
+     * It also checks the correctness of the exceptions.
+     */
     @Test
     void entranceEmptier() throws EmptyException, FullEntranceException,
             NoSuchStudentException, NoSuchPlayerException, RunOutOfStudentsException
@@ -211,6 +245,10 @@ public class ModelTest
         } catch (NoSuchPlayerException e){}
     }
 
+    /**
+     * Tests the correctness of the method that gets MN's position by moving it and then checking its position
+     * with assert methods.
+     */
     @Test
     void getCurrPosMN() throws Exception
     {
@@ -225,6 +263,11 @@ public class ModelTest
     }
 
 
+    /**
+     * In this test is tested in first instance whether MN is moved on the correct island; then is tested if towers
+     * have been swapped correctly and finally if islands have been linked correctly.
+     * It also checks if all the exceptions are thrown correctly.
+     */
     @Test
     void moveMN() throws Exception
     {
@@ -327,6 +370,10 @@ public class ModelTest
         assertThrows(IllegalArgumentException.class, () -> model.islandDominance(model.islandsList.get(2)));
     }
 
+    /**
+     * It checks if the lastCardValue is correct with assert methods.
+     * It also tests all the possible exceptions.
+     */
     @Test
     void getLastCardValue() throws NoSuchPlayerException, EmptyException
     {
@@ -350,6 +397,12 @@ public class ModelTest
         @Override
         public void giveBackInhibitionFlag(){}
     }
+
+    /**
+     * Tests the correct addition, functioning and removal of the inhibition tiles by adding it to an island,
+     * moving MN on it, checking the towers and then controlling that the tile is not anymore on the island.
+     * It also tests all the exceptions.
+     */
     @Test
     void inhibitionFlag() throws Exception
     {
@@ -367,15 +420,27 @@ public class ModelTest
         assertThrows(IndexOutOfBoundsException.class, () -> model.addInhibition(12, card5));
     }
 
+    /**
+     * Test the correct functioning of the method entranceFiller by checking the number of students before and after
+     * its call.
+     * It also tests all its exceptions.
+     */
     @Test
-    void entranceFiller()
-    {
+    void entranceFiller() throws NoSuchPlayerException, FullEntranceException {
         List<Student> students=new ArrayList<>();
         assertThrows(NullPointerException.class, () -> model.entranceFiller(null, null));
         assertThrows(NullPointerException.class, () -> model.entranceFiller(P1, null));
         assertThrows(NoSuchPlayerException.class, () -> model.entranceFiller(" ", students));
+        students.add(new Student(Colour.red));
+        model.entranceFiller(P1, students);
+        assertEquals(model.getStudents(P1).size(), 1);
     }
 
+    /**
+     * Tests the correct students swap between classroom and entrance by setting known students in both of them;
+     * it tests the swap using assert methods.
+     * It also tests all the exceptions.
+     */
     @Test
     void studentsSwap() throws Exception
     {
@@ -397,6 +462,12 @@ public class ModelTest
         assertEquals(model.playersList.get(0).getStudentNum(Colour.blue), 0);
     }
 
+    /**
+     * Tests if two islands are linked in a single one by placing known students on them, and also
+     * by placing teachers in particular players' dashboard so that we know that the islands need to be linked.
+     * It's checked that all the students, towers and mother nature are moved on the new island.
+     * Tests also all the exceptions.
+     */
     @Test
     public void checkIslandLinkingTest() throws Exception{
         for(int i=0; i<5; i++){
@@ -491,6 +562,13 @@ public class ModelTest
         }catch (NullPointerException n){}
     }
 
+    /**
+     * This method is fundamental because we need to force specific character cards to be in the game for testing.
+     * What this method does is removing the randomly extracted charactercards and adding the ones
+     * specified in the list.
+     * @param model the model in which the cc need to be added
+     * @param cards the cards that need to be added
+     */
     public static void changeCard(Model model, List<CharacterCard> cards)
     {
         if(model.characterCardList.size()==0)
@@ -498,6 +576,7 @@ public class ModelTest
         model.characterCardList.clear();
         model.characterCardList.addAll(cards);
     }
+
     public static List<Player> getPlayers(Model model) { return new ArrayList<>(model.playersList); }
     public static int getUnusedCoins(Model model) { return model.unusedCoins; }
     public static List<Teacher> getTeachersList(Model model) { return new ArrayList<>(model.teachersList); }

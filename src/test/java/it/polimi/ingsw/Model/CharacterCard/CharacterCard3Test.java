@@ -23,6 +23,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CharacterCard3Test
 {
+    /**
+     * This test in first instance creates a controller, which creates a model with the charactercards I need.
+     * Then, I test all the cases in which it fails (e.g. not enough money, null pointer).
+     * At that point I try to activate the card in various conditions, for example I try to activate it on an empty
+     * island, on an island with students and towers, and also on an island affected by the effect of another
+     * charactercard (cc 5). Every time I activate it, I also check with the Assert method that everything works
+     * correctly.
+     */
     @Test
     public void CharacterCard3Handle() throws Exception
     {
@@ -146,6 +154,9 @@ class CharacterCard3Test
         }catch (EmptyException e){};
     }
 
+    /**
+     * test the printer methods
+     */
     @Test
     public void printerTest() throws RunOutOfStudentsException
     {

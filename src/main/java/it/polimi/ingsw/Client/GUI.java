@@ -1,13 +1,14 @@
 package it.polimi.ingsw.Client;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
+
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class GUI extends Application {
@@ -16,14 +17,24 @@ public class GUI extends Application {
     {
         launch(args);
     }
-
     @Override
-    public void start(Stage primaryStage) throws Exception
+    public void start(Stage primaryStage)
     {
-        Parent firstMenu = FXMLLoader.load(getClass().getResource("firstMenu.fxml"));
-        primaryStage.setTitle("Eriantys");
-        primaryStage.setScene(new Scene(firstMenu, 1280, 720));
-        primaryStage.setResizable(false);
-        primaryStage.show();
+        Image icona = new Image("icon.png");
+
+        try
+        {
+            Parent firstMenu = FXMLLoader.load(getClass().getClassLoader().getResource("firstMenu.fxml"));
+            primaryStage.setTitle("Eriantys");
+            primaryStage.setScene(new Scene(firstMenu));
+            primaryStage.getIcons().add(icona);
+            primaryStage.setResizable(true);
+            primaryStage.show();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
     }
+
 }
