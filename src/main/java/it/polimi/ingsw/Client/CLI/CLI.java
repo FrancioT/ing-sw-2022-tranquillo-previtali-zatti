@@ -107,18 +107,41 @@ public class CLI extends Thread implements PropertyChangeListener
             System.out.println("1) 2 players ");
             System.out.println("2) 3 players ");
             System.out.println("3) 4 players ");
-            boolean badChoice = true;
-            while (badChoice)
+            int numPlayers= -1;
+            while (numPlayers==-1)
             {
                 try {
-                    mode = Integer.toString(Integer.parseInt(keyboardInput.nextLine()) + 1);
-                    badChoice = false;
-                } catch (NumberFormatException e) { System.out.println("Write a number!"); }
+                    numPlayers= Integer.parseInt(keyboardInput.nextLine()) + 1;
+                    if(numPlayers<=1 || numPlayers>4)
+                    {
+                        numPlayers=-1;
+                        System.out.println("Choose an acceptable players number!");
+                    }
+                }catch(NumberFormatException e) {
+                    numPlayers=-1;
+                    System.out.println("Write a number!");
+                }
             }
+            mode= Integer.toString(numPlayers);
             System.out.println("Will it be in expert or simple mode?");
             System.out.println("1) expert mode");
             System.out.println("2) simple mode");
-            mode=mode.concat(keyboardInput.nextLine());
+            int modeChoice= -1;
+            while(modeChoice==-1)
+            {
+                try {
+                    modeChoice = Integer.parseInt(keyboardInput.nextLine());
+                    if (modeChoice < 1 || modeChoice > 2)
+                    {
+                        modeChoice = -1;
+                        System.out.println("Choose an available modality!");
+                    }
+                }catch(NumberFormatException e) {
+                    modeChoice=-1;
+                    System.out.println("Write a number!");
+                }
+            }
+            mode=mode.concat(Integer.toString(modeChoice));
         }
         try {
             String newNickName= sendInfo(nickName, mode);
@@ -742,7 +765,7 @@ public class CLI extends Thread implements PropertyChangeListener
         {
             System.out.print("The winners are: ");
             for(String winner: winners)
-                System.out.print(winner+" ");
+                System.out.print(winner+"   ");
             System.out.println();
         }
         else
