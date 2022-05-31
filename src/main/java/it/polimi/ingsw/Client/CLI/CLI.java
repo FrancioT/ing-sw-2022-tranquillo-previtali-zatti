@@ -138,6 +138,8 @@ public class CLI extends Thread implements PropertyChangeListener
     {
         BufferedReader keyboardInput= new BufferedReader(new InputStreamReader(System.in));
         String[] command= keyboardInput.readLine().toLowerCase().split(" ");
+        if(command.length==0 || !game.orElse(null).getCurrPlayerNickname().equals(nickName))
+            return;
         if(gameEnded || errorFlag)
             return;
         int pos=0;
@@ -689,7 +691,7 @@ public class CLI extends Thread implements PropertyChangeListener
                 if(currPlayer.equals(nickName))
                 {
                     String[] phase= game.orElse(null).getPhase().toString().split("_");
-                    System.out.println("\nYou have to ");
+                    System.out.print("\nYou have to ");
                     for(String s: phase)
                     {
                         System.out.print(s+" ");
