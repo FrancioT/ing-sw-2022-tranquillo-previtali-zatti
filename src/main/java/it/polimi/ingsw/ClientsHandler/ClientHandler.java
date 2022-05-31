@@ -5,19 +5,20 @@ import it.polimi.ingsw.ClientsHandler.Messages.ModelMessage;
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.DataBuffer;
 
-import java.io.Closeable;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-public class ClientHandler extends Thread implements Closeable
+public class ClientHandler extends Thread implements PingWaiter
 {
     private final DataBuffer dataBuffer;
     private final Socket socket;
     private final ObjectInputStream in_stream;
     private final ObjectOutputStream out_stream;
     private final String clientIP;
+    private boolean pingReceived;
+    private final PongWaiting waitingPong;
     private Controller controller;
 
     public ClientHandler(Socket socket, DataBuffer dataBuffer) throws IOException
@@ -34,13 +35,14 @@ public class ClientHandler extends Thread implements Closeable
             throw e;
         }
         clientIP=socket.getRemoteSocketAddress().toString();
+        pingReceived=false;
+        waitingPong= new PongWaiting(this);
         controller=null;
     }
     public void setController(Controller controller)
     {
         if(this.controller==null)
             this.controller= controller;
-        return;
     }
     private void receive()
     {
@@ -49,6 +51,12 @@ public class ClientHandler extends Thread implements Closeable
             message= in_stream.readObject();
             if(message instanceof Message)
                 ((Message)message).handle(dataBuffer);
+            else
+            {   // ping received
+                pingReceived= true;
+                // pong
+                out_stream.writeObject(new Object());
+            }
         } catch (IOException | ClassNotFoundException e)
         {
             System.out.println(getIP()+" disconnected");
@@ -64,12 +72,25 @@ public class ClientHandler extends Thread implements Closeable
     @Override
     public synchronized void close() throws IOException
     {
+        waitingPong.interrupt();
         controller.notifyDisconnection();
         socket.close();
     }
     @Override
+    public synchronized boolean getPing()
+    {
+        if(pingReceived)
+        {
+            pingReceived= false;
+            return true;
+        }
+        else
+            return false;
+    }
+    @Override
     public void run()
     {
+        waitingPong.start();
         if(controller==null)
             throw new IllegalArgumentException("The controller wasn't set");
         while(!socket.isClosed())

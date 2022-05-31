@@ -4,21 +4,24 @@ import it.polimi.ingsw.Client.Exceptions.BadMessageException;
 import it.polimi.ingsw.ClientsHandler.Messages.ExceptionMessage;
 import it.polimi.ingsw.ClientsHandler.Messages.Message;
 import it.polimi.ingsw.ClientsHandler.Messages.ModelMessage;
+import it.polimi.ingsw.ClientsHandler.PingWaiter;
+import it.polimi.ingsw.ClientsHandler.PongWaiting;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.io.Closeable;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-public class Receiver extends Thread implements Closeable
+public class Receiver extends Thread implements PingWaiter
 {
     private final Socket connection;
     private final ObjectInputStream in_stream;
     private final ObjectOutputStream out_stream;
-    protected final PropertyChangeSupport support;
+    private final PropertyChangeSupport support;
+    private boolean pingReceived;
+    private final PongWaiting waitingPong;
 
     public Receiver(Socket socket) throws IOException
     {
@@ -26,6 +29,8 @@ public class Receiver extends Thread implements Closeable
         connection = socket;
         out_stream = new ObjectOutputStream(connection.getOutputStream());
         in_stream = new ObjectInputStream(connection.getInputStream());
+        pingReceived= false;
+        waitingPong= new PongWaiting(this);
     }
     private void receiveModel() throws BadMessageException, IOException
     {
@@ -33,7 +38,23 @@ public class Receiver extends Thread implements Closeable
         try{
             message= in_stream.readObject();
             if(message instanceof ModelMessage)
+            {
                 notify((ModelMessage)message);
+                // check if the game ended
+                ModelMessage mes= (ModelMessage) message;
+                if(mes.errorStatus())
+                    if(mes.getErrorMessage().isFatal())
+                        try{ close(); }catch (IOException ignored){}
+                else
+                    if(mes.hasGameEnded())
+                        try{ close(); }catch (IOException ignored){}
+            }
+            else
+            {   // ping received
+                pingReceived= true;
+                // pong
+                out_stream.writeObject(new Object());
+            }
         } catch (ClassNotFoundException e) { throw new BadMessageException(); }
     }
     public synchronized void send(Message message) throws IOException
@@ -44,10 +65,25 @@ public class Receiver extends Thread implements Closeable
     }
     @Override
     public synchronized void close() throws IOException
-    { connection.close(); }
+    {
+        waitingPong.interrupt();
+        connection.close();
+    }
+    @Override
+    public synchronized boolean getPing()
+    {
+        if(pingReceived)
+        {
+            pingReceived= false;
+            return true;
+        }
+        else
+            return false;
+    }
     @Override
     public void run()
     {
+        waitingPong.start();
         while(!connection.isClosed())
         {
             try {
