@@ -1,16 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.Client.FirstMenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.Client.FirstMenuController">
    <children>
-      <ImageView fx:id="background" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="900.0" fitWidth="1600.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@SfondoMenuIniziale.jpg" />
+            <Image url="@background.jpeg" />
          </image>
       </ImageView>
+      <ImageView fitHeight="732.0" fitWidth="1104.0" layoutX="263.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@titleBackroung.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="737.0" layoutY="696.0" mnemonicParsing="false" text="START">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Button>
+      <TextField layoutX="673.0" layoutY="459.0" promptText="Nickname">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </TextField>
+      <TextField layoutX="705.0" layoutY="559.0" promptText="ServerIP">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>

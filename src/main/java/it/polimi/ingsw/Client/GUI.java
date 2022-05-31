@@ -1,14 +1,11 @@
 package it.polimi.ingsw.Client;
 
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class GUI extends Application {
@@ -17,6 +14,7 @@ public class GUI extends Application {
     {
         launch(args);
     }
+
     @Override
     public void start(Stage primaryStage)
     {
@@ -28,7 +26,7 @@ public class GUI extends Application {
             primaryStage.setTitle("Eriantys");
             primaryStage.setScene(new Scene(firstMenu));
             primaryStage.getIcons().add(icona);
-            primaryStage.setResizable(true);
+            primaryStage.setResizable(false);
             primaryStage.show();
         }
         catch(Exception e)
