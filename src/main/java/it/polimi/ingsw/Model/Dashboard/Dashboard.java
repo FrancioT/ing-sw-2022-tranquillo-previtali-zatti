@@ -71,10 +71,19 @@ public class Dashboard implements Serializable
             classrooms.addStudent(stud1);
             throw e;
         }
-        classrooms.addStudent(stud2);
-        List<Student> tmp=new ArrayList<>();
-        tmp.add(stud1);
-        entrance.entranceFiller(tmp);
+        try {
+            classrooms.addStudent(stud2);
+        }catch (FullClassException e)
+        {
+            classrooms.addStudent(stud1);
+            List<Student> entranceStudent=new ArrayList<>();
+            entranceStudent.add(stud2);
+            entrance.entranceFiller(entranceStudent);
+            throw e;
+        }
+        List<Student> entranceStudent=new ArrayList<>();
+        entranceStudent.add(stud1);
+        entrance.entranceFiller(entranceStudent);
     }
 
     public Student removeStudentClassroom(Colour colour) throws NoSuchStudentException {
