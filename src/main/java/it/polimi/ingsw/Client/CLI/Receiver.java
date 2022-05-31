@@ -53,7 +53,7 @@ public class Receiver extends Thread implements PingWaiter
             {   // ping received
                 pingReceived= true;
                 // pong
-                out_stream.writeObject(new Object());
+                out_stream.writeObject(1);
             }
         } catch (ClassNotFoundException e) { throw new BadMessageException(); }
     }

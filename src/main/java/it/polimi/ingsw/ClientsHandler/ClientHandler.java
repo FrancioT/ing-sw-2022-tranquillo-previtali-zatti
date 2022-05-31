@@ -55,7 +55,7 @@ public class ClientHandler extends Thread implements PingWaiter
             {   // ping received
                 pingReceived= true;
                 // pong
-                out_stream.writeObject(new Object());
+                out_stream.writeObject(1);
             }
         } catch (IOException | ClassNotFoundException e)
         {
