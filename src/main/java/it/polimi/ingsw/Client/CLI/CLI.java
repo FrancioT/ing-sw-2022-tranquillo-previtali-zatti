@@ -107,7 +107,14 @@ public class CLI extends Thread implements PropertyChangeListener
             System.out.println("1) 2 players ");
             System.out.println("2) 3 players ");
             System.out.println("3) 4 players ");
-            mode = Integer.toString(Integer.parseInt(keyboardInput.nextLine())+1);
+            boolean badChoice = true;
+            while (badChoice)
+            {
+                try {
+                    mode = Integer.toString(Integer.parseInt(keyboardInput.nextLine()) + 1);
+                    badChoice = false;
+                } catch (NumberFormatException e) { System.out.println("Write a number!"); }
+            }
             System.out.println("Will it be in expert or simple mode?");
             System.out.println("1) expert mode");
             System.out.println("2) simple mode");
@@ -224,7 +231,7 @@ public class CLI extends Thread implements PropertyChangeListener
                     colour= toColour(command[1]);
                     if(colour!=null)
                     {
-                        try{ pos= Integer.parseInt(command[1]); }
+                        try{ pos= Integer.parseInt(command[2]); }
                         catch(NumberFormatException e){ pos=-1; }
                         if(pos>0)
                         {
@@ -252,7 +259,7 @@ public class CLI extends Thread implements PropertyChangeListener
                     colour= toColour(command[1]);
                     if(colour!=null)
                     {
-                        try{ pos= Integer.parseInt(command[1]); }
+                        try{ pos= Integer.parseInt(command[2]); }
                         catch(NumberFormatException e){ pos=-1; }
                         if(pos>0)
                         {

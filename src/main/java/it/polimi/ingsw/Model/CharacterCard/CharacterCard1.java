@@ -43,6 +43,6 @@ public class CharacterCard1 extends CharacterCardWithStudentsList{
     {
         super.ccPrinter();
         System.out.println("Effect: Take 1 student from this card and place it on an island of your choice.");
-        System.out.println("Parameters: Island's position, Student's colour");
+        System.out.println("Parameters: Student's colour, Island's position");
     }
 }
