@@ -418,7 +418,7 @@ public class Model {
                                                          RunOutOfTowersException,
                                                          EmptyException, LinkFailedException
     {
-        if(deltaPos<=0) throw new IndexOutOfBoundsException();
+        if(deltaPos<0) throw new IndexOutOfBoundsException();
 
         Island island = motherNature.getCurrentPos();
         int i = islandsList.indexOf(island);

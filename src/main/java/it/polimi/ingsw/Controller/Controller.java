@@ -314,10 +314,10 @@ public class Controller extends Thread
             int oldPos= model.getCurrPosMN();
             try
             {
-                if(newPos==oldPos)
+                if(newPos==oldPos && model.getNumIslands()>model.getLastCardValue(uID))
                     throw new IllegalMNMovementException();
                 int delta_pos;
-                if(newPos>oldPos)
+                if(newPos>=oldPos)
                     delta_pos= newPos-oldPos;
                 else
                     delta_pos= model.getNumIslands()-oldPos+newPos;
