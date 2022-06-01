@@ -9,7 +9,14 @@ public class CharacterCard2 extends CharacterCard
 {
     static final long serialVersionUID= 80301L;
 
+    /**
+     * Constructor of the card
+     */
     public CharacterCard2() { super(2, 2); }
+
+    /**
+     * @param userData   in this case is null as this card doesn't need any data from the databuffer
+     */
     @Override
     public void handle(String uID, DataBuffer userData, Controller controller) throws Exception
     {

@@ -14,8 +14,17 @@ public class CharacterCard10 extends CharacterCard
 {
     static final long serialVersionUID= 80308L;
 
+    /**
+     * Constructor of the card
+     */
     public CharacterCard10(){ super(10, 1); }
 
+    /**
+     * @param userData   the databuffer with the colours of the students that the player wants to swap.
+     *                   The colours must be in this order: up to 2 pairs of colours, the first colour of the pair
+     *                   represents the student in the classroom that must be swapped with the student from the
+     *                   entrance whose colour is the second one of the pair
+     */
     @Override
     public void handle(String uID, DataBuffer userData, Controller controller) throws Exception
     {
@@ -47,6 +56,8 @@ public class CharacterCard10 extends CharacterCard
             studentsToEntrance.add(studentsToMove.get(2*i+1));
         }
 
+        // in this first part of the method we check if the requested students are available
+
         for(Colour c : studentsToClassroom) {
             int check = 0;
             for (Colour colour : studentsToClassroom)
@@ -68,6 +79,8 @@ public class CharacterCard10 extends CharacterCard
             if (check > 0)
                 throw new NoSuchStudentException();
         }
+
+        // in this second part we make the effective swap if no exception was thrown
 
         for(int i=0; i<(studentsNum/2); i++)
         {

@@ -9,10 +9,16 @@ public class CharacterCard3 extends CharacterCard
 {
     static final long serialVersionUID= 80302L;
 
+    /**
+     * Constructor of the card
+     */
     public CharacterCard3() {
         super(3, 3);
     }
 
+    /**
+     * @param userData   the databuffer with the index of the island where the player wants to calculate the dominance
+     */
     @Override
     public void handle(String uID, DataBuffer userData, Controller controller) throws Exception
     {

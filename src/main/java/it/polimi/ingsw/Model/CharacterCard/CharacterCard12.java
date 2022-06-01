@@ -19,12 +19,21 @@ public class CharacterCard12 extends CharacterCard
     transient final private List<Player> players;
     static final long serialVersionUID= 80309L;
 
+    /**
+     * Constructor of the card
+     * @param bag the bag from which the card will re-insert the students removed from the players' classrooms
+     * @param players the list of players in the game
+     */
     public CharacterCard12(Bag bag, List<Player> players){
         super(12 ,3);
         this.bag = bag;
         this.players=new ArrayList<>(players);
     }
 
+    /**
+     * @param userData   the databuffer with the colour of the students that the player has chosen to be removed from
+     *                   the classroom of every player.
+     */
     @Override
     public void handle(String uID, DataBuffer userData, Controller controller) throws Exception {
         if(userData==null || uID==null || controller==null)

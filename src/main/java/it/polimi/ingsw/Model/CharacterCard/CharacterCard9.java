@@ -10,7 +10,15 @@ public class CharacterCard9 extends CharacterCard
 {
     static final long serialVersionUID= 80307L;
 
+    /**
+     * Constructor of the card
+     */
     public CharacterCard9() { super(9, 3); }
+
+    /**
+     * @param userData   the databuffer with the colour of the students that the player wants to "inhibit" for the
+     *                   calculation of the dominance for this turn
+     */
     @Override
     public void handle(String uID, DataBuffer userData, Controller controller) throws Exception
     {
