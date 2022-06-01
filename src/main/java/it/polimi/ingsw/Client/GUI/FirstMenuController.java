@@ -30,7 +30,7 @@ public class FirstMenuController
 
     private ToggleGroup numPlayers;
     private ToggleGroup mode;
-    private Socket serverConnection;
+    private static Socket serverConnection;
     private static String yourNickname;
     private static final int serverPort=55790;
     private static final String firstPlayerMessage="Choose game mode";
@@ -105,7 +105,7 @@ public class FirstMenuController
 
     private void sendMode()
     {
-        if(!numPlayers.getSelectedToggle().isSelected() || !mode.getSelectedToggle().isSelected())
+        if(numPlayers.getSelectedToggle()==null || mode.getSelectedToggle()==null)
             return;
         String modeMessage;
         Toggle selected= numPlayers.getSelectedToggle();
@@ -129,12 +129,19 @@ public class FirstMenuController
                 yourNickname = newNick;
                 AlertBox.display("NickName already used", "Your nickname was changed in " + newNick);
             }
-            GUI.getInstance().setReceiver(serverConnection);
-            Parent choosingGame = FXMLLoader.load(getClass().getClassLoader().getResource("loadingScreen.fxml"));
-            GUI.getInstance().getWindow().setScene(new Scene(choosingGame));
+            Parent waitingPlayers = FXMLLoader.load(getClass().getClassLoader().getResource("loadingScreen.fxml"));
+            GUI.getInstance().getWindow().setScene(new Scene(waitingPlayers));
+            new Thread(){
+                @Override
+                public void run()
+                {
+                    GUI.getInstance().setReceiver(serverConnection);
+                }
+            }.start();
         }catch(IOException e){
-            // closing the main window
-            AlertBox.display("Error", "Conncection error with the server");
+            // closing the main window and the connection
+            try{ serverConnection.close(); }catch(IOException ignored){}
+            AlertBox.display("Error", "Connection error with the server");
             GUI.getInstance().getWindow().fireEvent(new WindowEvent(GUI.getInstance().getWindow(),
                                                                     WindowEvent.WINDOW_CLOSE_REQUEST));
         }

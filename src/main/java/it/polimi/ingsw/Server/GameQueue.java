@@ -65,6 +65,8 @@ public class GameQueue
         out.println("Waiting for players");
         out.flush();
         String nickname= in.readLine();
+        if(nickname==null)
+            throw new IOException();
         boolean changedName=true;
         String newNickname= nickname;
         for(int i=1; i<100 && changedName; i++)

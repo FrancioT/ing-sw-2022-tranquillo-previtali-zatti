@@ -75,15 +75,14 @@ public class Server extends Thread implements Closeable{
         {
             System.out.println("Error during in initialization of Server socket");
         }
-        try {
-            while(true)
-            {
+        while(true)
+        {
+            try {
                 Socket socket = acceptConnection();
                 gameModeAndWaitPlayers(socket);
+            }catch(IOException ignored) {
+                System.out.println("Error during game creation");
             }
-        } catch (IOException ignored)
-        {
-            System.out.println("Error during game creation");
         }
     }
 
