@@ -15,7 +15,15 @@ import java.util.Map;
 
 public class Card3Actuator
 {
-    // this method is just a variant of islandDominance() in Model
+    /**
+     * This method calculate the dominance on the island requested by the player even if there isn't mother nature on it
+     * @param index the index of the island where we have to calculate the dominance
+     * @param model the model where we have to look for the island
+     * @throws FullTowersException Exception thrown if the maximum number of towers is surpassed
+     * @throws RunOutOfTowersException Exception thrown when a player finishes his available towers
+     * @throws EmptyException Exception thrown if there are no towers on the island
+     * @throws LinkFailedException Exception thrown if a linking has failed
+     */
     static public void card3Effect(int index, Model model) throws FullTowersException,
                                                                   RunOutOfTowersException,
                                                                   EmptyException, LinkFailedException

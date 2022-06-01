@@ -16,11 +16,26 @@ import java.util.Map;
 public class Card9Decorator extends Model
 {
     private final Colour nullified_colour;
+
+    /**
+     * Constructor of the model decorator
+     * @param model the model on which the decorator is based
+     * @param colour the color that has to be ignored this turn during the island dominance
+     */
     public Card9Decorator(Model model, Colour colour)
     {
         super(model);
         nullified_colour=colour;
     }
+
+    /**
+     * This method calculates the dominance of an island without considering the students of a selected color
+     * @throws FullTowersException thrown by the method towersSwitcher of island
+     * @throws RunOutOfTowersException thrown by the method towersSwitcher of island
+     * @throws EmptyException thrown if the island was modified during the execution of this method and was
+     * emptied from every tower
+     * @throws LinkFailedException thrown by the method towersSwitcher of island
+     */
     @Override
     protected synchronized void islandDominance(Island island) throws FullTowersException,
                                                                       RunOutOfTowersException,

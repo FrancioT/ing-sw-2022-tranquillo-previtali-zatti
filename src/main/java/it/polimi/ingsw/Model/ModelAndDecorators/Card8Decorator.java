@@ -13,6 +13,11 @@ import java.util.Map;
 public class Card8Decorator extends Model
 {
     private final Player player;
+    /**
+     * Constructor of the model decorator
+     * @param model the model on which the decorator is based
+     * @param uID the player who has activated the card
+     */
     public Card8Decorator(Model model, String uID) throws NoSuchPlayerException
     {
         super(model);
@@ -27,6 +32,15 @@ public class Card8Decorator extends Model
         player=tmp;
     }
 
+    /**
+     * This method calculate the dominance of an island normally, then it adds 2 extra dominance points to the player
+     * who has activated the card
+     * @throws FullTowersException thrown by the method towersSwitcher of island
+     * @throws RunOutOfTowersException thrown by the method towersSwitcher of island
+     * @throws EmptyException thrown if the island was modified during the execution of this method and was
+     * emptied from every tower
+     * @throws LinkFailedException thrown by the method towersSwitcher of island
+     */
     @Override
     protected synchronized void islandDominance(Island island) throws FullTowersException,
                                                                       RunOutOfTowersException,
