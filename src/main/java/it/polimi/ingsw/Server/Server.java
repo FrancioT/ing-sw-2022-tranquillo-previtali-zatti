@@ -23,7 +23,7 @@ public class Server extends Thread implements Closeable{
         server.join();
     }
 
-    public void init() throws IOException
+    private void init() throws IOException
     {
         serverSocket = new ServerSocket(port);
         System.out.println(">>> Listening on " + port);
@@ -37,7 +37,7 @@ public class Server extends Thread implements Closeable{
         return accepted;
     }
 
-    public void gameModeAndWaitPlayers(Socket clientConnection) throws IOException
+    private void gameModeAndWaitPlayers(Socket clientConnection) throws IOException
     {
         InputStream is = null;
         OutputStream os = null;
@@ -55,7 +55,13 @@ public class Server extends Thread implements Closeable{
         String nickname= in.readLine();
         out.println(nickname);
         out.flush();
-        int mode= Integer.parseInt(in.readLine());
+        int mode;
+        try {
+            mode = Integer.parseInt(in.readLine());
+        }catch (NumberFormatException e){
+            clientConnection.close();
+            throw new IOException();
+        }
         GameQueue queue= new GameQueue(mode%10==1, mode/10, clientConnection,
                                        nickname, this);
         games.add(queue.waitForClients());
@@ -81,6 +87,7 @@ public class Server extends Thread implements Closeable{
         }
     }
 
+    @Override
     public void close() throws IOException
     { serverSocket.close(); }
 }

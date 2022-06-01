@@ -27,6 +27,7 @@ public class FirstMenuController
     private Button startTheGame;
     @FXML
     private TextField serverIP;
+
     private ToggleGroup numPlayers;
     private ToggleGroup mode;
     private Socket serverConnection;

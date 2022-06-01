@@ -24,6 +24,7 @@ import java.util.List;
 
 public class GUI extends Application implements PropertyChangeListener
 {
+    private static final Boolean instanceLock= false;
     private static GUI instance= null;
     private final List<Stage> allStages;
     private ModelMessage game;
@@ -31,7 +32,7 @@ public class GUI extends Application implements PropertyChangeListener
     private Stage window;
 
 
-    public void execute(String[] args)
+    public static void execute(String[] args)
     {
         launch(args);
     }
@@ -39,12 +40,23 @@ public class GUI extends Application implements PropertyChangeListener
     public static GUI getInstance()
     {
         if(instance==null)
+        {
+            synchronized(instanceLock) {
+                while (instance==null)
+                    try{ instanceLock.wait(); }catch(InterruptedException ignored){}
+            }
             instance= new GUI();
+        }
         return instance;
     }
 
-    private GUI()
+    public GUI()
     {
+        synchronized(instanceLock)
+        {
+            if(instance!=null)
+                throw new RuntimeException("Illegal access, another instance was already created");
+        }
         allStages = new ArrayList<>();
         game=null;
         receiver=null;
@@ -54,6 +66,10 @@ public class GUI extends Application implements PropertyChangeListener
     @Override
     public void start(Stage primaryStage)
     {
+        synchronized(instanceLock) {
+            instance= this;
+            instanceLock.notifyAll();
+        }
         Image icon = new Image("icon.png");
         window= primaryStage;
         try
@@ -91,10 +107,7 @@ public class GUI extends Application implements PropertyChangeListener
 
     public Stage getWindow() { return window; }
 
-    public ModelMessage getModel()
-    {
-        return game;
-    }
+    public ModelMessage getModel() { return game; }
 
     @Override
     public void propertyChange(PropertyChangeEvent event)
