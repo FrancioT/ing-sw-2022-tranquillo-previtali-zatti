@@ -19,6 +19,12 @@ public class Island extends Tile implements Serializable
     transient private final Model model;
     static final long serialVersionUID= 80100L;
 
+    /**
+     * Constructor for the islands where there will be no students at the start of the game (the island with MN, and
+     * the one opposite to it)
+     * @param MN_presence true if MN has to be put on it, false if not
+     * @param model the model to which this island will refer
+     */
     public Island(boolean MN_presence, Model model)
     {
         super();
@@ -27,6 +33,12 @@ public class Island extends Tile implements Serializable
         numTowers=0;
         this.model=model;
     }
+
+    /**
+     * Constructor for the island that will have students at the start of the game
+     * @param student student that needs to be added
+     * @param model the model to which this island will refer
+     */
     public Island(Student student, Model model)
     {
         super();
@@ -36,6 +48,16 @@ public class Island extends Tile implements Serializable
         numTowers=0;
         this.model=model;
     }
+
+    /**
+     * Method used to create an island after the linking of two
+     * @param students list of students to be added
+     * @param towers towers that are on the island
+     * @param numT number of towers to be added
+     * @param inhibitionCounter number of inhibition tiles on the island
+     * @param model the model to which this island will refer
+     * @param mnFlag true if MN is on the island, false if not
+     */
     private Island(List<Student> students, Towers towers, int numT,
                   int inhibitionCounter, Model model, boolean mnFlag)
     {
@@ -49,6 +71,13 @@ public class Island extends Tile implements Serializable
             addStudent(s);
     }
 
+    /**
+     * Method to merge two islands in a single one. This method takes the values of the two islands that need to be
+     * merged and add them up, then it passes them to a new island
+     * @param island the island that we want to link to the one which calls the method
+     * @return the new island created by the old 2
+     * @throws LinkFailedException Exception thrown if the linking fails for some reasons
+     */
     public Island islandsLinker(Island island) throws LinkFailedException
     {
         if(island==null) throw new NullPointerException();
@@ -68,8 +97,15 @@ public class Island extends Tile implements Serializable
                           this.motherNatureFlag || island.motherNatureFlag);
     }
 
+    /**
+     * @return the number of towers on the island
+     */
     public int getNumTowers() { return numTowers; }
 
+    /**
+     * @return the colours of the towers on an island
+     * @throws EmptyException Exception thrown if there are no towers on the island
+     */
     public ColourT getTowersColour() throws EmptyException
     {
         if(numTowers!=0)
@@ -78,6 +114,14 @@ public class Island extends Tile implements Serializable
             throw new EmptyException();
     }
 
+    /**
+     * Method that changes the tower on the island with a new one of a player that has obtained the dominance on the
+     * island
+     * @param newTowers the player's towers
+     * @throws FullTowersException Exception thrown if the towers of a player are more than the possible number
+     * @throws RunOutOfTowersException Exception thrown if a player has finished its towers
+     * @throws LinkFailedException Exception thrown if a linking has failed
+     */
     public void towersSwitcher(Towers newTowers) throws FullTowersException, RunOutOfTowersException,
                                                         LinkFailedException
     {
@@ -101,10 +145,29 @@ public class Island extends Tile implements Serializable
         model.checkIslandLinking();
     }
 
+    /**
+     * Set the MN presence flag to true
+     */
     public void setMotherNature() { motherNatureFlag=true; }
+
+    /**
+     * Set the MN presence flag to false
+     */
     public void removeMotherNature() { motherNatureFlag=false; }
+
+    /**
+     * @return true if MN is on the island, false if not
+     */
     public boolean isMotherNatureFlag() { return motherNatureFlag; }
+
+    /**
+     * increases the number of inhibition tiles on the island
+     */
     public void addInhibition() { inhibitionCounter++; }
+
+    /**
+     * decreases the number of the inhibition tiles on the island
+     */
     public void subInhibition()
     {
         if(inhibitionCounter<1)
@@ -112,7 +175,15 @@ public class Island extends Tile implements Serializable
                                         "but there wasn't any");
         inhibitionCounter--;
     }
+
+    /**
+     * @return true if there is at least one inhibition tile on the island, false if not
+     */
     public boolean getInhibition() { return inhibitionCounter>0; }
+
+    /**
+     * @return number of the inhibition tiles on the island
+     */
     public int getInhibitionCounter() { return inhibitionCounter; }
 
     private void writeObject(ObjectOutputStream oos) throws IOException
@@ -130,6 +201,10 @@ public class Island extends Tile implements Serializable
             this.towers= null;
     }
 
+    /**
+     * Method to print infos of islands
+     * @param expertModeFlag true if expert mode, false if standard mode
+     */
     public void islandPrinter(boolean expertModeFlag) {
 
         System.out.print("students list: ");

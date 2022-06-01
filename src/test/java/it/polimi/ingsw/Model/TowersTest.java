@@ -34,7 +34,7 @@ class TowersTest {
         towers1.availabilityModifier(2);
 
         try{
-            towers0.availabilityModifier(3);
+            towers0.availabilityModifier(1);
             assertTrue(false);
         }catch (FullTowersException e){}
 
@@ -43,6 +43,12 @@ class TowersTest {
             assertTrue(false);
         }catch (RunOutOfTowersException e){}
 
+        towers1.availabilityModifier(8);
+
+        try{
+            towers1.availabilityModifier(1);
+            assertTrue(false);
+        }catch (FullTowersException e){}
     }
 
 }

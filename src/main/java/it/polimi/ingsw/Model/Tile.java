@@ -11,8 +11,15 @@ public class Tile implements Serializable
     protected List<Student> studentsList;
     static final long serialVersionUID= 80000L;
 
+    /**
+     * Constructor of tile
+     */
     public Tile() { studentsList=new ArrayList<>(); }
 
+    /**
+     * Method to add a student on a tile
+     * @param student the student to add on the tile
+     */
     public void addStudent(Student student)
     {
         if(student==null) throw new NullPointerException();
@@ -20,6 +27,9 @@ public class Tile implements Serializable
         studentsList.add(student);
     }
 
+    /**
+     * @return the list of students' colour on the tile
+     */
     public List<Colour> getStudentsColours()
     {
         List<Colour> colours=new ArrayList<>();
@@ -30,6 +40,9 @@ public class Tile implements Serializable
         return colours;
     }
 
+    /**
+     * Method to print infos of a tile
+     */
     public void tilePrinter()
     {
         final String sBlue = "\u001B[34m";
