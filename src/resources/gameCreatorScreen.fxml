@@ -20,17 +20,17 @@
             <Font size="44.0" />
          </font>
       </Text>
-      <RadioButton fx:id="threePlayers" layoutX="698.0" layoutY="320.0" mnemonicParsing="false" text="3 Players" textFill="WHITE">
+      <RadioButton fx:id="threePlayers" layoutX="698.0" layoutY="320.0" mnemonicParsing="false" text="3" textFill="WHITE">
          <font>
             <Font size="40.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="twoPlayers" layoutX="448.0" layoutY="317.0" mnemonicParsing="false" text="2 Players" textFill="WHITE">
+      <RadioButton fx:id="twoPlayers" layoutX="448.0" layoutY="317.0" mnemonicParsing="false" text="2" textFill="WHITE">
          <font>
             <Font size="40.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="fourPlayers" layoutX="965.0" layoutY="318.0" mnemonicParsing="false" text="4 Players" textFill="WHITE">
+      <RadioButton fx:id="fourPlayers" layoutX="965.0" layoutY="318.0" mnemonicParsing="false" text="4" textFill="WHITE">
          <font>
             <Font size="40.0" />
          </font>

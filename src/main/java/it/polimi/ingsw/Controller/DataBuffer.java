@@ -208,4 +208,17 @@ public class DataBuffer
         errorStatus=true;
         notifyAll();
     }
+    public synchronized void clear()
+    {
+        cardPos=-1;
+        target=Optional.empty();
+        studColour=Optional.empty();
+        islandPos=-1;
+        mnPos=-1;
+        cloudPos=-1;
+        studentsColours.clear();
+        activationCardRequest=false;
+        characterCardID=-1;
+        errorStatus=false;
+    }
 }

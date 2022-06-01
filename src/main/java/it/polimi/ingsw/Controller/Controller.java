@@ -66,6 +66,7 @@ public class Controller extends Thread
                     if(breakEnd)
                         break;
                 }
+                dataBufferClear();
                 chosenClouds.clear();
             }
         }
@@ -417,5 +418,10 @@ public class Controller extends Thread
     {
         for(DataBuffer dataBuffer: usersData.values())
             dataBuffer.setErrorStatus();
+    }
+    private void dataBufferClear()
+    {
+        for(DataBuffer dataBuffer: usersData.values())
+            dataBuffer.clear();
     }
 }

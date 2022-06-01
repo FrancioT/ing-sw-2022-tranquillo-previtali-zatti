@@ -27,7 +27,6 @@ public class CLI extends Thread implements PropertyChangeListener
     private boolean errorFlag;
     private final Boolean gameLock;
     private Receiver receiver;
-    private static final String serverIP="127.0.0.1";
     private static final int serverPort=55790;
     private static final String firstPlayerMessage="Choose game mode";
 
@@ -93,9 +92,24 @@ public class CLI extends Thread implements PropertyChangeListener
         Scanner keyboardInput= new Scanner(System.in);
         System.out.println("Welcome to Eriantys!");
         System.out.println("Your nickname during this game will be: ");
-        nickName = keyboardInput.nextLine();
+        while(nickName.trim().length()==0)
+            nickName = keyboardInput.nextLine();
+
+        String serverIP="";
+        while(serverIP.length()==0)
+        {
+            System.out.println("Write the server ip: ");
+            serverIP= keyboardInput.nextLine();
+            String[] ip= serverIP.split(".");
+            for(String part: ip)
+                if(Integer.parseInt(part)>255)
+                {
+                    serverIP="";
+                    break;
+                }
+        }
         try {
-            firstPlayerFlag= connect();
+            firstPlayerFlag= connect(serverIP);
         }catch (IOException e)
         {
             System.out.println("Unable to connect to the server");
@@ -573,7 +587,7 @@ public class CLI extends Thread implements PropertyChangeListener
         toColour.put("green", Colour.green);
         return toColour.get(colour);
     }
-    private boolean connect() throws IOException
+    private boolean connect(String serverIP) throws IOException
     {
         connection = new Socket(serverIP, serverPort);
         BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));

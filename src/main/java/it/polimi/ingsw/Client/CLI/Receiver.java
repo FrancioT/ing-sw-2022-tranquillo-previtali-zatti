@@ -90,9 +90,9 @@ public class Receiver extends Thread implements PingWaiter
                 receiveModel();
             }catch (BadMessageException e)
             {
-                System.out.println("Server sent a malformed or incomprehensible message");
                 try{ connection.close(); }catch(IOException ignored){}
-                notify(new ModelMessage(new ExceptionMessage("", true)));
+                notify(new ModelMessage(new ExceptionMessage("Server sent a malformed or incomprehensible " +
+                        "message", true)));
             }
             catch (IOException e1)
             {
