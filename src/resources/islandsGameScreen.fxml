@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="1080.0" prefWidth="1906.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.Client.FXMLResurces.IslandsGameScreen">
+<AnchorPane prefHeight="1080.0" prefWidth="1906.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.Client.GUI.IslandController">
    <children>
-      <ImageView fitHeight="1123.0" fitWidth="1987.0" layoutX="-3.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="1123.0" fitWidth="1987.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@sky.jpg" />
          </image>
@@ -456,25 +457,15 @@
             <Font size="31.0" />
          </font>
       </Text>
-      <ImageView fx:id="characterCard1" fitHeight="150.0" fitWidth="200.0" layoutX="15.0" layoutY="202.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="characterCard2" fitHeight="150.0" fitWidth="200.0" layoutX="15.0" layoutY="447.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="characterCard3" fitHeight="150.0" fitWidth="200.0" layoutX="15.0" layoutY="660.0" pickOnBounds="true" preserveRatio="true" />
-      <Text fx:id="Player1" fill="RED" layoutX="1648.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Player:" wrappingWidth="319.7799377441408">
-         <font>
-            <Font size="31.0" />
-         </font>
-      </Text>
+      <ImageView fx:id="characterCard1" fitHeight="150.0" fitWidth="200.0" layoutX="15.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="characterCard2" fitHeight="150.0" fitWidth="200.0" layoutX="15.0" layoutY="263.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="characterCard3" fitHeight="150.0" fitWidth="200.0" layoutX="15.0" layoutY="450.0" pickOnBounds="true" preserveRatio="true" />
       <Text fx:id="towersP1" fill="RED" layoutX="1648.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Towers:" wrappingWidth="319.7799377441408">
          <font>
             <Font size="31.0" />
          </font>
       </Text>
       <Text fx:id="coinsP1" fill="RED" layoutX="1648.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coins:" wrappingWidth="319.7799377441408">
-         <font>
-            <Font size="31.0" />
-         </font>
-      </Text>
-      <Text fx:id="Player2" fill="#d90fb3" layoutX="1648.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Player:" wrappingWidth="319.7799377441408">
          <font>
             <Font size="31.0" />
          </font>
@@ -489,22 +480,12 @@
             <Font size="31.0" />
          </font>
       </Text>
-      <Text fx:id="Player3" fill="#1900ff" layoutX="1648.0" layoutY="872.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Player:" wrappingWidth="319.7799377441408">
-         <font>
-            <Font size="31.0" />
-         </font>
-      </Text>
       <Text fx:id="towersP3" fill="#1900ff" layoutX="1648.0" layoutY="910.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Towers:" wrappingWidth="319.7799377441408">
          <font>
             <Font size="31.0" />
          </font>
       </Text>
       <Text fx:id="coinsP3" fill="#1900ff" layoutX="1648.0" layoutY="947.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coins:" wrappingWidth="319.7799377441408">
-         <font>
-            <Font size="31.0" />
-         </font>
-      </Text>
-      <Text fx:id="Player4" fill="#2d884d" layoutX="1648.0" layoutY="1009.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Player:" wrappingWidth="319.7799377441408">
          <font>
             <Font size="31.0" />
          </font>
@@ -519,5 +500,14 @@
             <Font size="31.0" />
          </font>
       </Text>
+      <Text fx:id="unusedCoins" fill="#d08535" layoutX="15.0" layoutY="663.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unused Coins:" wrappingWidth="222.44654846191423">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Text>
+      <Button fx:id="playerID1" layoutX="1648.0" layoutY="27.0" mnemonicParsing="false" onAction="#showDashboard1" prefHeight="31.0" prefWidth="170.0" text="Player1" textFill="RED" />
+      <Button fx:id="playerID2" layoutX="1648.0" layoutY="183.0" mnemonicParsing="false" onAction="#showDashboard2" prefHeight="31.0" prefWidth="170.0" text="Player2" textFill="RED" />
+      <Button fx:id="playerID3" layoutX="1648.0" layoutY="843.0" mnemonicParsing="false" onAction="#showDashboard3" prefHeight="31.0" prefWidth="170.0" text="Player3" textFill="RED" />
+      <Button fx:id="playerID4" layoutX="1648.0" layoutY="982.0" mnemonicParsing="false" onAction="#showDashboard4" prefHeight="31.0" prefWidth="170.0" text="Player4" textFill="RED" />
    </children>
 </AnchorPane>
