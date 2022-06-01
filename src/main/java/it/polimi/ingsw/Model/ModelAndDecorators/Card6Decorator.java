@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Model.ModelAndDecorators;
 
 import it.polimi.ingsw.Model.Colour;
+import it.polimi.ingsw.Model.Exceptions.EmptyException;
 import it.polimi.ingsw.Model.Exceptions.FullTowersException;
 import it.polimi.ingsw.Model.Exceptions.LinkFailedException;
 import it.polimi.ingsw.Model.Exceptions.RunOutOfTowersException;
@@ -14,8 +15,18 @@ import java.util.Map;
 
 public class Card6Decorator extends Model
 {
+    /**
+     * Constructor of the model decorator
+     * @param model the model on which the decorator is based
+     */
     public Card6Decorator(Model model) { super(model); }
 
+    /**
+     * This method calculates the dominance over an island, but without considering the towers on it
+     * @throws FullTowersException thrown by the method towersSwitcher of island
+     * @throws RunOutOfTowersException thrown by the method towersSwitcher of island
+     * @throws LinkFailedException thrown by the method towersSwitcher of island
+     */
     @Override
     protected synchronized void islandDominance(Island island) throws FullTowersException,
                                                                     RunOutOfTowersException,

@@ -12,6 +12,9 @@ class Deck implements Serializable
     private StandardCard discardedCard;
     static final long serialVersionUID= 80220L;
 
+    /**
+     * Constructor of the decks; it creates the deck by adding the needed standard cards
+     */
     Deck()
     {
         handList=new ArrayList<>();
@@ -29,6 +32,12 @@ class Deck implements Serializable
         handList.add(new StandardCard(10,5));
     }
 
+    /**
+     * Method used to discard a chosen card
+     * @param pos the index of the card relatively to its current position
+     * @return the card discarded
+     * @throws IndexOutOfBoundsException Exception thrown if the index requested is unacceptable
+     */
     StandardCard cardDiscarder(int pos) throws IndexOutOfBoundsException
     {
         if(pos>=handList.size() || pos<0) throw new IndexOutOfBoundsException();
@@ -37,13 +46,26 @@ class Deck implements Serializable
         discardedCard=s;
         return s;
     }
+
+    /**
+     * Method used to obtain the MN value of the last card played by a player
+     * @return the MN value
+     * @throws EmptyException Exception thrown when there isn't a discarded card
+     */
     int getLastCardMNValue() throws EmptyException
     {
         if(discardedCard==null) throw new EmptyException();
         return discardedCard.getMnValue();
     }
+
+    /**
+     * @return the list of the cards available
+     */
     List<StandardCard> getHandCards() { return new ArrayList<>(handList); }
 
+    /**
+     * Method to print the deck
+     */
     public void deckPrinter()
     {
         String deckString = " ";

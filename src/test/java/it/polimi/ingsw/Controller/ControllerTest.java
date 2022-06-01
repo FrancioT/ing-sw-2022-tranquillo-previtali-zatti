@@ -190,7 +190,7 @@ class ControllerTest
         ModelTest.getIslandsList(controller.getModel()).get(2).addStudent(new Student(Colour.red));
         ModelTest.getIslandsList(controller.getModel()).get(2).addStudent(new Student(Colour.red));
         ModelTest.getIslandsList(controller.getModel()).get(2).towersSwitcher(ModelTest.getPlayers(controller.getModel()).get(2).getTowers());
-        ModelTest.getPlayers(controller.getModel()).get(2).getTowers().availabilityModifier( 8 - ModelTest.getPlayers(controller.getModel()).get(2).getTowers().availabilityChecker());
+        ModelTest.getPlayers(controller.getModel()).get(2).getTowers().availabilityModifier( 6 - ModelTest.getPlayers(controller.getModel()).get(2).getTowers().availabilityChecker());
 
         users.get(p1).setCardPos(3);
         users.get(p2).setCardPos(8);
