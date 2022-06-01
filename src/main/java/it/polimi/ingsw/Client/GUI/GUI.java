@@ -1,4 +1,4 @@
-package it.polimi.ingsw.Client;
+package it.polimi.ingsw.Client.GUI;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 public class GUI extends Application {
 
-    public static void main(String[] args)
+    public void execute(String[] args)
     {
         launch(args);
     }
