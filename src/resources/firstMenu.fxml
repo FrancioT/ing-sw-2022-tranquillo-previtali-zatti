@@ -19,17 +19,17 @@
             <Image url="@titleBackroung.png" />
          </image>
       </ImageView>
-      <Button layoutX="726.0" layoutY="696.0" mnemonicParsing="false" text="START">
+      <Button fx:id="startButton" layoutX="726.0" layoutY="696.0" mnemonicParsing="false" onAction="#connection" text="START">
          <font>
             <Font size="40.0" />
          </font>
       </Button>
-      <TextField alignment="CENTER" layoutX="660.0" layoutY="459.0" promptText="Nickname">
+      <TextField fx:id="nickname" alignment="CENTER" layoutX="660.0" layoutY="459.0" promptText="Nickname">
          <font>
             <Font size="25.0" />
          </font>
       </TextField>
-      <TextField alignment="CENTER" layoutX="689.0" layoutY="559.0" promptText="ServerIP">
+      <TextField fx:id="serverIP" alignment="CENTER" layoutX="689.0" layoutY="559.0" promptText="ServerIP">
          <font>
             <Font size="20.0" />
          </font>
