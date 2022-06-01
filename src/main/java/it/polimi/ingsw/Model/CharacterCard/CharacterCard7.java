@@ -16,6 +16,11 @@ import java.util.List;
 public class CharacterCard7 extends CharacterCardWithStudentsList {
     static final long serialVersionUID = 80312L;
 
+    /**
+     * Constructor of the card
+     * @param bag the bag from which the card will take students to refill itself
+     * @throws RunOutOfStudentsException Exception thrown if the students in the bag are finished
+     */
     public CharacterCard7(Bag bag) throws RunOutOfStudentsException
     {
         super(7, 1);
@@ -24,6 +29,12 @@ public class CharacterCard7 extends CharacterCardWithStudentsList {
         }
     }
 
+    /**
+     * @param userData   the databuffer with the colours of the students that the player wants to swap.
+     *                   The order of the students must be: the first up to 3 colours are the ones that must
+     *                   be moved from the entrance to the card, the last up to 3 colours are moved to the
+     *                   entrance from the card
+     */
     @Override
     public void handle(String uID, DataBuffer userData, Controller controller) throws Exception {
         if (uID == null || userData == null || controller == null)
@@ -51,6 +62,8 @@ public class CharacterCard7 extends CharacterCardWithStudentsList {
             studentsToEntrance.add(studentsToSwap.remove(0));
         }
 
+        // in this first part we check if the requested students are available
+
         for (Colour c : studentsToCard) {
             int check = 0;
             for(Colour colour1: studentsToCard)
@@ -74,6 +87,8 @@ public class CharacterCard7 extends CharacterCardWithStudentsList {
             if(check > 0)
                 throw new NoSuchStudentException();
         }
+
+        //in this second part we make the effective swap
 
         for(int i = 0; i < studentsToMove; i++){
             studentsList.add(model.entranceEmptier(uID, studentsToCard.remove(0)));

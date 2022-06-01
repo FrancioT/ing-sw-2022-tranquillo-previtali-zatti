@@ -13,6 +13,11 @@ public class CharacterCard11 extends CharacterCardWithStudentsList
     transient final private Bag bag;
     static final long serialVersionUID= 80313L;
 
+    /**
+     * Constructor of the card
+     * @param bag the bag from which the card will take students to refill itself
+     * @throws RunOutOfStudentsException Exception thrown if the students in the bag are finished
+     */
     public CharacterCard11(Bag bag) throws RunOutOfStudentsException
     {
         super(11, 2);
@@ -21,6 +26,9 @@ public class CharacterCard11 extends CharacterCardWithStudentsList
             studentsList.add(bag.randomExtraction());
     }
 
+    /**
+     * @param userData   the databuffer with the colour of the student that the player wants to move in his classroom
+     */
     @Override
     public void handle(String uID, DataBuffer userData, Controller controller) throws Exception{
         if(userData==null || uID==null || controller==null)

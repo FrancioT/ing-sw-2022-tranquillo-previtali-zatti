@@ -13,12 +13,24 @@ abstract class CharacterCardWithStudentsList extends CharacterCard{
     protected final List<Student> studentsList;
     static final long serialVersionUID= 80310L;
 
+    /**
+     * Constructor for the character cards that have students on them
+     * @param cardID ID of the card
+     * @param price price of the card
+     */
     CharacterCardWithStudentsList(int cardID, int price)
     {
         super(cardID, price);
         studentsList=new ArrayList<>();
     }
 
+    /**
+     * Method which checks if there is a student of the color requested on a character card and removes it if found.
+     * The student found is also returned.
+     * @param colour colour of a student we want to remove
+     * @return a student of the colour requested if found
+     * @throws NoSuchStudentException exception thrown if there isn't any student of the color requested
+     */
     Student removeStudent(Colour colour) throws NoSuchStudentException {
         Student student = null;
         for (Student s : studentsList) {
@@ -34,6 +46,9 @@ abstract class CharacterCardWithStudentsList extends CharacterCard{
             throw new NoSuchStudentException();
     }
 
+    /**
+     * Method which returns the colours of the students available on the card
+     */
     public List<Colour> getColoursOnCard(){
         List<Colour> colours = new ArrayList<>();
         for(Student s: studentsList)
@@ -41,6 +56,9 @@ abstract class CharacterCardWithStudentsList extends CharacterCard{
         return colours;
     }
 
+    /**
+     * Method to print the information of the card
+     */
     @Override
     public void ccPrinter()
     {

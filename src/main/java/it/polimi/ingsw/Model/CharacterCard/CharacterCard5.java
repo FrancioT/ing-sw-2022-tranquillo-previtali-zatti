@@ -11,16 +11,25 @@ public class CharacterCard5 extends CharacterCard
     private int availableFlags;
     static final long serialVersionUID= 80304L;
 
+    /**
+     * Constructor of the card which also initialize the number of inhibition tiles available to 4
+     */
     public CharacterCard5(){
         super(5, 2);
         availableFlags = 4;
     }
 
+    /**
+     * Method used when an inhibition tile is removed from an island and needs to be put back on the card
+     */
     public void giveBackInhibitionFlag(){
         if(availableFlags>3) throw new IllegalArgumentException("Too many inhibition tiles");
         availableFlags ++;
     }
 
+    /**
+     * @param userData   the databuffer with the index of the island where the player wants to put an inhibition tile
+     */
     @Override
     public void handle(String uID, DataBuffer userData, Controller controller) throws Exception {
         if(userData==null || uID==null || controller==null)
