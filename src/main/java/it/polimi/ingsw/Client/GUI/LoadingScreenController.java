@@ -1,4 +1,4 @@
-package it.polimi.ingsw.Client;
+package it.polimi.ingsw.Client.GUI;
 
 public class LoadingScreenController {
 }
