@@ -20,17 +20,17 @@
             <Font size="44.0" />
          </font>
       </Text>
-      <RadioButton layoutX="698.0" layoutY="320.0" mnemonicParsing="false" text="3 Players" textFill="WHITE">
+      <RadioButton fx:id="threePlayers" layoutX="698.0" layoutY="320.0" mnemonicParsing="false" text="3 Players" textFill="WHITE">
          <font>
             <Font size="40.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="448.0" layoutY="317.0" mnemonicParsing="false" text="2 Players" textFill="WHITE">
+      <RadioButton fx:id="twoPlayers" layoutX="448.0" layoutY="317.0" mnemonicParsing="false" text="2 Players" textFill="WHITE">
          <font>
             <Font size="40.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="965.0" layoutY="318.0" mnemonicParsing="false" text="4 Players" textFill="WHITE">
+      <RadioButton fx:id="fourPlayers" layoutX="965.0" layoutY="318.0" mnemonicParsing="false" text="4 Players" textFill="WHITE">
          <font>
             <Font size="40.0" />
          </font>
@@ -40,17 +40,17 @@
             <Font size="44.0" />
          </font>
       </Text>
-      <RadioButton layoutX="743.0" layoutY="502.0" mnemonicParsing="false" text="ON" textFill="WHITE">
+      <RadioButton fx:id="expertON" layoutX="743.0" layoutY="502.0" mnemonicParsing="false" text="ON" textFill="WHITE">
          <font>
             <Font size="40.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="744.0" layoutY="579.0" mnemonicParsing="false" text="OFF" textFill="WHITE">
+      <RadioButton fx:id="expertOFF" layoutX="744.0" layoutY="579.0" mnemonicParsing="false" text="OFF" textFill="WHITE">
          <font>
             <Font size="40.0" />
          </font>
       </RadioButton>
-      <Button layoutX="720.0" layoutY="688.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="169.0" text="Start the game">
+      <Button fx:id="startTheGame" layoutX="720.0" layoutY="688.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="169.0" text="Start the game">
          <font>
             <Font size="38.0" />
          </font>
