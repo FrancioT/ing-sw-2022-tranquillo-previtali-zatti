@@ -159,6 +159,7 @@ public class GUI extends Application implements PropertyChangeListener
             VBox layout= new VBox(20);
             HBox buttons= new HBox(20);
             buttons.getChildren().addAll(yesButton, noButton);
+            buttons.setAlignment(Pos.CENTER);
             layout.getChildren().addAll(text, buttons);
             layout.setAlignment(Pos.CENTER);
 
@@ -234,7 +235,8 @@ public class GUI extends Application implements PropertyChangeListener
                         message.getPhase());
                 Parent islandView;
                 FXMLLoader loader= new FXMLLoader(getClass().getClassLoader().getResource("islandsGameScreen.fxml"));
-                try{ islandView= loader.load(); }catch (IOException e1){ throw new RuntimeException(); }
+                try{ islandView= loader.load(); }
+                catch (IOException e1){ throw new RuntimeException("Unable to load islands screen from resources"); }
                 ((IslandController)loader.getController()).initialize();
                 window.setScene(new Scene(islandView));
                 addShowableStage(loader.getController());
