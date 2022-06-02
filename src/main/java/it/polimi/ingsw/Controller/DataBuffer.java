@@ -22,6 +22,11 @@ public class DataBuffer
     private int characterCardID;
     private boolean errorStatus;
 
+    /**
+     * Constructor of dataBuffer, everything is initialized to null or to values that would be rejected if accessed
+     * before the player interaction
+     * @param uID the uid of the player who owns this databuffer
+     */
     public DataBuffer(String uID)
     {
         this.uID=uID;
@@ -55,6 +60,10 @@ public class DataBuffer
         cardPos=pos;
         notifyAll();
     }
+
+    /**
+     * @return true if student has to be moved on dashboard, false if it has to be moved on an island
+     */
     public synchronized boolean getTarget() throws InterruptedException, CardActivatedException, ConnectionErrorException
     {   // target==true -> dashboard       target==false -> island
         while(!target.isPresent() && !activationCardRequest && !errorStatus)
@@ -70,6 +79,10 @@ public class DataBuffer
         target=Optional.empty();
         return returnValue;
     }
+
+    /**
+     * @param value true if student has to be moved on dashboard, false if it has to be moved on an island
+     */
     public synchronized void setTarget(boolean value)
     {
         target=Optional.of(value);
@@ -90,6 +103,11 @@ public class DataBuffer
         studColour=Optional.empty();
         return returnValue;
     }
+
+    /**
+     * Method to set a single student's color
+     * @param colour a student's color
+     */
     public synchronized void setStudColour(Colour colour)
     {
         studColour=Optional.of(colour);
@@ -171,11 +189,21 @@ public class DataBuffer
         studentsColours.clear();
         return returnList;
     }
+
+    /**
+     * Method to set a list of students' colours
+     * @param colours a list of colours
+     */
     public synchronized void setStudentsColours(List<Colour> colours)
     {
         studentsColours.addAll(colours);
         notifyAll();
     }
+
+    /**
+     * Method called when a player tries to activate a character card; what this method does is setting a flag to true
+     * so that every other method will interrupt to resolve the effect of the card
+     */
     public synchronized void activationCardRequest()
     {
         activationCardRequest=true;
@@ -203,11 +231,19 @@ public class DataBuffer
         characterCardID=id;
         notifyAll();
     }
+
+    /**
+     * Method called when a player disconnects to notify all others players
+     */
     public synchronized void setErrorStatus()
     {
         errorStatus=true;
         notifyAll();
     }
+
+    /**
+     * Method to clear the databuffer to avoid that some data that could cause any problems remains inside it
+     */
     public synchronized void clear()
     {
         cardPos=-1;

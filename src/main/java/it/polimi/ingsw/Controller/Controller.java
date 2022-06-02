@@ -24,6 +24,12 @@ public class Controller extends Thread
     private final List<Integer> chosenClouds; // list used to remember the indexes of the cloud already chosen by
                                               // another player in this round
 
+    /**
+     * Constructor of controller
+     * @param users is a Map with the players and their respective DataBuffer
+     * @param expertMode true for expert mode, false for standard mode
+     * @param views the players' views
+     */
     public Controller(Map<String, DataBuffer> users, boolean expertMode, List<RemoteView> views)
     {
         endGame=false;
@@ -37,11 +43,21 @@ public class Controller extends Thread
         chosenClouds=new ArrayList<>();
     }
     public synchronized Model getModel() { return model; }
+
+    /**
+     * Method that decorate the model so that some character cards can be used
+     * @param model the model on which the game is based
+     */
     public synchronized void decorateModel(Model model)
     {
         this.model=model;
         decorationFlag=true;
     }
+
+    /**
+     * Method that starts the game and manages the phases of the match (e.g. cards phase, move students phase,  move MN
+     * phase, choose cloud phase, ...). It also catches major exceptions that would make the game end.
+     */
     @Override
     public synchronized void run()
     {
@@ -82,6 +98,10 @@ public class Controller extends Thread
         model.endGame();
         System.out.println("Closing game");
     }
+
+    /**
+     * Method that fills the clouds with a precise number of random students
+     */
     void cloudsFilling()
     {
         int tmp=uIDsList.size()%2;
@@ -92,12 +112,21 @@ public class Controller extends Thread
         }catch(RunOutOfStudentsException e)
         { endGame=true; }
     }
+
+    /**
+     * Method that manages the phase where all the players have to play a card. This method in a first instance waits
+     * for all the players to play a card and checks if the cards are acceptable; then, based on the value of the card,
+     * it calculates the order of the players for the next phases of the round.
+     */
     void cardsPhase() throws InterruptedException, NoSuchPlayerException, ConnectionErrorException
     {
         List<String> order=new ArrayList<>();  // returning List
-        // SortedMap used to save player and his card round value in order, if there is more than
-        // one player which played the same card it is saved (in order of first played to last one)
-        // in the list contained in the value of the map
+
+        // SortedMap is used to save players and their card's round value in order; if there is more than
+        // one player who played the same card it checks whether is the only card they can play; if it's their last
+        // card it is accepted, otherwise the player that discarded it after has to change it.
+
+        // in this first part the controller waits for the players to discard an acceptable card
         SortedMap<Integer, List<String>> playersOrder=new TreeMap<>();
         int pos= -1;
         List<Integer> playerCards;
@@ -106,8 +135,10 @@ public class Controller extends Thread
             pos= -1;
             model.setCurrentPlayer(currPlayer);
             playerCards= model.getCardsRoundValues(currPlayer);
+            // if the player has only one card the endgame phase is activated
             if(playerCards.size()==1)
                 endGame=true;
+
             while (pos==-1)
             {
                 pos = usersData.get(currPlayer).getCardPos();
@@ -117,7 +148,9 @@ public class Controller extends Thread
                     model.errorMessage("There is no card with the chosen index", false);
                 }
             }
-            // check if the card was already played by someone else in this round
+
+            // check if the card was already played by someone else in this round and if there is no other choice;
+            // depending on the case it accepts it, or it refuses it
             boolean finished= false;    // flag used to end the external loop
             boolean noOtherCard= true;  // flag used to end the internal loop
             while(playersOrder.containsKey(playerCards.get(pos)) && !finished)
@@ -155,6 +188,13 @@ public class Controller extends Thread
             order.addAll(s);
         uIDsList= order;
     }
+
+    /**
+     * Method that manages the move students phase. Firstly, it understands how many students need to be moved based
+     * on how many players there are in the game. Then, it manages all the effective movements of the students, from an
+     * entrance to a classroom or to an island
+     * @param uID the player's uid who is doing the movements
+     */
     void moveStudents(String uID) throws InterruptedException, ConnectionErrorException
     {
         int n=uIDsList.size()%2;  // n=number of students that can be moved
@@ -163,10 +203,12 @@ public class Controller extends Thread
         Boolean target;
         Colour colour;
         int index=-1;
+        // for loop repeated until the player ends his possible moves
         for(int i=0; i<n; i++)
         {
             target=null;
             colour=null;
+            // in this part the method understands which student the player wants to move and where he wants to move it
             while (target==null || colour==null)
             {
                 try {
@@ -176,6 +218,9 @@ public class Controller extends Thread
                     }
                     colour = usersData.get(uID).getStudentColour();
                 }
+
+                // in case a character card is activated this method temporarily stops and tries to activate the card;
+                // then, it re-start from where it stopped
                 catch (CardActivatedException e)
                 {
                     if (!cardActivated)
@@ -197,6 +242,8 @@ public class Controller extends Thread
                     }
                 }
             }
+
+            // here the method manages the case where the student needs to be moved in a classroom
             if(target)
             {
                 try {
@@ -223,6 +270,8 @@ public class Controller extends Thread
                     throw new RuntimeException();
                 }
             }
+
+            // in this part the method manages the case where the student needs to be moved on an island
             else
             {
                 index=-1;
@@ -231,6 +280,8 @@ public class Controller extends Thread
                     try {
                         index= usersData.get(uID).getIslandPos();
                     }
+                    // in case a character card is activated this method temporarily stops and tries to activate the card;
+                    // then, it re-start from where it stopped
                     catch (CardActivatedException e)
                     {
                         if (!cardActivated)
@@ -278,6 +329,12 @@ public class Controller extends Thread
             }
         }
     }
+
+    /**
+     * This method manages the MN movement's phase; it waits for the player's choice and if acceptable moves MN,
+     * otherwise notifies the player and waits for a correct value
+     * @param uID the player's uid who is moving MN
+     */
     void moveMN(String uID) throws InterruptedException, EmptyException, NoSuchPlayerException, ConnectionErrorException
     {
         boolean badChoice=true; // flag used in case the user asked for an unacceptable movement of mother
@@ -291,6 +348,9 @@ public class Controller extends Thread
                 try {
                     newPos = usersData.get(uID).getMnPos();
                 }
+
+                // in case a character card is activated this method temporarily stops and tries to activate the card;
+                // then, it re-start from where it stopped
                 catch (CardActivatedException e)
                 {
                     if (!cardActivated)
@@ -312,6 +372,8 @@ public class Controller extends Thread
                     }
                 }
             }
+
+            // in this parte the method manages the MN's movement
             int oldPos= model.getCurrPosMN();
             try
             {
@@ -353,6 +415,11 @@ public class Controller extends Thread
             }
         }
     }
+
+    /**
+     * Method that manages the chooseCloud phase
+     * @param uID the player's uid who is making the choice
+     */
     void chooseCloud(String uID) throws InterruptedException, ConnectionErrorException
     {
         boolean badChoice=true; // flag used in case the user asked for an unacceptable could index,
@@ -374,6 +441,9 @@ public class Controller extends Thread
                     else
                         chosenClouds.add(index);
                 }
+
+                // in case a character card is activated this method temporarily stops and tries to activate the card;
+                // then, it re-start from where it stopped
                 catch (CardActivatedException e)
                 {
                     if (!cardActivated)
@@ -395,6 +465,8 @@ public class Controller extends Thread
                     }
                 }
             }
+
+            // in this part the method empties the cloud and fills the player's entrance
             try {
                 model.cloudEmptier(uID, index);
             }catch(NoSuchPlayerException|FullEntranceException e)
@@ -408,17 +480,27 @@ public class Controller extends Thread
             }
         }
 
+        // in this part (which is the end of the player's turn), in case he activated a character card which uses a
+        // decorator, the method reset the model to its "standard" values
         if(decorationFlag) {
             model = new Model(model);
             decorationFlag=false;
         }
         cardActivated=false;
     }
+
+    /**
+     * Method that is used to notify the disconnection of a player
+     */
     public void notifyDisconnection()
     {
         for(DataBuffer dataBuffer: usersData.values())
             dataBuffer.setErrorStatus();
     }
+
+    /**
+     * Method to clear the dataBuffer values
+     */
     private void dataBufferClear()
     {
         for(DataBuffer dataBuffer: usersData.values())

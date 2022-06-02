@@ -407,7 +407,8 @@ public class Model {
     }
 
     /**
-     * This method move mother nature from the current island to a new one with the specified distance
+     * This method move mother nature from the current island to a new one with the specified distance and calls the
+     * method to calculate the dominance
      * @param deltaPos distance of the island in which we want to move mother nature
      * @throws FullTowersException thrown by the islandDominance method called after having moved mother nature
      * @throws RunOutOfTowersException thrown by the islandDominance method called after having moved mother nature
