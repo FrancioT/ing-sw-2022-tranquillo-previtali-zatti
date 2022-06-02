@@ -9,6 +9,10 @@ public class PingSender extends Thread
     {
         this.clientHandler=clientHandler;
     }
+
+    /**
+     * Every 3 seconds calls the ping method in ClientHandler which sends a ping to the client
+     */
     @Override
     public void run()
     {

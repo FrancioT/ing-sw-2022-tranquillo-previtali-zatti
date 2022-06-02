@@ -11,6 +11,11 @@ public class PongWaiting extends Thread
     {
         this.receiver= receiver;
     }
+
+    /**
+     * Every 10 seconds calls getPing on ClientHandler and expects a pong from the client, if 3 pongs are missed
+     * the game ends
+     */
     @Override
     public void run()
     {
