@@ -10,10 +10,19 @@ import java.io.IOException;
 public class RemoteView implements PropertyChangeListener
 {
     private final ClientHandler client;
+
+    /**
+     * Constructor of RemoteView
+     * @param client the clientHandler to which this remoteView is associated
+     */
     public RemoteView(ClientHandler client)
     {
         this.client=client;
     }
+
+    /**
+     * Method to send messages to the players, and in case of fatal errors or endGame it closes the game
+     */
     @Override
     public void propertyChange(PropertyChangeEvent event)
     {
