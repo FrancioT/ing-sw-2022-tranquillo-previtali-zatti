@@ -1,10 +1,7 @@
 package it.polimi.ingsw.Client.GUI;
 
 import it.polimi.ingsw.Client.CLI.Receiver;
-import it.polimi.ingsw.ClientsHandler.Messages.Message;
-import it.polimi.ingsw.ClientsHandler.Messages.ModelMessage;
-import it.polimi.ingsw.ClientsHandler.Messages.MoveMN;
-import it.polimi.ingsw.ClientsHandler.Messages.StudentToIsland;
+import it.polimi.ingsw.ClientsHandler.Messages.*;
 import it.polimi.ingsw.Model.Colour;
 import it.polimi.ingsw.Model.ColourT;
 import it.polimi.ingsw.Model.Exceptions.EmptyException;
@@ -590,98 +587,93 @@ public class IslandController extends Showable
     @FXML
     private void clickCloud1()
     {
-
+        sendMessage(new ChooseCloud(nickName, 0));
     }
     @FXML
     private void clickCloud2()
     {
-
+        sendMessage(new ChooseCloud(nickName, 1));
     }
     @FXML
     private void clickCloud3()
     {
-
+        sendMessage(new ChooseCloud(nickName, 2));
     }
     @FXML
     private void clickCloud4()
     {
-
+        sendMessage(new ChooseCloud(nickName, 3));
     }
 
     @FXML
     private void clickIs1()
     {
-
+        selectedIsland(0);
     }
     @FXML
     private void clickIs2()
     {
-
+        selectedIsland(1);
     }
     @FXML
     private void clickIs3()
     {
-
+        selectedIsland(2);
     }
     @FXML
     private void clickIs4()
     {
-
+        selectedIsland(3);
     }
     @FXML
     private void clickIs5()
     {
-
+        selectedIsland(4);
     }
     @FXML
     private void clickIs6()
     {
-
+        selectedIsland(5);
     }
     @FXML
     private void clickIs7()
     {
-
+        selectedIsland(6);
     }
     @FXML
     private void clickIs8()
     {
-
+        selectedIsland(7);
     }
     @FXML
     private void clickIs9()
     {
-
+        selectedIsland(8);
     }
     @FXML
     private void clickIs10()
     {
-
+        selectedIsland(9);
     }
     @FXML
     private void clickIs11()
     {
-
+        selectedIsland(10);
     }
     @FXML
     private void clickIs12()
     {
-
+        selectedIsland(11);
     }
     private void selectedIsland(int index)
     {
         if(game.getPhase()==Phase.move_mother_nature)
-        {
             sendMessage(new MoveMN(nickName, index));
-        }
         else if(game.getPhase()==Phase.move_students)
         {
-            if(DashboardController.selectStudentColour!=null)
-            {
-                sendMessage(new StudentToIsland(nickName, DashboardController.selectStudentColour,
-                        index));
-                DashboardController.selectStudentColour=null;
-            }
+            Colour selected= DashboardController.getSelectStudentColour();
+            if(selected!=null)
+                sendMessage(new StudentToIsland(nickName, selected, index));
         }
     }
 
@@ -695,7 +687,6 @@ public class IslandController extends Showable
             GUI.getInstance().getWindow().fireEvent(new WindowEvent(GUI.getInstance().getWindow(),
                     WindowEvent.WINDOW_CLOSE_REQUEST));
         }
-
     }
 
 

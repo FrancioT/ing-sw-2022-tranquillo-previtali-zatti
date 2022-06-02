@@ -17,7 +17,9 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  *
@@ -63,8 +65,9 @@ public class DashboardController extends Showable
     private Receiver receiver;
     private String nickname;
     private Stage window;
-    public static ImageView selectedStudent;
-    public static Colour selectStudentColour;
+    private static ImageView selectedStudent;
+    private static Colour selectStudentColour;
+    private static final List<Integer> cardsIndexes= new ArrayList<>();
 
     /**
      * This method associates each parameter of the fxml file in
@@ -164,6 +167,9 @@ public class DashboardController extends Showable
             }
         }
 
+        for(int i=0; i<10; i++)
+            cardsIndexes.add(i);
+
         cardsMap.put(1, cc1);
         cardsMap.put(2, cc2);
         cardsMap.put(3, cc3);
@@ -218,7 +224,7 @@ public class DashboardController extends Showable
                 case move_students:
                 {
                     enableEntranceStudents();
-                    disablePlaceOnDash();
+                    enablePlaceOnDash();
                     disableCards();
                 }break;
                 case move_mother_nature: case choose_cloud:
@@ -235,6 +241,23 @@ public class DashboardController extends Showable
             disablePlaceOnDash();
             disableCards();
         }
+    }
+
+    public synchronized static Colour getSelectStudentColour()
+    {
+        if(selectStudentColour==null)
+            return null;
+        Colour returnValue= selectStudentColour;
+        selectedStudent.setOpacity(1);
+        selectStudentColour=null;
+        return returnValue;
+    }
+
+    public synchronized static void setSelectStudentColour(ImageView image, Colour colour)
+    {
+        selectStudentColour=colour;
+        selectedStudent=image;
+        selectedStudent.setOpacity(0.5);
     }
 
     /**
@@ -438,14 +461,26 @@ public class DashboardController extends Showable
         }
     }
 
+    private void useCard(int index)
+    {
+        // if the card wasn't already played
+        if(cardsIndexes.get(index)!=-1)
+        {
+            sendMessage(new ChooseCard(nickname, cardsIndexes.get(index)));
+            cardsIndexes.set(index, -1);
+            // decrement all the other cards real indexes by 1
+            for(int i=index+1; i<10; i++)
+                if(cardsIndexes.get(i)!=-1)
+                    cardsIndexes.set(i, cardsIndexes.get(i)-1);
+        }
+    }
     /**
      * This method send the message to the receiver for the card 1
      */
     @FXML
     private void chooseCardMN1()
     {
-        sendMessage(new ChooseCard(nickname, 1));
-        disableCards();
+        useCard(0);
     }
 
     /**
@@ -454,8 +489,7 @@ public class DashboardController extends Showable
     @FXML
     private void chooseCardMN2()
     {
-        sendMessage(new ChooseCard(nickname, 2));
-        disableCards();
+        useCard(1);
     }
 
     /**
@@ -464,8 +498,7 @@ public class DashboardController extends Showable
     @FXML
     private void chooseCardMN3()
     {
-        sendMessage(new ChooseCard(nickname, 3));
-        disableCards();
+        useCard(2);
     }
 
     /**
@@ -474,8 +507,7 @@ public class DashboardController extends Showable
     @FXML
     private void chooseCardMN4()
     {
-        sendMessage(new ChooseCard(nickname, 4));
-        disableCards();
+        useCard(3);
     }
 
     /**
@@ -484,8 +516,7 @@ public class DashboardController extends Showable
     @FXML
     private void chooseCardMN5()
     {
-        sendMessage(new ChooseCard(nickname, 5));
-        disableCards();
+        useCard(4);
     }
 
     /**
@@ -494,8 +525,7 @@ public class DashboardController extends Showable
     @FXML
     private void chooseCardMN6()
     {
-        sendMessage(new ChooseCard(nickname, 6));
-        disableCards();
+        useCard(5);
     }
 
     /**
@@ -504,8 +534,7 @@ public class DashboardController extends Showable
     @FXML
     private void chooseCardMN7()
     {
-        sendMessage(new ChooseCard(nickname, 7));
-        disableCards();
+        useCard(6);
     }
 
     /**
@@ -514,8 +543,7 @@ public class DashboardController extends Showable
     @FXML
     private void chooseCardMN8()
     {
-        sendMessage(new ChooseCard(nickname, 8));
-        disableCards();
+        useCard(7);
     }
 
     /**
@@ -524,8 +552,7 @@ public class DashboardController extends Showable
     @FXML
     private void chooseCardMN9()
     {
-        sendMessage(new ChooseCard(nickname, 9));
-        disableCards();
+        useCard(8);
     }
 
     /**
@@ -534,8 +561,7 @@ public class DashboardController extends Showable
     @FXML
     private void chooseCardMN10()
     {
-        sendMessage(new ChooseCard(nickname, 10));
-        disableCards();
+        useCard(9);
     }
 
     /**
@@ -555,6 +581,17 @@ public class DashboardController extends Showable
 
     }
 
+    private void selectedEntranceStudent(ImageView image, int index)
+    {
+        for(int i=0; i<playersNum(); i++)
+        {
+            if(game.getPlayerList().get(i).getuID()== nickname)
+            {
+                setSelectStudentColour(image, game.getPlayerList().get(i).getStudents().get(i));
+            }
+        }
+    }
+
     /**
      * This method select the student 1 on the entrance and prepare it to be moved on dashboard or
      * on the first island which is clicked
@@ -562,17 +599,7 @@ public class DashboardController extends Showable
     @FXML
     private void select1()
     {
-        disableEntranceStudents();
-        enablePlaceOnDash();
-        selectedStudent=eSt1;
-        for(int i=0; i<playersNum(); i++)
-        {
-            if(game.getPlayerList().get(i).getuID()== nickname)
-            {
-                selectStudentColour=game.getPlayerList().get(i).getStudents().get(0);
-            }
-        }
-
+        selectedEntranceStudent(eSt1, 0);
     }
 
     /**
@@ -582,16 +609,7 @@ public class DashboardController extends Showable
     @FXML
     private void select2()
     {
-        disableEntranceStudents();
-        enablePlaceOnDash();
-        selectedStudent=eSt2;
-        for(int i=0; i<playersNum(); i++)
-        {
-            if(game.getPlayerList().get(i).getuID()== nickname)
-            {
-                selectStudentColour=game.getPlayerList().get(i).getStudents().get(1);
-            }
-        }
+        selectedEntranceStudent(eSt2, 1);
     }
 
     /**
@@ -601,16 +619,7 @@ public class DashboardController extends Showable
     @FXML
     private void select3()
     {
-        disableEntranceStudents();
-        enablePlaceOnDash();
-        selectedStudent=eSt3;
-        for(int i=0; i<playersNum(); i++)
-        {
-            if(game.getPlayerList().get(i).getuID()== nickname)
-            {
-                selectStudentColour=game.getPlayerList().get(i).getStudents().get(2);
-            }
-        }
+        selectedEntranceStudent(eSt3, 2);
     }
 
     /**
@@ -620,16 +629,7 @@ public class DashboardController extends Showable
     @FXML
     private void select4()
     {
-        disableEntranceStudents();
-        enablePlaceOnDash();
-        selectedStudent=eSt4;
-        for(int i=0; i<playersNum(); i++)
-        {
-            if(game.getPlayerList().get(i).getuID()== nickname)
-            {
-                selectStudentColour=game.getPlayerList().get(i).getStudents().get(3);
-            }
-        }
+        selectedEntranceStudent(eSt4, 3);
     }
 
     /**
@@ -639,16 +639,7 @@ public class DashboardController extends Showable
     @FXML
     private void select5()
     {
-        disableEntranceStudents();
-        enablePlaceOnDash();
-        selectedStudent=eSt5;
-        for(int i=0; i<playersNum(); i++)
-        {
-            if(game.getPlayerList().get(i).getuID()==nickname)
-            {
-                selectStudentColour=game.getPlayerList().get(i).getStudents().get(4);
-            }
-        }
+        selectedEntranceStudent(eSt5, 4);
     }
 
     /**
@@ -658,16 +649,7 @@ public class DashboardController extends Showable
     @FXML
     private void select6()
     {
-        disableEntranceStudents();
-        enablePlaceOnDash();
-        selectedStudent=eSt6;
-        for(int i=0; i<playersNum(); i++)
-        {
-            if(game.getPlayerList().get(i).getuID()== nickname)
-            {
-                selectStudentColour=game.getPlayerList().get(i).getStudents().get(5);
-            }
-        }
+        selectedEntranceStudent(eSt6, 5);
     }
 
     /**
@@ -677,16 +659,7 @@ public class DashboardController extends Showable
     @FXML
     private void select7()
     {
-        disableEntranceStudents();
-        enablePlaceOnDash();
-        selectedStudent=eSt7;
-        for(int i=0; i<playersNum(); i++)
-        {
-            if(game.getPlayerList().get(i).getuID()== nickname)
-            {
-                selectStudentColour=game.getPlayerList().get(i).getStudents().get(6);
-            }
-        }
+        selectedEntranceStudent(eSt7, 6);
     }
 
     /**
@@ -696,16 +669,7 @@ public class DashboardController extends Showable
     @FXML
     private void select8()
     {
-        disableEntranceStudents();
-        enablePlaceOnDash();
-        selectedStudent=eSt8;
-        for(int i=0; i<playersNum(); i++)
-        {
-            if(game.getPlayerList().get(i).getuID()== nickname)
-            {
-                selectStudentColour=game.getPlayerList().get(i).getStudents().get(7);
-            }
-        }
+        selectedEntranceStudent(eSt8, 7);
     }
 
     /**
@@ -715,16 +679,7 @@ public class DashboardController extends Showable
     @FXML
     private void select9()
     {
-        disableEntranceStudents();
-        enablePlaceOnDash();
-        selectedStudent=eSt9;
-        for(int i=0; i<playersNum(); i++)
-        {
-            if(game.getPlayerList().get(i).getuID()== nickname)
-            {
-                selectStudentColour=game.getPlayerList().get(i).getStudents().get(8);
-            }
-        }
+        selectedEntranceStudent(eSt9, 8);
     }
 
     /**
@@ -732,8 +687,10 @@ public class DashboardController extends Showable
      */
     public void placeOnDashboard()
     {
-        sendMessage(new StudentToDashboard(nickname, selectStudentColour));
-        disablePlaceOnDash();
+        Colour selected;
+        selected= getSelectStudentColour();
+        if(selected!=null)
+            sendMessage(new StudentToDashboard(nickname, selected));
     }
 
     /**
