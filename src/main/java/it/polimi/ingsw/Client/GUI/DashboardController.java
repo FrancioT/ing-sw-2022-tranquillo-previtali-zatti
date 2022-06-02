@@ -1,6 +1,8 @@
 package it.polimi.ingsw.Client.GUI;
 
+import it.polimi.ingsw.Client.CLI.Receiver;
 import it.polimi.ingsw.ClientsHandler.Messages.ChooseCard;
+import it.polimi.ingsw.ClientsHandler.Messages.Message;
 import it.polimi.ingsw.ClientsHandler.Messages.ModelMessage;
 import it.polimi.ingsw.Model.Colour;
 import javafx.fxml.FXML;
@@ -8,7 +10,9 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.stage.WindowEvent;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 public class DashboardController extends Showable
@@ -60,7 +64,9 @@ public class DashboardController extends Showable
     private HashMap<Integer, ImageView> yellowStudents = new HashMap<>();
     private HashMap<Integer, ImageView> blueStudents = new HashMap<>();
     private HashMap<Integer, ImageView> cardsMap = new HashMap<>();
-    private ModelMessage game = GUI.getInstance().getModel();
+    private ModelMessage game;
+    private Receiver receiver;
+    private String nickString;
 
     public void placeOnDashboard()
     {
@@ -258,13 +264,7 @@ public class DashboardController extends Showable
                 placeOnDashboard.setDisable(false);
                 disableCards();
             }break;
-            case move_mother_nature:
-            {
-                disableEntranceStudents();
-                placeOnDashboard.setDisable(true);
-                disableCards();
-            }break;
-            case choose_cloud:
+            case move_mother_nature: case choose_cloud:
             {
                 disableEntranceStudents();
                 placeOnDashboard.setDisable(true);
@@ -369,70 +369,83 @@ public class DashboardController extends Showable
     @FXML
     private void chooseCardMN1()
     {
-        receiver.send(new ChooseCard(nickPlayer.getText(), 1));
+        sendMessage(new ChooseCard(nickString, 1));
         disableCards();
     }
 
     @FXML
     private void chooseCardMN2()
     {
-        receiver.send(new ChooseCard(nickPlayer.getText(), 2));
+        sendMessage(new ChooseCard(nickString, 2));
+        disableCards();
     }
 
     @FXML
     private void chooseCardMN3()
     {
-        receiver.send(new ChooseCard(nickPlayer.getText(), 3));
+        sendMessage(new ChooseCard(nickString, 3));
         disableCards();
     }
 
     @FXML
     private void chooseCardMN4()
     {
-        receiver.send(new ChooseCard(nickPlayer.getText(), 4));
+        sendMessage(new ChooseCard(nickString, 4));
         disableCards();
     }
 
     @FXML
     private void chooseCardMN5()
     {
-        receiver.send(new ChooseCard(nickPlayer.getText(), 5));
+        sendMessage(new ChooseCard(nickString, 5));
         disableCards();
     }
 
     @FXML
     private void chooseCardMN6()
     {
-        receiver.send(new ChooseCard(nickPlayer.getText(), 6));
+        sendMessage(new ChooseCard(nickString, 6));
         disableCards();
     }
 
     @FXML
     private void chooseCardMN7()
     {
-        receiver.send(new ChooseCard(nickPlayer.getText(), 7));
+        sendMessage(new ChooseCard(nickString, 7));
         disableCards();
     }
 
     @FXML
     private void chooseCardMN8()
     {
-        receiver.send(new ChooseCard(nickPlayer.getText(), 8));
+        sendMessage(new ChooseCard(nickString, 8));
         disableCards();
     }
 
     @FXML
     private void chooseCardMN9()
     {
-        receiver.send(new ChooseCard(nickPlayer.getText(), 9));
+        sendMessage(new ChooseCard(nickString, 9));
         disableCards();
     }
 
     @FXML
     private void chooseCardMN10()
     {
-        receiver.send(new ChooseCard(nickPlayer.getText(), 10));
+        sendMessage(new ChooseCard(nickString, 10));
         disableCards();
+    }
+    private void sendMessage(Message message)
+    {
+        try{
+            receiver.send(message);
+        }catch (IOException e)
+        {
+            AlertBox.display("Fatal error", "Unable to communicate with the server");
+            GUI.getInstance().getWindow().fireEvent(new WindowEvent(GUI.getInstance().getWindow(),
+                    WindowEvent.WINDOW_CLOSE_REQUEST));
+        }
+
     }
 
     @FXML
@@ -492,11 +505,14 @@ public class DashboardController extends Showable
     @Override
     public void show()
     {
+        game=GUI.getInstance().getModel();
+        receiver=GUI.getInstance().getReceiver();
+        nickString=GUI.getInstance().getNickName();
         initialize();
         setActionOnPhaseDashboard();
         setEntranceStudents();
         setStudentsAndTeachers();
         setCards();
-        nickPlayer.setText("lo stesso nick che c'é sul bottone clickato per aprire");
+        nickPlayer.setText(nickString);
     }
 }
