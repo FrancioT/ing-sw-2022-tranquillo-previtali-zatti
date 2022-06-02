@@ -7,10 +7,17 @@ import it.polimi.ingsw.ClientsHandler.Messages.ModelMessage;
 import it.polimi.ingsw.ClientsHandler.Messages.StudentToDashboard;
 import it.polimi.ingsw.Model.Colour;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 import java.io.IOException;
@@ -58,7 +65,7 @@ public class DashboardController extends Showable
     private HashMap<Integer, ImageView> cardsMap = new HashMap<>();
     private ModelMessage game;
     private Receiver receiver;
-    private String nickString;
+    private String nickname;
     public static ImageView selectedStudent;
     public static Colour selectStudentColour;
 
@@ -67,7 +74,7 @@ public class DashboardController extends Showable
      * a data structure of the DashboardController and set everything
      * to the default values
      */
-    private void initialize()
+    public void initialize()
     {
         teacherDashboard.put(Colour.pink, pinkT);
         teacherDashboard.put(Colour.green, greenT);
@@ -184,11 +191,13 @@ public class DashboardController extends Showable
         disableStudentsOnDashboard();
         nickPlayer.setMouseTransparent(true);
         nickPlayer.setFocusTraversable(false);
+
+        show();
     }
 
     private void setActionOnPhaseDashboard()
     {
-        if(GUI.getInstance().getModel().getCurrPlayerNickname()==nickString)
+        if(GUI.getInstance().getModel().getCurrPlayerNickname()== nickname)
         {
             switch(game.getPhase())
             {
@@ -309,7 +318,7 @@ public class DashboardController extends Showable
     {
         for(int i=1; i<=playersNum(); i++)
         {
-            if(game.getPlayerList().get(i-1).getuID()==nickString)
+            if(game.getPlayerList().get(i-1).getuID()== nickname)
             {
                 for(int j=1; j<=currentMod(); j++)
                 {
@@ -363,7 +372,7 @@ public class DashboardController extends Showable
     {
         for(int i=1; i<=playersNum(); i++)
         {
-            if(game.getPlayerList().get(i-1).getuID()==nickString)
+            if(game.getPlayerList().get(i-1).getuID()== nickname)
             {
                 for(int j=1; j<=10; j++)
                 {
@@ -383,70 +392,70 @@ public class DashboardController extends Showable
     @FXML
     private void chooseCardMN1()
     {
-        sendMessage(new ChooseCard(nickString, 1));
+        sendMessage(new ChooseCard(nickname, 1));
         disableCards();
     }
 
     @FXML
     private void chooseCardMN2()
     {
-        sendMessage(new ChooseCard(nickString, 2));
+        sendMessage(new ChooseCard(nickname, 2));
         disableCards();
     }
 
     @FXML
     private void chooseCardMN3()
     {
-        sendMessage(new ChooseCard(nickString, 3));
+        sendMessage(new ChooseCard(nickname, 3));
         disableCards();
     }
 
     @FXML
     private void chooseCardMN4()
     {
-        sendMessage(new ChooseCard(nickString, 4));
+        sendMessage(new ChooseCard(nickname, 4));
         disableCards();
     }
 
     @FXML
     private void chooseCardMN5()
     {
-        sendMessage(new ChooseCard(nickString, 5));
+        sendMessage(new ChooseCard(nickname, 5));
         disableCards();
     }
 
     @FXML
     private void chooseCardMN6()
     {
-        sendMessage(new ChooseCard(nickString, 6));
+        sendMessage(new ChooseCard(nickname, 6));
         disableCards();
     }
 
     @FXML
     private void chooseCardMN7()
     {
-        sendMessage(new ChooseCard(nickString, 7));
+        sendMessage(new ChooseCard(nickname, 7));
         disableCards();
     }
 
     @FXML
     private void chooseCardMN8()
     {
-        sendMessage(new ChooseCard(nickString, 8));
+        sendMessage(new ChooseCard(nickname, 8));
         disableCards();
     }
 
     @FXML
     private void chooseCardMN9()
     {
-        sendMessage(new ChooseCard(nickString, 9));
+        sendMessage(new ChooseCard(nickname, 9));
         disableCards();
     }
 
     @FXML
     private void chooseCardMN10()
     {
-        sendMessage(new ChooseCard(nickString, 10));
+        sendMessage(new ChooseCard(nickname, 10));
         disableCards();
     }
     private void sendMessage(Message message)
@@ -470,7 +479,7 @@ public class DashboardController extends Showable
         selectedStudent=eSt1;
         for(int i=0; i<playersNum(); i++)
         {
-            if(game.getPlayerList().get(i).getuID()==nickString)
+            if(game.getPlayerList().get(i).getuID()== nickname)
             {
                 selectStudentColour=game.getPlayerList().get(i).getStudents().get(0);
             }
@@ -486,7 +495,7 @@ public class DashboardController extends Showable
         selectedStudent=eSt2;
         for(int i=0; i<playersNum(); i++)
         {
-            if(game.getPlayerList().get(i).getuID()==nickString)
+            if(game.getPlayerList().get(i).getuID()== nickname)
             {
                 selectStudentColour=game.getPlayerList().get(i).getStudents().get(1);
             }
@@ -501,7 +510,7 @@ public class DashboardController extends Showable
         selectedStudent=eSt3;
         for(int i=0; i<playersNum(); i++)
         {
-            if(game.getPlayerList().get(i).getuID()==nickString)
+            if(game.getPlayerList().get(i).getuID()== nickname)
             {
                 selectStudentColour=game.getPlayerList().get(i).getStudents().get(2);
             }
@@ -516,7 +525,7 @@ public class DashboardController extends Showable
         selectedStudent=eSt4;
         for(int i=0; i<playersNum(); i++)
         {
-            if(game.getPlayerList().get(i).getuID()==nickString)
+            if(game.getPlayerList().get(i).getuID()== nickname)
             {
                 selectStudentColour=game.getPlayerList().get(i).getStudents().get(3);
             }
@@ -531,7 +540,7 @@ public class DashboardController extends Showable
         selectedStudent=eSt5;
         for(int i=0; i<playersNum(); i++)
         {
-            if(game.getPlayerList().get(i).getuID()==nickString)
+            if(game.getPlayerList().get(i).getuID()==nickname)
             {
                 selectStudentColour=game.getPlayerList().get(i).getStudents().get(4);
             }
@@ -546,7 +555,7 @@ public class DashboardController extends Showable
         selectedStudent=eSt6;
         for(int i=0; i<playersNum(); i++)
         {
-            if(game.getPlayerList().get(i).getuID()==nickString)
+            if(game.getPlayerList().get(i).getuID()== nickname)
             {
                 selectStudentColour=game.getPlayerList().get(i).getStudents().get(5);
             }
@@ -561,7 +570,7 @@ public class DashboardController extends Showable
         selectedStudent=eSt7;
         for(int i=0; i<playersNum(); i++)
         {
-            if(game.getPlayerList().get(i).getuID()==nickString)
+            if(game.getPlayerList().get(i).getuID()== nickname)
             {
                 selectStudentColour=game.getPlayerList().get(i).getStudents().get(6);
             }
@@ -576,7 +585,7 @@ public class DashboardController extends Showable
         selectedStudent=eSt8;
         for(int i=0; i<playersNum(); i++)
         {
-            if(game.getPlayerList().get(i).getuID()==nickString)
+            if(game.getPlayerList().get(i).getuID()== nickname)
             {
                 selectStudentColour=game.getPlayerList().get(i).getStudents().get(7);
             }
@@ -591,7 +600,7 @@ public class DashboardController extends Showable
         selectedStudent=eSt9;
         for(int i=0; i<playersNum(); i++)
         {
-            if(game.getPlayerList().get(i).getuID()==nickString)
+            if(game.getPlayerList().get(i).getuID()== nickname)
             {
                 selectStudentColour=game.getPlayerList().get(i).getStudents().get(8);
             }
@@ -600,8 +609,44 @@ public class DashboardController extends Showable
 
     public void placeOnDashboard()
     {
-        sendMessage(new StudentToDashboard(nickString, selectStudentColour));
+        sendMessage(new StudentToDashboard(nickname, selectStudentColour));
         disablePlaceOnDash();
+    }
+
+    public void setNickname(String nickname)
+    {
+        this.nickname=nickname;
+    }
+
+    public void setClosingWindow()
+    {
+        window.setOnCloseRequest(event -> {
+            event.consume();  // consume the main closing window event
+            Stage popUp= new Stage();
+            popUp.initModality(Modality.APPLICATION_MODAL);
+            popUp.setTitle("Closing window");
+            popUp.setMinWidth(350);
+            popUp.setMinHeight(300);
+
+            Label text= new Label("Do you want to close the game? Stronzo");
+            Button yesButton= new Button("Yes");
+            yesButton.setOnAction(ev -> {
+                popUp.close();
+                try{ receiver.close(); }catch(IOException ignored){}
+                window.close();
+            });
+            Button noButton= new Button("No");
+            noButton.setOnAction(ev -> popUp.close());
+            VBox layout= new VBox(20);
+            HBox buttons= new HBox(20);
+            buttons.getChildren().addAll(yesButton, noButton);
+            layout.getChildren().addAll(text, buttons);
+            layout.setAlignment(Pos.CENTER);
+
+            Scene scene= new Scene(layout);
+            popUp.setScene(scene);
+            popUp.showAndWait();
+        });
     }
 
     @Override
@@ -609,12 +654,10 @@ public class DashboardController extends Showable
     {
         game=GUI.getInstance().getModel();
         receiver=GUI.getInstance().getReceiver();
-        nickString=GUI.getInstance().getNickName();
-        initialize();
         setActionOnPhaseDashboard();
         setEntranceStudents();
         setStudentsAndTeachers();
         setCards();
-        nickPlayer.setText(nickString);
+        nickPlayer.setText(nickname);
     }
 }

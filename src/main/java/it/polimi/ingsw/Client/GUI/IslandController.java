@@ -6,11 +6,15 @@ import it.polimi.ingsw.Model.Colour;
 import it.polimi.ingsw.Model.ColourT;
 import it.polimi.ingsw.Model.Exceptions.EmptyException;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 public class IslandController extends Showable
@@ -299,6 +303,13 @@ public class IslandController extends Showable
         playersButtons.put(2, playerID2);
         playersButtons.put(3, playerID3);
         playersButtons.put(4, playerID4);
+
+        for(Button button: playersButtons.values())
+        {
+            button.setVisible(false);
+            button.setMouseTransparent(true);
+            button.setFocusTraversable(false);
+        }
 
         playersTowers.put(1, towersP1);
         playersTowers.put(2, towersP2);
@@ -665,8 +676,10 @@ public class IslandController extends Showable
     {
         for(int i=0; i<=(playersNum()-1); i++)
         {
-            (playersButtons.get(i+1)).setText(game.getPlayerList().get(0).getuID());
+            (playersButtons.get(i+1)).setText(game.getPlayerList().get(i).getuID());
             (playersButtons.get(i+1)).setVisible(true);
+            (playersButtons.get(i+1)).setMouseTransparent(false);
+            (playersButtons.get(i+1)).setFocusTraversable(true);
         }
     }
 
@@ -686,13 +699,58 @@ public class IslandController extends Showable
         }
     }
 
+    @FXML
+    public void showDashboard1()
+    {
+        FXMLLoader loader= new FXMLLoader(getClass().getClassLoader().getResource("dashboardsGameScreen.fxml"));
+        try{ loader.load(); }catch (IOException e1){ throw new RuntimeException(); }
+        DashboardController controllerDash1=loader.getController();
+        controllerDash1.setNickname(game.getPlayerList().get(0).getuID());
+        controllerDash1.show();
+        controllerDash1.setClosingWindow();
+        GUI.getInstance().addShowableStage(controllerDash1);
+    }
+
+    @FXML
+    public void showDashboard2()
+    {
+        FXMLLoader loader= new FXMLLoader(getClass().getClassLoader().getResource("dashboardsGameScreen.fxml"));
+        try{ loader.load(); }catch (IOException e1){ throw new RuntimeException(); }
+        DashboardController controllerDash2=loader.getController();
+        controllerDash2.setNickname(game.getPlayerList().get(1).getuID());
+        controllerDash2.show();
+        GUI.getInstance().addShowableStage(controllerDash2);
+    }
+
+    @FXML
+    public void showDashboard3()
+    {
+        FXMLLoader loader= new FXMLLoader(getClass().getClassLoader().getResource("dashboardsGameScreen.fxml"));
+        try{ loader.load(); }catch (IOException e1){ throw new RuntimeException(); }
+        DashboardController controllerDash3=loader.getController();
+        controllerDash3.setNickname(game.getPlayerList().get(2).getuID());
+        controllerDash3.show();
+        GUI.getInstance().addShowableStage(controllerDash3);
+    }
+
+    @FXML
+    public void showDashboard4()
+    {
+        FXMLLoader loader= new FXMLLoader(getClass().getClassLoader().getResource("dashboardsGameScreen.fxml"));
+        try{ loader.load(); }catch (IOException e1){ throw new RuntimeException(); }
+        DashboardController controllerDash4=loader.getController();
+        controllerDash4.setNickname(game.getPlayerList().get(3).getuID());
+        controllerDash4.show();
+        GUI.getInstance().addShowableStage(controllerDash4);
+    }
+
     @Override
     public void show()
     {
         game= GUI.getInstance().getModel();
         receiver= GUI.getInstance().getReceiver();
         nickName= GUI.getInstance().getNickName();
-        initialize();
+        initialize();.
         setActionOnPhaseIsland();
         setCharacterCards();
         setCurrentPlayer();
