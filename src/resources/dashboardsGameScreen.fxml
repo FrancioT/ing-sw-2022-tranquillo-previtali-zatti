@@ -19,11 +19,6 @@
             <Image url="@dashboardImage.png" />
          </image>
       </ImageView>
-      <Button fx:id="placeOnDashboard" layoutX="14.0" layoutY="959.0" mnemonicParsing="false" onAction="#placeOnDashboard" text="Place on Dashboard">
-         <font>
-            <Font size="9.0" />
-         </font>
-      </Button>
       <Text fx:id="nickPlayer" fill="WHITE" layoutX="15.0" layoutY="943.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NickPlayer" wrappingWidth="118.66666666666674">
          <font>
             <Font size="23.0" />
@@ -373,6 +368,11 @@
             <Font size="40.0" />
          </font>
       </Text>
+      <Button fx:id="placeOnDashboard" layoutX="14.0" layoutY="959.0" mnemonicParsing="false" onAction="#placeOnDashboard" text="Place on Dashboard">
+         <font>
+            <Font size="9.0" />
+         </font>
+      </Button>
       <ImageView fx:id="disC" fitHeight="150.0" fitWidth="200.0" layoutX="929.0" layoutY="824.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Animali10.jpg" />

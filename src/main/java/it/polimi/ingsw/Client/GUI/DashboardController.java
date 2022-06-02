@@ -4,6 +4,7 @@ import it.polimi.ingsw.Client.CLI.Receiver;
 import it.polimi.ingsw.ClientsHandler.Messages.ChooseCard;
 import it.polimi.ingsw.ClientsHandler.Messages.Message;
 import it.polimi.ingsw.ClientsHandler.Messages.ModelMessage;
+import it.polimi.ingsw.ClientsHandler.Messages.StudentToDashboard;
 import it.polimi.ingsw.Model.Colour;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,6 +16,9 @@ import javafx.stage.WindowEvent;
 import java.io.IOException;
 import java.util.HashMap;
 
+/**
+ *
+ */
 public class DashboardController extends Showable
 {
     @FXML
@@ -43,18 +47,6 @@ public class DashboardController extends Showable
     Image greenS = new Image("green_student.png)");
     Image yellowS = new Image("yellow_student.png)");
     Image blueS = new Image("blue_student.png)");
-
-    Image card1 = new Image("Animali.jpg");
-    Image card2 = new Image("Animali2.jpg");
-    Image card3 = new Image("Animali3.jpg");
-    Image card4 = new Image("Animali4.jpg");
-    Image card5 = new Image("Animali5.jpg");
-    Image card6 = new Image("Animali6.jpg");
-    Image card7 = new Image("Animali7.jpg");
-    Image card8 = new Image("Animali8.jpg");
-    Image card9 = new Image("Animali9.jpg");
-    Image card10 = new Image("Animali10.jpg");
-
     private HashMap<Colour, ImageView> teacherDashboard = new HashMap<>();
     private HashMap<Colour, HashMap<Integer, ImageView>> studentsDashboard = new HashMap<>();
     private HashMap<Integer, ImageView> entranceStudents = new HashMap<>();
@@ -67,11 +59,14 @@ public class DashboardController extends Showable
     private ModelMessage game;
     private Receiver receiver;
     private String nickString;
+    public static ImageView selectedStudent;
+    public static Colour selectStudentColour;
 
-    public void placeOnDashboard()
-    {
-        //after the selection of a student you can place it on dashboard
-    }
+    /**
+     * This method associates each parameter of the fxml file in
+     * a data structure of the DashboardController and set everything
+     * to the default values
+     */
     private void initialize()
     {
         teacherDashboard.put(Colour.pink, pinkT);
@@ -191,6 +186,50 @@ public class DashboardController extends Showable
         nickPlayer.setFocusTraversable(false);
     }
 
+    private void setActionOnPhaseDashboard()
+    {
+        if(GUI.getInstance().getModel().getCurrPlayerNickname()==nickString)
+        {
+            switch(game.getPhase())
+            {
+                case choose_card:
+                {
+                    disableEntranceStudents();
+                    disablePlaceOnDash();
+                    enableCards();
+                }break;
+                case move_students:
+                {
+                    enableEntranceStudents();
+                    disablePlaceOnDash();
+                    disableCards();
+                }break;
+                case move_mother_nature: case choose_cloud:
+                {
+                    disableEntranceStudents();
+                    disablePlaceOnDash();
+                    disableCards();
+                }break;
+            }
+        }
+        else
+        {
+            disableEntranceStudents();
+            disablePlaceOnDash();
+            disableCards();
+        }
+    }
+
+    private void enablePlaceOnDash()
+    {
+        placeOnDashboard.setDisable(false);
+    }
+
+    private void disablePlaceOnDash()
+    {
+        placeOnDashboard.setDisable(true);
+    }
+
     private void disableTeachers()
     {
         for(Colour c: Colour.values())
@@ -245,31 +284,6 @@ public class DashboardController extends Showable
                 (studentsDashboard.get(c).get(i)).setMouseTransparent(true);
                 (studentsDashboard.get(c).get(i)).setFocusTraversable(false);
             }
-        }
-    }
-
-    private void setActionOnPhaseDashboard()
-    {
-        switch(game.getPhase())
-        {
-            case choose_card:
-            {
-                disableEntranceStudents();
-                placeOnDashboard.setDisable(true);
-                enableCards();
-            }break;
-            case move_students:
-            {
-                enableEntranceStudents();
-                placeOnDashboard.setDisable(false);
-                disableCards();
-            }break;
-            case move_mother_nature: case choose_cloud:
-            {
-                disableEntranceStudents();
-                placeOnDashboard.setDisable(true);
-                disableCards();
-            }break;
         }
     }
 
@@ -349,7 +363,7 @@ public class DashboardController extends Showable
     {
         for(int i=1; i<=playersNum(); i++)
         {
-            if(game.getPlayerList().get(i-1).getuID()=="Nick del bottone, chiedere a francesco")
+            if(game.getPlayerList().get(i-1).getuID()==nickString)
             {
                 for(int j=1; j<=10; j++)
                 {
@@ -451,55 +465,143 @@ public class DashboardController extends Showable
     @FXML
     private void select1()
     {
+        disableEntranceStudents();
+        enablePlaceOnDash();
+        selectedStudent=eSt1;
+        for(int i=0; i<playersNum(); i++)
+        {
+            if(game.getPlayerList().get(i).getuID()==nickString)
+            {
+                selectStudentColour=game.getPlayerList().get(i).getStudents().get(0);
+            }
+        }
 
     }
 
     @FXML
     private void select2()
     {
-
+        disableEntranceStudents();
+        enablePlaceOnDash();
+        selectedStudent=eSt2;
+        for(int i=0; i<playersNum(); i++)
+        {
+            if(game.getPlayerList().get(i).getuID()==nickString)
+            {
+                selectStudentColour=game.getPlayerList().get(i).getStudents().get(1);
+            }
+        }
     }
 
     @FXML
     private void select3()
     {
-
+        disableEntranceStudents();
+        enablePlaceOnDash();
+        selectedStudent=eSt3;
+        for(int i=0; i<playersNum(); i++)
+        {
+            if(game.getPlayerList().get(i).getuID()==nickString)
+            {
+                selectStudentColour=game.getPlayerList().get(i).getStudents().get(2);
+            }
+        }
     }
 
     @FXML
     private void select4()
     {
-
+        disableEntranceStudents();
+        enablePlaceOnDash();
+        selectedStudent=eSt4;
+        for(int i=0; i<playersNum(); i++)
+        {
+            if(game.getPlayerList().get(i).getuID()==nickString)
+            {
+                selectStudentColour=game.getPlayerList().get(i).getStudents().get(3);
+            }
+        }
     }
 
     @FXML
     private void select5()
     {
-
+        disableEntranceStudents();
+        enablePlaceOnDash();
+        selectedStudent=eSt5;
+        for(int i=0; i<playersNum(); i++)
+        {
+            if(game.getPlayerList().get(i).getuID()==nickString)
+            {
+                selectStudentColour=game.getPlayerList().get(i).getStudents().get(4);
+            }
+        }
     }
 
     @FXML
     private void select6()
     {
-
+        disableEntranceStudents();
+        enablePlaceOnDash();
+        selectedStudent=eSt6;
+        for(int i=0; i<playersNum(); i++)
+        {
+            if(game.getPlayerList().get(i).getuID()==nickString)
+            {
+                selectStudentColour=game.getPlayerList().get(i).getStudents().get(5);
+            }
+        }
     }
 
     @FXML
     private void select7()
     {
-
+        disableEntranceStudents();
+        enablePlaceOnDash();
+        selectedStudent=eSt7;
+        for(int i=0; i<playersNum(); i++)
+        {
+            if(game.getPlayerList().get(i).getuID()==nickString)
+            {
+                selectStudentColour=game.getPlayerList().get(i).getStudents().get(6);
+            }
+        }
     }
 
     @FXML
     private void select8()
     {
-
+        disableEntranceStudents();
+        enablePlaceOnDash();
+        selectedStudent=eSt8;
+        for(int i=0; i<playersNum(); i++)
+        {
+            if(game.getPlayerList().get(i).getuID()==nickString)
+            {
+                selectStudentColour=game.getPlayerList().get(i).getStudents().get(7);
+            }
+        }
     }
 
     @FXML
     private void select9()
     {
+        disableEntranceStudents();
+        enablePlaceOnDash();
+        selectedStudent=eSt9;
+        for(int i=0; i<playersNum(); i++)
+        {
+            if(game.getPlayerList().get(i).getuID()==nickString)
+            {
+                selectStudentColour=game.getPlayerList().get(i).getStudents().get(8);
+            }
+        }
+    }
 
+    public void placeOnDashboard()
+    {
+        sendMessage(new StudentToDashboard(nickString, selectStudentColour));
+        disablePlaceOnDash();
     }
 
     @Override
