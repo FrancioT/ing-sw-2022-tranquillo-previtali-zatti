@@ -22,6 +22,11 @@ public class ClientHandler extends Thread implements PingWaiter
     private final PingSender pingSender;
     private Controller controller;
 
+    /**
+     * Constructor of ClientHandler
+     * @param socket the client's socket
+     * @param dataBuffer the DataBuffer associated with this clientHandler
+     */
     public ClientHandler(Socket socket, DataBuffer dataBuffer) throws IOException
     {
         if(socket==null || dataBuffer==null)
@@ -46,6 +51,11 @@ public class ClientHandler extends Thread implements PingWaiter
         if(this.controller==null)
             this.controller= controller;
     }
+
+    /**
+     * Method that analyzes the messages received from the client and, depending on the case, it sets the values
+     * received in the client's dataBuffer. It also sends a message in case a player disconnects
+     */
     private void receive()
     {
         Object message;
@@ -62,12 +72,21 @@ public class ClientHandler extends Thread implements PingWaiter
             try{ close(); }catch(IOException ignored){}
         }
     }
+
+    /**
+     * Method that sends messages to the client
+     * @param message message to send
+     */
     public synchronized void send(ModelMessage message) throws IOException
     {
         out_stream.writeObject(message);
         out_stream.flush();
         out_stream.reset();
     }
+
+    /**
+     * Method that is used to send a ping to the client
+     */
     public synchronized void ping() throws IOException
     {
         out_stream.writeObject(1);
@@ -80,6 +99,10 @@ public class ClientHandler extends Thread implements PingWaiter
         controller.notifyDisconnection();
         socket.close();
     }
+
+    /**
+     * @return true if a pong has been received, false if not
+     */
     @Override
     public synchronized boolean getPing()
     {
@@ -91,6 +114,11 @@ public class ClientHandler extends Thread implements PingWaiter
         else
             return false;
     }
+
+    /**
+     * This method starts the ping-pong exchange between server and client to understand if a client disconnects.
+     * Then, it starts listening for datas from the client
+     */
     @Override
     public void run()
     {

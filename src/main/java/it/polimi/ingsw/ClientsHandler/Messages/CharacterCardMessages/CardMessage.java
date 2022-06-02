@@ -7,6 +7,11 @@ public abstract class CardMessage extends Message
     final int cardID;
     static final long serialVersionUID= 30100L;
 
+    /**
+     * Sets uID and cardID
+     * @param uID the player who activated the card
+     * @param cardID the card activated
+     */
     public CardMessage(String uID, int cardID)
     {
         super(uID);
