@@ -457,57 +457,126 @@
             <Font size="31.0" />
          </font>
       </Text>
-      <ImageView fx:id="characterCard1" fitHeight="150.0" fitWidth="200.0" layoutX="15.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="characterCard2" fitHeight="150.0" fitWidth="200.0" layoutX="15.0" layoutY="263.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="characterCard3" fitHeight="150.0" fitWidth="200.0" layoutX="15.0" layoutY="450.0" pickOnBounds="true" preserveRatio="true" />
-      <Text fx:id="towersP1" fill="RED" layoutX="1648.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Towers:" wrappingWidth="319.7799377441408">
+      <ImageView fx:id="characterCard1" fitHeight="150.0" fitWidth="200.0" layoutX="26.0" layoutY="261.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Animali.jpg" />
+         </image></ImageView>
+      <ImageView fx:id="characterCard2" fitHeight="150.0" fitWidth="200.0" layoutX="26.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Animali2.jpg" />
+         </image></ImageView>
+      <ImageView fx:id="characterCard3" fitHeight="150.0" fitWidth="200.0" layoutX="26.0" layoutY="631.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Animali3.jpg" />
+         </image></ImageView>
+      <Text fx:id="coinsP1" fill="RED" layoutX="1790.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coins:" wrappingWidth="170.0">
          <font>
             <Font size="31.0" />
          </font>
       </Text>
-      <Text fx:id="coinsP1" fill="RED" layoutX="1648.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coins:" wrappingWidth="319.7799377441408">
+      <Text fx:id="towersP2" fill="#d90fb3" layoutX="1790.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Towers:" wrappingWidth="170.0">
          <font>
             <Font size="31.0" />
          </font>
       </Text>
-      <Text fx:id="towersP2" fill="#d90fb3" layoutX="1648.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Towers:" wrappingWidth="319.7799377441408">
+      <Text fx:id="coinsP2" fill="#d90fb3" layoutX="1790.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coins:" wrappingWidth="170.0">
          <font>
             <Font size="31.0" />
          </font>
       </Text>
-      <Text fx:id="coinsP2" fill="#d90fb3" layoutX="1648.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coins:" wrappingWidth="319.7799377441408">
+      <Text fx:id="towersP3" fill="#1900ff" layoutX="1790.0" layoutY="885.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Towers:" wrappingWidth="170.0">
          <font>
             <Font size="31.0" />
          </font>
       </Text>
-      <Text fx:id="towersP3" fill="#1900ff" layoutX="1648.0" layoutY="910.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Towers:" wrappingWidth="319.7799377441408">
+      <Text fx:id="coinsP3" fill="#1900ff" layoutX="1790.0" layoutY="925.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coins:" wrappingWidth="170.0">
          <font>
             <Font size="31.0" />
          </font>
       </Text>
-      <Text fx:id="coinsP3" fill="#1900ff" layoutX="1648.0" layoutY="947.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coins:" wrappingWidth="319.7799377441408">
+      <Text fx:id="towersP4" fill="#2d884d" layoutX="1791.0" layoutY="1045.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Towers:" wrappingWidth="170.0">
          <font>
             <Font size="31.0" />
          </font>
       </Text>
-      <Text fx:id="towersP4" fill="#2d884d" layoutX="1648.0" layoutY="1047.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Towers:" wrappingWidth="319.7799377441408">
+      <Text fx:id="coinsP4" fill="#2d884d" layoutX="1791.0" layoutY="1085.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coins:" wrappingWidth="170.0">
          <font>
             <Font size="31.0" />
          </font>
       </Text>
-      <Text fx:id="coinsP4" fill="#2d884d" layoutX="1648.0" layoutY="1084.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coins:" wrappingWidth="319.7799377441408">
+      <Text fx:id="unusedCoins" fill="#d08535" layoutX="15.0" layoutY="1093.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unused Coins:" wrappingWidth="222.44654846191423">
          <font>
             <Font size="31.0" />
          </font>
       </Text>
-      <Text fx:id="unusedCoins" fill="#d08535" layoutX="15.0" layoutY="663.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unused Coins:" wrappingWidth="222.44654846191423">
+      <Button fx:id="playerID1" layoutX="1790.0" layoutY="25.0" mnemonicParsing="false" onAction="#showDashboard1" prefHeight="31.0" prefWidth="170.0" text="Player1" textFill="RED" />
+      <Button fx:id="playerID2" layoutX="1790.0" layoutY="185.0" mnemonicParsing="false" onAction="#showDashboard2" prefHeight="31.0" prefWidth="170.0" text="Player2" textFill="RED" />
+      <Button fx:id="playerID3" layoutX="1790.0" layoutY="815.0" mnemonicParsing="false" onAction="#showDashboard3" prefHeight="31.0" prefWidth="170.0" text="Player3" textFill="RED" />
+      <Button fx:id="playerID4" layoutX="1790.0" layoutY="975.0" mnemonicParsing="false" onAction="#showDashboard4" prefHeight="31.0" prefWidth="170.0" text="Player4" textFill="RED" />
+      <Text fx:id="numTIs12" layoutX="571.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Text fx:id="numTIs1" layoutX="845.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Text fx:id="numTIs2" layoutX="1133.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Text fx:id="numTIs3" layoutX="1387.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Text fx:id="numTIs4" layoutX="1580.0" layoutY="451.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Text fx:id="numTIs5" layoutX="1454.0" layoutY="704.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Text fx:id="numTIs6" layoutX="1167.0" layoutY="796.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Text fx:id="numTIs7" layoutX="840.0" layoutY="822.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Text fx:id="numTIs8" layoutX="532.0" layoutY="808.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Text fx:id="numTIs9" layoutX="281.0" layoutY="677.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Text fx:id="numTIs10" layoutX="235.0" layoutY="430.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Text fx:id="numTIs11" layoutX="333.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Text fx:id="towersP1" fill="RED" layoutX="1790.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Towers:" wrappingWidth="170.0">
          <font>
             <Font size="31.0" />
          </font>
       </Text>
-      <Button fx:id="playerID1" layoutX="1648.0" layoutY="27.0" mnemonicParsing="false" onAction="#showDashboard1" prefHeight="31.0" prefWidth="170.0" text="Player1" textFill="RED" />
-      <Button fx:id="playerID2" layoutX="1648.0" layoutY="183.0" mnemonicParsing="false" onAction="#showDashboard2" prefHeight="31.0" prefWidth="170.0" text="Player2" textFill="RED" />
-      <Button fx:id="playerID3" layoutX="1648.0" layoutY="843.0" mnemonicParsing="false" onAction="#showDashboard3" prefHeight="31.0" prefWidth="170.0" text="Player3" textFill="RED" />
-      <Button fx:id="playerID4" layoutX="1648.0" layoutY="982.0" mnemonicParsing="false" onAction="#showDashboard4" prefHeight="31.0" prefWidth="170.0" text="Player4" textFill="RED" />
    </children>
 </AnchorPane>

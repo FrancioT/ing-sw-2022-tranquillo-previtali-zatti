@@ -1,15 +1,20 @@
 package it.polimi.ingsw.Client.GUI;
 
+import it.polimi.ingsw.ClientsHandler.Messages.ChooseCard;
 import it.polimi.ingsw.ClientsHandler.Messages.ModelMessage;
+import it.polimi.ingsw.Model.Colour;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
-public class DashboardController
+import java.util.HashMap;
+
+public class DashboardController extends Showable
 {
     @FXML
-    Button placeOnDashboard,quit;
+    Button placeOnDashboard;
     @FXML
     Text nickPlayer;
     @FXML
@@ -26,243 +31,472 @@ public class DashboardController
     ImageView bs1,bs2,bs3,bs4,bs5,bs6,bs7,bs8,bs9,bs10;
     @FXML
     ImageView eSt1,eSt2,eSt3,eSt4,eSt5,eSt6,eSt7,eSt8,eSt9;
+    @FXML
+    ImageView cc1,cc2,cc3,cc4,cc5,cc6,cc7,cc8,cc9,cc10,disC;
 
-    private static GUI dashboardControllerGUI;
-    public static void dashboardGUISetter(GUI gui)
-    {
-        dashboardControllerGUI=gui;
-    }
+    Image redS = new Image("red_student.png)");
+    Image pinkS = new Image("pink_student.png)");
+    Image greenS = new Image("green_student.png)");
+    Image yellowS = new Image("yellow_student.png)");
+    Image blueS = new Image("blue_student.png)");
 
-    public void quit()
-    {
-        //close this window
-    }
+    Image card1 = new Image("Animali.jpg");
+    Image card2 = new Image("Animali2.jpg");
+    Image card3 = new Image("Animali3.jpg");
+    Image card4 = new Image("Animali4.jpg");
+    Image card5 = new Image("Animali5.jpg");
+    Image card6 = new Image("Animali6.jpg");
+    Image card7 = new Image("Animali7.jpg");
+    Image card8 = new Image("Animali8.jpg");
+    Image card9 = new Image("Animali9.jpg");
+    Image card10 = new Image("Animali10.jpg");
+
+    private HashMap<Colour, ImageView> teacherDashboard = new HashMap<>();
+    private HashMap<Colour, HashMap<Integer, ImageView>> studentsDashboard = new HashMap<>();
+    private HashMap<Integer, ImageView> entranceStudents = new HashMap<>();
+    private HashMap<Integer, ImageView> pinkStudents = new HashMap<>();
+    private HashMap<Integer, ImageView> greenStudents = new HashMap<>();
+    private HashMap<Integer, ImageView> redStudents = new HashMap<>();
+    private HashMap<Integer, ImageView> yellowStudents = new HashMap<>();
+    private HashMap<Integer, ImageView> blueStudents = new HashMap<>();
+    private HashMap<Integer, ImageView> cardsMap = new HashMap<>();
+    private ModelMessage game = GUI.getInstance().getModel();
 
     public void placeOnDashboard()
     {
         //after the selection of a student you can place it on dashboard
     }
-
-    public void showDashboard()
+    private void initialize()
     {
-        //aggiorna lo stage con cose nuove ogni volta in base al model e aggiorna i bottoni con set actionOnPhase
-        //ogni controller deve avere il suo show e un suo setAction (prima di caricare e showare la nuova scena aggiorna i parametiri
-        // con setAction)
-    }
+        teacherDashboard.put(Colour.pink, pinkT);
+        teacherDashboard.put(Colour.green, greenT);
+        teacherDashboard.put(Colour.red, redT);
+        teacherDashboard.put(Colour.yellow, yellowT);
+        teacherDashboard.put(Colour.blue, blueT);
 
-    private void setActionOnPhaseDashboard()
-    {
-        ModelMessage game = dashboardControllerGUI.getModel();
-
-        switch(game.getPhase())
+        for(Colour c: Colour.values())
         {
-            case choose_card:
-            {
-                disableTeachers();
-                disableStudentsOnDashboard();
-                disableEntranceStudents();
-                placeOnDashboard.setDisable(true);
-                nickPlayer.setMouseTransparent(true);
-                nickPlayer.setFocusTraversable(false);
-            }break;
-            case move_students:
-            {
-                disableTeachers();
-                disableStudentsOnDashboard();
-                enableEntranceStudents();
-                placeOnDashboard.setDisable(false);
-                nickPlayer.setMouseTransparent(true);
-                nickPlayer.setFocusTraversable(false);
-            }break;
-            case move_mother_nature:
-            {
-                disableStudentsOnDashboard();
-                disableTeachers();
-                disableEntranceStudents();
-                placeOnDashboard.setDisable(true);
-                nickPlayer.setMouseTransparent(true);
-                nickPlayer.setFocusTraversable(false);
-            }break;
-            case choose_cloud:
-            {
-                disableStudentsOnDashboard();
-                disableEntranceStudents();
-                disableTeachers();
-                placeOnDashboard.setDisable(true);
-                nickPlayer.setMouseTransparent(true);
-                nickPlayer.setFocusTraversable(false);
-            }break;
+            (teacherDashboard.get(c)).setVisible(false);
         }
+
+        studentsDashboard.put(Colour.pink, pinkStudents);
+        studentsDashboard.put(Colour.green, greenStudents);
+        studentsDashboard.put(Colour.red, redStudents);
+        studentsDashboard.put(Colour.yellow, yellowStudents);
+        studentsDashboard.put(Colour.blue, blueStudents);
+
+        entranceStudents.put(1, eSt1);
+        entranceStudents.put(2, eSt2);
+        entranceStudents.put(3, eSt3);
+        entranceStudents.put(4, eSt4);
+        entranceStudents.put(5, eSt5);
+        entranceStudents.put(6, eSt6);
+        entranceStudents.put(7, eSt7);
+        entranceStudents.put(8, eSt8);
+        entranceStudents.put(9, eSt9);
+
+        pinkStudents.put(1, ps1);
+        pinkStudents.put(2, ps2);
+        pinkStudents.put(3, ps3);
+        pinkStudents.put(4, ps4);
+        pinkStudents.put(5, ps5);
+        pinkStudents.put(6, ps6);
+        pinkStudents.put(7, ps7);
+        pinkStudents.put(8, ps8);
+        pinkStudents.put(9, ps9);
+        pinkStudents.put(10, ps10);
+
+        greenStudents.put(1, gs1);
+        greenStudents.put(2, gs2);
+        greenStudents.put(3, gs3);
+        greenStudents.put(4, gs4);
+        greenStudents.put(5, gs5);
+        greenStudents.put(6, gs6);
+        greenStudents.put(7, gs7);
+        greenStudents.put(8, gs8);
+        greenStudents.put(9, gs9);
+        greenStudents.put(10, gs10);
+
+        redStudents.put(1, rs1);
+        redStudents.put(2, rs2);
+        redStudents.put(3, rs3);
+        redStudents.put(4, rs4);
+        redStudents.put(5, rs5);
+        redStudents.put(6, rs6);
+        redStudents.put(7, rs7);
+        redStudents.put(8, rs8);
+        redStudents.put(9, rs9);
+        redStudents.put(10, rs10);
+
+        yellowStudents.put(1, ys1);
+        yellowStudents.put(2, ys2);
+        yellowStudents.put(3, ys3);
+        yellowStudents.put(4, ys4);
+        yellowStudents.put(5, ys5);
+        yellowStudents.put(6, ys6);
+        yellowStudents.put(7, ys7);
+        yellowStudents.put(8, ys8);
+        yellowStudents.put(9, ys9);
+        yellowStudents.put(10, ys10);
+
+        blueStudents.put(1, bs1);
+        blueStudents.put(2, bs2);
+        blueStudents.put(3, bs3);
+        blueStudents.put(4, bs4);
+        blueStudents.put(5, bs5);
+        blueStudents.put(6, bs6);
+        blueStudents.put(7, bs7);
+        blueStudents.put(8, bs8);
+        blueStudents.put(9, bs9);
+        blueStudents.put(10, bs10);
+
+        for(Colour c: Colour.values())
+        {
+            for(int i=1; i<=10; i++)
+            {
+                (studentsDashboard.get(c).get(i)).setVisible(false);
+            }
+        }
+
+        cardsMap.put(1, cc1);
+        cardsMap.put(2, cc2);
+        cardsMap.put(3, cc3);
+        cardsMap.put(4, cc4);
+        cardsMap.put(5, cc5);
+        cardsMap.put(6, cc6);
+        cardsMap.put(7, cc7);
+        cardsMap.put(8, cc8);
+        cardsMap.put(9, cc9);
+        cardsMap.put(10, cc10);
+        cardsMap.put(11, disC);
+
+        for(int i=1; i<=11; i++)
+        {
+            (cardsMap.get(i)).setVisible(true);
+            if(i==11)
+            {
+                (cardsMap.get(i)).setVisible(false);
+            }
+        }
+
+        disableTeachers();
+        disableStudentsOnDashboard();
+        nickPlayer.setMouseTransparent(true);
+        nickPlayer.setFocusTraversable(false);
     }
 
     private void disableTeachers()
     {
-        pinkT.setMouseTransparent(true);
-        pinkT.setFocusTraversable(false);
-        greenT.setMouseTransparent(true);
-        greenT.setFocusTraversable(false);
-        redT.setMouseTransparent(true);
-        redT.setFocusTraversable(false);
-        yellowT.setMouseTransparent(true);
-        yellowT.setFocusTraversable(false);
-        blueT.setMouseTransparent(true);
-        blueT.setFocusTraversable(false);
+        for(Colour c: Colour.values())
+        {
+            (teacherDashboard.get(c)).setMouseTransparent(true);
+            (teacherDashboard.get(c)).setFocusTraversable(false);
+        }
+    }
+
+    private void disableCards()
+    {
+        for(int i=1; i<=11; i++)
+        {
+            (cardsMap.get(i)).setMouseTransparent(true);
+            (cardsMap.get(i)).setFocusTraversable(false);
+        }
+    }
+
+    private void enableCards()
+    {
+        for(int i=1; i<=11; i++)
+        {
+            (cardsMap.get(i)).setMouseTransparent(false);
+            (cardsMap.get(i)).setFocusTraversable(true);
+        }
     }
 
     private void disableEntranceStudents()
     {
-        eSt1.setMouseTransparent(true);
-        eSt1.setFocusTraversable(false);
-        eSt2.setMouseTransparent(true);
-        eSt2.setFocusTraversable(false);
-        eSt3.setMouseTransparent(true);
-        eSt3.setFocusTraversable(false);
-        eSt4.setMouseTransparent(true);
-        eSt4.setFocusTraversable(false);
-        eSt5.setMouseTransparent(true);
-        eSt5.setFocusTraversable(false);
-        eSt6.setMouseTransparent(true);
-        eSt6.setFocusTraversable(false);
-        eSt7.setMouseTransparent(true);
-        eSt7.setFocusTraversable(false);
-        eSt8.setMouseTransparent(true);
-        eSt8.setFocusTraversable(false);
-        eSt9.setMouseTransparent(true);
-        eSt9.setFocusTraversable(false);
+        for(int i=1; i<=9; i++)
+        {
+            (entranceStudents.get(i)).setMouseTransparent(true);
+            (entranceStudents.get(i)).setFocusTraversable(false);
+        }
     }
 
     private void enableEntranceStudents()
     {
-        eSt1.setMouseTransparent(false);
-        eSt1.setFocusTraversable(true);
-        eSt2.setMouseTransparent(false);
-        eSt2.setFocusTraversable(true);
-        eSt3.setMouseTransparent(false);
-        eSt3.setFocusTraversable(true);
-        eSt4.setMouseTransparent(false);
-        eSt4.setFocusTraversable(true);
-        eSt5.setMouseTransparent(false);
-        eSt5.setFocusTraversable(true);
-        eSt6.setMouseTransparent(false);
-        eSt6.setFocusTraversable(true);
-        eSt7.setMouseTransparent(false);
-        eSt7.setFocusTraversable(true);
-        eSt8.setMouseTransparent(false);
-        eSt8.setFocusTraversable(true);
-        eSt9.setMouseTransparent(false);
-        eSt9.setFocusTraversable(true);
+        for(int i=1; i<=9; i++)
+        {
+            (entranceStudents.get(i)).setMouseTransparent(false);
+            (entranceStudents.get(i)).setFocusTraversable(true);
+        }
     }
 
     private void disableStudentsOnDashboard()
     {
-        ps1.setMouseTransparent(true);
-        ps1.setFocusTraversable(false);
-        ps2.setMouseTransparent(true);
-        ps2.setFocusTraversable(false);
-        ps3.setMouseTransparent(true);
-        ps3.setFocusTraversable(false);
-        ps4.setMouseTransparent(true);
-        ps4.setFocusTraversable(false);
-        ps5.setMouseTransparent(true);
-        ps5.setFocusTraversable(false);
-        ps6.setMouseTransparent(true);
-        ps6.setFocusTraversable(false);
-        ps7.setMouseTransparent(true);
-        ps7.setFocusTraversable(false);
-        ps8.setMouseTransparent(true);
-        ps8.setFocusTraversable(false);
-        ps9.setMouseTransparent(true);
-        ps9.setFocusTraversable(false);
-        ps10.setMouseTransparent(true);
-        ps10.setFocusTraversable(false);
-
-        gs1.setMouseTransparent(true);
-        gs1.setFocusTraversable(false);
-        gs2.setMouseTransparent(true);
-        gs2.setFocusTraversable(false);
-        gs3.setMouseTransparent(true);
-        gs3.setFocusTraversable(false);
-        gs4.setMouseTransparent(true);
-        gs4.setFocusTraversable(false);
-        gs5.setMouseTransparent(true);
-        gs5.setFocusTraversable(false);
-        gs6.setMouseTransparent(true);
-        gs6.setFocusTraversable(false);
-        gs7.setMouseTransparent(true);
-        gs7.setFocusTraversable(false);
-        gs8.setMouseTransparent(true);
-        gs8.setFocusTraversable(false);
-        gs9.setMouseTransparent(true);
-        gs9.setFocusTraversable(false);
-        gs10.setMouseTransparent(true);
-        gs10.setFocusTraversable(false);
-
-        rs1.setMouseTransparent(true);
-        rs1.setFocusTraversable(false);
-        rs2.setMouseTransparent(true);
-        rs2.setFocusTraversable(false);
-        rs3.setMouseTransparent(true);
-        rs3.setFocusTraversable(false);
-        rs4.setMouseTransparent(true);
-        rs4.setFocusTraversable(false);
-        rs5.setMouseTransparent(true);
-        rs5.setFocusTraversable(false);
-        rs6.setMouseTransparent(true);
-        rs6.setFocusTraversable(false);
-        rs7.setMouseTransparent(true);
-        rs7.setFocusTraversable(false);
-        rs8.setMouseTransparent(true);
-        rs8.setFocusTraversable(false);
-        rs9.setMouseTransparent(true);
-        rs9.setFocusTraversable(false);
-        rs10.setMouseTransparent(true);
-        rs10.setFocusTraversable(false);
-
-        ys1.setMouseTransparent(true);
-        ys1.setFocusTraversable(false);
-        ys2.setMouseTransparent(true);
-        ys2.setFocusTraversable(false);
-        ys3.setMouseTransparent(true);
-        ys3.setFocusTraversable(false);
-        ys4.setMouseTransparent(true);
-        ys4.setFocusTraversable(false);
-        ys5.setMouseTransparent(true);
-        ys5.setFocusTraversable(false);
-        ys6.setMouseTransparent(true);
-        ys6.setFocusTraversable(false);
-        ys7.setMouseTransparent(true);
-        ys7.setFocusTraversable(false);
-        ys8.setMouseTransparent(true);
-        ys8.setFocusTraversable(false);
-        ys9.setMouseTransparent(true);
-        ys9.setFocusTraversable(false);
-        ys10.setMouseTransparent(true);
-        ys10.setFocusTraversable(false);
-
-        bs1.setMouseTransparent(true);
-        bs1.setFocusTraversable(false);
-        bs2.setMouseTransparent(true);
-        bs2.setFocusTraversable(false);
-        bs3.setMouseTransparent(true);
-        bs3.setFocusTraversable(false);
-        bs4.setMouseTransparent(true);
-        bs4.setFocusTraversable(false);
-        bs5.setMouseTransparent(true);
-        bs5.setFocusTraversable(false);
-        bs6.setMouseTransparent(true);
-        bs6.setFocusTraversable(false);
-        bs7.setMouseTransparent(true);
-        bs7.setFocusTraversable(false);
-        bs8.setMouseTransparent(true);
-        bs8.setFocusTraversable(false);
-        bs9.setMouseTransparent(true);
-        bs9.setFocusTraversable(false);
-        bs10.setMouseTransparent(true);
-        bs10.setFocusTraversable(false);
+        for(Colour c: Colour.values())
+        {
+            for(int i=1; i<=10; i++)
+            {
+                (studentsDashboard.get(c).get(i)).setMouseTransparent(true);
+                (studentsDashboard.get(c).get(i)).setFocusTraversable(false);
+            }
+        }
     }
 
-    public void setNickPlayer(String newNick)
+    private void setActionOnPhaseDashboard()
     {
-        nickPlayer.setText(newNick);
+        switch(game.getPhase())
+        {
+            case choose_card:
+            {
+                disableEntranceStudents();
+                placeOnDashboard.setDisable(true);
+                enableCards();
+            }break;
+            case move_students:
+            {
+                enableEntranceStudents();
+                placeOnDashboard.setDisable(false);
+                disableCards();
+            }break;
+            case move_mother_nature:
+            {
+                disableEntranceStudents();
+                placeOnDashboard.setDisable(true);
+                disableCards();
+            }break;
+            case choose_cloud:
+            {
+                disableEntranceStudents();
+                placeOnDashboard.setDisable(true);
+                disableCards();
+            }break;
+        }
+    }
+
+    private int playersNum()
+    {
+        int n = (GUI.getInstance().getModel().getPlayerList()).size();
+        return n;
+    }
+
+    private int currentMod()
+    {
+        if(playersNum()==2 || playersNum()==4)
+        {
+            return 7;
+        }
+        else
+        {
+            return 9;
+        }
+    }
+
+    private void setEntranceStudents()
+    {
+        for(int i=1; i<=playersNum(); i++)
+        {
+            if(game.getPlayerList().get(i-1).getuID()=="Nick del bottone, chiedere a francesco")
+            {
+                for(int j=1; j<=currentMod(); j++)
+                {
+                    switch(game.getPlayerList().get(i-1).getStudents().get(j-1))
+                    {
+                        //Vanno aggiunti i corretti dimenisonamenti delle immagini perchè
+                        //la posizione degli studenti nell'immagine è diversa
+                        case pink:
+                            (entranceStudents.get(j)).setImage(pinkS);
+                            break;
+                        case red:
+                            (entranceStudents.get(j)).setImage(redS);
+                            break;
+                        case blue:
+                            (entranceStudents.get(j)).setImage(blueS);
+                            break;
+                        case green:
+                            (entranceStudents.get(j)).setImage(greenS);
+                            break;
+                        case yellow:
+                            (entranceStudents.get(j)).setImage(yellowS);
+                            break;
+                    }
+                    (entranceStudents.get(j)).setVisible(true);
+                }
+            }
+        }
+
+    }
+
+    private void setStudentsAndTeachers()
+    {
+        for(int i=1; i<=playersNum(); i++)
+        {
+            if(game.getPlayerList().get(i-1).getuID()=="Nick del bottone, chiedere a francesco")
+            {
+                for(Colour cS: Colour.values())
+                {
+                    teacherDashboard.get(cS).setVisible(game.getPlayerList().get(i-1).checkTeacherPresence(cS));
+
+                    for(int j=1; j<=game.getPlayerList().get(i-1).getStudentNum(cS); j++)
+                    {
+                        (studentsDashboard.get(cS).get(j)).setVisible(true);
+                    }
+                }
+            }
+        }
+    }
+
+    private void setCards()
+    {
+        for(int i=1; i<=playersNum(); i++)
+        {
+            if(game.getPlayerList().get(i-1).getuID()=="Nick del bottone, chiedere a francesco")
+            {
+                for(int j=1; j<=10; j++)
+                {
+                    if(game.getPlayerList().get(i-1).getHandCards().get(j-1).getRoundValue()==j)
+                    {
+                        cardsMap.get(j).setVisible(true);
+                    }
+                    else
+                    {
+                        cardsMap.get(j).setVisible(false);
+                    }
+                }
+            }
+        }
+    }
+
+    @FXML
+    private void chooseCardMN1()
+    {
+        receiver.send(new ChooseCard(nickPlayer.getText(), 1));
+        disableCards();
+    }
+
+    @FXML
+    private void chooseCardMN2()
+    {
+        receiver.send(new ChooseCard(nickPlayer.getText(), 2));
+    }
+
+    @FXML
+    private void chooseCardMN3()
+    {
+        receiver.send(new ChooseCard(nickPlayer.getText(), 3));
+        disableCards();
+    }
+
+    @FXML
+    private void chooseCardMN4()
+    {
+        receiver.send(new ChooseCard(nickPlayer.getText(), 4));
+        disableCards();
+    }
+
+    @FXML
+    private void chooseCardMN5()
+    {
+        receiver.send(new ChooseCard(nickPlayer.getText(), 5));
+        disableCards();
+    }
+
+    @FXML
+    private void chooseCardMN6()
+    {
+        receiver.send(new ChooseCard(nickPlayer.getText(), 6));
+        disableCards();
+    }
+
+    @FXML
+    private void chooseCardMN7()
+    {
+        receiver.send(new ChooseCard(nickPlayer.getText(), 7));
+        disableCards();
+    }
+
+    @FXML
+    private void chooseCardMN8()
+    {
+        receiver.send(new ChooseCard(nickPlayer.getText(), 8));
+        disableCards();
+    }
+
+    @FXML
+    private void chooseCardMN9()
+    {
+        receiver.send(new ChooseCard(nickPlayer.getText(), 9));
+        disableCards();
+    }
+
+    @FXML
+    private void chooseCardMN10()
+    {
+        receiver.send(new ChooseCard(nickPlayer.getText(), 10));
+        disableCards();
+    }
+
+    @FXML
+    private void select1()
+    {
+
+    }
+
+    @FXML
+    private void select2()
+    {
+
+    }
+
+    @FXML
+    private void select3()
+    {
+
+    }
+
+    @FXML
+    private void select4()
+    {
+
+    }
+
+    @FXML
+    private void select5()
+    {
+
+    }
+
+    @FXML
+    private void select6()
+    {
+
+    }
+
+    @FXML
+    private void select7()
+    {
+
+    }
+
+    @FXML
+    private void select8()
+    {
+
+    }
+
+    @FXML
+    private void select9()
+    {
+
+    }
+
+    @Override
+    public void show()
+    {
+        initialize();
+        setActionOnPhaseDashboard();
+        setEntranceStudents();
+        setStudentsAndTeachers();
+        setCards();
+        nickPlayer.setText("lo stesso nick che c'é sul bottone clickato per aprire");
     }
 }
