@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Client.GUI;
 
+import it.polimi.ingsw.Client.CLI.Receiver;
 import it.polimi.ingsw.ClientsHandler.Messages.ModelMessage;
 import it.polimi.ingsw.Model.Colour;
 import it.polimi.ingsw.Model.ColourT;
@@ -94,6 +95,8 @@ public class IslandController extends Showable
     private HashMap<Integer, Button> playersButtons = new HashMap<>();
     private HashMap<Integer, Text> playersTowers = new HashMap<>();
     private HashMap<Integer, Text> playersCoins = new HashMap<>();
+    private ModelMessage game;
+    private Receiver receiver;
     Image whiteT = new Image("wt.png)");
     Image blackT = new Image("bt.png)");
     Image grayT = new Image("gt.png)");
@@ -114,7 +117,6 @@ public class IslandController extends Showable
     Image card10 = new Image("CarteTOT_front10.jpg");
     Image card11 = new Image("CarteTOT_front11.jpg");
     Image card12 = new Image("CarteTOT_front12.jpg");
-    private ModelMessage game = GUI.getInstance().getModel();;
     private void initialize()
     {
         characterCards.put(1, characterCard1);
@@ -577,12 +579,7 @@ public class IslandController extends Showable
                 disableClouds();
                 disableIslands();
             }break;
-            case move_students:
-            {
-                disableClouds();
-                enableIslands();
-            }break;
-            case move_mother_nature:
+            case move_students: case move_mother_nature:
             {
                 disableClouds();
                 enableIslands();
@@ -600,6 +597,7 @@ public class IslandController extends Showable
         for(int i=0; i<=(playersNum()-1); i++)
         {
             (playersButtons.get(i+1)).setText(game.getPlayerList().get(0).getuID());
+            (playersButtons.get(i+1)).setVisible(true);
         }
     }
 
@@ -620,6 +618,8 @@ public class IslandController extends Showable
     @Override
     public void show()
     {
+        game=GUI.getInstance().getModel();
+        receiver=GUI.getInstance().getReceiver();
         initialize();
         setActionOnPhaseIsland();
         setCharacterCards();
