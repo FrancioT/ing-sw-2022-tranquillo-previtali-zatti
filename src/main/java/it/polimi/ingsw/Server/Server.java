@@ -11,11 +11,15 @@ public class Server extends Thread implements Closeable{
     private ServerSocket serverSocket;
     List<Thread> games;
 
+    /**
+     * Constructor of server
+     */
     public Server()
     {
         serverSocket=null;
         games=new ArrayList<>();
     }
+
     public static void main(String[] args) throws InterruptedException
     {
         Thread server= new Server();
@@ -23,12 +27,19 @@ public class Server extends Thread implements Closeable{
         server.join();
     }
 
+    /**
+     * Method that creates the ServerSocket and starts listening
+     */
     private void init() throws IOException
     {
         serverSocket = new ServerSocket(port);
         System.out.println(">>> Listening on " + port);
     }
 
+    /**
+     * Method that accepts the players' connection to the server
+     * @return the players' socket
+     */
     public Socket acceptConnection() throws IOException
     {
         // blocking call
@@ -37,6 +48,11 @@ public class Server extends Thread implements Closeable{
         return accepted;
     }
 
+    /**
+     * Method that is called when a player connects to the server; if there are no games available it asks the
+     * player the settings he wants to use in the game, and then it waits until there are enough players
+     * @param clientConnection the player's socket
+     */
     private void gameModeAndWaitPlayers(Socket clientConnection) throws IOException
     {
         InputStream is = null;
