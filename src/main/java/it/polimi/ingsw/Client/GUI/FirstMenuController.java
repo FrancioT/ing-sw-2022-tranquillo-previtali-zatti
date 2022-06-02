@@ -94,6 +94,12 @@ public class FirstMenuController
         }
         else
         {
+            String newNick = sendInfo(yourNickname, new String());
+            if (!newNick.equals(yourNickname))
+            {
+                yourNickname = newNick;
+                AlertBox.display("NickName already used", "Your nickname was changed in " + newNick);
+            }
             Parent choosingGame = FXMLLoader.load(getClass().getClassLoader().getResource("loadingScreen.fxml"));
             GUI.getInstance().getWindow().setScene(new Scene(choosingGame));
         }
