@@ -14,82 +14,82 @@
             <Image url="@sky.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="cloud1" fitHeight="299.0" fitWidth="327.0" layoutX="801.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cloud1" fitHeight="299.0" fitWidth="327.0" layoutX="801.0" layoutY="272.0" onMouseClicked="#clickCloud1" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@c1.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="cloud2" fitHeight="279.0" fitWidth="307.0" layoutX="831.0" layoutY="519.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cloud2" fitHeight="279.0" fitWidth="307.0" layoutX="831.0" layoutY="519.0" onMouseClicked="#clickCloud2" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@c2.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="cloud3" fitHeight="299.0" fitWidth="341.0" layoutX="599.0" layoutY="421.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cloud3" fitHeight="299.0" fitWidth="341.0" layoutX="599.0" layoutY="421.0" onMouseClicked="#clickCloud3" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@c3.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="cloud4" fitHeight="320.0" fitWidth="417.0" layoutX="1031.0" layoutY="365.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cloud4" fitHeight="320.0" fitWidth="417.0" layoutX="1031.0" layoutY="365.0" onMouseClicked="#clickCloud4" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@c4.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="is1" fitHeight="350.0" fitWidth="385.0" layoutX="760.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="is1" fitHeight="350.0" fitWidth="385.0" layoutX="760.0" layoutY="6.0" onMouseClicked="#clickIs1" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@is1.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="is7" fitHeight="366.0" fitWidth="439.0" layoutX="745.0" layoutY="736.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="is7" fitHeight="366.0" fitWidth="439.0" layoutX="745.0" layoutY="736.0" onMouseClicked="#clickIs7" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@is1.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="is4" fitHeight="350.0" fitWidth="377.0" layoutX="1486.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="is4" fitHeight="350.0" fitWidth="377.0" layoutX="1486.0" layoutY="368.0" onMouseClicked="#clickIs4" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@is1.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="is10" fitHeight="332.0" fitWidth="494.0" layoutX="153.0" layoutY="363.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="is10" fitHeight="332.0" fitWidth="494.0" layoutX="153.0" layoutY="363.0" onMouseClicked="#clickIs10" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@is1.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="is2" fitHeight="323.0" fitWidth="364.0" layoutX="1054.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="is2" fitHeight="323.0" fitWidth="364.0" layoutX="1054.0" layoutY="55.0" onMouseClicked="#clickIs2" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@is2.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="is5" fitHeight="388.0" fitWidth="417.0" layoutX="1350.0" layoutY="616.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="is5" fitHeight="388.0" fitWidth="417.0" layoutX="1350.0" layoutY="616.0" onMouseClicked="#clickIs5" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@is2.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="is8" fitHeight="366.0" fitWidth="432.0" layoutX="431.0" layoutY="728.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="is8" fitHeight="366.0" fitWidth="432.0" layoutX="431.0" layoutY="728.0" onMouseClicked="#clickIs8" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@is2.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="is11" fitHeight="343.0" fitWidth="384.0" layoutX="239.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="is11" fitHeight="343.0" fitWidth="384.0" layoutX="239.0" layoutY="140.0" onMouseClicked="#clickIs11" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@is2.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="is12" fitHeight="350.0" fitWidth="423.0" layoutX="489.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="is12" fitHeight="350.0" fitWidth="423.0" layoutX="489.0" layoutY="14.0" onMouseClicked="#clickIs12" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@is3.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="is3" fitHeight="350.0" fitWidth="423.0" layoutX="1306.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="is3" fitHeight="350.0" fitWidth="423.0" layoutX="1306.0" layoutY="156.0" onMouseClicked="#clickIs3" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@is3.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="is6" fitHeight="376.0" fitWidth="402.0" layoutX="1068.0" layoutY="692.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="is6" fitHeight="376.0" fitWidth="402.0" layoutX="1068.0" layoutY="692.0" onMouseClicked="#clickIs6" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@is3.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="is9" fitHeight="366.0" fitWidth="402.0" layoutX="191.0" layoutY="577.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="is9" fitHeight="366.0" fitWidth="402.0" layoutX="191.0" layoutY="577.0" onMouseClicked="#clickIs9" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@is3.png" />
          </image>
@@ -457,15 +457,15 @@
             <Font size="31.0" />
          </font>
       </Text>
-      <ImageView fx:id="characterCard1" fitHeight="150.0" fitWidth="200.0" layoutX="26.0" layoutY="261.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="characterCard1" fitHeight="150.0" fitWidth="200.0" layoutX="26.0" layoutY="261.0" onMouseClicked="#activeCCard1" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Animali.jpg" />
          </image></ImageView>
-      <ImageView fx:id="characterCard2" fitHeight="150.0" fitWidth="200.0" layoutX="26.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="characterCard2" fitHeight="150.0" fitWidth="200.0" layoutX="26.0" layoutY="446.0" onMouseClicked="#activeCCard2" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Animali2.jpg" />
          </image></ImageView>
-      <ImageView fx:id="characterCard3" fitHeight="150.0" fitWidth="200.0" layoutX="26.0" layoutY="631.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="characterCard3" fitHeight="150.0" fitWidth="200.0" layoutX="26.0" layoutY="631.0" onMouseClicked="#activeCCard3" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Animali3.jpg" />
          </image></ImageView>

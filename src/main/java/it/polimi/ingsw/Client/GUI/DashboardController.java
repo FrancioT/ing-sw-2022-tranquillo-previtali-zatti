@@ -295,7 +295,7 @@ public class DashboardController extends Showable
     {
         for(int i=1; i<=playersNum(); i++)
         {
-            if(game.getPlayerList().get(i-1).getuID()=="Nick del bottone, chiedere a francesco")
+            if(game.getPlayerList().get(i-1).getuID()==nickString)
             {
                 for(int j=1; j<=currentMod(); j++)
                 {
