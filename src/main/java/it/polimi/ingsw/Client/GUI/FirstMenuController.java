@@ -106,7 +106,7 @@ public class FirstMenuController
                 GUI.getInstance().setReceiver(serverConnection);
                 //now that the connection is established change the on closing window method
                 GUI.getInstance().setClosingWindow();
-            }));
+            })).start();
         }
     }
 
@@ -154,7 +154,7 @@ public class FirstMenuController
                     GUI.getInstance().setReceiver(serverConnection);
                     //now that the connection is established change the on closing window method
                     GUI.getInstance().setClosingWindow();
-            }));
+            })).start();
         }catch(IOException e){
             // closing the main window and the connection
             try{ serverConnection.close(); }catch(IOException ignored){}

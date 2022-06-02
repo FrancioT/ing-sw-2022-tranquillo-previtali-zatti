@@ -20,8 +20,8 @@ class AlertBox
         }catch(IllegalStateException e) { return; }
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(title);
-        window.setMinWidth(350);
-        window.setMinHeight(300);
+        window.setMinWidth(250);
+        window.setMinHeight(200);
 
         Text text= new Text(message);
         text.setFont(Font.font(null, FontWeight.BOLD, 14));
