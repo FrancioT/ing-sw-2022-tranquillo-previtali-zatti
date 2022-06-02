@@ -69,7 +69,8 @@ public class DashboardController extends Showable
     /**
      * This method associates each parameter of the fxml file in
      * a data structure of the DashboardController and set everything
-     * to the default values
+     * to the default values furthermore it creates the window for the
+     * Dashboard graphics
      */
     public void initialize(Parent scene, String nickname)
     {
@@ -198,6 +199,10 @@ public class DashboardController extends Showable
         show();
     }
 
+    /**
+     * This method controls in which turn and phase of the game the players are and
+     * decides which graphics elements enable
+     */
     private void setActionOnPhaseDashboard()
     {
         if(GUI.getInstance().getModel().getCurrPlayerNickname()== nickname)
@@ -232,16 +237,25 @@ public class DashboardController extends Showable
         }
     }
 
+    /**
+     * This method enable the possibility to interact with the placeOnDashboard button
+     */
     private void enablePlaceOnDash()
     {
         placeOnDashboard.setDisable(false);
     }
 
+    /**
+     * This method disable the possibility to interact with the placeOnDashboard button
+     */
     private void disablePlaceOnDash()
     {
         placeOnDashboard.setDisable(true);
     }
 
+    /**
+     * This method disable the possibility to interact with teachers ImageViews
+     */
     private void disableTeachers()
     {
         for(Colour c: Colour.values())
@@ -251,6 +265,9 @@ public class DashboardController extends Showable
         }
     }
 
+    /**
+     * This method disable the possibility to interact with Cards ImageViews
+     */
     private void disableCards()
     {
         for(int i=1; i<=11; i++)
@@ -260,6 +277,9 @@ public class DashboardController extends Showable
         }
     }
 
+    /**
+     * This method enable the possibility to interact with Cards ImageViews
+     */
     private void enableCards()
     {
         for(int i=1; i<=11; i++)
@@ -269,6 +289,9 @@ public class DashboardController extends Showable
         }
     }
 
+    /**
+     * This method disable the possibility to interact with Entrance Students
+     */
     private void disableEntranceStudents()
     {
         for(int i=1; i<=9; i++)
@@ -278,6 +301,9 @@ public class DashboardController extends Showable
         }
     }
 
+    /**
+     * This method enable the possibility to interact with Entrance Students
+     */
     private void enableEntranceStudents()
     {
         for(int i=1; i<=9; i++)
@@ -287,6 +313,9 @@ public class DashboardController extends Showable
         }
     }
 
+    /**
+     * This method disable the possibility to interact with Dashboard Students
+     */
     private void disableStudentsOnDashboard()
     {
         for(Colour c: Colour.values())
@@ -299,13 +328,21 @@ public class DashboardController extends Showable
         }
     }
 
+    /**
+     * This method
+     * @return playersNum
+     */
     private int playersNum()
     {
         int n = (GUI.getInstance().getModel().getPlayerList()).size();
         return n;
     }
 
-    private int currentMod()
+
+    /**
+     * @return the number of students in the entrance
+     */
+    private int entranceStudentsNum()
     {
         if(playersNum()==2 || playersNum()==4)
         {
@@ -317,13 +354,16 @@ public class DashboardController extends Showable
         }
     }
 
+    /**
+     * This method display the correct amount of students on your entrance
+     */
     private void setEntranceStudents()
     {
         for(int i=1; i<=playersNum(); i++)
         {
             if(game.getPlayerList().get(i-1).getuID()== nickname)
             {
-                for(int j=1; j<=currentMod(); j++)
+                for(int j=1; j<=entranceStudentsNum(); j++)
                 {
                     switch(game.getPlayerList().get(i-1).getStudents().get(j-1))
                     {
@@ -352,6 +392,9 @@ public class DashboardController extends Showable
 
     }
 
+    /**
+     * This method display the correct amount of students and teachers on your dashboard
+     */
     private void setStudentsAndTeachers()
     {
         for(int i=1; i<=playersNum(); i++)
@@ -371,6 +414,9 @@ public class DashboardController extends Showable
         }
     }
 
+    /**
+     * This method display the cards that you have not played yet
+     */
     private void setCards()
     {
         for(int i=1; i<=playersNum(); i++)
@@ -392,6 +438,9 @@ public class DashboardController extends Showable
         }
     }
 
+    /**
+     * This method send the message to the receiver for the card 1
+     */
     @FXML
     private void chooseCardMN1()
     {
@@ -399,6 +448,9 @@ public class DashboardController extends Showable
         disableCards();
     }
 
+    /**
+     * This method send the message to the receiver for the card 2
+     */
     @FXML
     private void chooseCardMN2()
     {
@@ -406,6 +458,9 @@ public class DashboardController extends Showable
         disableCards();
     }
 
+    /**
+     * This method send the message to the receiver for the card 3
+     */
     @FXML
     private void chooseCardMN3()
     {
@@ -413,6 +468,9 @@ public class DashboardController extends Showable
         disableCards();
     }
 
+    /**
+     * This method send the message to the receiver for the card 4
+     */
     @FXML
     private void chooseCardMN4()
     {
@@ -420,6 +478,9 @@ public class DashboardController extends Showable
         disableCards();
     }
 
+    /**
+     * This method send the message to the receiver for the card 5
+     */
     @FXML
     private void chooseCardMN5()
     {
@@ -427,6 +488,9 @@ public class DashboardController extends Showable
         disableCards();
     }
 
+    /**
+     * This method send the message to the receiver for the card 6
+     */
     @FXML
     private void chooseCardMN6()
     {
@@ -434,6 +498,9 @@ public class DashboardController extends Showable
         disableCards();
     }
 
+    /**
+     * This method send the message to the receiver for the card 7
+     */
     @FXML
     private void chooseCardMN7()
     {
@@ -441,6 +508,9 @@ public class DashboardController extends Showable
         disableCards();
     }
 
+    /**
+     * This method send the message to the receiver for the card 8
+     */
     @FXML
     private void chooseCardMN8()
     {
@@ -448,6 +518,9 @@ public class DashboardController extends Showable
         disableCards();
     }
 
+    /**
+     * This method send the message to the receiver for the card 9
+     */
     @FXML
     private void chooseCardMN9()
     {
@@ -455,12 +528,20 @@ public class DashboardController extends Showable
         disableCards();
     }
 
+    /**
+     * This method send the message to the receiver for the card 10
+     */
     @FXML
     private void chooseCardMN10()
     {
         sendMessage(new ChooseCard(nickname, 10));
         disableCards();
     }
+
+    /**
+     * This method really send the message to the receiver for each card
+     * @param message
+     */
     private void sendMessage(Message message)
     {
         try{
@@ -474,6 +555,10 @@ public class DashboardController extends Showable
 
     }
 
+    /**
+     * This method select the student 1 on the entrance and prepare it to be moved on dashboard or
+     * on the first island which is clicked
+     */
     @FXML
     private void select1()
     {
@@ -490,6 +575,10 @@ public class DashboardController extends Showable
 
     }
 
+    /**
+     * This method select the student 2 on the entrance and prepare it to be moved on dashboard or
+     * on the first island which is clicked
+     */
     @FXML
     private void select2()
     {
@@ -505,6 +594,10 @@ public class DashboardController extends Showable
         }
     }
 
+    /**
+     * This method select the student 3 on the entrance and prepare it to be moved on dashboard or
+     * on the first island which is clicked
+     */
     @FXML
     private void select3()
     {
@@ -520,6 +613,10 @@ public class DashboardController extends Showable
         }
     }
 
+    /**
+     * This method select the student 4 on the entrance and prepare it to be moved on dashboard or
+     * on the first island which is clicked
+     */
     @FXML
     private void select4()
     {
@@ -535,6 +632,10 @@ public class DashboardController extends Showable
         }
     }
 
+    /**
+     * This method select the student 5 on the entrance and prepare it to be moved on dashboard or
+     * on the first island which is clicked
+     */
     @FXML
     private void select5()
     {
@@ -550,6 +651,10 @@ public class DashboardController extends Showable
         }
     }
 
+    /**
+     * This method select the student 6 on the entrance and prepare it to be moved on dashboard or
+     * on the first island which is clicked
+     */
     @FXML
     private void select6()
     {
@@ -565,6 +670,10 @@ public class DashboardController extends Showable
         }
     }
 
+    /**
+     * This method select the student 7 on the entrance and prepare it to be moved on dashboard or
+     * on the first island which is clicked
+     */
     @FXML
     private void select7()
     {
@@ -580,6 +689,10 @@ public class DashboardController extends Showable
         }
     }
 
+    /**
+     * This method select the student 8 on the entrance and prepare it to be moved on dashboard or
+     * on the first island which is clicked
+     */
     @FXML
     private void select8()
     {
@@ -595,6 +708,10 @@ public class DashboardController extends Showable
         }
     }
 
+    /**
+     * This method select the student 9 on the entrance and prepare it to be moved on dashboard or
+     * on the first island which is clicked
+     */
     @FXML
     private void select9()
     {
@@ -610,12 +727,18 @@ public class DashboardController extends Showable
         }
     }
 
+    /**
+     * This method complete the movement of the selected student on dashboard
+     */
     public void placeOnDashboard()
     {
         sendMessage(new StudentToDashboard(nickname, selectStudentColour));
         disablePlaceOnDash();
     }
 
+    /**
+     * This method show everything
+     */
     @Override
     public void show()
     {
