@@ -1,7 +1,7 @@
 package it.polimi.ingsw.Model.Exceptions;
 
 /**
- * There are no more cards in a player's deck or towers on a player's dashboard
+ * Exception thrown if what requested is missing
  */
 public class EmptyException extends Exception
 {
