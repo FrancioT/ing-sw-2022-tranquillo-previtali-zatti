@@ -2,9 +2,14 @@ package it.polimi.ingsw.Client.GUI;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 import java.io.BufferedReader;
@@ -52,6 +57,7 @@ public class FirstMenuController
             return;
         }
         yourNickname= nick;
+        GUI.getInstance().setNickName(nick);
         String[] ip= serverIP.getText().split(".");
         for(String part: ip)
             if(Integer.parseInt(part)>255)
@@ -75,6 +81,7 @@ public class FirstMenuController
     private void firstConnection() throws IOException
     {
         serverConnection = new Socket(serverIP.getText(), serverPort);
+        GUI.getInstance().getWindow().setOnCloseRequest(event -> closeWindow(event));
         BufferedReader in = new BufferedReader(new InputStreamReader(serverConnection.getInputStream()));
         boolean firstPlayer= in.readLine().equals(firstPlayerMessage);
         if(firstPlayer)
@@ -131,13 +138,11 @@ public class FirstMenuController
             }
             Parent waitingPlayers = FXMLLoader.load(getClass().getClassLoader().getResource("loadingScreen.fxml"));
             GUI.getInstance().getWindow().setScene(new Scene(waitingPlayers));
-            new Thread(){
-                @Override
-                public void run()
-                {
+            new Thread(() -> {
                     GUI.getInstance().setReceiver(serverConnection);
-                }
-            }.start();
+                    //now that the connection is established change the on closing window method
+                    GUI.getInstance().setClosingWindow();
+            }).start();
         }catch(IOException e){
             // closing the main window and the connection
             try{ serverConnection.close(); }catch(IOException ignored){}
@@ -156,5 +161,35 @@ public class FirstMenuController
             out.println(mode);
         String newNickName= in.readLine();
         return newNickName;
+    }
+
+    private void closeWindow(WindowEvent event)
+    {
+        Stage window= new Stage();
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.setTitle("Closing window");
+        window.setMinWidth(350);
+        window.setMinHeight(300);
+
+        Label text= new Label("Do you want to close the game?");
+        Button yesButton= new Button("Yes");
+        yesButton.setOnAction(ev -> {
+            window.close();
+            try{ serverConnection.close(); }catch(IOException ignored){}
+        });
+        Button noButton= new Button("No");
+        yesButton.setOnAction(ev -> {
+            window.close();
+            event.consume();  // consume the main closing window event
+        });
+        VBox layout= new VBox(20);
+        HBox buttons= new HBox(20);
+        buttons.getChildren().addAll(yesButton, noButton);
+        layout.getChildren().addAll(text, buttons);
+        layout.setAlignment(Pos.CENTER);
+
+        Scene scene= new Scene(layout);
+        window.setScene(scene);
+        window.showAndWait();
     }
 }

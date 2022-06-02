@@ -21,7 +21,7 @@ class AlertBox
         window.setMinHeight(300);
 
         Text text= new Text(message);
-        text.setFont(Font.font("Papyrus", FontWeight.BOLD, 14));
+        text.setFont(Font.font(null, FontWeight.BOLD, 14));
         Button button= new Button("Ok");
         button.setOnAction(event -> window.close());
         VBox layout= new VBox(20);

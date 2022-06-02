@@ -610,6 +610,7 @@ public class CLI extends Thread implements PropertyChangeListener
         if("ModelModifications".equals(eventName))
         {
             ModelMessage message = (ModelMessage) event.getNewValue();
+            // check if the message was an error message and if it's fatal
             if(message.errorStatus())
             {
                 if(message.getErrorMessage().isFatal())
@@ -633,6 +634,8 @@ public class CLI extends Thread implements PropertyChangeListener
             }
             synchronized(gameLock)
             {
+                // if it's the first modelMessage put it in the game variable as it is, but
+                // if there was already a game that must be updated, merge the differences
                 if (game.isPresent()) {
                     List<Island> islandList = game.orElse(null).getIslandList();
                     List<Cloud> cloudList = game.orElse(null).getCloudList();
