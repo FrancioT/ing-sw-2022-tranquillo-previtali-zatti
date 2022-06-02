@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Client.GUI;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -138,11 +139,11 @@ public class FirstMenuController
             }
             Parent waitingPlayers = FXMLLoader.load(getClass().getClassLoader().getResource("loadingScreen.fxml"));
             GUI.getInstance().getWindow().setScene(new Scene(waitingPlayers));
-            new Thread(() -> {
+            Platform.runLater(() -> {
                     GUI.getInstance().setReceiver(serverConnection);
                     //now that the connection is established change the on closing window method
                     GUI.getInstance().setClosingWindow();
-            }).start();
+            });
         }catch(IOException e){
             // closing the main window and the connection
             try{ serverConnection.close(); }catch(IOException ignored){}

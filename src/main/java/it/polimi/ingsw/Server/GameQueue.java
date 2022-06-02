@@ -56,7 +56,15 @@ public class GameQueue
         {
             DataBuffer dataBuffer= new DataBuffer(clients.get(client));
             players.put(clients.get(client), dataBuffer);
-            ClientHandler clientHandler= new ClientHandler(client, dataBuffer);
+            ClientHandler clientHandler=null;
+            try{
+                clientHandler= new ClientHandler(client, dataBuffer);
+            }catch (IOException e){
+                //close connection with everyone
+                for(Socket socket: clients.keySet())
+                    try{ socket.close(); }catch(IOException ignored){}
+                throw e;
+            }
             remoteViews.add(new RemoteView(clientHandler));
             clientHandlerList.add(clientHandler);
         }
@@ -77,18 +85,27 @@ public class GameQueue
      */
     public void acceptConnection() throws IOException
     {
-        Socket accepted = server.acceptConnection();
-        OutputStream os = null;
-        InputStream is = null;
-        is = accepted.getInputStream();
-        os = accepted.getOutputStream();
-        BufferedReader in = new BufferedReader(new InputStreamReader(is));
-        PrintWriter out = new PrintWriter(os);
-        out.println("Waiting for players");
-        out.flush();
-        String nickname= in.readLine();
-        if(nickname==null)
-            throw new IOException();
+        boolean connectionEstablished=false;
+        Socket accepted=null;
+        PrintWriter out=null;
+        BufferedReader in=null;
+        String nickname="";
+        while(!connectionEstablished)
+        {
+            accepted = server.acceptConnection();
+            try {
+                in = new BufferedReader(new InputStreamReader(accepted.getInputStream()));
+                out = new PrintWriter(accepted.getOutputStream());
+                out.println("Waiting for players");
+                out.flush();
+                nickname = in.readLine();
+                if (nickname == null)
+                    throw new IOException();
+                connectionEstablished=true;
+            }catch (IOException e){
+                try{ accepted.close(); }catch(IOException ignored){}
+            }
+        }
         boolean changedName=true;
         String newNickname= nickname;
         for(int i=1; i<100 && changedName; i++)

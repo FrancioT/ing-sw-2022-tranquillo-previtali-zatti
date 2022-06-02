@@ -83,6 +83,7 @@ public class Server extends Thread implements Closeable{
         games.add(queue.waitForClients());
     }
 
+    @Override
     public void run()
     {
         try {
@@ -91,12 +92,14 @@ public class Server extends Thread implements Closeable{
         {
             System.out.println("Error during in initialization of Server socket");
         }
+        Socket clientSocket=null;
         while(true)
         {
             try {
-                Socket socket = acceptConnection();
-                gameModeAndWaitPlayers(socket);
-            }catch(IOException ignored) {
+                clientSocket = acceptConnection();
+                gameModeAndWaitPlayers(clientSocket);
+            }catch(IOException e) {
+                try{ clientSocket.close(); }catch(IOException ignored){}
                 System.out.println("Error during game creation");
             }
         }
