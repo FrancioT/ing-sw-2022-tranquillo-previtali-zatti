@@ -8,7 +8,6 @@ import it.polimi.ingsw.Model.Exceptions.EmptyException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -122,7 +121,8 @@ public class IslandController extends Showable
     private Image card10 = new Image("CarteTOT_front10.jpg");
     private Image card11 = new Image("CarteTOT_front11.jpg");
     private Image card12 = new Image("CarteTOT_front12.jpg");
-    private void initialize()
+
+    public void initialize()
     {
         characterCards.put(1, characterCard1);
         characterCards.put(2, characterCard2);
@@ -542,7 +542,12 @@ public class IslandController extends Showable
 
     private void setCurrentPlayer()
     {
-        currentPlayer.setText("Current player: " + game.getCurrPlayerNickname());
+        String[] phaseTmp= game.getPhase().toString().split("_");
+        String phase="";
+        for(String s: phaseTmp)
+            phase=phase.concat(" "+s);
+
+        currentPlayer.setText("Current player: " + game.getCurrPlayerNickname()+"\n\nPhase: "+phase);
     }
 
     private void setUnusedCoins()
@@ -702,46 +707,37 @@ public class IslandController extends Showable
     @FXML
     public void showDashboard1()
     {
+        Parent scene;
         FXMLLoader loader= new FXMLLoader(getClass().getClassLoader().getResource("dashboardsGameScreen.fxml"));
-        try{ loader.load(); }catch (IOException e1){ throw new RuntimeException(); }
-        DashboardController controllerDash1=loader.getController();
-        controllerDash1.setNickname(game.getPlayerList().get(0).getuID());
-        controllerDash1.show();
-        controllerDash1.setClosingWindow();
-        GUI.getInstance().addShowableStage(controllerDash1);
+        try{ scene= loader.load(); }catch (IOException e){ throw new RuntimeException(); }
+        ((DashboardController)loader.getController()).initialize(scene, game.getPlayerList().get(0).getuID());
     }
 
     @FXML
     public void showDashboard2()
     {
+        Parent scene;
         FXMLLoader loader= new FXMLLoader(getClass().getClassLoader().getResource("dashboardsGameScreen.fxml"));
-        try{ loader.load(); }catch (IOException e1){ throw new RuntimeException(); }
-        DashboardController controllerDash2=loader.getController();
-        controllerDash2.setNickname(game.getPlayerList().get(1).getuID());
-        controllerDash2.show();
-        GUI.getInstance().addShowableStage(controllerDash2);
+        try{ scene= loader.load(); }catch (IOException e){ throw new RuntimeException(); }
+        ((DashboardController)loader.getController()).initialize(scene, game.getPlayerList().get(1).getuID());
     }
 
     @FXML
     public void showDashboard3()
     {
+        Parent scene;
         FXMLLoader loader= new FXMLLoader(getClass().getClassLoader().getResource("dashboardsGameScreen.fxml"));
-        try{ loader.load(); }catch (IOException e1){ throw new RuntimeException(); }
-        DashboardController controllerDash3=loader.getController();
-        controllerDash3.setNickname(game.getPlayerList().get(2).getuID());
-        controllerDash3.show();
-        GUI.getInstance().addShowableStage(controllerDash3);
+        try{ scene= loader.load(); }catch (IOException e1){ throw new RuntimeException(); }
+        ((DashboardController)loader.getController()).initialize(scene, game.getPlayerList().get(2).getuID());
     }
 
     @FXML
     public void showDashboard4()
     {
+        Parent scene;
         FXMLLoader loader= new FXMLLoader(getClass().getClassLoader().getResource("dashboardsGameScreen.fxml"));
-        try{ loader.load(); }catch (IOException e1){ throw new RuntimeException(); }
-        DashboardController controllerDash4=loader.getController();
-        controllerDash4.setNickname(game.getPlayerList().get(3).getuID());
-        controllerDash4.show();
-        GUI.getInstance().addShowableStage(controllerDash4);
+        try{ scene= loader.load(); }catch (IOException e1){ throw new RuntimeException(); }
+        ((DashboardController)loader.getController()).initialize(scene, game.getPlayerList().get(3).getuID());
     }
 
     @Override
@@ -750,7 +746,6 @@ public class IslandController extends Showable
         game= GUI.getInstance().getModel();
         receiver= GUI.getInstance().getReceiver();
         nickName= GUI.getInstance().getNickName();
-        initialize();.
         setActionOnPhaseIsland();
         setCharacterCards();
         setCurrentPlayer();

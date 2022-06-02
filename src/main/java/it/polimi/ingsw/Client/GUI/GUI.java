@@ -235,6 +235,7 @@ public class GUI extends Application implements PropertyChangeListener
                 Parent islandView;
                 FXMLLoader loader= new FXMLLoader(getClass().getClassLoader().getResource("islandsGameScreen.fxml"));
                 try{ islandView= loader.load(); }catch (IOException e1){ throw new RuntimeException(); }
+                ((IslandController)loader.getController()).initialize();
                 window.setScene(new Scene(islandView));
                 addShowableStage(loader.getController());
             }

@@ -7,16 +7,12 @@ import it.polimi.ingsw.ClientsHandler.Messages.ModelMessage;
 import it.polimi.ingsw.ClientsHandler.Messages.StudentToDashboard;
 import it.polimi.ingsw.Model.Colour;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -66,6 +62,7 @@ public class DashboardController extends Showable
     private ModelMessage game;
     private Receiver receiver;
     private String nickname;
+    private Stage window;
     public static ImageView selectedStudent;
     public static Colour selectStudentColour;
 
@@ -74,7 +71,7 @@ public class DashboardController extends Showable
      * a data structure of the DashboardController and set everything
      * to the default values
      */
-    public void initialize()
+    public void initialize(Parent scene, String nickname)
     {
         teacherDashboard.put(Colour.pink, pinkT);
         teacherDashboard.put(Colour.green, greenT);
@@ -192,6 +189,12 @@ public class DashboardController extends Showable
         nickPlayer.setMouseTransparent(true);
         nickPlayer.setFocusTraversable(false);
 
+        window= new Stage();
+        window.setScene(new Scene(scene));
+        window.show();
+        window.setOnCloseRequest(event -> GUI.getInstance().removeShowableStage(this));
+        this.nickname= nickname;
+        GUI.getInstance().addShowableStage(this);
         show();
     }
 
@@ -611,42 +614,6 @@ public class DashboardController extends Showable
     {
         sendMessage(new StudentToDashboard(nickname, selectStudentColour));
         disablePlaceOnDash();
-    }
-
-    public void setNickname(String nickname)
-    {
-        this.nickname=nickname;
-    }
-
-    public void setClosingWindow()
-    {
-        window.setOnCloseRequest(event -> {
-            event.consume();  // consume the main closing window event
-            Stage popUp= new Stage();
-            popUp.initModality(Modality.APPLICATION_MODAL);
-            popUp.setTitle("Closing window");
-            popUp.setMinWidth(350);
-            popUp.setMinHeight(300);
-
-            Label text= new Label("Do you want to close the game? Stronzo");
-            Button yesButton= new Button("Yes");
-            yesButton.setOnAction(ev -> {
-                popUp.close();
-                try{ receiver.close(); }catch(IOException ignored){}
-                window.close();
-            });
-            Button noButton= new Button("No");
-            noButton.setOnAction(ev -> popUp.close());
-            VBox layout= new VBox(20);
-            HBox buttons= new HBox(20);
-            buttons.getChildren().addAll(yesButton, noButton);
-            layout.getChildren().addAll(text, buttons);
-            layout.setAlignment(Pos.CENTER);
-
-            Scene scene= new Scene(layout);
-            popUp.setScene(scene);
-            popUp.showAndWait();
-        });
     }
 
     @Override
