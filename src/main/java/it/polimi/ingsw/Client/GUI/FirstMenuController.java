@@ -139,11 +139,11 @@ public class FirstMenuController
             }
             Parent waitingPlayers = FXMLLoader.load(getClass().getClassLoader().getResource("loadingScreen.fxml"));
             GUI.getInstance().getWindow().setScene(new Scene(waitingPlayers));
-            Platform.runLater(() -> {
+            new Thread(() -> Platform.runLater(() -> {
                     GUI.getInstance().setReceiver(serverConnection);
                     //now that the connection is established change the on closing window method
                     GUI.getInstance().setClosingWindow();
-            });
+            }));
         }catch(IOException e){
             // closing the main window and the connection
             try{ serverConnection.close(); }catch(IOException ignored){}
