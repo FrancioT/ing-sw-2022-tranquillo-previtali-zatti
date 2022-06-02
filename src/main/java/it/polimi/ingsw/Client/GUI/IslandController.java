@@ -16,57 +16,57 @@ import java.util.HashMap;
 public class IslandController extends Showable
 {
     @FXML
-    ImageView is1,is2,is3,is4,is5,is6,is7,is8,is9,is10,is11,is12;
+    private ImageView is1,is2,is3,is4,is5,is6,is7,is8,is9,is10,is11,is12;
     @FXML
-    ImageView mnIs1,mnIs2,mnIs3,mnIs4,mnIs5,mnIs6,mnIs7,mnIs8,mnIs9,mnIs10,mnIs11,mnIs12;
+    private ImageView mnIs1,mnIs2,mnIs3,mnIs4,mnIs5,mnIs6,mnIs7,mnIs8,mnIs9,mnIs10,mnIs11,mnIs12;
     @FXML
-    ImageView towerIs1,towerIs2,towerIs3,towerIs4,towerIs5,towerIs6;
+    private ImageView towerIs1,towerIs2,towerIs3,towerIs4,towerIs5,towerIs6;
     @FXML
-    ImageView towerIs7,towerIs8,towerIs9,towerIs10,towerIs11,towerIs12;
+    private ImageView towerIs7,towerIs8,towerIs9,towerIs10,towerIs11,towerIs12;
     @FXML
-    Text bluIs1,greenIs1,pinkIs1,redIs1,yellowIs1;
+    private Text bluIs1,greenIs1,pinkIs1,redIs1,yellowIs1;
     @FXML
-    Text bluIs2,greenIs2,pinkIs2,redIs2,yellowIs2;
+    private Text bluIs2,greenIs2,pinkIs2,redIs2,yellowIs2;
     @FXML
-    Text bluIs3,greenIs3,pinkIs3,redIs3,yellowIs3;
+    private Text bluIs3,greenIs3,pinkIs3,redIs3,yellowIs3;
     @FXML
-    Text bluIs4,greenIs4,pinkIs4,redIs4,yellowIs4;
+    private Text bluIs4,greenIs4,pinkIs4,redIs4,yellowIs4;
     @FXML
-    Text bluIs5,greenIs5,pinkIs5,redIs5,yellowIs5;
+    private Text bluIs5,greenIs5,pinkIs5,redIs5,yellowIs5;
     @FXML
-    Text bluIs6,greenIs6,pinkIs6,redIs6,yellowIs6;
+    private Text bluIs6,greenIs6,pinkIs6,redIs6,yellowIs6;
     @FXML
-    Text bluIs7,greenIs7,pinkIs7,redIs7,yellowIs7;
+    private Text bluIs7,greenIs7,pinkIs7,redIs7,yellowIs7;
     @FXML
-    Text bluIs8,greenIs8,pinkIs8,redIs8,yellowIs8;
+    private Text bluIs8,greenIs8,pinkIs8,redIs8,yellowIs8;
     @FXML
-    Text bluIs9,greenIs9,pinkIs9,redIs9,yellowIs9;
+    private Text bluIs9,greenIs9,pinkIs9,redIs9,yellowIs9;
     @FXML
-    Text bluIs10,greenIs10,pinkIs10,redIs10,yellowIs10;
+    private Text bluIs10,greenIs10,pinkIs10,redIs10,yellowIs10;
     @FXML
-    Text bluIs11,greenIs11,pinkIs11,redIs11,yellowIs11;
+    private Text bluIs11,greenIs11,pinkIs11,redIs11,yellowIs11;
     @FXML
-    Text bluIs12,greenIs12,pinkIs12,redIs12,yellowIs12;
+    private Text bluIs12,greenIs12,pinkIs12,redIs12,yellowIs12;
     @FXML
-    ImageView cloud1,cloud2,cloud3,cloud4;
+    private ImageView cloud1,cloud2,cloud3,cloud4;
     @FXML
-    ImageView s1cloud1,s2cloud1,s3cloud1,s4cloud1;
+    private ImageView s1cloud1,s2cloud1,s3cloud1,s4cloud1;
     @FXML
-    ImageView s1cloud2,s2cloud2,s3cloud2,s4cloud2;
+    private ImageView s1cloud2,s2cloud2,s3cloud2,s4cloud2;
     @FXML
-    ImageView s1cloud3,s2cloud3,s3cloud3,s4cloud3;
+    private ImageView s1cloud3,s2cloud3,s3cloud3,s4cloud3;
     @FXML
-    ImageView s1cloud4,s2cloud4,s3cloud4,s4cloud4;
+    private ImageView s1cloud4,s2cloud4,s3cloud4,s4cloud4;
     @FXML
-    ImageView characterCard1,characterCard2,characterCard3;
+    private ImageView characterCard1,characterCard2,characterCard3;
     @FXML
-    Text currentPlayer,towersP1,towersP2,towersP3,towersP4;
+    private Text currentPlayer,towersP1,towersP2,towersP3,towersP4;
     @FXML
-    Text coinsP1,coinsP2,coinsP3,coinsP4,unusedCoins;
+    private Text coinsP1,coinsP2,coinsP3,coinsP4,unusedCoins;
     @FXML
-    Text numTIs1,numTIs2,numTIs3,numTIs4,numTIs5,numTIs6,numTIs7,numTIs8,numTIs9,numTIs10,numTIs11,numTIs12;
+    private Text numTIs1,numTIs2,numTIs3,numTIs4,numTIs5,numTIs6,numTIs7,numTIs8,numTIs9,numTIs10,numTIs11,numTIs12;
     @FXML
-    Button playerID1,playerID2,playerID3,playerID4;
+    private Button playerID1,playerID2,playerID3,playerID4;
 
     private HashMap<Integer, ImageView> islandsImages = new HashMap<>();
     private HashMap<Integer, HashMap<Colour, Text>> islandsStudents = new HashMap<>();
@@ -97,26 +97,27 @@ public class IslandController extends Showable
     private HashMap<Integer, Text> playersCoins = new HashMap<>();
     private ModelMessage game;
     private Receiver receiver;
-    Image whiteT = new Image("wt.png)");
-    Image blackT = new Image("bt.png)");
-    Image grayT = new Image("gt.png)");
-    Image redS = new Image("red_student.png)");
-    Image pinkS = new Image("pink_student.png)");
-    Image greenS = new Image("green_student.png)");
-    Image yellowS = new Image("yellow_student.png)");
-    Image blueS = new Image("blue_student.png)");
-    Image card1 = new Image("CarteTOT_front.jpg");
-    Image card2 = new Image("CarteTOT_front2.jpg");
-    Image card3 = new Image("CarteTOT_front3.jpg");
-    Image card4 = new Image("CarteTOT_front4.jpg");
-    Image card5 = new Image("CarteTOT_front5.jpg");
-    Image card6 = new Image("CarteTOT_front6.jpg");
-    Image card7 = new Image("CarteTOT_front7.jpg");
-    Image card8 = new Image("CarteTOT_front8.jpg");
-    Image card9 = new Image("CarteTOT_front9.jpg");
-    Image card10 = new Image("CarteTOT_front10.jpg");
-    Image card11 = new Image("CarteTOT_front11.jpg");
-    Image card12 = new Image("CarteTOT_front12.jpg");
+    private String nickName;
+    private Image whiteT = new Image("wt.png)");
+    private Image blackT = new Image("bt.png)");
+    private Image grayT = new Image("gt.png)");
+    private Image redS = new Image("red_student.png)");
+    private Image pinkS = new Image("pink_student.png)");
+    private Image greenS = new Image("green_student.png)");
+    private Image yellowS = new Image("yellow_student.png)");
+    private Image blueS = new Image("blue_student.png)");
+    private Image card1 = new Image("CarteTOT_front.jpg");
+    private Image card2 = new Image("CarteTOT_front2.jpg");
+    private Image card3 = new Image("CarteTOT_front3.jpg");
+    private Image card4 = new Image("CarteTOT_front4.jpg");
+    private Image card5 = new Image("CarteTOT_front5.jpg");
+    private Image card6 = new Image("CarteTOT_front6.jpg");
+    private Image card7 = new Image("CarteTOT_front7.jpg");
+    private Image card8 = new Image("CarteTOT_front8.jpg");
+    private Image card9 = new Image("CarteTOT_front9.jpg");
+    private Image card10 = new Image("CarteTOT_front10.jpg");
+    private Image card11 = new Image("CarteTOT_front11.jpg");
+    private Image card12 = new Image("CarteTOT_front12.jpg");
     private void initialize()
     {
         characterCards.put(1, characterCard1);
@@ -221,6 +222,10 @@ public class IslandController extends Showable
         islandsStudents.put(11, island11);
         islandsStudents.put(12, island12);
 
+        cloud1.setVisible(false);
+        cloud2.setVisible(false);
+        cloud3.setVisible(false);
+        cloud4.setVisible(false);
         cloudsImages.put(1, cloud1);
         cloudsImages.put(2, cloud2);
         cloudsImages.put(3, cloud3);
@@ -321,23 +326,14 @@ public class IslandController extends Showable
     private void expertActivation(boolean mod)
     {
         if(mod)
-        {
             for(int i=1; i<=3; i++)
-            {
-                (characterCards.get(i)).setVisible(true);
-                (characterCards.get(i)).setMouseTransparent(false);
-                (characterCards.get(i)).setFocusTraversable(true);
-            }
-        }
+                characterCards.get(i).setVisible(true);
         else
-        {
             for(int i=1; i<=3; i++)
             {
-                (characterCards.get(i)).setVisible(false);
-                (characterCards.get(i)).setMouseTransparent(true);
-                (characterCards.get(i)).setFocusTraversable(false);
+                characterCards.get(i).setVisible(false);
+                characterCards.get(i).setOnMouseClicked(event -> {});
             }
-        }
     }
     private int playersNum()
     {
@@ -349,10 +345,8 @@ public class IslandController extends Showable
     {
         for(int i=1; i<=12; i++)
         {
-            (towers.get(i)).setMouseTransparent(true);
-            (towers.get(i)).setFocusTraversable(false);
-            (motherNature.get(i)).setMouseTransparent(true);
-            (motherNature.get(i)).setFocusTraversable(false);
+            towers.get(i).setOnMouseClicked(event -> {});
+            motherNature.get(i).setOnMouseClicked(event -> {});
         }
     }
 
@@ -416,6 +410,8 @@ public class IslandController extends Showable
 
     private void setCharacterCards()
     {
+        if(!game.isExpertMode())
+            return;
         for(int i=1; i<=3; i++)
         {
             switch (game.getCharacterCardList().get(i-1).getCardID())
@@ -423,53 +419,114 @@ public class IslandController extends Showable
                 case 1:
                 {
                     characterCards.get(i).setImage(card1);
+                    characterCards.get(i).setOnMouseClicked(event -> activateCard1());
                 }break;
                 case 2:
                 {
                     characterCards.get(i).setImage(card2);
+                    characterCards.get(i).setOnMouseClicked(event -> activateCard2());
                 }break;
                 case 3:
                 {
                     characterCards.get(i).setImage(card3);
+                    characterCards.get(i).setOnMouseClicked(event -> activateCard3());
                 }break;
                 case 4:
                 {
                     characterCards.get(i).setImage(card4);
+                    characterCards.get(i).setOnMouseClicked(event -> activateCard4());
                 }break;
                 case 5:
                 {
                     characterCards.get(i).setImage(card5);
+                    characterCards.get(i).setOnMouseClicked(event -> activateCard5());
                 }break;
                 case 6:
                 {
                     characterCards.get(i).setImage(card6);
+                    characterCards.get(i).setOnMouseClicked(event -> activateCard6());
                 }break;
                 case 7:
                 {
                     characterCards.get(i).setImage(card7);
+                    characterCards.get(i).setOnMouseClicked(event -> activateCard7());
                 }break;
                 case 8:
                 {
                     characterCards.get(i).setImage(card8);
+                    characterCards.get(i).setOnMouseClicked(event -> activateCard8());
                 }break;
                 case 9:
                 {
                     characterCards.get(i).setImage(card9);
+                    characterCards.get(i).setOnMouseClicked(event -> activateCard9());
                 }break;
                 case 10:
                 {
                     characterCards.get(i).setImage(card10);
+                    characterCards.get(i).setOnMouseClicked(event -> activateCard10());
                 }break;
                 case 11:
                 {
                     characterCards.get(i).setImage(card11);
+                    characterCards.get(i).setOnMouseClicked(event -> activateCard11());
                 }break;
                 case 12:
                 {
                     characterCards.get(i).setImage(card12);
+                    characterCards.get(i).setOnMouseClicked(event -> activateCard12());
                 }break;
             }
         }
+    }
+
+    private void activateCard1()
+    {
+
+    }
+    private void activateCard2()
+    {
+
+    }
+    private void activateCard3()
+    {
+
+    }
+    private void activateCard4()
+    {
+
+    }
+    private void activateCard5()
+    {
+
+    }
+    private void activateCard6()
+    {
+
+    }
+    private void activateCard7()
+    {
+
+    }
+    private void activateCard8()
+    {
+
+    }
+    private void activateCard9()
+    {
+
+    }
+    private void activateCard10()
+    {
+
+    }
+    private void activateCard11()
+    {
+
+    }
+    private void activateCard12()
+    {
+
     }
 
     private void setCurrentPlayer()
@@ -479,15 +536,21 @@ public class IslandController extends Showable
 
     private void setUnusedCoins()
     {
-        unusedCoins.setText("Unused coins: " + Integer.toString(game.getUnusedCoins()));
+        if(game.isExpertMode())
+            unusedCoins.setText("Unused coins: " + game.getUnusedCoins());
+        else
+            unusedCoins.setVisible(false);
     }
 
     private void setPlayersCoinsAndTowers()
     {
         for(int i=1; i<=game.getPlayerList().size(); i++)
         {
-            playersTowers.get(i).setText("Towers: " + Integer.toString(game.getPlayerList().get(i-1).getTowers().availabilityChecker()));
-            playersCoins.get(i).setText("Coins: " + Integer.toString(game.getPlayerList().get(i-1).getCoins()));
+            playersTowers.get(i).setText("Towers: " + game.getPlayerList().get(i-1).getTowers().availabilityChecker());
+            if(game.isExpertMode())
+                playersCoins.get(i).setText("Coins: " + game.getPlayerList().get(i-1).getCoins());
+            else
+                playersCoins.get(i).setVisible(false);
         }
     }
 
@@ -572,6 +635,12 @@ public class IslandController extends Showable
 
     private void setActionOnPhaseIsland()
     {
+        if(!game.getCurrPlayerNickname().equals(nickName))
+        {
+            disableClouds();
+            disableIslands();
+            return;
+        }
         switch(game.getPhase())
         {
             case choose_card:
@@ -612,14 +681,17 @@ public class IslandController extends Showable
                 }catch (EmptyException e){System.out.println("Error in getting towers");}
                 towersNum.get(i).setText(Integer.toString(game.getIslandList().get(i-1).getNumTowers()));
             }
+            else
+                towers.get(i).setVisible(false);
         }
     }
 
     @Override
     public void show()
     {
-        game=GUI.getInstance().getModel();
-        receiver=GUI.getInstance().getReceiver();
+        game= GUI.getInstance().getModel();
+        receiver= GUI.getInstance().getReceiver();
+        nickName= GUI.getInstance().getNickName();
         initialize();
         setActionOnPhaseIsland();
         setCharacterCards();

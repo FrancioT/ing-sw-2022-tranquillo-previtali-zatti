@@ -132,26 +132,30 @@ public class GUI extends Application implements PropertyChangeListener
 
     public synchronized ModelMessage getModel() { return game; }
 
+    public String getNickName()
+    {
+        return nickName;
+    }
+
     public void setClosingWindow()
     {
         window.setOnCloseRequest(event -> {
-            Stage window= new Stage();
-            window.initModality(Modality.APPLICATION_MODAL);
-            window.setTitle("Closing window");
-            window.setMinWidth(350);
-            window.setMinHeight(300);
+            event.consume();  // consume the main closing window event
+            Stage popUp= new Stage();
+            popUp.initModality(Modality.APPLICATION_MODAL);
+            popUp.setTitle("Closing window");
+            popUp.setMinWidth(350);
+            popUp.setMinHeight(300);
 
             Label text= new Label("Do you want to close the game?");
             Button yesButton= new Button("Yes");
             yesButton.setOnAction(ev -> {
-                window.close();
+                popUp.close();
                 try{ receiver.close(); }catch(IOException ignored){}
+                window.close();
             });
             Button noButton= new Button("No");
-            yesButton.setOnAction(ev -> {
-                window.close();
-                event.consume();  // consume the main closing window event
-            });
+            noButton.setOnAction(ev -> popUp.close());
             VBox layout= new VBox(20);
             HBox buttons= new HBox(20);
             buttons.getChildren().addAll(yesButton, noButton);
@@ -159,8 +163,8 @@ public class GUI extends Application implements PropertyChangeListener
             layout.setAlignment(Pos.CENTER);
 
             Scene scene= new Scene(layout);
-            window.setScene(scene);
-            window.showAndWait();
+            popUp.setScene(scene);
+            popUp.showAndWait();
         });
     }
 
@@ -228,6 +232,11 @@ public class GUI extends Application implements PropertyChangeListener
                         message.getCloudList(), message.getPlayerList(), message.getCharacterCardList(),
                         message.getCurrPlayerNickname(), message.getUnusedCoins(), message.hasGameEnded(),
                         message.getPhase());
+                Parent islandView;
+                FXMLLoader loader= new FXMLLoader(getClass().getClassLoader().getResource("islandsGameScreen.fxml"));
+                try{ islandView= loader.load(); }catch (IOException e1){ throw new RuntimeException(); }
+                window.setScene(new Scene(islandView));
+                addShowableStage(loader.getController());
             }
             updateStages();
         }

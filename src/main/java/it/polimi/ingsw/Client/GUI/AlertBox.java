@@ -14,7 +14,10 @@ class AlertBox
 {
     static void display(String title, String message)
     {
-        Stage window= new Stage();
+        Stage window;
+        try {
+            window= new Stage();
+        }catch(IllegalStateException e) { return; }
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(title);
         window.setMinWidth(350);

@@ -165,31 +165,31 @@ public class FirstMenuController
 
     private void closeWindow(WindowEvent event)
     {
-        Stage window= new Stage();
-        window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle("Closing window");
-        window.setMinWidth(350);
-        window.setMinHeight(300);
+        event.consume();  // consume the main closing window event
+        Stage popUp= new Stage();
+        popUp.initModality(Modality.APPLICATION_MODAL);
+        popUp.setTitle("Closing window");
+        popUp.setMinWidth(350);
+        popUp.setMinHeight(300);
 
         Label text= new Label("Do you want to close the game?");
         Button yesButton= new Button("Yes");
         yesButton.setOnAction(ev -> {
-            window.close();
+            popUp.close();
             try{ serverConnection.close(); }catch(IOException ignored){}
+            GUI.getInstance().getWindow().close();
         });
         Button noButton= new Button("No");
-        yesButton.setOnAction(ev -> {
-            window.close();
-            event.consume();  // consume the main closing window event
-        });
+        noButton.setOnAction(ev -> popUp.close());
         VBox layout= new VBox(20);
         HBox buttons= new HBox(20);
         buttons.getChildren().addAll(yesButton, noButton);
+        buttons.setAlignment(Pos.CENTER);
         layout.getChildren().addAll(text, buttons);
         layout.setAlignment(Pos.CENTER);
 
         Scene scene= new Scene(layout);
-        window.setScene(scene);
-        window.showAndWait();
+        popUp.setScene(scene);
+        popUp.showAndWait();
     }
 }
