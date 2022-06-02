@@ -102,6 +102,11 @@ public class FirstMenuController
             }
             Parent choosingGame = FXMLLoader.load(getClass().getClassLoader().getResource("loadingScreen.fxml"));
             GUI.getInstance().getWindow().setScene(new Scene(choosingGame));
+            new Thread(() -> Platform.runLater(() -> {
+                GUI.getInstance().setReceiver(serverConnection);
+                //now that the connection is established change the on closing window method
+                GUI.getInstance().setClosingWindow();
+            }));
         }
     }
 
