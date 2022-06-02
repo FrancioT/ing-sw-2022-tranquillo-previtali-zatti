@@ -457,15 +457,15 @@
             <Font size="31.0" />
          </font>
       </Text>
-      <ImageView fx:id="characterCard1" fitHeight="150.0" fitWidth="200.0" layoutX="26.0" layoutY="261.0" onMouseClicked="#activeCCard1" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="characterCard1" fitHeight="150.0" fitWidth="200.0" layoutX="26.0" layoutY="261.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Animali.jpg" />
          </image></ImageView>
-      <ImageView fx:id="characterCard2" fitHeight="150.0" fitWidth="200.0" layoutX="26.0" layoutY="446.0" onMouseClicked="#activeCCard2" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="characterCard2" fitHeight="150.0" fitWidth="200.0" layoutX="26.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Animali2.jpg" />
          </image></ImageView>
-      <ImageView fx:id="characterCard3" fitHeight="150.0" fitWidth="200.0" layoutX="26.0" layoutY="631.0" onMouseClicked="#activeCCard3" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="characterCard3" fitHeight="150.0" fitWidth="200.0" layoutX="26.0" layoutY="631.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Animali3.jpg" />
          </image></ImageView>

@@ -1,10 +1,14 @@
 package it.polimi.ingsw.Client.GUI;
 
 import it.polimi.ingsw.Client.CLI.Receiver;
+import it.polimi.ingsw.ClientsHandler.Messages.Message;
 import it.polimi.ingsw.ClientsHandler.Messages.ModelMessage;
+import it.polimi.ingsw.ClientsHandler.Messages.MoveMN;
+import it.polimi.ingsw.ClientsHandler.Messages.StudentToIsland;
 import it.polimi.ingsw.Model.Colour;
 import it.polimi.ingsw.Model.ColourT;
 import it.polimi.ingsw.Model.Exceptions.EmptyException;
+import it.polimi.ingsw.Model.ModelAndDecorators.Phase;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -122,6 +127,12 @@ public class IslandController extends Showable
     private Image card11 = new Image("CarteTOT_front11.jpg");
     private Image card12 = new Image("CarteTOT_front12.jpg");
 
+    /**
+     * This method associates each parameter of the fxml file in
+     * a data structure of the IslandController and set everything
+     * to the default values furthermore it creates the window for the
+     * Island graphics
+     */
     public void initialize()
     {
         characterCards.put(1, characterCard1);
@@ -230,6 +241,7 @@ public class IslandController extends Showable
         cloud2.setVisible(false);
         cloud3.setVisible(false);
         cloud4.setVisible(false);
+
         cloudsImages.put(1, cloud1);
         cloudsImages.put(2, cloud2);
         cloudsImages.put(3, cloud3);
@@ -334,6 +346,11 @@ public class IslandController extends Showable
         expertActivation(GUI.getInstance().getModel().isExpertMode());
     }
 
+    /**
+     * This method verify if the expert mode is active and set visible or invisible
+     * the characters cards
+     * @param mod
+     */
     private void expertActivation(boolean mod)
     {
         if(mod)
@@ -346,12 +363,19 @@ public class IslandController extends Showable
                 characterCards.get(i).setOnMouseClicked(event -> {});
             }
     }
+
+    /**
+     * @return the number of players in this game
+     */
     private int playersNum()
     {
         int n = (GUI.getInstance().getModel().getPlayerList()).size();
         return n;
     }
 
+    /**
+     * This method disable the possibility to interact with mother nature and towers
+     */
     private void disableTowersAndMN()
     {
         for(int i=1; i<=12; i++)
@@ -361,6 +385,9 @@ public class IslandController extends Showable
         }
     }
 
+    /**
+     * This method enable the possibility to interact with islands on board
+     */
     private void enableIslands()
     {
         for(int i=1; i<=12; i++)
@@ -370,6 +397,9 @@ public class IslandController extends Showable
         }
     }
 
+    /**
+     * This method disable the possibility to interact with islands on board
+     */
     private void disableIslands()
     {
         for(int i=1; i<=12; i++)
@@ -379,6 +409,9 @@ public class IslandController extends Showable
         }
     }
 
+    /**
+     * This method enable the possibility to interact with clouds on board
+     */
     private void enableClouds()
     {
         for(int i=1; i<=playersNum(); i++)
@@ -388,6 +421,9 @@ public class IslandController extends Showable
         }
     }
 
+    /**
+     * This method disable the possibility to interact with clouds on board
+     */
     private void disableClouds()
     {
         for(int i=1; i<=playersNum(); i++)
@@ -397,6 +433,13 @@ public class IslandController extends Showable
         }
     }
 
+    /**
+     * This method take towerC and islandIndex in input and if there is not a tower's image displayed
+     * on board set it of the corresponding colour towerC on the island islandIndex; if a tower's image
+     * it's already there displayed and the corresponding colour is different the method changes the image
+     * @param islandIndex
+     * @param towerC
+     */
     public void addAndSwapTower(Integer islandIndex, ColourT towerC)
     {
         switch (towerC)
@@ -419,6 +462,9 @@ public class IslandController extends Showable
         }
     }
 
+    /**
+     * This method setup character cards
+     */
     private void setCharacterCards()
     {
         if(!game.isExpertMode())
@@ -491,6 +537,7 @@ public class IslandController extends Showable
         }
     }
 
+
     private void activateCard1()
     {
 
@@ -540,6 +587,122 @@ public class IslandController extends Showable
 
     }
 
+    @FXML
+    private void clickCloud1()
+    {
+
+    }
+    @FXML
+    private void clickCloud2()
+    {
+
+    }
+    @FXML
+    private void clickCloud3()
+    {
+
+    }
+    @FXML
+    private void clickCloud4()
+    {
+
+    }
+
+    @FXML
+    private void clickIs1()
+    {
+
+    }
+    @FXML
+    private void clickIs2()
+    {
+
+    }
+    @FXML
+    private void clickIs3()
+    {
+
+    }
+    @FXML
+    private void clickIs4()
+    {
+
+    }
+    @FXML
+    private void clickIs5()
+    {
+
+    }
+    @FXML
+    private void clickIs6()
+    {
+
+    }
+    @FXML
+    private void clickIs7()
+    {
+
+    }
+    @FXML
+    private void clickIs8()
+    {
+
+    }
+    @FXML
+    private void clickIs9()
+    {
+
+    }
+    @FXML
+    private void clickIs10()
+    {
+
+    }
+    @FXML
+    private void clickIs11()
+    {
+
+    }
+    @FXML
+    private void clickIs12()
+    {
+
+    }
+    private void selectedIsland(int index)
+    {
+        if(game.getPhase()==Phase.move_mother_nature)
+        {
+            sendMessage(new MoveMN(nickName, index));
+        }
+        else if(game.getPhase()==Phase.move_students)
+        {
+            if(DashboardController.selectStudentColour!=null)
+            {
+                sendMessage(new StudentToIsland(nickName, DashboardController.selectStudentColour,
+                        index));
+                DashboardController.selectStudentColour=null;
+            }
+        }
+    }
+
+    private void sendMessage(Message message)
+    {
+        try{
+            receiver.send(message);
+        }catch (IOException e)
+        {
+            AlertBox.display("Fatal error", "Unable to communicate with the server");
+            GUI.getInstance().getWindow().fireEvent(new WindowEvent(GUI.getInstance().getWindow(),
+                    WindowEvent.WINDOW_CLOSE_REQUEST));
+        }
+
+    }
+
+
+
+    /**
+     *
+     */
     private void setCurrentPlayer()
     {
         String[] phaseTmp= game.getPhase().toString().split("_");
@@ -550,6 +713,9 @@ public class IslandController extends Showable
         currentPlayer.setText("Current player: " + game.getCurrPlayerNickname()+"\n\nPhase: "+phase);
     }
 
+    /**
+     *
+     */
     private void setUnusedCoins()
     {
         if(game.isExpertMode())
@@ -558,6 +724,9 @@ public class IslandController extends Showable
             unusedCoins.setVisible(false);
     }
 
+    /**
+     *
+     */
     private void setPlayersCoinsAndTowers()
     {
         for(int i=1; i<=game.getPlayerList().size(); i++)
@@ -570,6 +739,9 @@ public class IslandController extends Showable
         }
     }
 
+    /**
+     *
+     */
     private void setMotherNature()
     {
         for(int i=1; i<=game.getIslandList().size(); i++)
@@ -585,6 +757,11 @@ public class IslandController extends Showable
         }
     }
 
+    /**
+     * @param cS
+     * @param islandIndex
+     * @return
+     */
     private int studentsColourOnIsland(Colour cS, Integer islandIndex)
     {
         int num=0;
@@ -598,6 +775,9 @@ public class IslandController extends Showable
         return num;
     }
 
+    /**
+     *
+     */
     private void setIslandsStudents()
     {
         for(int i=1; i<=game.getIslandList().size(); i++)
@@ -609,6 +789,9 @@ public class IslandController extends Showable
         }
     }
 
+    /**
+     *
+     */
     private void setClouds()
     {
         for(int i=1; i<=playersNum(); i++)
@@ -644,11 +827,17 @@ public class IslandController extends Showable
         }
     }
 
+    /**
+     * @return
+     */
     private int studentsOnCLoud()
     {
         return game.getCloudList().get(0).getStudentsColours().size();
     }
 
+    /**
+     *
+     */
     private void setActionOnPhaseIsland()
     {
         if(!game.getCurrPlayerNickname().equals(nickName))
@@ -677,6 +866,9 @@ public class IslandController extends Showable
         }
     }
 
+    /**
+     *
+     */
     private void setNicknames()
     {
         for(int i=0; i<=(playersNum()-1); i++)
@@ -688,6 +880,9 @@ public class IslandController extends Showable
         }
     }
 
+    /**
+     *
+     */
     private void setTowers()
     {
         for (int i=1; i<=game.getIslandList().size(); i++)
@@ -704,6 +899,9 @@ public class IslandController extends Showable
         }
     }
 
+    /**
+     *
+     */
     @FXML
     public void showDashboard1()
     {
@@ -713,6 +911,9 @@ public class IslandController extends Showable
         ((DashboardController)loader.getController()).initialize(scene, game.getPlayerList().get(0).getuID());
     }
 
+    /**
+     *
+     */
     @FXML
     public void showDashboard2()
     {
@@ -722,6 +923,9 @@ public class IslandController extends Showable
         ((DashboardController)loader.getController()).initialize(scene, game.getPlayerList().get(1).getuID());
     }
 
+    /**
+     *
+     */
     @FXML
     public void showDashboard3()
     {
@@ -731,6 +935,9 @@ public class IslandController extends Showable
         ((DashboardController)loader.getController()).initialize(scene, game.getPlayerList().get(2).getuID());
     }
 
+    /**
+     *
+     */
     @FXML
     public void showDashboard4()
     {
@@ -740,6 +947,9 @@ public class IslandController extends Showable
         ((DashboardController)loader.getController()).initialize(scene, game.getPlayerList().get(3).getuID());
     }
 
+    /**
+     * This method shows and updates the GUI of the Island
+     */
     @Override
     public void show()
     {

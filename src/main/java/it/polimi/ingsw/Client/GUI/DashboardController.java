@@ -737,7 +737,7 @@ public class DashboardController extends Showable
     }
 
     /**
-     * This method show everything
+     * This method shows and updates the GUI of the Dashboards
      */
     @Override
     public void show()
