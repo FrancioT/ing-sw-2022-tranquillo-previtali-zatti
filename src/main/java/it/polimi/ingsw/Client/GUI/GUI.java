@@ -95,25 +95,23 @@ public class GUI extends Application implements PropertyChangeListener
         }
     }
 
-    public void setReceiver(Socket serverConnection)
+    public synchronized boolean setReceiver(Socket serverConnection)
     {
         try {
             receiver= new Receiver(serverConnection);
             receiver.addPropertyChangeListener(this);
-            receiver.start();
+            return true;
         }catch(IOException e) {
-            // closing the main window
-            AlertBox.display("Error", "Failed to create a stable connection with the server");
-            window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
+            return false;
         }
     }
 
-    public Receiver getReceiver()
+    public synchronized Receiver getReceiver()
     {
         return  receiver;
     }
 
-    public void setNickName(String nickName)
+    public synchronized void setNickName(String nickName)
     {
         this.nickName= nickName;
     }
@@ -132,12 +130,12 @@ public class GUI extends Application implements PropertyChangeListener
 
     public synchronized ModelMessage getModel() { return game; }
 
-    public String getNickName()
+    public synchronized String getNickName()
     {
         return nickName;
     }
 
-    public void setClosingWindow()
+    public synchronized void setClosingWindow()
     {
         window.setOnCloseRequest(event -> {
             event.consume();  // consume the main closing window event
@@ -186,6 +184,7 @@ public class GUI extends Application implements PropertyChangeListener
                     if(game==null || !game.hasGameEnded())
                     {
                         AlertBox.display("Fatal error", message.getErrorMessage().getMessage());
+                        window.setOnCloseRequest(closeEvent -> {});
                         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
                     }
                 }

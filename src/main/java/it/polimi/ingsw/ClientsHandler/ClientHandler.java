@@ -96,7 +96,8 @@ public class ClientHandler extends Thread implements PingWaiter
     {
         waitingPong.interrupt();
         pingSender.interrupt();
-        controller.notifyDisconnection();
+        if(controller!=null)
+            controller.notifyDisconnection();
         socket.close();
     }
 

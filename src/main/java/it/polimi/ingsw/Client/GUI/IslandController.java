@@ -684,6 +684,7 @@ public class IslandController extends Showable
         }catch (IOException e)
         {
             AlertBox.display("Fatal error", "Unable to communicate with the server");
+            GUI.getInstance().getWindow().setOnCloseRequest(closeEvent -> {});
             GUI.getInstance().getWindow().fireEvent(new WindowEvent(GUI.getInstance().getWindow(),
                     WindowEvent.WINDOW_CLOSE_REQUEST));
         }

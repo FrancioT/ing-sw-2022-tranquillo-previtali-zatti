@@ -1,6 +1,6 @@
 package it.polimi.ingsw.Client.GUI;
 
-import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -102,11 +102,7 @@ public class FirstMenuController
             }
             Parent choosingGame = FXMLLoader.load(getClass().getClassLoader().getResource("loadingScreen.fxml"));
             GUI.getInstance().getWindow().setScene(new Scene(choosingGame));
-            new Thread(() -> Platform.runLater(() -> {
-                GUI.getInstance().setReceiver(serverConnection);
-                //now that the connection is established change the on closing window method
-                GUI.getInstance().setClosingWindow();
-            })).start();
+            startReceiver();
         }
     }
 
@@ -150,15 +146,12 @@ public class FirstMenuController
             }
             Parent waitingPlayers = FXMLLoader.load(getClass().getClassLoader().getResource("loadingScreen.fxml"));
             GUI.getInstance().getWindow().setScene(new Scene(waitingPlayers));
-            new Thread(() -> Platform.runLater(() -> {
-                    GUI.getInstance().setReceiver(serverConnection);
-                    //now that the connection is established change the on closing window method
-                    GUI.getInstance().setClosingWindow();
-            })).start();
+            startReceiver();
         }catch(IOException e){
             // closing the main window and the connection
             try{ serverConnection.close(); }catch(IOException ignored){}
             AlertBox.display("Error", "Connection error with the server");
+            GUI.getInstance().getWindow().setOnCloseRequest(closeEvent -> {});
             GUI.getInstance().getWindow().fireEvent(new WindowEvent(GUI.getInstance().getWindow(),
                                                                     WindowEvent.WINDOW_CLOSE_REQUEST));
         }
@@ -173,6 +166,35 @@ public class FirstMenuController
             out.println(mode);
         String newNickName= in.readLine();
         return newNickName;
+    }
+
+    private void startReceiver()
+    {
+        Task<Boolean> receiverTask= new Task<Boolean>() {
+            @Override
+            protected Boolean call() throws Exception
+            {
+                // if there was a failure during the creation of the receiver
+                if(!GUI.getInstance().setReceiver(serverConnection))
+                    return false;
+                //now that the connection is established change the on closing window method
+                GUI.getInstance().setClosingWindow();
+                GUI.getInstance().getReceiver().run();
+                return true;
+            }
+        };
+        receiverTask.setOnSucceeded(event -> {
+            if(!receiverTask.getValue()) {
+                // closing the main window
+                AlertBox.display("Error", "Failed to create a stable connection with the server");
+                GUI.getInstance().getWindow().setOnCloseRequest(closeEvent -> {});
+                GUI.getInstance().getWindow().fireEvent(new WindowEvent(GUI.getInstance().getWindow(),
+                                                                        WindowEvent.WINDOW_CLOSE_REQUEST));
+            }
+        });
+        Thread receiverThread= new Thread(receiverTask);
+        receiverThread.setDaemon(true);
+        receiverThread.start();
     }
 
     private void closeWindow(WindowEvent event)
