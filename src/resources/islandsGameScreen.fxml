@@ -7,9 +7,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="1120.0" maxWidth="1985.0" minHeight="1120.0" minWidth="1985.0" prefHeight="1120.0" prefWidth="1985.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.Client.GUI.IslandController">
+<AnchorPane maxHeight="1041.0" maxWidth="1850.0" minHeight="1041.0" minWidth="1850.0" prefHeight="1041.0" prefWidth="1850.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.Client.GUI.IslandController">
    <children>
-      <ImageView fitHeight="1123.0" fitWidth="1987.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="1123.0" fitWidth="1850.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@sky.jpg" />
          </image>
@@ -96,272 +96,272 @@
       </ImageView>
       <Text fx:id="bluIs1" layoutX="860.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font></Text>
       <Text fx:id="greenIs1" layoutX="930.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font></Text>
       <Text fx:id="pinkIs1" layoutX="1008.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font></Text>
       <Text fx:id="redIs1" layoutX="877.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font></Text>
       <Text fx:id="yellowIs1" layoutX="976.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font></Text>
       <Text fx:id="bluIs7" layoutX="848.0" layoutY="905.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font></Text>
       <Text fx:id="greenIs7" layoutX="918.0" layoutY="912.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font></Text>
       <Text fx:id="pinkIs7" layoutX="996.0" layoutY="912.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font></Text>
       <Text fx:id="redIs7" layoutX="865.0" layoutY="979.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font></Text>
       <Text fx:id="yellowIs7" layoutX="964.0" layoutY="982.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font></Text>
       <Text fx:id="bluIs4" layoutX="1578.0" layoutY="522.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font></Text>
       <Text fx:id="greenIs4" layoutX="1648.0" layoutY="529.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font></Text>
       <Text fx:id="pinkIs4" layoutX="1726.0" layoutY="529.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font></Text>
       <Text fx:id="redIs4" layoutX="1595.0" layoutY="596.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font></Text>
       <Text fx:id="yellowIs4" layoutX="1694.0" layoutY="599.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font></Text>
       <Text fx:id="bluIs10" layoutX="238.0" layoutY="513.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font></Text>
       <Text fx:id="greenIs10" layoutX="308.0" layoutY="520.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font></Text>
       <Text fx:id="pinkIs10" layoutX="386.0" layoutY="520.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font></Text>
       <Text fx:id="redIs10" layoutX="255.0" layoutY="587.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font></Text>
       <Text fx:id="yellowIs10" layoutX="354.0" layoutY="590.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font></Text>
       <Text fx:id="bluIs11" layoutX="324.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font></Text>
       <Text fx:id="greenIs11" layoutX="408.0" layoutY="311.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font></Text>
       <Text fx:id="pinkIs11" layoutX="494.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font></Text>
       <Text fx:id="redIs11" layoutX="347.0" layoutY="372.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font></Text>
       <Text fx:id="yellowIs11" layoutX="443.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font></Text>
       <Text fx:id="bluIs2" layoutX="1131.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font></Text>
       <Text fx:id="greenIs2" layoutX="1215.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font></Text>
       <Text fx:id="pinkIs2" layoutX="1301.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font></Text>
       <Text fx:id="redIs2" layoutX="1154.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font></Text>
       <Text fx:id="yellowIs2" layoutX="1250.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font></Text>
       <Text fx:id="bluIs5" layoutX="1443.0" layoutY="795.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Text>
       <Text fx:id="greenIs5" layoutX="1527.0" layoutY="802.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Text>
       <Text fx:id="pinkIs5" layoutX="1625.0" layoutY="787.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Text>
       <Text fx:id="redIs5" layoutX="1466.0" layoutY="863.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Text>
       <Text fx:id="yellowIs5" layoutX="1562.0" layoutY="870.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Text>
       <Text fx:id="bluIs8" layoutX="529.0" layoutY="906.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Text>
       <Text fx:id="greenIs8" layoutX="613.0" layoutY="913.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Text>
       <Text fx:id="pinkIs8" layoutX="713.0" layoutY="898.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Text>
       <Text fx:id="redIs8" layoutX="552.0" layoutY="974.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Text>
       <Text fx:id="yellowIs8" layoutX="648.0" layoutY="981.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Text>
       <Text fx:id="bluIs6" layoutX="1147.0" layoutY="884.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Text>
       <Text fx:id="greenIs6" layoutX="1227.0" layoutY="891.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Text>
       <Text fx:id="pinkIs6" layoutX="1324.0" layoutY="884.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Text>
       <Text fx:id="redIs6" layoutX="1181.0" layoutY="955.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Text>
       <Text fx:id="yellowIs6" layoutX="1278.0" layoutY="962.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Text>
       <Text fx:id="bluIs3" layoutX="1385.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Text>
       <Text fx:id="greenIs3" layoutX="1465.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Text>
       <Text fx:id="pinkIs3" layoutX="1562.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Text>
       <Text fx:id="redIs3" layoutX="1419.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Text>
       <Text fx:id="yellowIs3" layoutX="1512.0" layoutY="403.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Text>
       <Text fx:id="bluIs9" layoutX="267.0" layoutY="762.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Text>
       <Text fx:id="greenIs9" layoutX="347.0" layoutY="769.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Text>
       <Text fx:id="pinkIs9" layoutX="444.0" layoutY="762.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Text>
       <Text fx:id="redIs9" layoutX="301.0" layoutY="833.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Text>
       <Text fx:id="yellowIs9" layoutX="398.0" layoutY="840.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Text>
       <Text fx:id="bluIs12" layoutX="559.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Text>
       <Text fx:id="greenIs12" layoutX="639.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Text>
       <Text fx:id="pinkIs12" layoutX="736.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Text>
       <Text fx:id="redIs12" layoutX="593.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Text>
       <Text fx:id="yellowIs12" layoutX="690.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="45.98307228088379">
          <font>
-            <Font size="18.0" />
+            <Font size="21.0" />
          </font>
       </Text>
       <ImageView fx:id="mnIs1" fitHeight="91.0" fitWidth="68.0" layoutX="985.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
@@ -469,111 +469,111 @@
          <image>
             <Image url="@Animali3.jpg" />
          </image></ImageView>
-      <Text fx:id="coinsP1" fill="RED" layoutX="1790.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coins:" wrappingWidth="170.0">
+      <Text fx:id="coinsP1" fill="RED" layoutX="1427.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coins:" wrappingWidth="170.0">
          <font>
             <Font size="31.0" />
          </font>
       </Text>
-      <Text fx:id="towersP2" fill="#d90fb3" layoutX="1790.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Towers:" wrappingWidth="170.0">
+      <Text fx:id="towersP2" fill="#d90fb3" layoutX="1641.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Towers:" wrappingWidth="170.0">
          <font>
             <Font size="31.0" />
          </font>
       </Text>
-      <Text fx:id="coinsP2" fill="#d90fb3" layoutX="1790.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coins:" wrappingWidth="170.0">
+      <Text fx:id="coinsP2" fill="#d90fb3" layoutX="1641.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coins:" wrappingWidth="170.0">
          <font>
             <Font size="31.0" />
          </font>
       </Text>
-      <Text fx:id="towersP3" fill="#1900ff" layoutX="1790.0" layoutY="885.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Towers:" wrappingWidth="170.0">
+      <Text fx:id="towersP3" fill="#1900ff" layoutX="1641.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Towers:" wrappingWidth="170.0">
          <font>
             <Font size="31.0" />
          </font>
       </Text>
-      <Text fx:id="coinsP3" fill="#1900ff" layoutX="1790.0" layoutY="925.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coins:" wrappingWidth="170.0">
+      <Text fx:id="coinsP3" fill="#1900ff" layoutX="1641.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coins:" wrappingWidth="170.0">
          <font>
             <Font size="31.0" />
          </font>
       </Text>
-      <Text fx:id="towersP4" fill="#2d884d" layoutX="1791.0" layoutY="1045.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Towers:" wrappingWidth="170.0">
+      <Text fx:id="towersP4" fill="#2d884d" layoutX="1641.0" layoutY="965.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Towers:" wrappingWidth="170.0">
          <font>
             <Font size="31.0" />
          </font>
       </Text>
-      <Text fx:id="coinsP4" fill="#2d884d" layoutX="1791.0" layoutY="1085.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coins:" wrappingWidth="170.0">
+      <Text fx:id="coinsP4" fill="#2d884d" layoutX="1641.0" layoutY="1005.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coins:" wrappingWidth="170.0">
          <font>
             <Font size="31.0" />
          </font>
       </Text>
-      <Text fx:id="unusedCoins" fill="#d08535" layoutX="15.0" layoutY="1093.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unused Coins:" wrappingWidth="222.44654846191423">
+      <Text fx:id="unusedCoins" fill="#d08535" layoutX="13.0" layoutY="1012.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unused Coins:" wrappingWidth="222.44654846191423">
          <font>
             <Font size="31.0" />
          </font>
       </Text>
-      <Button fx:id="playerID1" layoutX="1790.0" layoutY="25.0" mnemonicParsing="false" onAction="#showDashboard1" prefHeight="31.0" prefWidth="170.0" text="Player1" textFill="RED" />
-      <Button fx:id="playerID2" layoutX="1790.0" layoutY="185.0" mnemonicParsing="false" onAction="#showDashboard2" prefHeight="31.0" prefWidth="170.0" text="Player2" textFill="RED" />
-      <Button fx:id="playerID3" layoutX="1790.0" layoutY="815.0" mnemonicParsing="false" onAction="#showDashboard3" prefHeight="31.0" prefWidth="170.0" text="Player3" textFill="RED" />
-      <Button fx:id="playerID4" layoutX="1790.0" layoutY="975.0" mnemonicParsing="false" onAction="#showDashboard4" prefHeight="31.0" prefWidth="170.0" text="Player4" textFill="RED" />
+      <Button fx:id="playerID1" layoutX="1427.0" layoutY="20.0" mnemonicParsing="false" onAction="#showDashboard1" prefHeight="31.0" prefWidth="170.0" text="Player1" textFill="RED" />
+      <Button fx:id="playerID2" layoutX="1641.0" layoutY="20.0" mnemonicParsing="false" onAction="#showDashboard2" prefHeight="31.0" prefWidth="170.0" text="Player2" textFill="RED" />
+      <Button fx:id="playerID3" layoutX="1641.0" layoutY="182.0" mnemonicParsing="false" onAction="#showDashboard3" prefHeight="31.0" prefWidth="170.0" text="Player3" textFill="RED" />
+      <Button fx:id="playerID4" layoutX="1640.0" layoutY="895.0" mnemonicParsing="false" onAction="#showDashboard4" prefHeight="31.0" prefWidth="170.0" text="Player4" textFill="RED" />
       <Text fx:id="numTIs12" layoutX="571.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
          <font>
-            <Font size="22.0" />
+            <Font size="30.0" />
          </font>
       </Text>
       <Text fx:id="numTIs1" layoutX="845.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
          <font>
-            <Font size="22.0" />
+            <Font size="30.0" />
          </font>
       </Text>
       <Text fx:id="numTIs2" layoutX="1133.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
          <font>
-            <Font size="22.0" />
+            <Font size="30.0" />
          </font>
       </Text>
       <Text fx:id="numTIs3" layoutX="1387.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
          <font>
-            <Font size="22.0" />
+            <Font size="30.0" />
          </font>
       </Text>
       <Text fx:id="numTIs4" layoutX="1580.0" layoutY="451.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
          <font>
-            <Font size="22.0" />
+            <Font size="30.0" />
          </font>
       </Text>
       <Text fx:id="numTIs5" layoutX="1454.0" layoutY="704.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
          <font>
-            <Font size="22.0" />
+            <Font size="30.0" />
          </font>
       </Text>
       <Text fx:id="numTIs6" layoutX="1167.0" layoutY="796.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
          <font>
-            <Font size="22.0" />
+            <Font size="30.0" />
          </font>
       </Text>
       <Text fx:id="numTIs7" layoutX="840.0" layoutY="822.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
          <font>
-            <Font size="22.0" />
+            <Font size="30.0" />
          </font>
       </Text>
       <Text fx:id="numTIs8" layoutX="532.0" layoutY="808.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
          <font>
-            <Font size="22.0" />
+            <Font size="30.0" />
          </font>
       </Text>
       <Text fx:id="numTIs9" layoutX="281.0" layoutY="677.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
          <font>
-            <Font size="22.0" />
+            <Font size="30.0" />
          </font>
       </Text>
       <Text fx:id="numTIs10" layoutX="235.0" layoutY="430.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
          <font>
-            <Font size="22.0" />
+            <Font size="30.0" />
          </font>
       </Text>
       <Text fx:id="numTIs11" layoutX="333.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
          <font>
-            <Font size="22.0" />
+            <Font size="30.0" />
          </font>
       </Text>
-      <Text fx:id="towersP1" fill="RED" layoutX="1790.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Towers:" wrappingWidth="170.0">
+      <Text fx:id="towersP1" fill="RED" layoutX="1427.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Towers:" wrappingWidth="170.0">
          <font>
             <Font size="31.0" />
          </font>

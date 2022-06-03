@@ -294,6 +294,11 @@ public class IslandController extends Showable
         towersNum.put(11, numTIs11);
         towersNum.put(12, numTIs12);
 
+        for(int i=1; i<=12; i++)
+        {
+            towersNum.get(i).setVisible(false);
+        }
+
         motherNature.put(1, mnIs1);
         motherNature.put(2, mnIs2);
         motherNature.put(3, mnIs3);
@@ -329,6 +334,12 @@ public class IslandController extends Showable
         playersCoins.put(3, coinsP3);
         playersCoins.put(4, coinsP4);
 
+        for(int i=1; i<=4; i++)
+        {
+            (playersTowers.get(i)).setVisible(false);
+            (playersCoins.get(i)).setVisible(false);
+        }
+
         for(int i=1; i<=12; i++)
         {
             (islandsImages.get(i)).setVisible(true);
@@ -351,7 +362,10 @@ public class IslandController extends Showable
     {
         if(mod)
             for(int i=1; i<=3; i++)
+            {
                 characterCards.get(i).setVisible(true);
+                (playersCoins.get(i)).setVisible(true);
+            }
         else
             for(int i=1; i<=3; i++)
             {
@@ -443,17 +457,14 @@ public class IslandController extends Showable
             case white:
             {
                 (towers.get(islandIndex)).setImage(whiteT);
-                (towers.get(islandIndex)).setVisible(true);
             }break;
             case black:
             {
                 (towers.get(islandIndex)).setImage(blackT);
-                (towers.get(islandIndex)).setVisible(true);
             }break;
             case grey:
             {
                 (towers.get(islandIndex)).setImage(grayT);
-                (towers.get(islandIndex)).setVisible(true);
             }break;
         }
     }
@@ -884,6 +895,7 @@ public class IslandController extends Showable
                     addAndSwapTower(i, game.getIslandList().get(i-1).getTowersColour());
                 }catch (EmptyException e){System.out.println("Error in getting towers");}
                 towersNum.get(i).setText(Integer.toString(game.getIslandList().get(i-1).getNumTowers()));
+                towersNum.get(i).setVisible(true);
             }
             else
                 towers.get(i).setVisible(false);
