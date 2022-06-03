@@ -46,11 +46,11 @@ public class DashboardController extends Showable
     @FXML
     ImageView cc1,cc2,cc3,cc4,cc5,cc6,cc7,cc8,cc9,cc10,disC;
 
-    Image redS = new Image("red_student.png)");
-    Image pinkS = new Image("pink_student.png)");
-    Image greenS = new Image("green_student.png)");
-    Image yellowS = new Image("yellow_student.png)");
-    Image blueS = new Image("blue_student.png)");
+    Image redS = new Image("red_student.png");
+    Image pinkS = new Image("pink_student.png");
+    Image greenS = new Image("green_student.png");
+    Image yellowS = new Image("yellow_student.png");
+    Image blueS = new Image("blue_student.png");
     private HashMap<Colour, ImageView> teacherDashboard = new HashMap<>();
     private HashMap<Colour, HashMap<Integer, ImageView>> studentsDashboard = new HashMap<>();
     private HashMap<Integer, ImageView> entranceStudents = new HashMap<>();
