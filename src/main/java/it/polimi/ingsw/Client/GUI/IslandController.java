@@ -756,7 +756,7 @@ public class IslandController extends Showable
     private int studentsColourOnIsland(Colour cS, Integer islandIndex)
     {
         int num=0;
-        for(int i=0; i<=game.getIslandList().get(islandIndex).getStudentsColours().size(); i++)
+        for(int i=0; i<game.getIslandList().get(islandIndex).getStudentsColours().size(); i++)
         {
             if(game.getIslandList().get(islandIndex).getStudentsColours().get(i)==cS)
             {
@@ -788,7 +788,7 @@ public class IslandController extends Showable
         for(int i=1; i<=playersNum(); i++)
         {
             cloudsImages.get(i).setVisible(true);
-            for(int j=1; j<=studentsOnCLoud(); i++)
+            for(int j=1; j<=studentsOnCLoud(); j++)
             {
                 switch(game.getCloudList().get(i-1).getStudentsColours().get(j-1))
                 {
