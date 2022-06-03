@@ -1,6 +1,5 @@
 package it.polimi.ingsw.Client.GUI;
 
-import it.polimi.ingsw.Client.CLI.Receiver;
 import it.polimi.ingsw.ClientsHandler.Messages.*;
 import it.polimi.ingsw.Model.Colour;
 import it.polimi.ingsw.Model.ColourT;
@@ -101,7 +100,7 @@ public class IslandController extends Showable
     private HashMap<Integer, Text> playersTowers = new HashMap<>();
     private HashMap<Integer, Text> playersCoins = new HashMap<>();
     private ModelMessage game;
-    private Receiver receiver;
+    private ReceiverGui receiver;
     private String nickName;
     private Image whiteT = new Image("wt.png)");
     private Image blackT = new Image("bt.png)");

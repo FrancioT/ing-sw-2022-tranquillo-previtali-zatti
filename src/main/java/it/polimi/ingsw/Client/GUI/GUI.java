@@ -1,6 +1,5 @@
 package it.polimi.ingsw.Client.GUI;
 
-import it.polimi.ingsw.Client.CLI.Receiver;
 import it.polimi.ingsw.ClientsHandler.Messages.ModelMessage;
 import it.polimi.ingsw.Model.CharacterCard.CharacterCard;
 import it.polimi.ingsw.Model.Cloud;
@@ -35,7 +34,7 @@ public class GUI extends Application implements PropertyChangeListener
     private static GUI instance= null;
     private final List<Showable> allStages;
     private ModelMessage game;
-    private Receiver receiver;
+    private ReceiverGui receiver;
     private Stage window;
     private String nickName;
 
@@ -98,7 +97,7 @@ public class GUI extends Application implements PropertyChangeListener
     public synchronized boolean setReceiver(Socket serverConnection)
     {
         try {
-            receiver= new Receiver(serverConnection);
+            receiver= new ReceiverGui(serverConnection);
             receiver.addPropertyChangeListener(this);
             return true;
         }catch(IOException e) {
@@ -106,7 +105,7 @@ public class GUI extends Application implements PropertyChangeListener
         }
     }
 
-    public synchronized Receiver getReceiver()
+    public synchronized ReceiverGui getReceiver()
     {
         return  receiver;
     }

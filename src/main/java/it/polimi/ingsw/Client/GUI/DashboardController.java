@@ -1,6 +1,5 @@
 package it.polimi.ingsw.Client.GUI;
 
-import it.polimi.ingsw.Client.CLI.Receiver;
 import it.polimi.ingsw.ClientsHandler.Messages.ChooseCard;
 import it.polimi.ingsw.ClientsHandler.Messages.Message;
 import it.polimi.ingsw.ClientsHandler.Messages.ModelMessage;
@@ -62,7 +61,7 @@ public class DashboardController extends Showable
     private HashMap<Integer, ImageView> blueStudents = new HashMap<>();
     private HashMap<Integer, ImageView> cardsMap = new HashMap<>();
     private ModelMessage game;
-    private Receiver receiver;
+    private ReceiverGui receiver;
     private String nickname;
     private Stage window;
     private static ImageView selectedStudent;

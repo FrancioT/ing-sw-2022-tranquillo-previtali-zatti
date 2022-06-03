@@ -107,7 +107,7 @@ public class Receiver extends Thread implements PingWaiter
             throw new NullPointerException();
         support.addPropertyChangeListener(listener);
     }
-    private void notify(ModelMessage message)
+    protected void notify(ModelMessage message)
     {
         if(message==null)
             throw new NullPointerException();
