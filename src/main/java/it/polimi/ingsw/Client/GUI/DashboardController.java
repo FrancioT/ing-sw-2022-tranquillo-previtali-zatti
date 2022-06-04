@@ -456,12 +456,12 @@ public class DashboardController extends Showable
         int realIndex=0;
         for(int i=0; i<yourself.getHandCards().size(); i++)
         {
-            cardsIndexes.set(yourself.getHandCards().get(i).getRoundValue(), realIndex);
+            cardsIndexes.set(yourself.getHandCards().get(i).getRoundValue()-1, realIndex);
             realIndex++;
         }
         
         // after setting the indexes we show the available cards
-        for(int i=0; i<10; i++)
+        for(int i=1; i<=10; i++)
             cardsMap.get(i).setVisible(cardsIndexes.get(i)!=-1);
     }
 

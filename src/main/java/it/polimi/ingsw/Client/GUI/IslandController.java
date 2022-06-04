@@ -132,6 +132,9 @@ public class IslandController extends Showable
     public void initialize()
     {
         this.game= GUI.getInstance().getModel();
+        receiver= GUI.getInstance().getReceiver();
+        nickName= GUI.getInstance().getNickName();
+
         characterCards.put(1, characterCard1);
         characterCards.put(2, characterCard2);
         characterCards.put(3, characterCard3);
@@ -352,9 +355,6 @@ public class IslandController extends Showable
         disableIslands();
         disableClouds();
         expertActivation(GUI.getInstance().getModel().isExpertMode());
-
-        receiver= GUI.getInstance().getReceiver();
-        nickName= GUI.getInstance().getNickName();
     }
 
     /**
