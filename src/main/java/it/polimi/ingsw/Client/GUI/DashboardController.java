@@ -462,7 +462,7 @@ public class DashboardController extends Showable
         
         // after setting the indexes we show the available cards
         for(int i=1; i<=10; i++)
-            cardsMap.get(i).setVisible(cardsIndexes.get(i)!=-1);
+            cardsMap.get(i).setVisible(cardsIndexes.get(i-1)!=-1);
     }
 
     private void useCard(int index)
