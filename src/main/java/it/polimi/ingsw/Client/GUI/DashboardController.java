@@ -493,7 +493,7 @@ public class DashboardController extends Showable
     @FXML
     private void chooseCardMN1()
     {
-        useCard(cardsIndexes.get(0));
+        useCard(0);
     }
 
     /**
@@ -502,7 +502,7 @@ public class DashboardController extends Showable
     @FXML
     private void chooseCardMN2()
     {
-        useCard(cardsIndexes.get(1));
+        useCard(1);
     }
 
     /**
@@ -511,7 +511,7 @@ public class DashboardController extends Showable
     @FXML
     private void chooseCardMN3()
     {
-        useCard(cardsIndexes.get(2));
+        useCard(2);
     }
 
     /**
@@ -520,7 +520,7 @@ public class DashboardController extends Showable
     @FXML
     private void chooseCardMN4()
     {
-        useCard(cardsIndexes.get(3));
+        useCard(3);
     }
 
     /**
@@ -529,7 +529,7 @@ public class DashboardController extends Showable
     @FXML
     private void chooseCardMN5()
     {
-        useCard(cardsIndexes.get(4));
+        useCard(4);
     }
 
     /**
@@ -538,7 +538,7 @@ public class DashboardController extends Showable
     @FXML
     private void chooseCardMN6()
     {
-        useCard(cardsIndexes.get(5));
+        useCard(5);
     }
 
     /**
@@ -547,7 +547,7 @@ public class DashboardController extends Showable
     @FXML
     private void chooseCardMN7()
     {
-        useCard(cardsIndexes.get(6));
+        useCard(6);
     }
 
     /**
@@ -556,7 +556,7 @@ public class DashboardController extends Showable
     @FXML
     private void chooseCardMN8()
     {
-        useCard(cardsIndexes.get(7));
+        useCard(7);
     }
 
     /**
@@ -565,7 +565,7 @@ public class DashboardController extends Showable
     @FXML
     private void chooseCardMN9()
     {
-        useCard(cardsIndexes.get(8));
+        useCard(8);
     }
 
     /**
@@ -574,7 +574,7 @@ public class DashboardController extends Showable
     @FXML
     private void chooseCardMN10()
     {
-        useCard(cardsIndexes.get(9));
+        useCard(9);
     }
 
     /**
