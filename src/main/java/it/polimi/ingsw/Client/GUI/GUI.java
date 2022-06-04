@@ -38,6 +38,7 @@ public class GUI extends Application implements PropertyChangeListener
     private ReceiverGui receiver;
     private Stage window;
     private String nickName;
+    private boolean gameClosed;
 
 
     public static void execute(String[] args)
@@ -61,6 +62,7 @@ public class GUI extends Application implements PropertyChangeListener
     public GUI()
     {
         icon= new Image("icon.png");
+        gameClosed=false;
         synchronized(instanceLock)
         {
             if(instance!=null)
@@ -150,6 +152,9 @@ public class GUI extends Application implements PropertyChangeListener
             yesButton.setOnAction(ev -> {
                 popUp.close();
                 try{ receiver.close(); }catch(IOException ignored){}
+                for(Showable stage: allStages)
+                    stage.close();
+                gameClosed=true;
                 window.close();
             });
             Button noButton= new Button("No");
@@ -172,6 +177,8 @@ public class GUI extends Application implements PropertyChangeListener
     @Override
     public synchronized void propertyChange(PropertyChangeEvent event)
     {
+        if(gameClosed)
+            return;
         String eventName=event.getPropertyName();
         if("ModelModifications".equals(eventName))
         {

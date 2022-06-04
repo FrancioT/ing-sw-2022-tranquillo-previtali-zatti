@@ -1,6 +1,8 @@
 package it.polimi.ingsw.Client.GUI;
 
-abstract class Showable
+import java.io.Closeable;
+
+abstract class Showable implements Closeable
 {
      abstract void show();
 
@@ -8,4 +10,7 @@ abstract class Showable
      {
           GUI.getInstance().removeShowableStage(this);
      }
+
+     @Override
+     abstract public void close();
 }

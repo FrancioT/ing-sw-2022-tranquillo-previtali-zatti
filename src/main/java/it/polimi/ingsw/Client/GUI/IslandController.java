@@ -948,6 +948,9 @@ public class IslandController extends Showable
         ((DashboardController)loader.getController()).initialize(scene, game.getPlayerList().get(3).getuID());
     }
 
+    @Override
+    public void close(){}
+
     /**
      * This method shows and updates the GUI of the Island
      */

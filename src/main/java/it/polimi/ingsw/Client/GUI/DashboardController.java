@@ -707,6 +707,9 @@ public class DashboardController extends Showable
             sendMessage(new StudentToDashboard(GUI.getInstance().getNickName(), selected));
     }
 
+    @Override
+    public void close() { window.close(); }
+
     /**
      * This method shows and updates the GUI of the Dashboards
      */
