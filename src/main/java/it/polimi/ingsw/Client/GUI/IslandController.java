@@ -131,6 +131,7 @@ public class IslandController extends Showable
      */
     public void initialize()
     {
+        this.game= GUI.getInstance().getModel();
         characterCards.put(1, characterCard1);
         characterCards.put(2, characterCard2);
         characterCards.put(3, characterCard3);
