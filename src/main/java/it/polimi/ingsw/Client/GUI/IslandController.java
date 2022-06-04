@@ -792,10 +792,11 @@ public class IslandController extends Showable
      */
     private void setClouds()
     {
+        int cloudsStudents= 3*(1-game.getPlayerList().size()%2)+4*(game.getPlayerList().size()%2);
         for(int i=1; i<=game.getPlayerList().size(); i++)
         {
             cloudsImages.get(i).setVisible(true);
-            for(int j=1; j<=studentsOnCloud(); j++)
+            for(int j=1; j<=cloudsStudents; j++)
             {
                 if(game.getCloudList().get(i-1).getStudentsColours().size()==0)
                     clouds.get(i).get(j).setVisible(false);
@@ -828,14 +829,6 @@ public class IslandController extends Showable
                 }
             }
         }
-    }
-
-    /**
-     * @return
-     */
-    private int studentsOnCloud()
-    {
-        return game.getCloudList().get(0).getStudentsColours().size();
     }
 
     /**
@@ -897,9 +890,13 @@ public class IslandController extends Showable
                 }catch (EmptyException e){ throw new RuntimeException("Error in getting towers"); }
                 towersNum.get(i).setText(Integer.toString(game.getIslandList().get(i-1).getNumTowers()));
                 towersNum.get(i).setVisible(true);
+                towers.get(i).setVisible(true);
             }
             else
+            {
+                towersNum.get(i).setVisible(false);
                 towers.get(i).setVisible(false);
+            }
         }
     }
 

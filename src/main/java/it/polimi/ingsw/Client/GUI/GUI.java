@@ -243,6 +243,7 @@ public class GUI extends Application implements PropertyChangeListener
                 window.setScene(new Scene(islandView));
                 window.getIcons().add(icon);
                 window.setResizable(false);
+                setClosingWindow();
                 window.show();
                 addShowableStage(loader.getController());
             }

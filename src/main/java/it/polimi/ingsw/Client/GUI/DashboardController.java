@@ -196,6 +196,7 @@ public class DashboardController extends Showable
         window.setTitle("Player's Dashboard");
         window.setScene(new Scene(scene));
         window.getIcons().add(new Image("icon.png"));
+        window.setResizable(false);
         window.show();
         window.setOnCloseRequest(event -> GUI.getInstance().removeShowableStage(this));
         this.nickname= nickname;
@@ -256,6 +257,8 @@ public class DashboardController extends Showable
 
     public synchronized static void setSelectStudentColour(ImageView image, Colour colour)
     {
+        if(selectStudentColour!=null)
+            selectedStudent.setOpacity(1);
         selectStudentColour=colour;
         selectedStudent=image;
         selectedStudent.setOpacity(0.5);
@@ -381,29 +384,34 @@ public class DashboardController extends Showable
         {
             if(game.getPlayerList().get(i-1).getuID().equals(nickname))
             {
-                for(int j=1; j<=entranceStudentsNum(); j++)
+                for(int j=1; j<=9; j++)
                 {
-                    switch(game.getPlayerList().get(i-1).getStudents().get(j-1))
+                    if(j>entranceStudentsNum())
+                        entranceStudents.get(j).setVisible(false);
+                    else
                     {
-                        //Vanno aggiunti i corretti dimenisonamenti delle immagini perchè
-                        //la posizione degli studenti nell'immagine è diversa
-                        case pink:
-                            (entranceStudents.get(j)).setImage(pinkS);
-                            break;
-                        case red:
-                            (entranceStudents.get(j)).setImage(redS);
-                            break;
-                        case blue:
-                            (entranceStudents.get(j)).setImage(blueS);
-                            break;
-                        case green:
-                            (entranceStudents.get(j)).setImage(greenS);
-                            break;
-                        case yellow:
-                            (entranceStudents.get(j)).setImage(yellowS);
-                            break;
+                        switch(game.getPlayerList().get(i-1).getStudents().get(j-1))
+                        {
+                            //Vanno aggiunti i corretti dimenisonamenti delle immagini perchè
+                            //la posizione degli studenti nell'immagine è diversa
+                            case pink:
+                                (entranceStudents.get(j)).setImage(pinkS);
+                                break;
+                            case red:
+                                (entranceStudents.get(j)).setImage(redS);
+                                break;
+                            case blue:
+                                (entranceStudents.get(j)).setImage(blueS);
+                                break;
+                            case green:
+                                (entranceStudents.get(j)).setImage(greenS);
+                                break;
+                            case yellow:
+                                (entranceStudents.get(j)).setImage(yellowS);
+                                break;
+                        }
+                        (entranceStudents.get(j)).setVisible(true);
                     }
-                    (entranceStudents.get(j)).setVisible(true);
                 }
             }
         }
