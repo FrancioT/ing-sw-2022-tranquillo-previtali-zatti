@@ -99,11 +99,11 @@ public class FirstMenuController
                 yourNickname = newNick;
                 AlertBox.display("NickName already used", "Your nickname was changed in " + newNick);
             }
-            GUI.getInstance().setNickName(newNick);
             Parent choosingGame = FXMLLoader.load(getClass().getClassLoader().getResource("loadingScreen.fxml"));
             GUI.getInstance().getWindow().setScene(new Scene(choosingGame));
             startReceiver();
         }
+        GUI.getInstance().setNickName(yourNickname);
     }
 
     private void chooseMode()

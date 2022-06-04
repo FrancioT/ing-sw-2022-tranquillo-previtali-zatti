@@ -146,6 +146,12 @@ public class Player implements Serializable
     public int getLastCardMNValue() throws EmptyException { return playerDeck.getLastCardMNValue(); }
 
     /**
+     * @return the last card played
+     * @throws EmptyException Exception thrown when there isn't a discarded card
+     */
+    public StandardCard getDiscardedCard() throws EmptyException { return playerDeck.getDiscardedCard(); }
+
+    /**
      * Method used to pay a card; it decreases the cost of the card to the player's coins
      * @param cost how many coins the card's activation cost
      * @throws CardPaymentException Exception thrown if the player doesn't have enough coins to activate the card

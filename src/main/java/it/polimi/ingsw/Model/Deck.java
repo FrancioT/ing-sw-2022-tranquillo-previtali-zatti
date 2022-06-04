@@ -59,6 +59,16 @@ class Deck implements Serializable
     }
 
     /**
+     * @return the last card played
+     * @throws EmptyException Exception thrown when there isn't a discarded card
+     */
+    StandardCard getDiscardedCard() throws EmptyException
+    {
+        if(discardedCard==null) throw new EmptyException();
+        return discardedCard;
+    }
+
+    /**
      * @return the list of the cards available
      */
     List<StandardCard> getHandCards() { return new ArrayList<>(handList); }

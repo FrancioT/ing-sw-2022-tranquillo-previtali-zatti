@@ -5,6 +5,7 @@ import it.polimi.ingsw.ClientsHandler.Messages.Message;
 import it.polimi.ingsw.ClientsHandler.Messages.ModelMessage;
 import it.polimi.ingsw.ClientsHandler.Messages.StudentToDashboard;
 import it.polimi.ingsw.Model.Colour;
+import it.polimi.ingsw.Model.Exceptions.EmptyException;
 import it.polimi.ingsw.Model.Player;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -463,6 +464,13 @@ public class DashboardController extends Showable
         // after setting the indexes we show the available cards
         for(int i=1; i<=10; i++)
             cardsMap.get(i).setVisible(cardsIndexes.get(i-1)!=-1);
+
+        try {
+            disC.setImage(cardsMap.get(yourself.getDiscardedCard().getRoundValue()).getImage());
+            disC.setVisible(true);
+        }catch(EmptyException ignored) {
+            disC.setVisible(false);
+        }
     }
 
     private void useCard(int index)
