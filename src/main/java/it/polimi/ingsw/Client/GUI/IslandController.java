@@ -351,6 +351,9 @@ public class IslandController extends Showable
         disableIslands();
         disableClouds();
         expertActivation(GUI.getInstance().getModel().isExpertMode());
+
+        receiver= GUI.getInstance().getReceiver();
+        nickName= GUI.getInstance().getNickName();
     }
 
     /**
@@ -363,24 +366,18 @@ public class IslandController extends Showable
         if(mod)
             for(int i=1; i<=3; i++)
             {
+                unusedCoins.setVisible(true);
                 characterCards.get(i).setVisible(true);
-                (playersCoins.get(i)).setVisible(true);
+                playersCoins.get(i).setVisible(true);
             }
         else
             for(int i=1; i<=3; i++)
             {
+                unusedCoins.setVisible(false);
                 characterCards.get(i).setVisible(false);
+                playersCoins.get(i).setVisible(false);
                 characterCards.get(i).setOnMouseClicked(event -> {});
             }
-    }
-
-    /**
-     * @return the number of players in this game
-     */
-    private int playersNum()
-    {
-        int n = (GUI.getInstance().getModel().getPlayerList()).size();
-        return n;
     }
 
     /**
@@ -424,7 +421,7 @@ public class IslandController extends Showable
      */
     private void enableClouds()
     {
-        for(int i=1; i<=playersNum(); i++)
+        for(int i=1; i<=game.getPlayerList().size(); i++)
         {
             (cloudsImages.get(i)).setMouseTransparent(false);
             (cloudsImages.get(i)).setFocusTraversable(true);
@@ -436,7 +433,7 @@ public class IslandController extends Showable
      */
     private void disableClouds()
     {
-        for(int i=1; i<=playersNum(); i++)
+        for(int i=1; i<=game.getPlayerList().size(); i++)
         {
             (cloudsImages.get(i)).setMouseTransparent(true);
             (cloudsImages.get(i)).setFocusTraversable(false);
@@ -712,7 +709,8 @@ public class IslandController extends Showable
         for(String s: phaseTmp)
             phase=phase.concat(" "+s);
 
-        currentPlayer.setText("Current player: " + game.getCurrPlayerNickname()+"\n\nPhase: "+phase);
+        currentPlayer.setText("You are: "+nickName +"\nCurrent player: "+game.getCurrPlayerNickname()
+                              +"\n\nPhase: "+phase);
     }
 
     /**
@@ -722,8 +720,6 @@ public class IslandController extends Showable
     {
         if(game.isExpertMode())
             unusedCoins.setText("Unused coins: " + game.getUnusedCoins());
-        else
-            unusedCoins.setVisible(false);
     }
 
     /**
@@ -736,8 +732,6 @@ public class IslandController extends Showable
             playersTowers.get(i).setText("Towers: " + game.getPlayerList().get(i-1).getTowers().availabilityChecker());
             if(game.isExpertMode())
                 playersCoins.get(i).setText("Coins: " + game.getPlayerList().get(i-1).getCoins());
-            else
-                playersCoins.get(i).setVisible(false);
         }
     }
 
@@ -796,35 +790,40 @@ public class IslandController extends Showable
      */
     private void setClouds()
     {
-        for(int i=1; i<=playersNum(); i++)
+        for(int i=1; i<=game.getPlayerList().size(); i++)
         {
             cloudsImages.get(i).setVisible(true);
-            for(int j=1; j<=studentsOnCLoud(); j++)
+            for(int j=1; j<=studentsOnCloud(); j++)
             {
-                switch(game.getCloudList().get(i-1).getStudentsColours().get(j-1))
+                if(game.getCloudList().get(i-1).getStudentsColours().size()==0)
+                    clouds.get(i).get(j).setVisible(false);
+                else
                 {
-                    case blue:
+                    switch(game.getCloudList().get(i-1).getStudentsColours().get(j-1))
                     {
-                        clouds.get(i).get(j).setImage(blueS);
-                    }break;
-                    case red:
-                    {
-                        clouds.get(i).get(j).setImage(redS);
-                    }break;
-                    case green:
-                    {
-                        clouds.get(i).get(j).setImage(greenS);
-                    }break;
-                    case yellow:
-                    {
-                        clouds.get(i).get(j).setImage(yellowS);
-                    }break;
-                    case pink:
-                    {
-                        clouds.get(i).get(j).setImage(pinkS);
-                    }break;
+                        case blue:
+                        {
+                            clouds.get(i).get(j).setImage(blueS);
+                        }break;
+                        case red:
+                        {
+                            clouds.get(i).get(j).setImage(redS);
+                        }break;
+                        case green:
+                        {
+                            clouds.get(i).get(j).setImage(greenS);
+                        }break;
+                        case yellow:
+                        {
+                            clouds.get(i).get(j).setImage(yellowS);
+                        }break;
+                        case pink:
+                        {
+                            clouds.get(i).get(j).setImage(pinkS);
+                        }break;
+                    }
+                    clouds.get(i).get(j).setVisible(true);
                 }
-                clouds.get(i).get(j).setVisible(true);
             }
         }
     }
@@ -832,7 +831,7 @@ public class IslandController extends Showable
     /**
      * @return
      */
-    private int studentsOnCLoud()
+    private int studentsOnCloud()
     {
         return game.getCloudList().get(0).getStudentsColours().size();
     }
@@ -873,7 +872,7 @@ public class IslandController extends Showable
      */
     private void setNicknames()
     {
-        for(int i=0; i<=(playersNum()-1); i++)
+        for(int i=0; i<=(game.getPlayerList().size()-1); i++)
         {
             (playersButtons.get(i+1)).setText(game.getPlayerList().get(i).getuID());
             (playersButtons.get(i+1)).setVisible(true);
@@ -893,7 +892,7 @@ public class IslandController extends Showable
             {
                 try{
                     addAndSwapTower(i, game.getIslandList().get(i-1).getTowersColour());
-                }catch (EmptyException e){System.out.println("Error in getting towers");}
+                }catch (EmptyException e){ throw new RuntimeException("Error in getting towers"); }
                 towersNum.get(i).setText(Integer.toString(game.getIslandList().get(i-1).getNumTowers()));
                 towersNum.get(i).setVisible(true);
             }
@@ -957,8 +956,6 @@ public class IslandController extends Showable
     public void show()
     {
         game= GUI.getInstance().getModel();
-        receiver= GUI.getInstance().getReceiver();
-        nickName= GUI.getInstance().getNickName();
         setActionOnPhaseIsland();
         setCharacterCards();
         setCurrentPlayer();

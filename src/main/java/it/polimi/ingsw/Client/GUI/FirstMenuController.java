@@ -58,7 +58,6 @@ public class FirstMenuController
             return;
         }
         yourNickname= nick;
-        GUI.getInstance().setNickName(nick);
         String[] ip= serverIP.getText().split(".");
         for(String part: ip)
             if(Integer.parseInt(part)>255)
@@ -100,6 +99,7 @@ public class FirstMenuController
                 yourNickname = newNick;
                 AlertBox.display("NickName already used", "Your nickname was changed in " + newNick);
             }
+            GUI.getInstance().setNickName(newNick);
             Parent choosingGame = FXMLLoader.load(getClass().getClassLoader().getResource("loadingScreen.fxml"));
             GUI.getInstance().getWindow().setScene(new Scene(choosingGame));
             startReceiver();

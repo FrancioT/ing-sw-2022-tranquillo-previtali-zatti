@@ -31,6 +31,7 @@ import java.util.List;
 public class GUI extends Application implements PropertyChangeListener
 {
     private static final Boolean instanceLock= false;
+    private final Image icon;
     private static GUI instance= null;
     private final List<Showable> allStages;
     private ModelMessage game;
@@ -59,6 +60,7 @@ public class GUI extends Application implements PropertyChangeListener
 
     public GUI()
     {
+        icon= new Image("icon.png");
         synchronized(instanceLock)
         {
             if(instance!=null)
@@ -77,7 +79,6 @@ public class GUI extends Application implements PropertyChangeListener
             instance= this;
             instanceLock.notifyAll();
         }
-        Image icon = new Image("icon.png");
         window= primaryStage;
         try
         {
@@ -236,7 +237,13 @@ public class GUI extends Application implements PropertyChangeListener
                 try{ islandView= loader.load(); }
                 catch (IOException e1){ throw new RuntimeException(e1.getMessage()); }
                 ((IslandController)loader.getController()).initialize();
+                window.close();
+                window= new Stage();
+                window.setTitle("Eriantys");
                 window.setScene(new Scene(islandView));
+                window.getIcons().add(icon);
+                window.setResizable(false);
+                window.show();
                 addShowableStage(loader.getController());
             }
             updateStages();

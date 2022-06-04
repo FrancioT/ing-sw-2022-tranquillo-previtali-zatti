@@ -5,6 +5,7 @@ import it.polimi.ingsw.ClientsHandler.Messages.Message;
 import it.polimi.ingsw.ClientsHandler.Messages.ModelMessage;
 import it.polimi.ingsw.ClientsHandler.Messages.StudentToDashboard;
 import it.polimi.ingsw.Model.Colour;
+import it.polimi.ingsw.Model.Player;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -179,16 +180,11 @@ public class DashboardController extends Showable
         cardsMap.put(8, cc8);
         cardsMap.put(9, cc9);
         cardsMap.put(10, cc10);
-        cardsMap.put(11, disC);
 
-        for(int i=1; i<=11; i++)
-        {
+        for(int i=1; i<=10; i++)
             (cardsMap.get(i)).setVisible(true);
-            if(i==11)
-            {
-                (cardsMap.get(i)).setVisible(false);
-            }
-        }
+
+        disC.setVisible(false);
 
         disableTeachers();
         disableStudentsOnDashboard();
@@ -196,11 +192,15 @@ public class DashboardController extends Showable
         nickPlayer.setFocusTraversable(false);
 
         window= new Stage();
+        window.setTitle("Player's Dashboard");
         window.setScene(new Scene(scene));
+        window.getIcons().add(new Image("icon.png"));
         window.show();
         window.setOnCloseRequest(event -> GUI.getInstance().removeShowableStage(this));
         this.nickname= nickname;
+        nickPlayer.setText(nickname);
         GUI.getInstance().addShowableStage(this);
+        receiver=GUI.getInstance().getReceiver();
         show();
     }
 
@@ -210,7 +210,8 @@ public class DashboardController extends Showable
      */
     private void setActionOnPhaseDashboard()
     {
-        if(GUI.getInstance().getModel().getCurrPlayerNickname()== nickname)
+        if(GUI.getInstance().getModel().getCurrPlayerNickname().equals(GUI.getInstance().getNickName())
+           && GUI.getInstance().getNickName().equals(nickname))
         {
             switch(game.getPhase())
             {
@@ -292,7 +293,7 @@ public class DashboardController extends Showable
      */
     private void disableCards()
     {
-        for(int i=1; i<=11; i++)
+        for(int i=1; i<=10; i++)
         {
             (cardsMap.get(i)).setMouseTransparent(true);
             (cardsMap.get(i)).setFocusTraversable(false);
@@ -304,7 +305,7 @@ public class DashboardController extends Showable
      */
     private void enableCards()
     {
-        for(int i=1; i<=11; i++)
+        for(int i=1; i<=10; i++)
         {
             (cardsMap.get(i)).setMouseTransparent(false);
             (cardsMap.get(i)).setFocusTraversable(true);
@@ -328,10 +329,19 @@ public class DashboardController extends Showable
      */
     private void enableEntranceStudents()
     {
-        for(int i=1; i<=9; i++)
+        int entranceSize= (1-game.getPlayerList().size()%2)*7+(game.getPlayerList().size()%2)*9;
+        for(int i=1; i<=entranceSize; i++)
         {
-            (entranceStudents.get(i)).setMouseTransparent(false);
-            (entranceStudents.get(i)).setFocusTraversable(true);
+            if(i>entranceStudentsNum())
+            {
+                (entranceStudents.get(i)).setMouseTransparent(true);
+                (entranceStudents.get(i)).setFocusTraversable(false);
+            }
+            else
+            {
+                (entranceStudents.get(i)).setMouseTransparent(false);
+                (entranceStudents.get(i)).setFocusTraversable(true);
+            }
         }
     }
 
@@ -351,29 +361,14 @@ public class DashboardController extends Showable
     }
 
     /**
-     * This method
-     * @return playersNum
-     */
-    private int playersNum()
-    {
-        int n = (GUI.getInstance().getModel().getPlayerList()).size();
-        return n;
-    }
-
-
-    /**
      * @return the number of students in the entrance
      */
     private int entranceStudentsNum()
     {
-        if(playersNum()==2 || playersNum()==4)
-        {
-            return 7;
-        }
-        else
-        {
-            return 9;
-        }
+        for(Player player: game.getPlayerList())
+            if(player.getuID().equals(nickname))
+                return player.getStudents().size();
+        throw new IllegalArgumentException("Nickname doesn't correspond");
     }
 
     /**
@@ -381,9 +376,9 @@ public class DashboardController extends Showable
      */
     private void setEntranceStudents()
     {
-        for(int i=1; i<=playersNum(); i++)
+        for(int i=1; i<=game.getPlayerList().size(); i++)
         {
-            if(game.getPlayerList().get(i-1).getuID()== nickname)
+            if(game.getPlayerList().get(i-1).getuID().equals(nickname))
             {
                 for(int j=1; j<=entranceStudentsNum(); j++)
                 {
@@ -419,17 +414,20 @@ public class DashboardController extends Showable
      */
     private void setStudentsAndTeachers()
     {
-        for(int i=1; i<=playersNum(); i++)
+        for(int i=1; i<=game.getPlayerList().size(); i++)
         {
-            if(game.getPlayerList().get(i-1).getuID()=="Nick del bottone, chiedere a francesco")
+            if(game.getPlayerList().get(i-1).getuID().equals(nickname))
             {
                 for(Colour cS: Colour.values())
                 {
                     teacherDashboard.get(cS).setVisible(game.getPlayerList().get(i-1).checkTeacherPresence(cS));
 
-                    for(int j=1; j<=game.getPlayerList().get(i-1).getStudentNum(cS); j++)
+                    for(int j=1; j<=9; j++)
                     {
-                        (studentsDashboard.get(cS).get(j)).setVisible(true);
+                        if(j<=game.getPlayerList().get(i-1).getStudentNum(cS))
+                            studentsDashboard.get(cS).get(j).setVisible(true);
+                        else
+                            studentsDashboard.get(cS).get(j).setVisible(false);
                     }
                 }
             }
@@ -441,37 +439,37 @@ public class DashboardController extends Showable
      */
     private void setCards()
     {
-        for(int i=1; i<=playersNum(); i++)
-        {
-            if(game.getPlayerList().get(i-1).getuID()== nickname)
+        Player yourself= null;
+        for(Player player: game.getPlayerList())
+            if(player.getuID().equals(nickname))
             {
-                for(int j=1; j<=10; j++)
-                {
-                    if(game.getPlayerList().get(i-1).getHandCards().get(j-1).getRoundValue()==j)
-                    {
-                        cardsMap.get(j).setVisible(true);
-                    }
-                    else
-                    {
-                        cardsMap.get(j).setVisible(false);
-                    }
-                }
+                yourself=player;
+                break;
             }
+        if(yourself==null)
+            throw new IllegalArgumentException("Nickname doesn't correspond");
+
+        // set the hand's cards real index
+        for(int i=0; i<10; i++)
+            cardsIndexes.set(i, -1);
+        
+        int realIndex=0;
+        for(int i=0; i<yourself.getHandCards().size(); i++)
+        {
+            cardsIndexes.set(yourself.getHandCards().get(i).getRoundValue(), realIndex);
+            realIndex++;
         }
+        
+        // after setting the indexes we show the available cards
+        for(int i=0; i<10; i++)
+            cardsMap.get(i).setVisible(cardsIndexes.get(i)!=-1);
     }
 
     private void useCard(int index)
     {
         // if the card wasn't already played
         if(cardsIndexes.get(index)!=-1)
-        {
-            sendMessage(new ChooseCard(nickname, cardsIndexes.get(index)));
-            cardsIndexes.set(index, -1);
-            // decrement all the other cards real indexes by 1
-            for(int i=index+1; i<10; i++)
-                if(cardsIndexes.get(i)!=-1)
-                    cardsIndexes.set(i, cardsIndexes.get(i)-1);
-        }
+            sendMessage(new ChooseCard(GUI.getInstance().getNickName(), cardsIndexes.get(index)));
     }
     /**
      * This method send the message to the receiver for the card 1
@@ -479,7 +477,7 @@ public class DashboardController extends Showable
     @FXML
     private void chooseCardMN1()
     {
-        useCard(0);
+        useCard(cardsIndexes.get(0));
     }
 
     /**
@@ -488,7 +486,7 @@ public class DashboardController extends Showable
     @FXML
     private void chooseCardMN2()
     {
-        useCard(1);
+        useCard(cardsIndexes.get(1));
     }
 
     /**
@@ -497,7 +495,7 @@ public class DashboardController extends Showable
     @FXML
     private void chooseCardMN3()
     {
-        useCard(2);
+        useCard(cardsIndexes.get(2));
     }
 
     /**
@@ -506,7 +504,7 @@ public class DashboardController extends Showable
     @FXML
     private void chooseCardMN4()
     {
-        useCard(3);
+        useCard(cardsIndexes.get(3));
     }
 
     /**
@@ -515,7 +513,7 @@ public class DashboardController extends Showable
     @FXML
     private void chooseCardMN5()
     {
-        useCard(4);
+        useCard(cardsIndexes.get(4));
     }
 
     /**
@@ -524,7 +522,7 @@ public class DashboardController extends Showable
     @FXML
     private void chooseCardMN6()
     {
-        useCard(5);
+        useCard(cardsIndexes.get(5));
     }
 
     /**
@@ -533,7 +531,7 @@ public class DashboardController extends Showable
     @FXML
     private void chooseCardMN7()
     {
-        useCard(6);
+        useCard(cardsIndexes.get(6));
     }
 
     /**
@@ -542,7 +540,7 @@ public class DashboardController extends Showable
     @FXML
     private void chooseCardMN8()
     {
-        useCard(7);
+        useCard(cardsIndexes.get(7));
     }
 
     /**
@@ -551,7 +549,7 @@ public class DashboardController extends Showable
     @FXML
     private void chooseCardMN9()
     {
-        useCard(8);
+        useCard(cardsIndexes.get(8));
     }
 
     /**
@@ -560,7 +558,7 @@ public class DashboardController extends Showable
     @FXML
     private void chooseCardMN10()
     {
-        useCard(9);
+        useCard(cardsIndexes.get(9));
     }
 
     /**
@@ -583,11 +581,11 @@ public class DashboardController extends Showable
 
     private void selectedEntranceStudent(ImageView image, int index)
     {
-        for(int i=0; i<playersNum(); i++)
+        for(int i=0; i<game.getPlayerList().size(); i++)
         {
-            if(game.getPlayerList().get(i).getuID()== nickname)
+            if(game.getPlayerList().get(i).getuID().equals(nickname))
             {
-                setSelectStudentColour(image, game.getPlayerList().get(i).getStudents().get(i));
+                setSelectStudentColour(image, game.getPlayerList().get(i).getStudents().get(index));
             }
         }
     }
@@ -690,7 +688,7 @@ public class DashboardController extends Showable
         Colour selected;
         selected= getSelectStudentColour();
         if(selected!=null)
-            sendMessage(new StudentToDashboard(nickname, selected));
+            sendMessage(new StudentToDashboard(GUI.getInstance().getNickName(), selected));
     }
 
     /**
@@ -700,11 +698,9 @@ public class DashboardController extends Showable
     public void show()
     {
         game=GUI.getInstance().getModel();
-        receiver=GUI.getInstance().getReceiver();
         setActionOnPhaseDashboard();
         setEntranceStudents();
         setStudentsAndTeachers();
         setCards();
-        nickPlayer.setText(nickname);
     }
 }
