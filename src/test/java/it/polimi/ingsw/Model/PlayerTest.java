@@ -111,7 +111,7 @@ class PlayerTest {
     {
         Player player = new Player("test", new Towers(ColourT.black, 1), null);
         StandardCard sc = player.cardDiscarder(0);
-        int i = player.getLastCardMNValue();
+        int i = player.getDiscardedCard().getMnValue();
         assertEquals(i, 1);
     }
 

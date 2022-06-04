@@ -140,12 +140,6 @@ public class Player implements Serializable
     }
 
     /**
-     * @return the last card discarded MN value
-     * @throws EmptyException Exception thrown if there isn't any discarded card
-     */
-    public int getLastCardMNValue() throws EmptyException { return playerDeck.getLastCardMNValue(); }
-
-    /**
      * @return the last card played
      * @throws EmptyException Exception thrown when there isn't a discarded card
      */

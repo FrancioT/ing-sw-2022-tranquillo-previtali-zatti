@@ -107,9 +107,9 @@ class ControllerTest
         assertTrue(ModelTest.getPlayers(controller.getModel()).get(0).getHandCards().size() == 0);
         assertTrue(ModelTest.getPlayers(controller.getModel()).get(1).getHandCards().size() == 0);
         assertTrue(ModelTest.getPlayers(controller.getModel()).get(2).getHandCards().size() == 0);
-        assertTrue(ModelTest.getPlayers(controller.getModel()).get(0).getLastCardMNValue() == 1);
-        assertTrue(ModelTest.getPlayers(controller.getModel()).get(1).getLastCardMNValue() == 1);
-        assertTrue(ModelTest.getPlayers(controller.getModel()).get(2).getLastCardMNValue() == 1);
+        assertTrue(ModelTest.getPlayers(controller.getModel()).get(0).getDiscardedCard().getMnValue() == 1);
+        assertTrue(ModelTest.getPlayers(controller.getModel()).get(1).getDiscardedCard().getMnValue() == 1);
+        assertTrue(ModelTest.getPlayers(controller.getModel()).get(2).getDiscardedCard().getMnValue() == 1);
         assertTrue(controller.getModel().getLastCardValue(p1) == 1);
         assertTrue(controller.getModel().getLastCardValue(p2) == 1);
         assertTrue(controller.getModel().getLastCardValue(p3) == 1);

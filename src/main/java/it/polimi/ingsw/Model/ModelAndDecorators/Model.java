@@ -569,7 +569,7 @@ public class Model {
                 player = p;
         if(player==null)
             throw new NoSuchPlayerException();
-        return player.getLastCardMNValue();
+        return player.getDiscardedCard().getMnValue();
     }
 
     /**

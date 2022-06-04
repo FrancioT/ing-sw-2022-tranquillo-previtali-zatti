@@ -31,7 +31,7 @@ class DeckTest {
         int rv = 0;
         int mnv = 0;
         rv = deck.cardDiscarder(2).getRoundValue();
-        mnv = deck.getLastCardMNValue();
+        mnv = deck.getDiscardedCard().getMnValue();
         assertEquals(rv, 3);
         assertEquals(mnv, 2);
 
@@ -39,7 +39,7 @@ class DeckTest {
         assertEquals(mnv, 1);
 
         rv = deck.cardDiscarder(2).getRoundValue();
-        mnv = deck.getLastCardMNValue();
+        mnv = deck.getDiscardedCard().getMnValue();
         assertEquals(rv, 5);
         assertEquals(mnv, 3);
 

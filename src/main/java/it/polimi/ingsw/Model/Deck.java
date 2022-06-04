@@ -48,17 +48,6 @@ class Deck implements Serializable
     }
 
     /**
-     * Method used to obtain the MN value of the last card played by a player
-     * @return the MN value
-     * @throws EmptyException Exception thrown when there isn't a discarded card
-     */
-    int getLastCardMNValue() throws EmptyException
-    {
-        if(discardedCard==null) throw new EmptyException();
-        return discardedCard.getMnValue();
-    }
-
-    /**
      * @return the last card played
      * @throws EmptyException Exception thrown when there isn't a discarded card
      */
