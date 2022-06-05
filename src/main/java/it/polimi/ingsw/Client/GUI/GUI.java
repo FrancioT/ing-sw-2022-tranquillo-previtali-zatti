@@ -264,6 +264,8 @@ public class GUI extends Application implements PropertyChangeListener
                         characterCardList, message.getCurrPlayerNickname(),
                         message.getUnusedCoins(), message.hasGameEnded(),
                         message.getPhase());
+                if(game.hasGameEnded())
+                    showWinner();
             }
             else
             {
@@ -287,8 +289,6 @@ public class GUI extends Application implements PropertyChangeListener
                 addShowableStage(loader.getController());
             }
             updateStages();
-            if(game.hasGameEnded())
-                showWinner();
         }
     }
 
