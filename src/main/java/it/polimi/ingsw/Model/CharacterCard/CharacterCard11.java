@@ -38,10 +38,10 @@ public class CharacterCard11 extends CharacterCardWithStudentsList
 
         Colour colour= userData.getStudentColour();
         controller.getModel().addStudentDashboard(uID, removeStudent(colour));
-        studentsList.add(bag.randomExtraction());
 
         controller.getModel().payCard(uID, cardID);
         overPrice=true;
+        studentsList.add(bag.randomExtraction());
     }
 
     @Override

@@ -73,6 +73,8 @@ public class Controller extends Thread
                     model.setPhase(Phase.move_students);
                     moveStudents(player);
                     model.setPhase(Phase.move_mother_nature);
+                    if(breakEnd)
+                        break;
                     moveMN(player);
                     if(!endGame)
                     {
@@ -228,6 +230,20 @@ public class Controller extends Thread
                         cardActivated=true;
                         try {
                             model.activateCard(uID, usersData.get(uID), this);
+                            if(model.getNumIslands()<=3)
+                            {
+                                breakEnd= true;
+                                endGame=true;
+                                return;
+                            }
+                        }
+                        catch (RunOutOfTowersException e1) {
+                            breakEnd= true;
+                            endGame=true;
+                            return;
+                        }
+                        catch (RunOutOfStudentsException e1) {
+                            endGame=true;
                         }
                         catch (Exception e1)
                         {
@@ -289,6 +305,20 @@ public class Controller extends Thread
                             cardActivated=true;
                             try {
                                 model.activateCard(uID, usersData.get(uID), this);
+                                if(model.getNumIslands()<=3)
+                                {
+                                    breakEnd= true;
+                                    endGame=true;
+                                    return;
+                                }
+                            }
+                            catch (RunOutOfTowersException e1) {
+                                breakEnd= true;
+                                endGame=true;
+                                return;
+                            }
+                            catch (RunOutOfStudentsException e1) {
+                                endGame=true;
                             }
                             catch (Exception e1)
                             {
@@ -358,6 +388,20 @@ public class Controller extends Thread
                         cardActivated=true;
                         try {
                             model.activateCard(uID, usersData.get(uID), this);
+                            if(model.getNumIslands()<=3)
+                            {
+                                breakEnd= true;
+                                endGame=true;
+                                return;
+                            }
+                        }
+                        catch (RunOutOfTowersException e1) {
+                            breakEnd= true;
+                            endGame=true;
+                            return;
+                        }
+                        catch (RunOutOfStudentsException e1) {
+                            endGame=true;
                         }
                         catch (Exception e1)
                         {
@@ -451,6 +495,20 @@ public class Controller extends Thread
                         cardActivated=true;
                         try {
                             model.activateCard(uID, usersData.get(uID), this);
+                            if(model.getNumIslands()<=3)
+                            {
+                                breakEnd= true;
+                                endGame=true;
+                                return;
+                            }
+                        }
+                        catch (RunOutOfTowersException e1) {
+                            breakEnd= true;
+                            endGame=true;
+                            return;
+                        }
+                        catch (RunOutOfStudentsException e1) {
+                            endGame=true;
                         }
                         catch (Exception e1)
                         {

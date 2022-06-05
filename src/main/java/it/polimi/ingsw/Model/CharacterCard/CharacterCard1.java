@@ -41,10 +41,10 @@ public class CharacterCard1 extends CharacterCardWithStudentsList{
         int index= userData.getIslandPos();
         Colour colour= userData.getStudentColour();
         model.addStudentIsland(index, removeStudent(colour));
-        studentsList.add(bag.randomExtraction());
 
         model.payCard(uID, cardID);
         overPrice=true;
+        studentsList.add(bag.randomExtraction());
     }
 
     @Override
