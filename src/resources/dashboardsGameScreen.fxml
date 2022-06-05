@@ -299,12 +299,12 @@
             <Image url="@blue_student.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="eSt1" fitHeight="63.0" fitWidth="60.0" layoutX="65.0" layoutY="829.0" onMouseClicked="#select1" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="eSt2" fitHeight="63.0" fitWidth="60.0" layoutX="160.0" layoutY="829.0" onMouseClicked="#select2" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="eSt3" fitHeight="63.0" fitWidth="60.0" layoutX="252.0" layoutY="836.0" onMouseClicked="#select3" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="eSt4" fitHeight="63.0" fitWidth="60.0" layoutX="348.0" layoutY="836.0" onMouseClicked="#select4" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="eSt5" fitHeight="63.0" fitWidth="60.0" layoutX="439.0" layoutY="836.0" onMouseClicked="#select5" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="eSt6" fitHeight="63.0" fitWidth="60.0" layoutX="162.0" layoutY="911.0" onMouseClicked="#select6" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="eSt1" fitHeight="63.0" fitWidth="60.0" layoutX="67.0" layoutY="835.0" onMouseClicked="#select1" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="eSt2" fitHeight="63.0" fitWidth="60.0" layoutX="160.0" layoutY="835.0" onMouseClicked="#select2" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="eSt3" fitHeight="63.0" fitWidth="60.0" layoutX="252.0" layoutY="835.0" onMouseClicked="#select3" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="eSt4" fitHeight="63.0" fitWidth="60.0" layoutX="348.0" layoutY="835.0" onMouseClicked="#select4" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="eSt5" fitHeight="63.0" fitWidth="60.0" layoutX="439.0" layoutY="835.0" onMouseClicked="#select5" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="eSt6" fitHeight="63.0" fitWidth="60.0" layoutX="160.0" layoutY="911.0" onMouseClicked="#select6" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="eSt7" fitHeight="63.0" fitWidth="60.0" layoutX="252.0" layoutY="911.0" onMouseClicked="#select7" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="eSt8" fitHeight="63.0" fitWidth="60.0" layoutX="348.0" layoutY="911.0" onMouseClicked="#select8" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="eSt9" fitHeight="63.0" fitWidth="60.0" layoutX="437.0" layoutY="911.0" onMouseClicked="#select9" pickOnBounds="true" preserveRatio="true" />

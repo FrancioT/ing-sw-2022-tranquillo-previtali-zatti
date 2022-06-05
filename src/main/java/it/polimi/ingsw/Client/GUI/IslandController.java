@@ -105,11 +105,11 @@ public class IslandController extends Showable
     private Image whiteT = new Image("wt.png");
     private Image blackT = new Image("bt.png");
     private Image grayT = new Image("gt.png");
-    private Image redS = new Image("red_student.png");
-    private Image pinkS = new Image("pink_student.png");
-    private Image greenS = new Image("green_student.png");
-    private Image yellowS = new Image("yellow_student.png");
-    private Image blueS = new Image("blue_student.png");
+    private Image redS = new Image("resizedRedStudent.png");
+    private Image pinkS = new Image("resizedPinkStudent.png");
+    private Image greenS = new Image("resizedGreenStudent.png");
+    private Image yellowS = new Image("resizedYellowStudent.png");
+    private Image blueS = new Image("resizedBlueStudent.png");
     private Image card1 = new Image("CarteTOT_front.jpg");
     private Image card2 = new Image("CarteTOT_front2.jpg");
     private Image card3 = new Image("CarteTOT_front3.jpg");
