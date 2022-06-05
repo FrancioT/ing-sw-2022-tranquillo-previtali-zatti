@@ -46,6 +46,11 @@ public class GUI extends Application implements PropertyChangeListener
         launch(args);
     }
 
+    /**
+     * Method to have access to the instance of a GUI, if it is null it waits until stimulated and creates a new one;
+     * if it is not null, it returns the existing one
+     * @return a new Instance or an existing one
+     */
     public static GUI getInstance()
     {
         if(instance==null)
@@ -59,6 +64,9 @@ public class GUI extends Application implements PropertyChangeListener
         return instance;
     }
 
+    /**
+     * Constructor of GUI, if another instance already exists it throws an error
+     */
     public GUI()
     {
         icon= new Image("icon.png");
@@ -74,6 +82,10 @@ public class GUI extends Application implements PropertyChangeListener
         window=null;
     }
 
+    /**
+     * Method to start the GUI; the first page it will show is with the title, the request of name and Server IP
+     * @param primaryStage the stage set with the info we need to show
+     */
     @Override
     public void start(Stage primaryStage)
     {
@@ -97,6 +109,11 @@ public class GUI extends Application implements PropertyChangeListener
         }
     }
 
+    /**
+     * Method to create the receiver for the GUI, which will receive and analyze the messages from the server
+     * @param serverConnection the socket for the connection with the server
+     * @return true if correctly created or false if an error occurs
+     */
     public synchronized boolean setReceiver(Socket serverConnection)
     {
         try {
@@ -137,9 +154,15 @@ public class GUI extends Application implements PropertyChangeListener
         return nickName;
     }
 
+    /**
+     * Method that is called when a player tries to close the game manually. It will display a pop-up which asks
+     * whether he really wants to quit the game and shows him 2 buttons; one will close the game, the other one will
+     * make the player return to the main dashboard
+     */
     public synchronized void setClosingWindow()
     {
         window.setOnCloseRequest(event -> {
+            //creates the pop-up which can end the game
             event.consume();  // consume the main closing window event
             Stage popUp= new Stage();
             popUp.initModality(Modality.APPLICATION_MODAL);
@@ -147,7 +170,10 @@ public class GUI extends Application implements PropertyChangeListener
             popUp.setMinWidth(350);
             popUp.setMinHeight(300);
 
+            //description of the pop-up
             Label text= new Label("Do you want to close the game?");
+
+            //if "yes", close the receiver and the game
             Button yesButton= new Button("Yes");
             yesButton.setOnAction(ev -> {
                 popUp.close();
@@ -155,6 +181,7 @@ public class GUI extends Application implements PropertyChangeListener
                 closeAllWindows();
                 gameClosed=true;
             });
+            //if "no", return to game
             Button noButton= new Button("No");
             noButton.setOnAction(ev -> popUp.close());
             VBox layout= new VBox(20);
@@ -170,6 +197,9 @@ public class GUI extends Application implements PropertyChangeListener
         });
     }
 
+    /**
+     * Close all the open stages and window
+     */
     public void closeAllWindows()
     {
         for(Showable stage: allStages)
@@ -268,6 +298,9 @@ public class GUI extends Application implements PropertyChangeListener
             stage.show();
     }
 
+    /**
+     * Method to find and print the winner/s
+     */
     private synchronized void showWinner()
     {
         int maxScore=0;
@@ -276,9 +309,12 @@ public class GUI extends Application implements PropertyChangeListener
             return;
 
         // calculating the number of towers with which a player start the game
-        int mode= game.getPlayerList().size()%2;  // mode==0 => 8 towers
-        // mode==1 => 6 towers
+        int mode= game.getPlayerList().size()%2;    // mode==0 => 8 towers
+                                                    // mode==1 => 6 towers
         final int maxTowers= (mode)*6 + (1-mode)*8;
+
+        // for loop to calculate the "score" of every player, based on the number of towers that he still has in the
+        // dashboard and on the teachers he owns
         for(Player player: game.getPlayerList())
         {
             int score= 0;
@@ -295,6 +331,7 @@ public class GUI extends Application implements PropertyChangeListener
                 winners.add(player.getuID());
             }
         }
+        //in case there is a draw
         if(winners.size()>1)
         {
             String message= "The winners are: ";
