@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="900.0" maxWidth="1600.0" minHeight="900.0" minWidth="1600.0" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WinnerScreen">
+   <children>
+      <ImageView fitHeight="936.0" fitWidth="1715.0" layoutX="-32.0" layoutY="-18.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@sky.jpg" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="647.0" layoutY="489.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Winner">
+         <font>
+            <Font size="96.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="711.0" fitWidth="814.0" layoutX="495.0" layoutY="-128.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../Desktop/6840023_preview.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

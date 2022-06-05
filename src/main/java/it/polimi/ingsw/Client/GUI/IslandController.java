@@ -12,7 +12,6 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
-import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -64,7 +63,7 @@ public class IslandController extends Showable
     @FXML
     private ImageView characterCard1,characterCard2,characterCard3;
     @FXML
-    private Text currentPlayer,towersP1,towersP2,towersP3,towersP4;
+    private Text currentPlayer,currentPhase,towersP1,towersP2,towersP3,towersP4;
     @FXML
     private Text coinsP1,coinsP2,coinsP3,coinsP4,unusedCoins;
     @FXML
@@ -728,8 +727,8 @@ public class IslandController extends Showable
         for(String s: phaseTmp)
             phase=phase.concat(" "+s);
 
-        currentPlayer.setText("You are: "+nickName +"\nCurrent player: "+game.getCurrPlayerNickname()
-                              +"\n\nPhase: "+phase);
+        currentPlayer.setText("Current player: "+game.getCurrPlayerNickname());
+        currentPhase.setText("Current phase: "+phase);
     }
 
     /**
