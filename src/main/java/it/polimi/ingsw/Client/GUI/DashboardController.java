@@ -15,7 +15,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -53,22 +52,22 @@ public class DashboardController extends Showable
     Image greenS = new Image("resizedGreenStudent.png");
     Image yellowS = new Image("resizedYellowStudent.png");
     Image blueS = new Image("resizedBlueStudent.png");
-    private HashMap<Colour, ImageView> teacherDashboard = new HashMap<>();
-    private HashMap<Colour, HashMap<Integer, ImageView>> studentsDashboard = new HashMap<>();
-    private HashMap<Integer, ImageView> entranceStudents = new HashMap<>();
-    private HashMap<Integer, ImageView> pinkStudents = new HashMap<>();
-    private HashMap<Integer, ImageView> greenStudents = new HashMap<>();
-    private HashMap<Integer, ImageView> redStudents = new HashMap<>();
-    private HashMap<Integer, ImageView> yellowStudents = new HashMap<>();
-    private HashMap<Integer, ImageView> blueStudents = new HashMap<>();
-    private HashMap<Integer, ImageView> cardsMap = new HashMap<>();
+    private final HashMap<Colour, ImageView> teacherDashboard = new HashMap<>();
+    private final HashMap<Colour, HashMap<Integer, ImageView>> studentsDashboard = new HashMap<>();
+    private final HashMap<Integer, ImageView> entranceStudents = new HashMap<>();
+    private final HashMap<Integer, ImageView> pinkStudents = new HashMap<>();
+    private final HashMap<Integer, ImageView> greenStudents = new HashMap<>();
+    private final HashMap<Integer, ImageView> redStudents = new HashMap<>();
+    private final HashMap<Integer, ImageView> yellowStudents = new HashMap<>();
+    private final HashMap<Integer, ImageView> blueStudents = new HashMap<>();
+    private final HashMap<Integer, ImageView> cardsMap = new HashMap<>();
     private ModelMessage game;
     private ReceiverGui receiver;
     private String nickname;
     private Stage window;
     private static ImageView selectedStudent;
     private static Colour selectStudentColour;
-    private static final List<Integer> cardsIndexes= new ArrayList<>();
+    private final List<Integer> cardsIndexes= new ArrayList<>();
 
     /**
      * This method associates each parameter of the fxml file in
@@ -392,8 +391,6 @@ public class DashboardController extends Showable
                     {
                         switch(game.getPlayerList().get(i-1).getStudents().get(j-1))
                         {
-                            //Vanno aggiunti i corretti dimenisonamenti delle immagini perchè
-                            //la posizione degli studenti nell'immagine è diversa
                             case pink:
                                 (entranceStudents.get(j)).setImage(pinkS);
                                 break;

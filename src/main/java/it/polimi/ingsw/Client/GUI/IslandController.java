@@ -747,7 +747,8 @@ public class IslandController extends Showable
     {
         for(int i=1; i<=game.getPlayerList().size(); i++)
         {
-            playersTowers.get(i).setText("Towers: " + game.getPlayerList().get(i-1).getTowers().availabilityChecker());
+            playersTowers.get(i).setText("Towers:\n"+game.getPlayerList().get(i-1).getTowers().getColour()+" "
+                                         +game.getPlayerList().get(i-1).getTowers().availabilityChecker());
             playersTowers.get(i).setVisible(true);
             if(game.isExpertMode())
                 playersCoins.get(i).setText("Coins: " + game.getPlayerList().get(i-1).getCoins());

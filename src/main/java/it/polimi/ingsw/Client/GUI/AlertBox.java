@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Client.GUI;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -28,6 +29,7 @@ class AlertBox
         Button button= new Button("Ok");
         button.setOnAction(event -> window.close());
         VBox layout= new VBox(20);
+        layout.setPadding(new Insets(15, 15, 15, 15));
         layout.getChildren().addAll(text, button);
         layout.setAlignment(Pos.CENTER);
 
