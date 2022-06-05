@@ -13,8 +13,7 @@ public class PongWaiting extends Thread
     }
 
     /**
-     * Every 10 seconds calls getPing on ClientHandler and expects a pong from the client, if 3 pongs are missed
-     * the game ends
+     * Every 10 seconds calls getPing and expects a pong, if 3 pongs are missed the game ends
      */
     @Override
     public void run()
