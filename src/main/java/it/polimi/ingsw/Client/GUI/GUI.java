@@ -152,10 +152,8 @@ public class GUI extends Application implements PropertyChangeListener
             yesButton.setOnAction(ev -> {
                 popUp.close();
                 try{ receiver.close(); }catch(IOException ignored){}
-                for(Showable stage: allStages)
-                    stage.close();
+                closeAllWindows();
                 gameClosed=true;
-                window.close();
             });
             Button noButton= new Button("No");
             noButton.setOnAction(ev -> popUp.close());
@@ -170,6 +168,13 @@ public class GUI extends Application implements PropertyChangeListener
             popUp.setScene(scene);
             popUp.showAndWait();
         });
+    }
+
+    public void closeAllWindows()
+    {
+        for(Showable stage: allStages)
+            stage.close();
+        window.close();
     }
 
     // synchronized because we change all the stages to follow the new model, but it can't be updated
@@ -191,8 +196,7 @@ public class GUI extends Application implements PropertyChangeListener
                     if(game==null || !game.hasGameEnded())
                     {
                         AlertBox.display("Fatal error", message.getErrorMessage().getMessage());
-                        window.setOnCloseRequest(closeEvent -> {});
-                        window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
+                        closeAllWindows();
                     }
                 }
                 else
@@ -300,5 +304,6 @@ public class GUI extends Application implements PropertyChangeListener
         }
         else
             AlertBox.display("Game ended", "The winner is "+winners.get(0));
+        closeAllWindows();
     }
 }

@@ -151,9 +151,7 @@ public class FirstMenuController
             // closing the main window and the connection
             try{ serverConnection.close(); }catch(IOException ignored){}
             AlertBox.display("Error", "Connection error with the server");
-            GUI.getInstance().getWindow().setOnCloseRequest(closeEvent -> {});
-            GUI.getInstance().getWindow().fireEvent(new WindowEvent(GUI.getInstance().getWindow(),
-                                                                    WindowEvent.WINDOW_CLOSE_REQUEST));
+            GUI.getInstance().closeAllWindows();
         }
     }
 
@@ -187,9 +185,7 @@ public class FirstMenuController
             if(!receiverTask.getValue()) {
                 // closing the main window
                 AlertBox.display("Error", "Failed to create a stable connection with the server");
-                GUI.getInstance().getWindow().setOnCloseRequest(closeEvent -> {});
-                GUI.getInstance().getWindow().fireEvent(new WindowEvent(GUI.getInstance().getWindow(),
-                                                                        WindowEvent.WINDOW_CLOSE_REQUEST));
+                GUI.getInstance().closeAllWindows();
             }
         });
         Thread receiverThread= new Thread(receiverTask);
