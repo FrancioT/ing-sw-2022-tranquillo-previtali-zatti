@@ -85,8 +85,15 @@ public class CLI extends Thread implements PropertyChangeListener
         }
         try{ receiver.close(); } catch(IOException ignored){}
     }
+
+    /**
+     * Method that is used when a player start the CLI. If there are no games available it asks the player
+     * his nickname. the server IP, the number of players and the modality. If there is already a match available in
+     * the IP selected it only asks the nickname and checks whether is taken or not.
+     */
     private void beginning() throws IOException
     {
+        // set nickname
         String mode= new String();
         boolean firstPlayerFlag= true;
         Scanner keyboardInput= new Scanner(System.in);
@@ -95,6 +102,7 @@ public class CLI extends Thread implements PropertyChangeListener
         while(nickName.trim().length()==0)
             nickName = keyboardInput.nextLine();
 
+        //set server IP
         String serverIP="";
         while(serverIP.length()==0)
         {
@@ -115,6 +123,7 @@ public class CLI extends Thread implements PropertyChangeListener
             System.out.println("Unable to connect to the server");
             throw e;
         }
+        // if no games available creates a new one with the selected settings
         if(firstPlayerFlag)
         {
             System.out.println("Ok " + nickName + " with how many players do you want this game to be?");
@@ -157,6 +166,7 @@ public class CLI extends Thread implements PropertyChangeListener
             }
             mode=mode.concat(Integer.toString(modeChoice));
         }
+        // if player joins an available match checks the nickname
         try {
             String newNickName= sendInfo(nickName, mode);
             if(!newNickName.equals(nickName))
@@ -171,6 +181,12 @@ public class CLI extends Thread implements PropertyChangeListener
         }
         System.out.println("Waiting for the other players to join...");
     }
+
+    /**
+     * Main method which manages the commands written by the client with a switch case. Depending on the command it
+     * calls the corresponding method with the values written by the player. Every time it receives a command from
+     * the player, this method also checks if it is the correct moment to use it or not
+     */
     private void handleCommands() throws IOException
     {
         BufferedReader keyboardInput= new BufferedReader(new InputStreamReader(System.in));
@@ -197,6 +213,8 @@ public class CLI extends Thread implements PropertyChangeListener
                     catch(NumberFormatException e){ pos=-1; }
                     if(pos>0)
                     {
+                        // decreases the number as the list starts from 0, but the player chooses a number from 1
+                        // to make it easier to understand
                         pos--;
                         receiver.send(new ChooseCard(nickName, pos));
                         break;
@@ -216,6 +234,8 @@ public class CLI extends Thread implements PropertyChangeListener
                     catch(NumberFormatException e){ pos=-1; }
                     if(pos>0)
                     {
+                        // decreases the number as the list starts from 0, but the player chooses a number from 1
+                        // to make it easier to understand
                         pos--;
                         receiver.send(new ChooseCloud(nickName, pos));
                         break;
@@ -235,6 +255,8 @@ public class CLI extends Thread implements PropertyChangeListener
                     catch(NumberFormatException e){ pos=-1; }
                     if(pos>0)
                     {
+                        // decreases the number as the list starts from 0, but the player chooses a number from 1
+                        // to make it easier to understand
                         pos--;
                         receiver.send(new MoveMN(nickName, pos));
                         break;
@@ -274,6 +296,8 @@ public class CLI extends Thread implements PropertyChangeListener
                         catch(NumberFormatException e){ pos=-1; }
                         if(pos>0)
                         {
+                            // decreases the number as the list starts from 0, but the player chooses a number from 1
+                            // to make it easier to understand
                             pos--;
                             receiver.send(new StudentToIsland(nickName, colour, pos));
                             break;
@@ -302,6 +326,8 @@ public class CLI extends Thread implements PropertyChangeListener
                         catch(NumberFormatException e){ pos=-1; }
                         if(pos>0)
                         {
+                            // decreases the number as the list starts from 0, but the player chooses a number from 1
+                            // to make it easier to understand
                             pos--;
                             receiver.send(new Card1Data(nickName, 1, pos, colour));
                             break;
@@ -327,6 +353,8 @@ public class CLI extends Thread implements PropertyChangeListener
                     catch(NumberFormatException e){ pos=-1; }
                     if(pos>0)
                     {
+                        // decreases the number as the list starts from 0, but the player chooses a number from 1
+                        // to make it easier to understand
                         pos--;
                         receiver.send(new Card3_5Data(nickName, 3, pos));
                         break;
@@ -351,6 +379,8 @@ public class CLI extends Thread implements PropertyChangeListener
                     catch(NumberFormatException e){ pos=-1; }
                     if(pos>0)
                     {
+                        // decreases the number as the list starts from 0, but the player chooses a number from 1
+                        // to make it easier to understand
                         pos--;
                         receiver.send(new Card3_5Data(nickName, 5, pos));
                         break;
@@ -577,6 +607,12 @@ public class CLI extends Thread implements PropertyChangeListener
                 break;
         }
     }
+
+    /**
+     * Method to convert the color written as a string by the player to the corresponding color in the game
+     * @param colour the colour written by the player as a string
+     * @return the corresponding Colour
+     */
     private Colour toColour(String colour)
     {
         Map<String, Colour> toColour= new HashMap<>();
@@ -587,6 +623,12 @@ public class CLI extends Thread implements PropertyChangeListener
         toColour.put("green", Colour.green);
         return toColour.get(colour);
     }
+
+    /**
+     * Method to understand if the player needs to create a new game or can join an existing one
+     * @param serverIP the server IP
+     * @return true if new game needed, false if player can join an existing one
+     */
     private boolean connect(String serverIP) throws IOException
     {
         connection = new Socket(serverIP, serverPort);
@@ -603,6 +645,10 @@ public class CLI extends Thread implements PropertyChangeListener
         String newNickName= in.readLine();
         return newNickName;
     }
+
+    /**
+     * Method to get the changes that happened in the Model
+     */
     @Override
     public void propertyChange(PropertyChangeEvent event)
     {
@@ -673,6 +719,10 @@ public class CLI extends Thread implements PropertyChangeListener
             }
         }
     }
+
+    /**
+     * Method to print all the necessary information to the players
+     */
     private void printGame()
     {
         synchronized(gameLock)

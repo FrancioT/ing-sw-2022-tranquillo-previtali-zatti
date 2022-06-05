@@ -32,6 +32,10 @@ public class Receiver extends Thread implements PingWaiter
         pingReceived= false;
         waitingPong= new PongWaiting(this);
     }
+    /**
+     * Method that receives the ModelMessage and checks if there are errors or game has ended; it also manages the
+     * ping-pong exchange with the server
+     */
     private void receiveModel() throws BadMessageException, IOException
     {
         Object message;
@@ -80,6 +84,9 @@ public class Receiver extends Thread implements PingWaiter
         else
             return false;
     }
+    /**
+     * method that manages the receipt of the ModelMessage until the connection is closed
+     */
     @Override
     public void run()
     {
