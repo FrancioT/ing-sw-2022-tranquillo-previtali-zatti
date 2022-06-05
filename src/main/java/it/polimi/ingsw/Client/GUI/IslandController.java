@@ -829,7 +829,7 @@ public class IslandController extends Showable
     {
         for(int i=1; i<=12; i++)
         {
-            if(i<game.getIslandList().size())
+            if(i<=game.getIslandList().size())
             {
                 islandsImages.get(i).setVisible(true);
             }
