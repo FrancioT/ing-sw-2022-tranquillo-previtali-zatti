@@ -777,12 +777,8 @@ public class IslandController extends Showable
     private void setIslandsStudents()
     {
         for(int i=1; i<=game.getIslandList().size(); i++)
-        {
             for(Colour cS: Colour.values())
-            {
                 islandsStudents.get(i).get(cS).setText(Integer.toString(studentsColourOnIsland(cS, i-1)));
-            }
-        }
     }
 
     /**
@@ -824,6 +820,30 @@ public class IslandController extends Showable
                         }break;
                     }
                     clouds.get(i).get(j).setVisible(true);
+                }
+            }
+        }
+    }
+
+    private void showIslands()
+    {
+        for(int i=1; i<=12; i++)
+        {
+            if(i<game.getIslandList().size())
+            {
+                islandsImages.get(i).setVisible(true);
+            }
+            else
+            {
+                islandsImages.get(i).setVisible(false);
+                islandsImages.get(i).setFocusTraversable(false);
+                islandsImages.get(i).setMouseTransparent(true);
+
+                for(Colour cS: Colour.values())
+                {
+                    islandsStudents.get(i).get(cS).setVisible(false);
+                    islandsStudents.get(i).get(cS).setFocusTraversable(false);
+                    islandsStudents.get(i).get(cS).setMouseTransparent(true);
                 }
             }
         }
@@ -964,6 +984,7 @@ public class IslandController extends Showable
         setMotherNature();
         setClouds();
         setIslandsStudents();
+        showIslands();
         setNicknames();
         setTowers();
     }
