@@ -351,7 +351,6 @@ public class IslandController extends Showable
             (towers.get(i)).setVisible(false);
         }
 
-        disableTowersAndMN();
         disableIslands();
         disableClouds();
         expertActivation(GUI.getInstance().getModel().isExpertMode());
@@ -382,26 +381,25 @@ public class IslandController extends Showable
     }
 
     /**
-     * This method disable the possibility to interact with mother nature and towers
-     */
-    private void disableTowersAndMN()
-    {
-        for(int i=1; i<=12; i++)
-        {
-            towers.get(i).setOnMouseClicked(event -> {});
-            motherNature.get(i).setOnMouseClicked(event -> {});
-        }
-    }
-
-    /**
      * This method enable the possibility to interact with islands on board
      */
     private void enableIslands()
     {
-        for(int i=1; i<=12; i++)
+        for(int i=1; i<=game.getIslandList().size(); i++)
         {
-            (islandsImages.get(i)).setMouseTransparent(false);
-            (islandsImages.get(i)).setFocusTraversable(true);
+            islandsImages.get(i).setMouseTransparent(false);
+            islandsImages.get(i).setFocusTraversable(true);
+            towersNum.get(i).setMouseTransparent(false);
+            towersNum.get(i).setFocusTraversable(true);
+            towers.get(i).setMouseTransparent(false);
+            towers.get(i).setFocusTraversable(true);
+            motherNature.get(i).setMouseTransparent(false);
+            motherNature.get(i).setFocusTraversable(true);
+            for(Colour cS: Colour.values())
+            {
+                islandsStudents.get(i).get(cS).setMouseTransparent(false);
+                islandsStudents.get(i).get(cS).setFocusTraversable(true);
+            }
         }
     }
 
@@ -412,8 +410,20 @@ public class IslandController extends Showable
     {
         for(int i=1; i<=12; i++)
         {
-            (islandsImages.get(i)).setMouseTransparent(true);
-            (islandsImages.get(i)).setFocusTraversable(false);
+            islandsImages.get(i).setMouseTransparent(true);
+            islandsImages.get(i).setFocusTraversable(false);
+            towersNum.get(i).setMouseTransparent(true);
+            towersNum.get(i).setFocusTraversable(false);
+            towers.get(i).setMouseTransparent(true);
+            towers.get(i).setFocusTraversable(false);
+            motherNature.get(i).setMouseTransparent(true);
+            motherNature.get(i).setFocusTraversable(false);
+            for(Colour cS: Colour.values())
+            {
+                islandsStudents.get(i).get(cS).setMouseTransparent(true);
+                islandsStudents.get(i).get(cS).setFocusTraversable(false);
+            }
+
         }
     }
 
@@ -424,8 +434,13 @@ public class IslandController extends Showable
     {
         for(int i=1; i<=game.getPlayerList().size(); i++)
         {
-            (cloudsImages.get(i)).setMouseTransparent(false);
-            (cloudsImages.get(i)).setFocusTraversable(true);
+            cloudsImages.get(i).setMouseTransparent(false);
+            cloudsImages.get(i).setFocusTraversable(true);
+            for(int j=1; j<=4; j++)
+            {
+                clouds.get(i).get(j).setMouseTransparent(false);
+                clouds.get(i).get(j).setFocusTraversable(true);
+            }
         }
     }
 
@@ -434,10 +449,15 @@ public class IslandController extends Showable
      */
     private void disableClouds()
     {
-        for(int i=1; i<=game.getPlayerList().size(); i++)
+        for(int i=1; i<=4; i++)
         {
-            (cloudsImages.get(i)).setMouseTransparent(true);
-            (cloudsImages.get(i)).setFocusTraversable(false);
+            cloudsImages.get(i).setMouseTransparent(true);
+            cloudsImages.get(i).setFocusTraversable(false);
+            for(int j=1; j<=4; j++)
+            {
+                clouds.get(i).get(j).setMouseTransparent(true);
+                clouds.get(i).get(j).setFocusTraversable(false);
+            }
         }
     }
 
@@ -741,16 +761,7 @@ public class IslandController extends Showable
     private void setMotherNature()
     {
         for(int i=1; i<=game.getIslandList().size(); i++)
-        {
-            if(game.getIslandList().get(i-1).isMotherNatureFlag())
-            {
-                motherNature.get(i).setVisible(true);
-            }
-            else
-            {
-                motherNature.get(i).setVisible(false);
-            }
-        }
+            motherNature.get(i).setVisible(game.getIslandList().get(i-1).isMotherNatureFlag());
     }
 
     /**
@@ -764,9 +775,7 @@ public class IslandController extends Showable
         for(int i=0; i<game.getIslandList().get(islandIndex).getStudentsColours().size(); i++)
         {
             if(game.getIslandList().get(islandIndex).getStudentsColours().get(i)==cS)
-            {
                 num++;
-            }
         }
         return num;
     }
@@ -836,14 +845,22 @@ public class IslandController extends Showable
             else
             {
                 islandsImages.get(i).setVisible(false);
-                islandsImages.get(i).setFocusTraversable(false);
                 islandsImages.get(i).setMouseTransparent(true);
-
+                islandsImages.get(i).setFocusTraversable(false);
+                towersNum.get(i).setVisible(false);
+                towersNum.get(i).setMouseTransparent(true);
+                towersNum.get(i).setFocusTraversable(false);
+                towers.get(i).setVisible(false);
+                towers.get(i).setMouseTransparent(true);
+                towers.get(i).setFocusTraversable(false);
+                motherNature.get(i).setVisible(false);
+                motherNature.get(i).setMouseTransparent(true);
+                motherNature.get(i).setFocusTraversable(false);
                 for(Colour cS: Colour.values())
                 {
                     islandsStudents.get(i).get(cS).setVisible(false);
-                    islandsStudents.get(i).get(cS).setFocusTraversable(false);
                     islandsStudents.get(i).get(cS).setMouseTransparent(true);
+                    islandsStudents.get(i).get(cS).setFocusTraversable(false);
                 }
             }
         }
