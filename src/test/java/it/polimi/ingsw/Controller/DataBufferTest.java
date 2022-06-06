@@ -62,6 +62,9 @@ class DataBufferTest
         dataBufferP1.setStudentsColours(lista2);
         assertEquals(lista1, dataBufferP1.getStudentsColours());
 
+        dataBufferP1.setCloudPos(1);
+        dataBufferP1.clear();
+
         dataBufferP1.activationCardRequest();
         dataBufferP1.setErrorStatus();
 

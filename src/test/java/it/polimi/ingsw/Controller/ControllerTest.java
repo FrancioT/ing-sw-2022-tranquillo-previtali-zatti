@@ -499,5 +499,10 @@ class ControllerTest
         thread.interrupt();
     }
 
+    @Test
+    void notifyDisconnection(){
+        controller.notifyDisconnection();
+    }
+
     public static List<String> getUIDsList(Controller controller) { return new ArrayList<>(controller.uIDsList); }
 }
