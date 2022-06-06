@@ -65,7 +65,7 @@ public class IslandController extends Showable
     @FXML
     private Text currentPlayer,currentPhase,towersP1,towersP2,towersP3,towersP4;
     @FXML
-    private Text coinsP1,coinsP2,coinsP3,coinsP4,unusedCoins;
+    private Text unusedCoins;
     @FXML
     private Text numTIs1,numTIs2,numTIs3,numTIs4,numTIs5,numTIs6,numTIs7,numTIs8,numTIs9,numTIs10,numTIs11,numTIs12;
     @FXML
@@ -97,7 +97,6 @@ public class IslandController extends Showable
     private HashMap<Integer, ImageView> characterCards = new HashMap<>();
     private HashMap<Integer, Button> playersButtons = new HashMap<>();
     private HashMap<Integer, Text> playersTowers = new HashMap<>();
-    private HashMap<Integer, Text> playersCoins = new HashMap<>();
     private ModelMessage game;
     private ReceiverGui receiver;
     private String nickName;
@@ -332,15 +331,9 @@ public class IslandController extends Showable
         playersTowers.put(3, towersP3);
         playersTowers.put(4, towersP4);
 
-        playersCoins.put(1, coinsP1);
-        playersCoins.put(2, coinsP2);
-        playersCoins.put(3, coinsP3);
-        playersCoins.put(4, coinsP4);
-
         for(int i=1; i<=4; i++)
         {
             (playersTowers.get(i)).setVisible(false);
-            (playersCoins.get(i)).setVisible(false);
         }
 
         for(int i=1; i<=12; i++)
@@ -367,14 +360,12 @@ public class IslandController extends Showable
             {
                 unusedCoins.setVisible(true);
                 characterCards.get(i).setVisible(true);
-                playersCoins.get(i).setVisible(true);
             }
         else
             for(int i=1; i<=3; i++)
             {
                 unusedCoins.setVisible(false);
                 characterCards.get(i).setVisible(false);
-                playersCoins.get(i).setVisible(false);
                 characterCards.get(i).setOnMouseClicked(event -> {});
             }
     }
@@ -750,8 +741,6 @@ public class IslandController extends Showable
             playersTowers.get(i).setText("Towers:\n"+game.getPlayerList().get(i-1).getTowers().availabilityChecker()+" "
                                          +game.getPlayerList().get(i-1).getTowers().getColour());
             playersTowers.get(i).setVisible(true);
-            if(game.isExpertMode())
-                playersCoins.get(i).setText("Coins: " + game.getPlayerList().get(i-1).getCoins());
         }
     }
 

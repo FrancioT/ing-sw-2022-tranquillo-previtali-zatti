@@ -457,17 +457,7 @@
          <image>
             <Image url="@Animali3.jpg" />
          </image></ImageView>
-      <Text fx:id="coinsP1" layoutX="1655.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coins:" wrappingWidth="170.0">
-         <font>
-            <Font name="Constantia" size="31.0" />
-         </font>
-      </Text>
       <Text fx:id="towersP2" layoutX="1655.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Towers:" wrappingWidth="170.0">
-         <font>
-            <Font name="Constantia" size="31.0" />
-         </font>
-      </Text>
-      <Text fx:id="coinsP2" layoutX="1655.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coins:" wrappingWidth="170.0">
          <font>
             <Font name="Constantia" size="31.0" />
          </font>
@@ -477,17 +467,7 @@
             <Font name="Constantia" size="31.0" />
          </font>
       </Text>
-      <Text fx:id="coinsP3" layoutX="1655.0" layoutY="1010.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coins:" wrappingWidth="170.0">
-         <font>
-            <Font name="Constantia" size="31.0" />
-         </font>
-      </Text>
       <Text fx:id="towersP4" layoutX="27.0" layoutY="973.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Towers:" wrappingWidth="170.0">
-         <font>
-            <Font name="Constantia" size="31.0" />
-         </font>
-      </Text>
-      <Text fx:id="coinsP4" layoutX="27.0" layoutY="1010.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coins:" wrappingWidth="170.0">
          <font>
             <Font name="Constantia" size="31.0" />
          </font>

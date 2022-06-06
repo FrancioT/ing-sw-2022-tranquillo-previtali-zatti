@@ -29,7 +29,7 @@ public class DashboardController extends Showable
     @FXML
     Button placeOnDashboard;
     @FXML
-    Text nickPlayer;
+    Text nickPlayer,coins;
     @FXML
     ImageView pinkT,greenT,redT,yellowT,blueT;
     @FXML
@@ -190,6 +190,9 @@ public class DashboardController extends Showable
         disableStudentsOnDashboard();
         nickPlayer.setMouseTransparent(true);
         nickPlayer.setFocusTraversable(false);
+        coins.setMouseTransparent(true);
+        coins.setFocusTraversable(false);
+        coins.setVisible(false);
 
         window= new Stage();
         window.setTitle("Player's Dashboard");
@@ -241,6 +244,21 @@ public class DashboardController extends Showable
             disableEntranceStudents();
             disablePlaceOnDash();
             disableCards();
+        }
+    }
+
+    public void setCoins()
+    {
+        if(game.isExpertMode())
+        {
+            for(int i=1; i<=game.getPlayerList().size(); i++)
+            {
+                if(game.getPlayerList().get(i-1).getuID().equals(nickname))
+                {
+                    coins.setText("Coins: " + game.getPlayerList().get(i - 1).getCoins());
+                    coins.setVisible(true);
+                }
+            }
         }
     }
 
@@ -716,5 +734,6 @@ public class DashboardController extends Showable
         setEntranceStudents();
         setStudentsAndTeachers();
         setCards();
+        setCoins();
     }
 }

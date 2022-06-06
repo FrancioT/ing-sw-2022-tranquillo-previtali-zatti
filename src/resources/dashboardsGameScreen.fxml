@@ -368,11 +368,16 @@
             <Font size="40.0" />
          </font>
       </Text>
-      <Button fx:id="placeOnDashboard" layoutX="14.0" layoutY="927.0" mnemonicParsing="false" onAction="#placeOnDashboard" text="Place on Dashboard">
+      <Button fx:id="placeOnDashboard" layoutX="14.0" layoutY="912.0" mnemonicParsing="false" onAction="#placeOnDashboard" text="Place on Dashboard">
          <font>
             <Font size="9.0" />
          </font>
       </Button>
+      <Text fx:id="coins" layoutX="14.0" layoutY="983.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coins:" wrappingWidth="134.0">
+         <font>
+            <Font name="Constantia" size="31.0" />
+         </font>
+      </Text>
       <ImageView fx:id="disC" fitHeight="150.0" fitWidth="200.0" layoutX="929.0" layoutY="833.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Animali10.jpg" />
