@@ -84,7 +84,9 @@ public class Controller extends Thread
                     if(breakEnd)
                         break;
                 }
-                dataBufferClear();
+                // clears all dataBuffers in order to remove the pre-move functionality
+                for(DataBuffer dataBuffer: usersData.values())
+                    dataBuffer.clear();
                 chosenClouds.clear();
             }
         }
@@ -554,14 +556,5 @@ public class Controller extends Thread
     {
         for(DataBuffer dataBuffer: usersData.values())
             dataBuffer.setErrorStatus();
-    }
-
-    /**
-     * Method to clear the dataBuffer values
-     */
-    private void dataBufferClear()
-    {
-        for(DataBuffer dataBuffer: usersData.values())
-            dataBuffer.clear();
     }
 }
