@@ -472,12 +472,12 @@
             <Font name="Constantia" size="31.0" />
          </font>
       </Text>
-      <Text fx:id="towersP3" layoutX="1655.0" layoutY="965.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Towers:" wrappingWidth="170.0">
+      <Text fx:id="towersP3" layoutX="1655.0" layoutY="973.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Towers:" wrappingWidth="170.0">
          <font>
             <Font name="Constantia" size="31.0" />
          </font>
       </Text>
-      <Text fx:id="coinsP3" layoutX="1655.0" layoutY="1006.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coins:" wrappingWidth="170.0">
+      <Text fx:id="coinsP3" layoutX="1655.0" layoutY="1010.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coins:" wrappingWidth="170.0">
          <font>
             <Font name="Constantia" size="31.0" />
          </font>
@@ -505,11 +505,11 @@
          <font>
             <Font name="Constantia" size="25.0" />
          </font></Button>
-      <Button fx:id="playerID3" layoutX="1655.0" layoutY="895.0" mnemonicParsing="false" onAction="#showDashboard3" prefHeight="31.0" prefWidth="170.0" text="Player3">
+      <Button fx:id="playerID3" layoutX="1655.0" layoutY="900.0" mnemonicParsing="false" onAction="#showDashboard3" prefHeight="31.0" prefWidth="170.0" text="Player3">
          <font>
             <Font name="Constantia" size="25.0" />
          </font></Button>
-      <Button fx:id="playerID4" layoutX="26.0" layoutY="903.0" mnemonicParsing="false" onAction="#showDashboard4" prefHeight="31.0" prefWidth="170.0" text="Player4">
+      <Button fx:id="playerID4" layoutX="26.0" layoutY="900.0" mnemonicParsing="false" onAction="#showDashboard4" prefHeight="31.0" prefWidth="170.0" text="Player4">
          <font>
             <Font name="Constantia" size="25.0" />
          </font></Button>
