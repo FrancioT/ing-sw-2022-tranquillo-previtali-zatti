@@ -34,7 +34,7 @@ public class Card6Decorator extends Model
     {
         List<Colour> islandColoursList=island.getStudentsColours();
         Map<Colour, Integer> coloursMap=new HashMap<>();
-        Player dominantPlayer=null;
+        Player dominantPlayer=playersList.get(0);
         boolean drawFlag=true;
         int pPoints=0, maxPPoints=0;
 
@@ -48,11 +48,21 @@ public class Card6Decorator extends Model
 
             for(Player p : playersList)
             {
+                Player teamMate= p;
+                // if it's the 4 players mode, look for the team-mate, else the team-mate is the player itself
+                if(playersList.size()==4)
+                    for(Player mate: playersList)
+                        if(mate!=p && mate.getTowers().getColour()==p.getTowers().getColour())
+                        {
+                            teamMate=mate;
+                            break;
+                        }
+
                 for(Teacher t : teachersList)
-                    if(p.checkTeacherPresence(t.getColour()))
+                    if(p.checkTeacherPresence(t.getColour()) || teamMate.checkTeacherPresence(t.getColour()))
                         pPoints += coloursMap.get(t.getColour());
 
-                if(pPoints==maxPPoints)
+                if(pPoints==maxPPoints && p.getTowers().getColour()!=dominantPlayer.getTowers().getColour())
                     drawFlag=true;
 
                 if(pPoints>maxPPoints)
