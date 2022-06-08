@@ -445,17 +445,17 @@
             <Font name="Constantia" size="31.0" />
          </font>
       </Text>
-      <ImageView fx:id="characterCard1" fitHeight="150.0" fitWidth="200.0" layoutX="26.0" layoutY="261.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="characterCard1" fitHeight="202.0" fitWidth="200.0" layoutX="26.0" layoutY="182.0" onMouseEntered="#highlightCC1" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Animali.jpg" />
+            <Image url="@CarteTOT_front.jpg" />
          </image></ImageView>
-      <ImageView fx:id="characterCard2" fitHeight="150.0" fitWidth="200.0" layoutX="26.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="characterCard2" fitHeight="202.0" fitWidth="170.0" layoutX="26.0" layoutY="412.0" onMouseEntered="#highlightCC2" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Animali2.jpg" />
+            <Image url="@CarteTOT_front2.jpg" />
          </image></ImageView>
-      <ImageView fx:id="characterCard3" fitHeight="150.0" fitWidth="200.0" layoutX="26.0" layoutY="631.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="characterCard3" fitHeight="202.0" fitWidth="200.0" layoutX="26.0" layoutY="642.0" onMouseEntered="#highlightCC3" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Animali3.jpg" />
+            <Image url="@CarteTOT_front3.jpg" />
          </image></ImageView>
       <Text fx:id="towersP2" layoutX="1655.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Towers:" wrappingWidth="170.0">
          <font>
