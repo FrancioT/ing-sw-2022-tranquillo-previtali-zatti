@@ -48,6 +48,9 @@ class CharacterCard5Test
 
         Controller controller = new Controller(uIDs, true, new ArrayList<RemoteView>());
         ModelTest.changeCard(controller.getModel(), cards);
+        card.getEffect();
+
+        assertEquals(card.getAvailableFlags(),4);
 
         try{
             card.handle(null, null, null);
@@ -90,20 +93,31 @@ class CharacterCard5Test
         data.setIslandPos(1);
         card.handle("Giacomo", data, controller);
 
+        assertEquals(card.getAvailableFlags(),3);
+
         controller.getModel().moveMN(((1 - controller.getModel().getCurrPosMN()) + 12) %12);
         assertTrue(ModelTest.getIslandsList(controller.getModel()).get(1).getTowersColour() == ColourT.white);
         controller.getModel().moveMN(5);
+
+        assertEquals(card.getAvailableFlags(),4);
+
+
         controller.getModel().moveMN(((1 - controller.getModel().getCurrPosMN()) + 12) %12);
         assertTrue(ModelTest.getIslandsList(controller.getModel()).get(1).getTowersColour() == ColourT.black);
 
         for(int i=0; i<3; i++){
             data.setIslandPos(1);
             card.handle("Giacomo", data, controller);
-    }
+        }
+
+        assertEquals(card.getAvailableFlags(),1);
+
         DataBuffer data1 = new DataBuffer("Aldo");
         data1.setIslandPos(1);
         card.handle("Aldo", data1, controller);
         data1.setIslandPos(1);
+
+        assertEquals(card.getAvailableFlags(),0);
 
         try {
             card.handle("Aldo", data1, controller);
