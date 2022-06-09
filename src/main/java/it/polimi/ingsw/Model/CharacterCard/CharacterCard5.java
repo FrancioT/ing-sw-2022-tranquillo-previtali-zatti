@@ -14,8 +14,13 @@ public class CharacterCard5 extends CharacterCard
     /**
      * Constructor of the card which also initialize the number of inhibition tiles available to 4
      */
-    public CharacterCard5(){
+    public CharacterCard5()
+    {
         super(5, 2);
+        this.effect="Place a No Entry tile on an Island of your choice. " +
+                    "The first time Mother Nature ends her movement there,\n" +
+                    "put the No Entry tile back onto this card DO NOT " +
+                    "calculate influence on that Island, or place any Towers.";
         availableFlags = 4;
     }
 
@@ -53,10 +58,7 @@ public class CharacterCard5 extends CharacterCard
     public void ccPrinter()
     {
         super.ccPrinter();
-        System.out.println("Effect: Place a No Entry tile on an Island of your choice. " +
-                "The first time Mother Nature ends her movement there,\n" +
-                "put the No Entry tile back onto this card DO NOT " +
-                "calculate influence on that Island, or place any Towers.");
+        System.out.println("Effect: "+effect);
         System.out.println("Parameters: Island's position");
     }
 }

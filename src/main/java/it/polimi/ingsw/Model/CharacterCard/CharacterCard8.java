@@ -12,7 +12,11 @@ public class CharacterCard8 extends CharacterCard
     /**
      * Constructor of the card
      */
-    public CharacterCard8() { super(8, 2); }
+    public CharacterCard8()
+    {
+        super(8, 2);
+        this.effect="During the influence calculation this turn, you count as having 2 more influence.";
+    }
 
     /**
      * @param userData   in this case is null as this card doesn't need any data from the databuffer
@@ -35,8 +39,7 @@ public class CharacterCard8 extends CharacterCard
     public void ccPrinter()
     {
         super.ccPrinter();
-        System.out.println("Effect: During the influence calculation this turn, you " +
-                "count as having 2 more influence.");
+        System.out.println("Effect: "+effect);
         System.out.println("No parameters");
     }
 }

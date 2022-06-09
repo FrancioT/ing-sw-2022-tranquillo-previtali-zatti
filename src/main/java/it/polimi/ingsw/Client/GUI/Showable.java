@@ -13,4 +13,6 @@ abstract class Showable implements Closeable
 
      @Override
      abstract public void close();
+     abstract public void pause();
+     abstract public void resume();
 }

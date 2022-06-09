@@ -12,7 +12,13 @@ public class CharacterCard2 extends CharacterCard
     /**
      * Constructor of the card
      */
-    public CharacterCard2() { super(2, 2); }
+    public CharacterCard2()
+    {
+        super(2, 2);
+        this.effect="During this turn, you take control of any number of Professors " +
+                    "even if you have the same number of Students as the player who currently " +
+                    "controls them.";
+    }
 
     /**
      * @param userData   in this case is null as this card doesn't need any data from the databuffer
@@ -36,9 +42,7 @@ public class CharacterCard2 extends CharacterCard
     public void ccPrinter()
     {
         super.ccPrinter();
-        System.out.println("Effect: During this turn, you take control of any number of Professors " +
-                           "even if you have the same number of Students as the player who currently " +
-                           "controls them.");
+        System.out.println("Effect: "+effect);
         System.out.println("No parameters");
     }
 }

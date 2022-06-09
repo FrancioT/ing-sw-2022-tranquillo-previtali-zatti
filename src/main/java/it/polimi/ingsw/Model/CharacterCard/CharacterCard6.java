@@ -12,7 +12,11 @@ public class CharacterCard6 extends CharacterCard
     /**
      * Constructor of the card
      */
-    public CharacterCard6() { super(6, 3); }
+    public CharacterCard6()
+    {
+        super(6, 3);
+        this.effect="When resolving a Conquering on an Island, Towers do not count towards influence.";
+    }
 
     /**
      * @param userData   in this case is null as this card doesn't need any data from the databuffer
@@ -35,8 +39,7 @@ public class CharacterCard6 extends CharacterCard
     public void ccPrinter()
     {
         super.ccPrinter();
-        System.out.println("Effect: When resolving a Conquering on an Island, " +
-                "Towers do not count towards influence.");
+        System.out.println("Effect: "+effect);
         System.out.println("No parameters");
     }
 }

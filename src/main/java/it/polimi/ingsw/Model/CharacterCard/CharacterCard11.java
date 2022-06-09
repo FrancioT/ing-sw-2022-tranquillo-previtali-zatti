@@ -22,6 +22,8 @@ public class CharacterCard11 extends CharacterCardWithStudentsList
     {
         super(11, 2);
         this.bag = bag;
+        this.effect="Take 1 Student from this card and place it in your classroom. \n" +
+                    "Then, draw a new Student from the Bag and place it on this card.";
         for (int i = 0; i < 4; i++)
             studentsList.add(bag.randomExtraction());
     }
@@ -48,8 +50,7 @@ public class CharacterCard11 extends CharacterCardWithStudentsList
     public void ccPrinter()
     {
         super.ccPrinter();
-        System.out.println("Effect: Take 1 Student from this card and place it in your Dining Room. \n" +
-                "Then, draw a new Student from the Bag and place it on this card.");
+        System.out.println("Effect: "+effect);
         System.out.println("Parameters: Student's colour");
     }
 }

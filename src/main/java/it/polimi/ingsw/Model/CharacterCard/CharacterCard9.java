@@ -13,7 +13,12 @@ public class CharacterCard9 extends CharacterCard
     /**
      * Constructor of the card
      */
-    public CharacterCard9() { super(9, 3); }
+    public CharacterCard9()
+    {
+        super(9, 3);
+        this.effect="Choose a color of Student: during the influence " +
+                    "calculation this turn, that color adds no influence.";
+    }
 
     /**
      * @param userData   the databuffer with the colour of the students that the player wants to "inhibit" for the
@@ -38,8 +43,7 @@ public class CharacterCard9 extends CharacterCard
     public void ccPrinter()
     {
         super.ccPrinter();
-        System.out.println("Effect: Choose a color of Student: during the influence " +
-                "calculation this turn, that color adds no influence.");
+        System.out.println("Effect: "+effect);
         System.out.println("Parameters: Student's colour");
     }
 }

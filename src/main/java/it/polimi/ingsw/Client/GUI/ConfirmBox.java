@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -11,28 +12,42 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-class AlertBox
+class ConfirmBox
 {
-    static void display(String title, String message)
+    private static boolean answer;
+    static boolean display(String title, String message)
     {
+        answer=false;
         Stage window;
         window= new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(title);
-        window.setMinWidth(250);
+        window.setMinWidth(350);
         window.setMinHeight(200);
 
         Text text= new Text(message);
-        text.setFont(Font.font(null, FontWeight.BOLD, 14));
-        Button button= new Button("Ok");
-        button.setOnAction(event -> window.close());
+        text.setFont(Font.font(null, FontWeight.NORMAL, 14));
+        Button yesButton= new Button("yes");
+        yesButton.setOnAction(event -> {
+            window.close();
+            answer=true;
+        });
+        Button noButton= new Button("no");
+        noButton.setOnAction(event -> {
+            window.close();
+            answer=false;
+        });
         VBox layout= new VBox(20);
         layout.setPadding(new Insets(15, 15, 15, 15));
-        layout.getChildren().addAll(text, button);
+        HBox buttons= new HBox(20);
+        buttons.getChildren().addAll(yesButton, noButton);
+        buttons.setAlignment(Pos.CENTER);
+        layout.getChildren().addAll(text, buttons);
         layout.setAlignment(Pos.CENTER);
 
         Scene scene= new Scene(layout);
         window.setScene(scene);
         window.showAndWait();
+        return answer;
     }
 }

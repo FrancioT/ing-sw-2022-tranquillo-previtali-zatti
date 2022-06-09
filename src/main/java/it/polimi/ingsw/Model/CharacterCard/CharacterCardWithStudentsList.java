@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-abstract class CharacterCardWithStudentsList extends CharacterCard{
+public abstract class CharacterCardWithStudentsList extends CharacterCard{
     protected final List<Student> studentsList;
     static final long serialVersionUID= 80310L;
 

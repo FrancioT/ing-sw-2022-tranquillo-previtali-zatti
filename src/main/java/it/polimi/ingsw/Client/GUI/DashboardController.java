@@ -723,6 +723,20 @@ public class DashboardController extends Showable
     @Override
     public void close() { window.close(); }
 
+    @Override
+    public void pause()
+    {
+        disableEntranceStudents();
+        disablePlaceOnDash();
+        disableCards();
+    }
+
+    @Override
+    public void resume()
+    {
+        setActionOnPhaseDashboard();
+    }
+
     /**
      * This method shows and updates the GUI of the Dashboards
      */

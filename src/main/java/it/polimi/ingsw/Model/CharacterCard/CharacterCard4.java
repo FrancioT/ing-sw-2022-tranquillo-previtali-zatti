@@ -12,7 +12,12 @@ public class CharacterCard4 extends CharacterCard
     /**
      * Constructor of the card
      */
-    public CharacterCard4() { super(4, 1); }
+    public CharacterCard4()
+    {
+        super(4, 1);
+        this.effect="You may move Mother Nature up to 2 additional Islands than is " +
+                    "indicated by the Assistant card you've played.";
+    }
 
     /**
      * @param userData   in this case is null as this card doesn't need any data from the databuffer
@@ -35,11 +40,7 @@ public class CharacterCard4 extends CharacterCard
     public void ccPrinter()
     {
         super.ccPrinter();
-        System.out.println("Effect: You may move " +
-                "Mother Nature up to " +
-                "2 " +
-                "additional Islands than is indicated by the Assistant " +
-                "card you've played.");
+        System.out.println("Effect: "+effect);
         System.out.println("No parameters");
     }
 }

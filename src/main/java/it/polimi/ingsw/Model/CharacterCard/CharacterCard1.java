@@ -20,6 +20,7 @@ public class CharacterCard1 extends CharacterCardWithStudentsList{
     public CharacterCard1(Bag bag) throws RunOutOfStudentsException
     {
         super(1, 1);
+        this.effect="Take 1 student from this card and place it on an island of your choice.";
         this.bag = bag;
         for (int i = 0; i < 4; i++){
             studentsList.add(bag.randomExtraction());
@@ -51,7 +52,7 @@ public class CharacterCard1 extends CharacterCardWithStudentsList{
     public void ccPrinter()
     {
         super.ccPrinter();
-        System.out.println("Effect: Take 1 student from this card and place it on an island of your choice.");
+        System.out.println("Effect: "+effect);
         System.out.println("Parameters: Student's colour, Island's position");
     }
 }

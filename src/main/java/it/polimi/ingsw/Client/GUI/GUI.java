@@ -298,6 +298,18 @@ public class GUI extends Application implements PropertyChangeListener
             stage.show();
     }
 
+    public synchronized void pauseAllStages()
+    {
+        for(Showable stage: allStages)
+            stage.pause();
+    }
+
+    public synchronized void resumeAllStages()
+    {
+        for(Showable stage: allStages)
+            stage.resume();
+    }
+
     /**
      * Method to find and print the winner/s
      */

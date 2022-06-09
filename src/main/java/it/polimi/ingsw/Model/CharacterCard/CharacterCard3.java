@@ -12,8 +12,13 @@ public class CharacterCard3 extends CharacterCard
     /**
      * Constructor of the card
      */
-    public CharacterCard3() {
+    public CharacterCard3()
+    {
         super(3, 3);
+        this.effect="Choose an Island and resolve the Island as if " +
+                    "Mother Nature had ended her movement there. Mother " +
+                    "Nature will still move and the Island where she ends " +
+                    "her movement will also be resolved.";
     }
 
     /**
@@ -40,10 +45,7 @@ public class CharacterCard3 extends CharacterCard
     public void ccPrinter()
     {
         super.ccPrinter();
-        System.out.println("Effect: Choose an Island and resolve the Island as if " +
-                "Mother Nature had ended her movement there. Mother " +
-                "Nature will still move and the Island where she ends " +
-                "her movement will also be resolved.");
+        System.out.println("Effect: "+effect);
         System.out.println("Parameters: Island's position");
     }
 

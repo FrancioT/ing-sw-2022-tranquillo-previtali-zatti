@@ -10,6 +10,7 @@ abstract public class CharacterCard implements Serializable
     protected final int price;
     protected boolean overPrice;
     protected final int cardID;
+    protected String effect;
     static final long serialVersionUID= 80300L;
 
     /**
@@ -44,5 +45,9 @@ abstract public class CharacterCard implements Serializable
     public void ccPrinter()
     {
         System.out.println("Card ID: "+this.cardID+"     cost: "+price+"     overprice: "+(overPrice?1:0));
+    }
+    public String getEffect()
+    {
+        return effect;
     }
 }
