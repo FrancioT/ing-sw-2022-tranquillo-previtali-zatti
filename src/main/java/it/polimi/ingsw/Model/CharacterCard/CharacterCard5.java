@@ -33,6 +33,14 @@ public class CharacterCard5 extends CharacterCard
     }
 
     /**
+     * @return the number of inhibition tiles available on this card
+     */
+    public int getAvailableFlags()
+    {
+        return availableFlags;
+    }
+
+    /**
      * @param userData   the databuffer with the index of the island where the player wants to put an inhibition tile
      */
     @Override

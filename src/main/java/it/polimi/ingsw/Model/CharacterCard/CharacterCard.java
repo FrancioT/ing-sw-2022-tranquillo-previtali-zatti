@@ -46,6 +46,10 @@ abstract public class CharacterCard implements Serializable
     {
         System.out.println("Card ID: "+this.cardID+"     cost: "+price+"     overprice: "+(overPrice?1:0));
     }
+
+    /**
+     * @return the effect of this card as a string
+     */
     public String getEffect()
     {
         return effect;
