@@ -423,7 +423,7 @@ public class IslandController extends Showable
             {
                 unusedCoins.setVisible(true);
                 characterCards.get(i).setVisible(true);
-                for(int j=0; j<=6; j++)
+                for(int j=1; j<=6; j++)
                 {
                     allCCStudents.get(i).get(j).setVisible(true);
                     allCCStudents.get(i).get(j).setMouseTransparent(false);
