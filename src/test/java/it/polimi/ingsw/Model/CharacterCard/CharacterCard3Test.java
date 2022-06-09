@@ -4,10 +4,9 @@ import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.DataBuffer;
 import it.polimi.ingsw.Model.Colour;
 import it.polimi.ingsw.Model.ColourT;
-import it.polimi.ingsw.Model.Exceptions.EmptyException;
-import it.polimi.ingsw.Model.Exceptions.NotEnoughMoneyException;
-import it.polimi.ingsw.Model.Exceptions.RunOutOfStudentsException;
+import it.polimi.ingsw.Model.Exceptions.*;
 import it.polimi.ingsw.Model.ModelAndDecorators.ModelTest;
+import it.polimi.ingsw.Model.ModelAndDecorators.Phase;
 import it.polimi.ingsw.Model.Student;
 import it.polimi.ingsw.RemoteView.RemoteView;
 import org.junit.jupiter.api.Test;
@@ -152,6 +151,59 @@ class CharacterCard3Test
             ModelTest.getIslandsList(controller.getModel()).get(6).getTowersColour();
             fail();
         }catch (EmptyException e){};
+    }
+
+    /**
+     * Method to test the dominance with 4 players
+     */
+    @Test
+    public void dominanceTest() throws Exception{
+        String player1="Aldo";
+        String player2="Giovanni";
+        String player3="Giacomo";
+        String player4="Ajeje";
+        CharacterCard3 card = new CharacterCard3();
+        CharacterCard5 card5 = new CharacterCard5();
+        List<CharacterCard> cards = new ArrayList<>();
+        cards.add(card);
+        cards.add(card5);
+        Map<String, DataBuffer> uIDs = new HashMap<>();
+        uIDs.put(player1, new DataBuffer(player1));
+        uIDs.put(player2, new DataBuffer(player2));
+        uIDs.put(player3, new DataBuffer(player3));
+        uIDs.put(player4, new DataBuffer(player4));
+
+        Controller controller = new Controller(uIDs, true, new ArrayList<RemoteView>());
+        ModelTest.changeCard(controller.getModel(), cards);
+
+        try {
+            controller.getModel().getCardsRoundValues("Brazorf");
+            fail();
+        }catch (NoSuchPlayerException n){}
+
+        assertEquals(controller.getModel().getCardsRoundValues("Giacomo").size(), 10);
+
+        controller.getModel().setCurrentPlayer("Giacomo");
+        controller.getModel().setPhase(Phase.move_students);
+
+        for(int i=0; i<6; i++)
+            controller.getModel().addStudentDashboard("Giacomo", new Student(Colour.red));
+        controller.getModel().addStudentDashboard("Ajeje", new Student(Colour.blue));
+        controller.getModel().addStudentDashboard("Aldo", new Student(Colour.green));
+
+        controller.getModel().addStudentIsland(6, new Student(Colour.red));
+        controller.getModel().addStudentIsland(6, new Student(Colour.blue));
+        controller.getModel().addStudentIsland(6, new Student(Colour.green));
+
+        DataBuffer datas= new DataBuffer("Giacomo");
+        datas.setIslandPos(6);
+
+        controller.getModel().moveMN(2);
+
+        card.handle("Giacomo", datas, controller);
+
+        assertTrue(ModelTest.getIslandsList(controller.getModel()).get(6).getTowersColour() == ColourT.black);
+        assertTrue(controller.getModel().getNumIslands() == 12);
     }
 
     /**

@@ -114,6 +114,47 @@ class CharacterCard8Test
     }
 
     /**
+     * Method to test the dominance with 4 players
+     */
+    @Test
+    public void dominanceTest() throws Exception{
+        String player1="Aldo";
+        String player2="Giovanni";
+        String player3="Giacomo";
+        String player4="Ajeje";
+        CharacterCard8 card = new CharacterCard8();
+        CharacterCard5 card5 = new CharacterCard5();
+        List<CharacterCard> cards = new ArrayList<>();
+        cards.add(card);
+        cards.add(card5);
+        Map<String, DataBuffer> uIDs = new HashMap<>();
+        uIDs.put(player1, new DataBuffer(player1));
+        uIDs.put(player2, new DataBuffer(player2));
+        uIDs.put(player3, new DataBuffer(player3));
+        uIDs.put(player4, new DataBuffer(player4));
+
+        Controller controller = new Controller(uIDs, true, new ArrayList<RemoteView>());
+        ModelTest.changeCard(controller.getModel(), cards);
+
+        for(int i=0; i<6; i++)
+            controller.getModel().addStudentDashboard("Giacomo", new Student(Colour.red));
+        controller.getModel().addStudentDashboard("Ajeje", new Student(Colour.blue));
+        controller.getModel().addStudentDashboard("Aldo", new Student(Colour.green));
+
+        controller.getModel().addStudentIsland(6, new Student(Colour.red));
+        controller.getModel().addStudentIsland(6, new Student(Colour.blue));
+        controller.getModel().addStudentIsland(6, new Student(Colour.green));
+
+        controller.getModel().moveMN(2);
+
+        card.handle("Giacomo", null, controller);
+
+        controller.getModel().moveMN(4);
+
+        assertTrue(ModelTest.getIslandsList(controller.getModel()).get(6).getTowersColour() == ColourT.black);
+    }
+
+    /**
      * test the printer methods
      */
     @Test
