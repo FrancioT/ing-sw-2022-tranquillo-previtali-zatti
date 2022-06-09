@@ -445,15 +445,15 @@
             <Font name="Constantia" size="31.0" />
          </font>
       </Text>
-      <ImageView fx:id="characterCard1" fitHeight="202.0" fitWidth="200.0" layoutX="26.0" layoutY="182.0" onMouseEntered="#highlightCC1" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="characterCard1" fitHeight="202.0" fitWidth="200.0" layoutX="7.0" layoutY="182.0" onMouseEntered="#highlightCC1" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@CarteTOT_front.jpg" />
          </image></ImageView>
-      <ImageView fx:id="characterCard2" fitHeight="202.0" fitWidth="170.0" layoutX="26.0" layoutY="412.0" onMouseEntered="#highlightCC2" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="characterCard2" fitHeight="202.0" fitWidth="170.0" layoutX="7.0" layoutY="412.0" onMouseEntered="#highlightCC2" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@CarteTOT_front2.jpg" />
          </image></ImageView>
-      <ImageView fx:id="characterCard3" fitHeight="202.0" fitWidth="200.0" layoutX="26.0" layoutY="642.0" onMouseEntered="#highlightCC3" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="characterCard3" fitHeight="202.0" fitWidth="200.0" layoutX="7.0" layoutY="642.0" onMouseEntered="#highlightCC3" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@CarteTOT_front3.jpg" />
          </image></ImageView>
@@ -575,5 +575,23 @@
             <Font name="Constantia" size="31.0" />
          </font>
       </Text>
+      <ImageView fx:id="cc1Stud1" fitHeight="40.0" fitWidth="37.0" layoutX="103.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc1Stud2" fitHeight="40.0" fitWidth="37.0" layoutX="103.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc1Stud3" fitHeight="40.0" fitWidth="37.0" layoutX="103.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc1Stud4" fitHeight="40.0" fitWidth="37.0" layoutX="142.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc1Stud5" fitHeight="40.0" fitWidth="37.0" layoutX="142.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc1Stud6" fitHeight="40.0" fitWidth="37.0" layoutX="142.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc2Stud1" fitHeight="40.0" fitWidth="37.0" layoutX="102.0" layoutY="461.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc2Stud2" fitHeight="40.0" fitWidth="37.0" layoutX="102.0" layoutY="503.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc2Stud3" fitHeight="40.0" fitWidth="37.0" layoutX="102.0" layoutY="545.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc2Stud4" fitHeight="40.0" fitWidth="37.0" layoutX="141.0" layoutY="461.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc2Stud5" fitHeight="40.0" fitWidth="37.0" layoutX="141.0" layoutY="503.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc2Stud6" fitHeight="40.0" fitWidth="37.0" layoutX="141.0" layoutY="545.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc3Stud1" fitHeight="40.0" fitWidth="37.0" layoutX="101.0" layoutY="683.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc3Stud2" fitHeight="40.0" fitWidth="37.0" layoutX="101.0" layoutY="725.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc3Stud3" fitHeight="40.0" fitWidth="37.0" layoutX="101.0" layoutY="767.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc3Stud4" fitHeight="40.0" fitWidth="37.0" layoutX="140.0" layoutY="683.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc3Stud5" fitHeight="40.0" fitWidth="37.0" layoutX="140.0" layoutY="725.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc3Stud6" fitHeight="40.0" fitWidth="37.0" layoutX="140.0" layoutY="767.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

@@ -76,6 +76,12 @@ public class IslandController extends Showable
     private Text numTIs1,numTIs2,numTIs3,numTIs4,numTIs5,numTIs6,numTIs7,numTIs8,numTIs9,numTIs10,numTIs11,numTIs12;
     @FXML
     private Button playerID1,playerID2,playerID3,playerID4;
+    @FXML
+    private ImageView cc1Stud1,cc1Stud2,cc1Stud3,cc1Stud4,cc1Stud5,cc1Stud6;
+    @FXML
+    private ImageView cc2Stud1,cc2Stud2,cc2Stud3,cc2Stud4,cc2Stud5,cc2Stud6;
+    @FXML
+    private ImageView cc3Stud1,cc3Stud2,cc3Stud3,cc3Stud4,cc3Stud5,cc3Stud6;
 
     private HashMap<Integer, ImageView> islandsImages = new HashMap<>();
     private HashMap<Integer, HashMap<Colour, Text>> islandsStudents = new HashMap<>();
@@ -103,6 +109,11 @@ public class IslandController extends Showable
     private HashMap<Integer, ImageView> characterCards = new HashMap<>();
     private HashMap<Integer, Button> playersButtons = new HashMap<>();
     private HashMap<Integer, Text> playersTowers = new HashMap<>();
+    private HashMap<Integer,HashMap<Integer, ImageView>> allCCStudents = new HashMap<>();
+    private HashMap<Integer, ImageView> cc1Stud = new HashMap<>();
+    private HashMap<Integer, ImageView> cc2Stud = new HashMap<>();
+    private HashMap<Integer, ImageView> cc3Stud = new HashMap<>();
+    private HashMap<Colour, Image> colourToImage = new HashMap<>();
     private ModelMessage game;
     private ReceiverGui receiver;
     private String nickName;
@@ -146,6 +157,12 @@ public class IslandController extends Showable
         characterCards.put(1, characterCard1);
         characterCards.put(2, characterCard2);
         characterCards.put(3, characterCard3);
+
+        colourToImage.put(Colour.red, redS);
+        colourToImage.put(Colour.pink, pinkS);
+        colourToImage.put(Colour.green, greenS);
+        colourToImage.put(Colour.yellow, yellowS);
+        colourToImage.put(Colour.blue, blueS);
 
         islandsImages.put(1, is1);
         islandsImages.put(2, is2);
@@ -341,6 +358,41 @@ public class IslandController extends Showable
         playersTowers.put(3, towersP3);
         playersTowers.put(4, towersP4);
 
+        cc1Stud.put(1, cc1Stud1);
+        cc1Stud.put(2, cc1Stud2);
+        cc1Stud.put(3, cc1Stud3);
+        cc1Stud.put(4, cc1Stud4);
+        cc1Stud.put(5, cc1Stud5);
+        cc1Stud.put(6, cc1Stud6);
+
+        cc2Stud.put(1, cc2Stud1);
+        cc2Stud.put(2, cc2Stud2);
+        cc2Stud.put(3, cc2Stud3);
+        cc2Stud.put(4, cc2Stud4);
+        cc2Stud.put(5, cc2Stud5);
+        cc2Stud.put(6, cc2Stud6);
+
+        cc3Stud.put(1, cc3Stud1);
+        cc3Stud.put(2, cc3Stud2);
+        cc3Stud.put(3, cc3Stud3);
+        cc3Stud.put(4, cc3Stud4);
+        cc3Stud.put(5, cc3Stud5);
+        cc3Stud.put(6, cc3Stud6);
+
+        allCCStudents.put(1, cc1Stud);
+        allCCStudents.put(2, cc2Stud);
+        allCCStudents.put(3, cc3Stud);
+
+        for(int i=0; i<=3; i++)
+        {
+            for(int j=0; j<=6; j++)
+            {
+                allCCStudents.get(i).get(j).setVisible(false);
+                allCCStudents.get(i).get(j).setMouseTransparent(false);
+                allCCStudents.get(i).get(j).setFocusTraversable(true);;
+            }
+        }
+
         for(int i=1; i<=4; i++)
         {
             (playersTowers.get(i)).setVisible(false);
@@ -370,6 +422,12 @@ public class IslandController extends Showable
             {
                 unusedCoins.setVisible(true);
                 characterCards.get(i).setVisible(true);
+                for(int j=0; j<=6; j++)
+                {
+                    allCCStudents.get(i).get(j).setVisible(true);
+                    allCCStudents.get(i).get(j).setMouseTransparent(true);
+                    allCCStudents.get(i).get(j).setFocusTraversable(false);;
+                }
             }
         else
             for(int i=1; i<=3; i++)
@@ -502,61 +560,115 @@ public class IslandController extends Showable
                 case 1:
                 {
                     characterCards.get(i).setImage(card1);
+                    for(int j=1; j<=3; j++)
+                        allCCStudents.get(i).get(j).setOnMouseClicked(event -> activateCard1(effect));
                     characterCards.get(i).setOnMouseClicked(event -> activateCard1(effect));
+                    List<Colour> cardColours = ((CharacterCardWithStudentsList)game.getCharacterCardList().get(i-1))
+                                                                                   .getColoursOnCard();
+                    int index=1;
+                    for(Colour c: cardColours)
+                    {
+                        allCCStudents.get(i).get(index).setImage(colourToImage.get(c));
+                        index++;
+                    }
+                    for(int j=index; j<=6; j++)
+                        allCCStudents.get(i).get(j).setVisible(false);
                 }break;
                 case 2:
                 {
                     characterCards.get(i).setImage(card2);
+                    for(int j=1; j<=3; j++)
+                        allCCStudents.get(i).get(j).setOnMouseClicked(event -> activateCard2(effect));
                     characterCards.get(i).setOnMouseClicked(event -> activateCard2(effect));
                 }break;
                 case 3:
                 {
                     characterCards.get(i).setImage(card3);
+                    for(int j=1; j<=3; j++)
+                        allCCStudents.get(i).get(j).setOnMouseClicked(event -> activateCard3(effect));
                     characterCards.get(i).setOnMouseClicked(event -> activateCard3(effect));
                 }break;
                 case 4:
                 {
                     characterCards.get(i).setImage(card4);
+                    for(int j=1; j<=3; j++)
+                        allCCStudents.get(i).get(j).setOnMouseClicked(event -> activateCard4(effect));
                     characterCards.get(i).setOnMouseClicked(event -> activateCard4(effect));
                 }break;
                 case 5:
                 {
                     characterCards.get(i).setImage(card5);
+                    for(int j=1; j<=3; j++)
+                        allCCStudents.get(i).get(j).setOnMouseClicked(event -> activateCard5(effect));
                     characterCards.get(i).setOnMouseClicked(event -> activateCard5(effect));
                 }break;
                 case 6:
                 {
                     characterCards.get(i).setImage(card6);
+                    for(int j=1; j<=3; j++)
+                        allCCStudents.get(i).get(j).setOnMouseClicked(event -> activateCard6(effect));
                     characterCards.get(i).setOnMouseClicked(event -> activateCard6(effect));
                 }break;
                 case 7:
                 {
                     characterCards.get(i).setImage(card7);
+                    for(int j=1; j<=3; j++)
+                        allCCStudents.get(i).get(j).setOnMouseClicked(event -> activateCard7(effect));
                     characterCards.get(i).setOnMouseClicked(event -> activateCard7(effect));
+                    List<Colour> cardColours = ((CharacterCardWithStudentsList)game.getCharacterCardList().get(i-1))
+                                                                                   .getColoursOnCard();
+                    int index=1;
+                    for(Colour c: cardColours)
+                    {
+                        allCCStudents.get(i).get(index).setImage(colourToImage.get(c));
+                        index++;
+                    }
+                    for(int j=index; j<=6; j++)
+                        allCCStudents.get(i).get(j).setVisible(false);
                 }break;
                 case 8:
                 {
                     characterCards.get(i).setImage(card8);
+                    for(int j=1; j<=3; j++)
+                        allCCStudents.get(i).get(j).setOnMouseClicked(event -> activateCard8(effect));
                     characterCards.get(i).setOnMouseClicked(event -> activateCard8(effect));
                 }break;
                 case 9:
                 {
                     characterCards.get(i).setImage(card9);
+                    for(int j=1; j<=3; j++)
+                        allCCStudents.get(i).get(j).setOnMouseClicked(event -> activateCard9(effect));
                     characterCards.get(i).setOnMouseClicked(event -> activateCard9(effect));
                 }break;
                 case 10:
                 {
                     characterCards.get(i).setImage(card10);
+                    for(int j=1; j<=3; j++)
+                        allCCStudents.get(i).get(j).setOnMouseClicked(event -> activateCard10(effect));
                     characterCards.get(i).setOnMouseClicked(event -> activateCard10(effect));
                 }break;
                 case 11:
                 {
                     characterCards.get(i).setImage(card11);
+                    for(int j=1; j<=3; j++)
+                        allCCStudents.get(i).get(j).setOnMouseClicked(event -> activateCard11(effect));
                     characterCards.get(i).setOnMouseClicked(event -> activateCard11(effect));
+                    List<Colour> cardColours = ((CharacterCardWithStudentsList)game.getCharacterCardList().get(i-1))
+                                                                                   .getColoursOnCard();
+                    int index=1;
+                    for(Colour c: cardColours)
+                    {
+                        allCCStudents.get(i).get(index).setImage(colourToImage.get(c));
+                        index++;
+                    }
+                    for(int j=index; j<=6; j++)
+                        allCCStudents.get(i).get(j).setVisible(false);
                 }break;
                 case 12:
                 {
                     characterCards.get(i).setImage(card12);
+                    for(int j=1; j<=3; j++)
+                        allCCStudents.get(i).get(j).setOnMouseClicked(event -> activateCard12(effect));
                     characterCards.get(i).setOnMouseClicked(event -> activateCard12(effect));
                 }break;
             }
@@ -594,7 +706,7 @@ public class IslandController extends Showable
     }
     private void activateCard5(String effect)
     {
-        if(!ConfirmBox.display("Activate card", "Effect: "+effect))
+        if(!ConfirmBox.display("Activate card", "Effect: "+effect +"\nCurrently there are " ))
             return;
         activateCardRequiringIsland(5);
     }
