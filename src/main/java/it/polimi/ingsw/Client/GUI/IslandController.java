@@ -681,9 +681,9 @@ public class IslandController extends Showable
     {
         if(!ConfirmBox.display("Activate card?", message))
             return false;
-        if(game.getPhase()==Phase.choose_card)
+        if(game.getPhase()==Phase.choose_card || !game.getCurrPlayerNickname().equals(nickName))
         {
-            AlertBox.display("Error", "You can't activate a character cards during this phase");
+            AlertBox.display("Error", "You can't activate the card now");
             return false;
         }
         return true;
