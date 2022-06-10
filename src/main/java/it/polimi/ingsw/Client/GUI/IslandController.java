@@ -679,13 +679,15 @@ public class IslandController extends Showable
 
     private void activateCard1(CharacterCard card)
     {
-        if(!ConfirmBox.display("Activate card", "Effect: "+card.getEffect()))
+        if(!ConfirmBox.display("Activate card?", "Effect: "+card.getEffect())
+           || game.getPhase()==Phase.choose_card)
             return;
         activateCardRequiringIsland(1);
     }
     private void activateCard2(CharacterCard card)
     {
-        if(!ConfirmBox.display("Activate card", "Effect: "+card.getEffect()))
+        if(!ConfirmBox.display("Activate card?", "Effect: "+card.getEffect())
+           || game.getPhase()==Phase.choose_card)
             return;
         GUI.getInstance().pauseAllStages();
         sendMessage(new Card2_4_6_8(nickName, 2));
@@ -693,13 +695,15 @@ public class IslandController extends Showable
     }
     private void activateCard3(CharacterCard card)
     {
-        if(!ConfirmBox.display("Activate card", "Effect: "+card.getEffect()))
+        if(!ConfirmBox.display("Activate card?", "Effect: "+card.getEffect())
+           || game.getPhase()==Phase.choose_card)
             return;
         activateCardRequiringIsland(3);
     }
     private void activateCard4(CharacterCard card)
     {
-        if(!ConfirmBox.display("Activate card", "Effect: "+card.getEffect()))
+        if(!ConfirmBox.display("Activate card?", "Effect: "+card.getEffect())
+           || game.getPhase()==Phase.choose_card)
             return;
         GUI.getInstance().pauseAllStages();
         sendMessage(new Card2_4_6_8(nickName, 4));
@@ -713,14 +717,15 @@ public class IslandController extends Showable
             AlertBox.display("Error", "There are no more inhibition tiles on this card");
             return;
         }
-        if(!ConfirmBox.display("Activate card", "Effect: "+card.getEffect()+
-                                                                            "\nCurrently there are "+inhibitionTiles))
+        if(!ConfirmBox.display("Activate card?", "Effect: "+card.getEffect()+
+           "\nCurrently there are "+inhibitionTiles) || game.getPhase()==Phase.choose_card)
             return;
         activateCardRequiringIsland(5);
     }
     private void activateCard6(CharacterCard card)
     {
-        if(!ConfirmBox.display("Activate card", "Effect: "+card.getEffect()))
+        if(!ConfirmBox.display("Activate card?", "Effect: "+card.getEffect())
+           || game.getPhase()==Phase.choose_card)
             return;
         GUI.getInstance().pauseAllStages();
         sendMessage(new Card2_4_6_8(nickName, 6));
@@ -728,7 +733,8 @@ public class IslandController extends Showable
     }
     private void activateCard7(CharacterCard card)
     {
-        if(!ConfirmBox.display("Activate card", "Effect: "+card.getEffect()))
+        if(!ConfirmBox.display("Activate card?", "Effect: "+card.getEffect())
+           || game.getPhase()==Phase.choose_card)
             return;
         GUI.getInstance().pauseAllStages();
         Player player= game.getPlayerList().get(0);
@@ -745,7 +751,8 @@ public class IslandController extends Showable
     }
     private void activateCard8(CharacterCard card)
     {
-        if(!ConfirmBox.display("Activate card", "Effect: "+card.getEffect()))
+        if(!ConfirmBox.display("Activate card?", "Effect: "+card.getEffect())
+           || game.getPhase()==Phase.choose_card)
             return;
         GUI.getInstance().pauseAllStages();
         sendMessage(new Card2_4_6_8(nickName, 8));
@@ -753,7 +760,8 @@ public class IslandController extends Showable
     }
     private void activateCard9(CharacterCard card)
     {
-        if(!ConfirmBox.display("Activate card", "Effect: "+card.getEffect()))
+        if(!ConfirmBox.display("Activate card?", "Effect: "+card.getEffect())
+           || game.getPhase()==Phase.choose_card)
             return;
         GUI.getInstance().pauseAllStages();
         sendMessage(new Card9_11_12Data(nickName, 9, ChooseColourBox.singleColour("Choose colour",
@@ -762,7 +770,8 @@ public class IslandController extends Showable
     }
     private void activateCard10(CharacterCard card)
     {
-        if(!ConfirmBox.display("Activate card", "Effect: "+card.getEffect()))
+        if(!ConfirmBox.display("Activate card?", "Effect: "+card.getEffect())
+           || game.getPhase()==Phase.choose_card)
             return;
         GUI.getInstance().pauseAllStages();
         Player player= game.getPlayerList().get(0);
@@ -795,7 +804,8 @@ public class IslandController extends Showable
     }
     private void activateCard11(CharacterCard card)
     {
-        if(!ConfirmBox.display("Activate card", "Effect: "+card.getEffect()))
+        if(!ConfirmBox.display("Activate card?", "Effect: "+card.getEffect())
+           || game.getPhase()==Phase.choose_card)
             return;
         GUI.getInstance().pauseAllStages();
         sendMessage(new Card9_11_12Data(nickName, 9, ChooseColourBox.singleColour("Choose colour",
@@ -804,7 +814,8 @@ public class IslandController extends Showable
     }
     private void activateCard12(CharacterCard card)
     {
-        if(!ConfirmBox.display("Activate card", "Effect: "+card.getEffect()))
+        if(!ConfirmBox.display("Activate card?", "Effect: "+card.getEffect())
+           || game.getPhase()==Phase.choose_card)
             return;
         GUI.getInstance().pauseAllStages();
         sendMessage(new Card9_11_12Data(nickName, 9, ChooseColourBox.singleColour("Choose colour",

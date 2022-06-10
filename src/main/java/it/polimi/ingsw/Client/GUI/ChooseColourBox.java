@@ -30,6 +30,7 @@ class ChooseColourBox
 
     static Colour singleColour(String title, String message)
     {
+        setImageSize();
         choice= null;
         Stage window;
         window= new Stage();
@@ -76,6 +77,7 @@ class ChooseColourBox
 
     static List<Colour> multipleColours(String title, String message)
     {
+        setImageSize();
         multipleChoice= new ArrayList<>();
         Stage window;
         window= new Stage();
@@ -131,5 +133,19 @@ class ChooseColourBox
         window.setScene(scene);
         window.showAndWait();
         return multipleChoice;
+    }
+
+    private static void setImageSize()
+    {
+        redS.setFitWidth(60);
+        redS.setFitHeight(60);
+        pinkS.setFitWidth(60);
+        pinkS.setFitHeight(60);
+        greenS.setFitWidth(60);
+        greenS.setFitHeight(60);
+        yellowS.setFitWidth(60);
+        yellowS.setFitHeight(60);
+        blueS.setFitWidth(60);
+        blueS.setFitHeight(60);
     }
 }
