@@ -308,27 +308,27 @@
       <ImageView fx:id="eSt7" fitHeight="63.0" fitWidth="60.0" layoutX="252.0" layoutY="911.0" onMouseClicked="#select7" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="eSt8" fitHeight="63.0" fitWidth="60.0" layoutX="348.0" layoutY="911.0" onMouseClicked="#select8" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="eSt9" fitHeight="63.0" fitWidth="60.0" layoutX="437.0" layoutY="911.0" onMouseClicked="#select9" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="cc1" fitHeight="150.0" fitWidth="200.0" layoutX="646.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cc1" fitHeight="150.0" fitWidth="200.0" layoutX="646.0" layoutY="128.0" onMouseClicked="#chooseCardMN1" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Animali.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="cc2" fitHeight="150.0" fitWidth="200.0" layoutX="766.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cc2" fitHeight="150.0" fitWidth="200.0" layoutX="766.0" layoutY="128.0" onMouseClicked="#chooseCardMN2" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Animali2.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="cc3" fitHeight="150.0" fitWidth="200.0" layoutX="886.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cc3" fitHeight="150.0" fitWidth="200.0" layoutX="886.0" layoutY="128.0" onMouseClicked="#chooseCardMN3" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Animali3.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="cc4" fitHeight="150.0" fitWidth="200.0" layoutX="646.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cc4" fitHeight="150.0" fitWidth="200.0" layoutX="646.0" layoutY="298.0" onMouseClicked="#chooseCardMN4" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Animali4.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="cc5" fitHeight="150.0" fitWidth="200.0" layoutX="766.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cc5" fitHeight="150.0" fitWidth="200.0" layoutX="766.0" layoutY="298.0" onMouseClicked="#chooseCardMN5" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Animali5.jpg" />
          </image>
@@ -338,22 +338,22 @@
             <Image url="@Animali6.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="cc7" fitHeight="150.0" fitWidth="200.0" layoutX="646.0" layoutY="468.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cc7" fitHeight="150.0" fitWidth="200.0" layoutX="646.0" layoutY="468.0" onMouseClicked="#chooseCardMN7" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Animali7.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="cc8" fitHeight="150.0" fitWidth="200.0" layoutX="766.0" layoutY="468.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cc8" fitHeight="150.0" fitWidth="200.0" layoutX="766.0" layoutY="468.0" onMouseClicked="#chooseCardMN8" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Animali8.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="cc9" fitHeight="150.0" fitWidth="200.0" layoutX="886.0" layoutY="468.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cc9" fitHeight="150.0" fitWidth="200.0" layoutX="886.0" layoutY="468.0" onMouseClicked="#chooseCardMN9" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Animali9.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="cc10" fitHeight="150.0" fitWidth="200.0" layoutX="646.0" layoutY="638.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cc10" fitHeight="150.0" fitWidth="200.0" layoutX="646.0" layoutY="638.0" onMouseClicked="#chooseCardMN10" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Animali10.jpg" />
          </image>
