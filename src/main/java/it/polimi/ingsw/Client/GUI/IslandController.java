@@ -129,17 +129,17 @@ public class IslandController extends Showable
     private Image yellowS = new Image("resizedYellowStudent.png");
     private Image blueS = new Image("resizedBlueStudent.png");
     private Image card1 = new Image("CarteTOT_front.jpg");
-    private Image card2 = new Image("CarteTOT_front3.jpg");
-    private Image card3 = new Image("CarteTOT_front4.jpg");
-    private Image card4 = new Image("CarteTOT_front5.jpg");
-    private Image card5 = new Image("CarteTOT_front6.jpg");
-    private Image card6 = new Image("CarteTOT_front7.jpg");
-    private Image card7 = new Image("CarteTOT_front8.jpg");
-    private Image card8 = new Image("CarteTOT_front9.jpg");
-    private Image card9 = new Image("CarteTOT_front10.jpg");
-    private Image card10 = new Image("CarteTOT_front11.jpg");
-    private Image card11 = new Image("CarteTOT_front12.jpg");
-    private Image card12 = new Image("CarteTOT_front2.jpg");
+    private Image card2 = new Image("CarteTOT_front2.jpg");
+    private Image card3 = new Image("CarteTOT_front3.jpg");
+    private Image card4 = new Image("CarteTOT_front4.jpg");
+    private Image card5 = new Image("CarteTOT_front5.jpg");
+    private Image card6 = new Image("CarteTOT_front6.jpg");
+    private Image card7 = new Image("CarteTOT_front7.jpg");
+    private Image card8 = new Image("CarteTOT_front8.jpg");
+    private Image card9 = new Image("CarteTOT_front9.jpg");
+    private Image card10 = new Image("CarteTOT_front10.jpg");
+    private Image card11 = new Image("CarteTOT_front11.jpg");
+    private Image card12 = new Image("CarteTOT_front12.jpg");
 
     /**
      * This method associates each parameter of the fxml file in
@@ -843,16 +843,18 @@ public class IslandController extends Showable
                 errorInChoice=false;
                 for(Colour student: chosenStudents)
                 {
+                    boolean foundFlag= false;
                     int i;
                     for(i=0; i<copyList.size(); i++)
                     {
                         if(copyList.get(i)==student)
                         {
+                            foundFlag=true;
                             copyList.remove(i);
                             break;
                         }
                     }
-                    if(i==copyList.size())
+                    if(!foundFlag)
                     {
                         errorInChoice=true;
                         message= "There is no such student, please choose again:";
