@@ -333,7 +333,7 @@
             <Image url="@Animali5.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="cc6" fitHeight="150.0" fitWidth="200.0" layoutX="886.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cc6" fitHeight="150.0" fitWidth="200.0" layoutX="886.0" layoutY="298.0" onMouseClicked="#chooseCardMN6" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Animali6.jpg" />
          </image>

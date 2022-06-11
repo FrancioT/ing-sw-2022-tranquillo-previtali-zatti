@@ -14,6 +14,18 @@
             <Image url="@sky.jpg" />
          </image>
       </ImageView>
+      <ImageView fx:id="characterCard1" fitHeight="202.0" fitWidth="200.0" layoutX="7.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@CarteTOT_front.jpg" />
+         </image></ImageView>
+      <ImageView fx:id="characterCard2" fitHeight="202.0" fitWidth="170.0" layoutX="7.0" layoutY="412.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@CarteTOT_front3.jpg" />
+         </image></ImageView>
+      <ImageView fx:id="characterCard3" fitHeight="202.0" fitWidth="200.0" layoutX="7.0" layoutY="642.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@CarteTOT_front4.jpg" />
+         </image></ImageView>
       <ImageView fx:id="cloud1" fitHeight="246.0" fitWidth="222.0" layoutX="854.0" layoutY="300.0" onMouseClicked="#clickCloud1" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@resizedCloud1.png" />
@@ -94,6 +106,44 @@
             <Image url="@resizedCloud4.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="cc1Stud1" fitHeight="40.0" fitWidth="37.0" layoutX="101.0" layoutY="245.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc1Stud2" fitHeight="40.0" fitWidth="37.0" layoutX="101.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc1Stud3" fitHeight="40.0" fitWidth="37.0" layoutX="101.0" layoutY="329.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc1Stud4" fitHeight="40.0" fitWidth="37.0" layoutX="140.0" layoutY="245.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc1Stud5" fitHeight="40.0" fitWidth="37.0" layoutX="140.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc1Stud6" fitHeight="40.0" fitWidth="37.0" layoutX="140.0" layoutY="329.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc2Stud1" fitHeight="40.0" fitWidth="37.0" layoutX="100.0" layoutY="490.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc2Stud2" fitHeight="40.0" fitWidth="37.0" layoutX="100.0" layoutY="532.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc2Stud3" fitHeight="40.0" fitWidth="37.0" layoutX="100.0" layoutY="574.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc2Stud4" fitHeight="40.0" fitWidth="37.0" layoutX="139.0" layoutY="490.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc2Stud5" fitHeight="40.0" fitWidth="37.0" layoutX="139.0" layoutY="532.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc2Stud6" fitHeight="40.0" fitWidth="37.0" layoutX="139.0" layoutY="574.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc3Stud1" fitHeight="40.0" fitWidth="37.0" layoutX="99.0" layoutY="712.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc3Stud2" fitHeight="40.0" fitWidth="37.0" layoutX="99.0" layoutY="754.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc3Stud3" fitHeight="40.0" fitWidth="37.0" layoutX="99.0" layoutY="796.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc3Stud4" fitHeight="40.0" fitWidth="37.0" layoutX="138.0" layoutY="712.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc3Stud5" fitHeight="40.0" fitWidth="37.0" layoutX="138.0" layoutY="754.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc3Stud6" fitHeight="40.0" fitWidth="37.0" layoutX="138.0" layoutY="796.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="overPriceCC2" fitHeight="84.0" fitWidth="56.0" layoutX="89.0" layoutY="409.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@newCoin.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="overPriceCC3" fitHeight="84.0" fitWidth="56.0" layoutX="89.0" layoutY="639.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@newCoin.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="overPriceCC1" fitHeight="56.0" fitWidth="62.0" layoutX="89.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@newCoin.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="currentPhase" fill="WHITE" layoutX="14.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Phase:" wrappingWidth="537.2369995117188">
+         <font>
+            <Font name="Constantia" size="31.0" />
+         </font>
+      </Text>
       <Text fx:id="bluIs1" layoutX="860.0" layoutY="168.0" onMouseClicked="#clickIs1" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="45.98307228088379">
          <font>
             <Font name="System Bold" size="21.0" />
@@ -445,18 +495,6 @@
             <Font name="Constantia" size="31.0" />
          </font>
       </Text>
-      <ImageView fx:id="characterCard1" fitHeight="202.0" fitWidth="200.0" layoutX="7.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@CarteTOT_front.jpg" />
-         </image></ImageView>
-      <ImageView fx:id="characterCard2" fitHeight="202.0" fitWidth="170.0" layoutX="7.0" layoutY="412.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@CarteTOT_front2.jpg" />
-         </image></ImageView>
-      <ImageView fx:id="characterCard3" fitHeight="202.0" fitWidth="200.0" layoutX="7.0" layoutY="642.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@CarteTOT_front3.jpg" />
-         </image></ImageView>
       <Text fx:id="towersP2" layoutX="1655.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Towers:" wrappingWidth="170.0">
          <font>
             <Font name="Constantia" size="31.0" />
@@ -570,28 +608,125 @@
       <ImageView fx:id="s2cloud4" fitHeight="84.0" fitWidth="81.0" layoutX="1182.0" layoutY="450.0" onMouseClicked="#clickCloud4" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="s3cloud4" fitHeight="84.0" fitWidth="81.0" layoutX="1166.0" layoutY="517.0" onMouseClicked="#clickCloud4" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="s4cloud4" fitHeight="84.0" fitWidth="81.0" layoutX="1153.0" layoutY="472.0" onMouseClicked="#clickCloud4" pickOnBounds="true" preserveRatio="true" />
-      <Text fx:id="currentPhase" fill="WHITE" layoutX="14.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Phase:" wrappingWidth="537.2369995117188">
+      <ImageView fx:id="inibIs1" fitHeight="67.0" fitWidth="68.0" layoutX="943.0" layoutY="40.0" onMouseClicked="#clickIs1" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@inibF.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="inibIs2" fitHeight="67.0" fitWidth="68.0" layoutX="1221.0" layoutY="83.0" onMouseClicked="#clickIs2" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@inibF.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="inibIs3" fitHeight="67.0" fitWidth="68.0" layoutX="1494.0" layoutY="175.0" onMouseClicked="#clickIs3" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@inibF.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="inibIs4" fitHeight="67.0" fitWidth="68.0" layoutX="1684.0" layoutY="407.0" onMouseClicked="#clickIs4" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@inibF.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="inibIs5" fitHeight="67.0" fitWidth="68.0" layoutX="1547.0" layoutY="667.0" onMouseClicked="#clickIs5" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@inibF.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="inibIs6" fitHeight="67.0" fitWidth="68.0" layoutX="1268.0" layoutY="767.0" onMouseClicked="#clickIs6" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@inibF.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="inibIs7" fitHeight="67.0" fitWidth="68.0" layoutX="961.0" layoutY="782.0" onMouseClicked="#clickIs7" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@inibF.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="inibIs8" fitHeight="67.0" fitWidth="68.0" layoutX="635.0" layoutY="773.0" onMouseClicked="#clickIs8" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@inibF.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="inibIs9" fitHeight="67.0" fitWidth="68.0" layoutX="400.0" layoutY="650.0" onMouseClicked="#clickIs9" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@inibF.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="inibIs10" fitHeight="67.0" fitWidth="68.0" layoutX="321.0" layoutY="404.0" onMouseClicked="#clickIs10" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@inibF.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="inibIs11" fitHeight="67.0" fitWidth="68.0" layoutX="400.0" layoutY="140.0" onMouseClicked="#clickIs11" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@inibF.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="inibIs12" fitHeight="67.0" fitWidth="68.0" layoutX="689.0" layoutY="62.0" onMouseClicked="#clickIs12" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@inibF.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="inibCount1" fill="RED" layoutX="964.0" layoutY="115.0" onMouseClicked="#clickIs1" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
          <font>
-            <Font name="Constantia" size="31.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Text>
-      <ImageView fx:id="cc1Stud1" fitHeight="40.0" fitWidth="37.0" layoutX="103.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="cc1Stud2" fitHeight="40.0" fitWidth="37.0" layoutX="103.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="cc1Stud3" fitHeight="40.0" fitWidth="37.0" layoutX="103.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="cc1Stud4" fitHeight="40.0" fitWidth="37.0" layoutX="142.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="cc1Stud5" fitHeight="40.0" fitWidth="37.0" layoutX="142.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="cc1Stud6" fitHeight="40.0" fitWidth="37.0" layoutX="142.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="cc2Stud1" fitHeight="40.0" fitWidth="37.0" layoutX="102.0" layoutY="461.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="cc2Stud2" fitHeight="40.0" fitWidth="37.0" layoutX="102.0" layoutY="503.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="cc2Stud3" fitHeight="40.0" fitWidth="37.0" layoutX="102.0" layoutY="545.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="cc2Stud4" fitHeight="40.0" fitWidth="37.0" layoutX="141.0" layoutY="461.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="cc2Stud5" fitHeight="40.0" fitWidth="37.0" layoutX="141.0" layoutY="503.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="cc2Stud6" fitHeight="40.0" fitWidth="37.0" layoutX="141.0" layoutY="545.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="cc3Stud1" fitHeight="40.0" fitWidth="37.0" layoutX="101.0" layoutY="683.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="cc3Stud2" fitHeight="40.0" fitWidth="37.0" layoutX="101.0" layoutY="725.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="cc3Stud3" fitHeight="40.0" fitWidth="37.0" layoutX="101.0" layoutY="767.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="cc3Stud4" fitHeight="40.0" fitWidth="37.0" layoutX="140.0" layoutY="683.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="cc3Stud5" fitHeight="40.0" fitWidth="37.0" layoutX="140.0" layoutY="725.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="cc3Stud6" fitHeight="40.0" fitWidth="37.0" layoutX="140.0" layoutY="767.0" pickOnBounds="true" preserveRatio="true" />
+      <Text fx:id="inibCount2" fill="RED" layoutX="1239.0" layoutY="160.0" onMouseClicked="#clickIs2" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="inibCount3" fill="RED" layoutX="1514.0" layoutY="250.0" onMouseClicked="#clickIs3" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="inibCount4" fill="RED" layoutX="1705.0" layoutY="483.0" onMouseClicked="#clickIs4" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="inibCount5" fill="RED" layoutX="1564.0" layoutY="742.0" onMouseClicked="#clickIs5" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="inibCount6" fill="RED" layoutX="1284.0" layoutY="842.0" onMouseClicked="#clickIs6" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="inibCount7" fill="RED" layoutX="978.0" layoutY="857.0" onMouseClicked="#clickIs7" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="inibCount8" fill="RED" layoutX="650.0" layoutY="848.0" onMouseClicked="#clickIs8" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="inibCount9" fill="RED" layoutX="419.0" layoutY="725.0" onMouseClicked="#clickIs9" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="inibCount10" fill="RED" layoutX="333.0" layoutY="476.0" onMouseClicked="#clickIs10" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="inibCount11" fill="RED" layoutX="419.0" layoutY="213.0" onMouseClicked="#clickIs11" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="inibCount12" fill="RED" layoutX="706.0" layoutY="136.0" onMouseClicked="#clickIs12" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

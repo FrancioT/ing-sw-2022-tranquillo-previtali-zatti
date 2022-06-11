@@ -83,6 +83,12 @@ public class IslandController extends Showable
     private ImageView cc2Stud1,cc2Stud2,cc2Stud3,cc2Stud4,cc2Stud5,cc2Stud6;
     @FXML
     private ImageView cc3Stud1,cc3Stud2,cc3Stud3,cc3Stud4,cc3Stud5,cc3Stud6;
+    @FXML
+    private ImageView inibIs1,inibIs2,inibIs3,inibIs4,inibIs5,inibIs6,inibIs7,inibIs8,inibIs9,inibIs10,inibIs11,inibIs12;
+    @FXML
+    private Text inibCount1,inibCount2,inibCount3,inibCount4,inibCount5,inibCount6,inibCount7,inibCount8,inibCount9,inibCount10,inibCount11,inibCount12;
+    @FXML
+    private ImageView overPriceCC1,overPriceCC2,overPriceCC3;
 
     private HashMap<Integer, ImageView> islandsImages = new HashMap<>();
     private HashMap<Integer, HashMap<Colour, Text>> islandsStudents = new HashMap<>();
@@ -115,6 +121,9 @@ public class IslandController extends Showable
     private HashMap<Integer, ImageView> cc2Stud = new HashMap<>();
     private HashMap<Integer, ImageView> cc3Stud = new HashMap<>();
     private HashMap<Colour, Image> colourToImage = new HashMap<>();
+    private HashMap<Integer, ImageView> inibMNImage = new HashMap<>();
+    private HashMap<Integer, Text> inibMNText = new HashMap<>();
+    private HashMap<Integer, ImageView> overPrice = new HashMap<>();
     private ModelMessage game;
     private ReceiverGui receiver;
     private String nickName;
@@ -384,13 +393,56 @@ public class IslandController extends Showable
         allCCStudents.put(2, cc2Stud);
         allCCStudents.put(3, cc3Stud);
 
+        inibMNText.put(1, inibCount1);
+        inibMNText.put(2, inibCount2);
+        inibMNText.put(3, inibCount3);
+        inibMNText.put(4, inibCount4);
+        inibMNText.put(5, inibCount5);
+        inibMNText.put(6, inibCount6);
+        inibMNText.put(7, inibCount7);
+        inibMNText.put(8, inibCount8);
+        inibMNText.put(9, inibCount9);
+        inibMNText.put(10, inibCount10);
+        inibMNText.put(11, inibCount11);
+        inibMNText.put(12, inibCount12);
+
+        inibMNImage.put(1, inibIs1);
+        inibMNImage.put(2, inibIs2);
+        inibMNImage.put(3, inibIs3);
+        inibMNImage.put(4, inibIs4);
+        inibMNImage.put(5, inibIs5);
+        inibMNImage.put(6, inibIs6);
+        inibMNImage.put(7, inibIs7);
+        inibMNImage.put(8, inibIs8);
+        inibMNImage.put(9, inibIs9);
+        inibMNImage.put(10, inibIs10);
+        inibMNImage.put(11, inibIs11);
+        inibMNImage.put(12, inibIs12);
+
+        for(int i=1; i<=12; i++)
+        {
+            inibMNImage.get(i).setVisible(false);
+            inibMNText.get(i).setVisible(false);
+        }
+
+        overPrice.put(1, overPriceCC1);
+        overPrice.put(2, overPriceCC2);
+        overPrice.put(3, overPriceCC3);
+
+        for(int i=1; i<=3; i++)
+        {
+            overPrice.get(i).setVisible(false);
+            overPrice.get(i).setMouseTransparent(true);
+            overPrice.get(i).setFocusTraversable(false);
+        }
+
         for(int i=1; i<=3; i++)
         {
             for(int j=1; j<=6; j++)
             {
                 allCCStudents.get(i).get(j).setVisible(false);
                 allCCStudents.get(i).get(j).setMouseTransparent(true);
-                allCCStudents.get(i).get(j).setFocusTraversable(false);;
+                allCCStudents.get(i).get(j).setFocusTraversable(false);
             }
         }
 
@@ -411,6 +463,7 @@ public class IslandController extends Showable
         expertActivation(GUI.getInstance().getModel().isExpertMode());
     }
 
+
     /**
      * This method verify if the expert mode is active and set visible or invisible
      * the characters cards
@@ -419,6 +472,7 @@ public class IslandController extends Showable
     private void expertActivation(boolean mod)
     {
         if(mod)
+        {
             for(int i=1; i<=3; i++)
             {
                 unusedCoins.setVisible(true);
@@ -430,13 +484,16 @@ public class IslandController extends Showable
                     allCCStudents.get(i).get(j).setFocusTraversable(true);;
                 }
             }
+        }
         else
+        {
             for(int i=1; i<=3; i++)
             {
                 unusedCoins.setVisible(false);
                 characterCards.get(i).setVisible(false);
                 characterCards.get(i).setOnMouseClicked(event -> {});
             }
+        }
     }
 
     /**
@@ -556,6 +613,7 @@ public class IslandController extends Showable
         for(int i=1; i<=3; i++)
         {
             CharacterCard card= game.getCharacterCardList().get(i-1);
+            overPrice.get(i).setVisible(card.getOverprice());
             switch (card.getCardID())
             {
                 case 1:
@@ -574,6 +632,7 @@ public class IslandController extends Showable
                     }
                     for(int j=index; j<=6; j++)
                         allCCStudents.get(i).get(j).setVisible(false);
+                    overPrice.get(i).setOnMouseClicked(event -> activateCard1(card));
                 }break;
                 case 2:
                 {
@@ -581,6 +640,7 @@ public class IslandController extends Showable
                     for(int j=1; j<=3; j++)
                         allCCStudents.get(i).get(j).setOnMouseClicked(event -> activateCard2(card));
                     characterCards.get(i).setOnMouseClicked(event -> activateCard2(card));
+                    overPrice.get(i).setOnMouseClicked(event -> activateCard2(card));
                 }break;
                 case 3:
                 {
@@ -588,6 +648,7 @@ public class IslandController extends Showable
                     for(int j=1; j<=3; j++)
                         allCCStudents.get(i).get(j).setOnMouseClicked(event -> activateCard3(card));
                     characterCards.get(i).setOnMouseClicked(event -> activateCard3(card));
+                    overPrice.get(i).setOnMouseClicked(event -> activateCard3(card));
                 }break;
                 case 4:
                 {
@@ -595,6 +656,7 @@ public class IslandController extends Showable
                     for(int j=1; j<=3; j++)
                         allCCStudents.get(i).get(j).setOnMouseClicked(event -> activateCard4(card));
                     characterCards.get(i).setOnMouseClicked(event -> activateCard4(card));
+                    overPrice.get(i).setOnMouseClicked(event -> activateCard4(card));
                 }break;
                 case 5:
                 {
@@ -602,6 +664,7 @@ public class IslandController extends Showable
                     for(int j=1; j<=3; j++)
                         allCCStudents.get(i).get(j).setOnMouseClicked(event -> activateCard5(card));
                     characterCards.get(i).setOnMouseClicked(event -> activateCard5(card));
+                    overPrice.get(i).setOnMouseClicked(event -> activateCard5(card));
                 }break;
                 case 6:
                 {
@@ -609,6 +672,7 @@ public class IslandController extends Showable
                     for(int j=1; j<=3; j++)
                         allCCStudents.get(i).get(j).setOnMouseClicked(event -> activateCard6(card));
                     characterCards.get(i).setOnMouseClicked(event -> activateCard6(card));
+                    overPrice.get(i).setOnMouseClicked(event -> activateCard6(card));
                 }break;
                 case 7:
                 {
@@ -626,6 +690,7 @@ public class IslandController extends Showable
                     }
                     for(int j=index; j<=6; j++)
                         allCCStudents.get(i).get(j).setVisible(false);
+                    overPrice.get(i).setOnMouseClicked(event -> activateCard7(card));
                 }break;
                 case 8:
                 {
@@ -633,6 +698,7 @@ public class IslandController extends Showable
                     for(int j=1; j<=3; j++)
                         allCCStudents.get(i).get(j).setOnMouseClicked(event -> activateCard8(card));
                     characterCards.get(i).setOnMouseClicked(event -> activateCard8(card));
+                    overPrice.get(i).setOnMouseClicked(event -> activateCard8(card));
                 }break;
                 case 9:
                 {
@@ -640,6 +706,7 @@ public class IslandController extends Showable
                     for(int j=1; j<=3; j++)
                         allCCStudents.get(i).get(j).setOnMouseClicked(event -> activateCard9(card));
                     characterCards.get(i).setOnMouseClicked(event -> activateCard9(card));
+                    overPrice.get(i).setOnMouseClicked(event -> activateCard9(card));
                 }break;
                 case 10:
                 {
@@ -647,6 +714,7 @@ public class IslandController extends Showable
                     for(int j=1; j<=3; j++)
                         allCCStudents.get(i).get(j).setOnMouseClicked(event -> activateCard10(card));
                     characterCards.get(i).setOnMouseClicked(event -> activateCard10(card));
+                    overPrice.get(i).setOnMouseClicked(event -> activateCard10(card));
                 }break;
                 case 11:
                 {
@@ -664,6 +732,7 @@ public class IslandController extends Showable
                     }
                     for(int j=index; j<=6; j++)
                         allCCStudents.get(i).get(j).setVisible(false);
+                    overPrice.get(i).setOnMouseClicked(event -> activateCard11(card));
                 }break;
                 case 12:
                 {
@@ -671,6 +740,7 @@ public class IslandController extends Showable
                     for(int j=1; j<=3; j++)
                         allCCStudents.get(i).get(j).setOnMouseClicked(event -> activateCard12(card));
                     characterCards.get(i).setOnMouseClicked(event -> activateCard12(card));
+                    overPrice.get(i).setOnMouseClicked(event -> activateCard12(card));
                 }break;
             }
         }
@@ -692,28 +762,28 @@ public class IslandController extends Showable
     {
         if(!checkActivation("Effect: "+card.getEffect()))
             return;
-        activateCardRequiringIsland(1);
+        activateCardRequiringIsland(card.getCardID());
     }
     private void activateCard2(CharacterCard card)
     {
         if(!checkActivation("Effect: "+card.getEffect()))
             return;
         GUI.getInstance().pauseAllStages();
-        sendMessage(new Card2_4_6_8(nickName, 2));
+        sendMessage(new Card2_4_6_8(nickName, card.getCardID()));
         GUI.getInstance().resumeAllStages();
     }
     private void activateCard3(CharacterCard card)
     {
         if(!checkActivation("Effect: "+card.getEffect()))
             return;
-        activateCardRequiringIsland(3);
+        activateCardRequiringIsland(card.getCardID());
     }
     private void activateCard4(CharacterCard card)
     {
         if(!checkActivation("Effect: "+card.getEffect()))
             return;
         GUI.getInstance().pauseAllStages();
-        sendMessage(new Card2_4_6_8(nickName, 4));
+        sendMessage(new Card2_4_6_8(nickName, card.getCardID()));
         GUI.getInstance().resumeAllStages();
     }
     private void activateCard5(CharacterCard card)
@@ -726,14 +796,14 @@ public class IslandController extends Showable
             AlertBox.display("Error", "There are no more inhibition tiles on this card");
             return;
         }
-        activateCardRequiringIsland(5);
+        activateCardRequiringIsland(card.getCardID());
     }
     private void activateCard6(CharacterCard card)
     {
         if(!checkActivation("Effect: "+card.getEffect()))
             return;
         GUI.getInstance().pauseAllStages();
-        sendMessage(new Card2_4_6_8(nickName, 6));
+        sendMessage(new Card2_4_6_8(nickName, card.getCardID()));
         GUI.getInstance().resumeAllStages();
     }
     private void activateCard7(CharacterCard card)
@@ -750,7 +820,7 @@ public class IslandController extends Showable
         result.addAll(chooseColoursUntilCorrect(((CharacterCardWithStudentsList)card).getColoursOnCard(),
                                                 result.size(), result.size(),
                                         "Select "+result.size()+" students from the card"));
-        sendMessage(new Card7_10Data(nickName, 7, result));
+        sendMessage(new Card7_10Data(nickName, card.getCardID(), result));
         GUI.getInstance().resumeAllStages();
     }
     private void activateCard8(CharacterCard card)
@@ -758,7 +828,7 @@ public class IslandController extends Showable
         if(!checkActivation("Effect: "+card.getEffect()))
             return;
         GUI.getInstance().pauseAllStages();
-        sendMessage(new Card2_4_6_8(nickName, 8));
+        sendMessage(new Card2_4_6_8(nickName, card.getCardID()));
         GUI.getInstance().resumeAllStages();
     }
     private void activateCard9(CharacterCard card)
@@ -766,7 +836,7 @@ public class IslandController extends Showable
         if(!checkActivation("Effect: "+card.getEffect()))
             return;
         GUI.getInstance().pauseAllStages();
-        sendMessage(new Card9_11_12Data(nickName, 9, ChooseColourBox.singleColour("Choose colour",
+        sendMessage(new Card9_11_12Data(nickName, card.getCardID(), ChooseColourBox.singleColour("Choose colour",
                                                         "choose a colour to activate the card: ")));
         GUI.getInstance().resumeAllStages();
     }
@@ -800,7 +870,7 @@ public class IslandController extends Showable
             result.add(result1.get(1));
             result.add(result2.get(1));
         }
-        sendMessage(new Card7_10Data(nickName, 10, result));
+        sendMessage(new Card7_10Data(nickName, card.getCardID(), result));
         GUI.getInstance().resumeAllStages();
     }
     private void activateCard11(CharacterCard card)
@@ -808,7 +878,7 @@ public class IslandController extends Showable
         if(!checkActivation("Effect: "+card.getEffect()))
             return;
         GUI.getInstance().pauseAllStages();
-        sendMessage(new Card9_11_12Data(nickName, 9, ChooseColourBox.singleColour("Choose colour",
+        sendMessage(new Card9_11_12Data(nickName, card.getCardID(), ChooseColourBox.singleColour("Choose colour",
                                                         "choose a colour to activate the card: ")));
         GUI.getInstance().resumeAllStages();
     }
@@ -817,7 +887,7 @@ public class IslandController extends Showable
         if(!checkActivation("Effect: "+card.getEffect()))
             return;
         GUI.getInstance().pauseAllStages();
-        sendMessage(new Card9_11_12Data(nickName, 9, ChooseColourBox.singleColour("Choose colour",
+        sendMessage(new Card9_11_12Data(nickName, card.getCardID(), ChooseColourBox.singleColour("Choose colour",
                                                         "choose a colour to activate the card: ")));
         GUI.getInstance().resumeAllStages();
     }
@@ -1118,6 +1188,18 @@ public class IslandController extends Showable
             if(i<=game.getIslandList().size())
             {
                 islandsImages.get(i).setVisible(true);
+
+                if(game.getIslandList().get(i-1).getInhibition())
+                {
+                    inibMNText.get(i).setVisible(true);
+                    inibMNText.get(i).setText(Integer.toString(game.getIslandList().get(i-1).getInhibitionCounter()));
+                    inibMNImage.get(i).setVisible(true);
+                }
+                else
+                {
+                    inibMNImage.get(i).setVisible(false);
+                    inibMNText.get(i).setVisible(false);
+                }
             }
             else
             {
@@ -1139,6 +1221,8 @@ public class IslandController extends Showable
                     islandsStudents.get(i).get(cS).setMouseTransparent(true);
                     islandsStudents.get(i).get(cS).setFocusTraversable(false);
                 }
+                inibMNImage.get(i).setVisible(false);
+                inibMNText.get(i).setVisible(false);
             }
         }
     }
