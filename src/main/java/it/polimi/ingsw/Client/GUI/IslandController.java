@@ -127,6 +127,7 @@ public class IslandController extends Showable
     private HashMap<Integer, ImageView> inibMNImage = new HashMap<>();
     private HashMap<Integer, Text> inibMNText = new HashMap<>();
     private HashMap<Integer, ImageView> overPrice = new HashMap<>();
+    private HashMap<ColourT, Image> colourTToimage = new HashMap<>();
     private ModelMessage game;
     private ReceiverGui receiver;
     private String nickName;
@@ -176,6 +177,10 @@ public class IslandController extends Showable
         colourToImage.put(Colour.green, greenS);
         colourToImage.put(Colour.yellow, yellowS);
         colourToImage.put(Colour.blue, blueS);
+
+        colourTToimage.put(ColourT.black, blackT);
+        colourTToimage.put(ColourT.white, whiteT);
+        colourTToimage.put(ColourT.grey, grayT);
 
         islandsImages.put(1, is1);
         islandsImages.put(2, is2);
@@ -595,32 +600,6 @@ public class IslandController extends Showable
                 clouds.get(i).get(j).setMouseTransparent(true);
                 clouds.get(i).get(j).setFocusTraversable(false);
             }
-        }
-    }
-
-    /**
-     * This method take towerC and islandIndex in input and if there is not a tower's image displayed
-     * on board set it of the corresponding colour towerC on the island islandIndex; if a tower's image
-     * it's already there displayed and the corresponding colour is different the method changes the image
-     * @param islandIndex
-     * @param towerC
-     */
-    public void addAndSwapTower(Integer islandIndex, ColourT towerC)
-    {
-        switch (towerC)
-        {
-            case white:
-            {
-                (towers.get(islandIndex)).setImage(whiteT);
-            }break;
-            case black:
-            {
-                (towers.get(islandIndex)).setImage(blackT);
-            }break;
-            case grey:
-            {
-                (towers.get(islandIndex)).setImage(grayT);
-            }break;
         }
     }
 
@@ -1238,7 +1217,11 @@ public class IslandController extends Showable
                     clouds.get(i).get(j).setVisible(false);
                 else
                 {
-                    switch(game.getCloudList().get(i-1).getStudentsColours().get(j-1))
+                    clouds.get(i).get(j).setImage(colourToImage.get(game.getCloudList().get(i-1)
+                            .getStudentsColours().get(j-1)));
+                    clouds.get(i).get(j).setVisible(true);
+
+                /*    switch(game.getCloudList().get(i-1).getStudentsColours().get(j-1))
                     {
                         case blue:
                         {
@@ -1260,8 +1243,7 @@ public class IslandController extends Showable
                         {
                             clouds.get(i).get(j).setImage(pinkS);
                         }break;
-                    }
-                    clouds.get(i).get(j).setVisible(true);
+                    } */
                 }
             }
         }
@@ -1368,7 +1350,7 @@ public class IslandController extends Showable
             if(game.getIslandList().get(i-1).getNumTowers()>=1)
             {
                 try{
-                    addAndSwapTower(i, game.getIslandList().get(i-1).getTowersColour());
+                    (towers.get(i)).setImage(colourTToimage.get(game.getIslandList().get(i-1).getTowersColour()));
                 }catch (EmptyException e){ throw new RuntimeException("Error in getting towers"); }
                 towersNum.get(i).setText(Integer.toString(game.getIslandList().get(i-1).getNumTowers()));
                 towersNum.get(i).setVisible(true);

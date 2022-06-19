@@ -70,6 +70,7 @@ public class DashboardController extends Showable
     private final HashMap<Integer, ImageView> usedCards = new HashMap<>();
     private final HashMap<Integer, ImageView> edgeCards = new HashMap<>();
     private final HashMap<Integer, ImageView> lumStud = new HashMap<>();
+    private final HashMap<Colour, Image> colourToImage = new HashMap<>();
     private ModelMessage game;
     private ReceiverGui receiver;
     private String nickname;
@@ -86,6 +87,12 @@ public class DashboardController extends Showable
      */
     public void initialize(Parent scene, String nickname)
     {
+        colourToImage.put(Colour.red, redS);
+        colourToImage.put(Colour.pink, pinkS);
+        colourToImage.put(Colour.blue, blueS);
+        colourToImage.put(Colour.green, greenS);
+        colourToImage.put(Colour.yellow, yellowS);
+
         teacherDashboard.put(Colour.pink, pinkT);
         teacherDashboard.put(Colour.green, greenT);
         teacherDashboard.put(Colour.red, redT);
@@ -465,24 +472,8 @@ public class DashboardController extends Showable
                         entranceStudents.get(j).setVisible(false);
                     else
                     {
-                        switch(game.getPlayerList().get(i-1).getStudents().get(j-1))
-                        {
-                            case pink:
-                                (entranceStudents.get(j)).setImage(pinkS);
-                                break;
-                            case red:
-                                (entranceStudents.get(j)).setImage(redS);
-                                break;
-                            case blue:
-                                (entranceStudents.get(j)).setImage(blueS);
-                                break;
-                            case green:
-                                (entranceStudents.get(j)).setImage(greenS);
-                                break;
-                            case yellow:
-                                (entranceStudents.get(j)).setImage(yellowS);
-                                break;
-                        }
+                        (entranceStudents.get(j)).setImage(colourToImage.get(game.getPlayerList().get(i-1)
+                                .getStudents().get(j-1)));
                         (entranceStudents.get(j)).setVisible(true);
                     }
                 }
