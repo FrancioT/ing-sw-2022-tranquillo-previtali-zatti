@@ -1220,30 +1220,6 @@ public class IslandController extends Showable
                     clouds.get(i).get(j).setImage(colourToImage.get(game.getCloudList().get(i-1)
                             .getStudentsColours().get(j-1)));
                     clouds.get(i).get(j).setVisible(true);
-
-                /*    switch(game.getCloudList().get(i-1).getStudentsColours().get(j-1))
-                    {
-                        case blue:
-                        {
-                            clouds.get(i).get(j).setImage(blueS);
-                        }break;
-                        case red:
-                        {
-                            clouds.get(i).get(j).setImage(redS);
-                        }break;
-                        case green:
-                        {
-                            clouds.get(i).get(j).setImage(greenS);
-                        }break;
-                        case yellow:
-                        {
-                            clouds.get(i).get(j).setImage(yellowS);
-                        }break;
-                        case pink:
-                        {
-                            clouds.get(i).get(j).setImage(pinkS);
-                        }break;
-                    } */
                 }
             }
         }

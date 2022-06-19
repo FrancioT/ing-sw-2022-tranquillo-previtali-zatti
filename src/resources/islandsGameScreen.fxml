@@ -566,10 +566,10 @@
       <ImageView fx:id="towerIs10" fitHeight="123.0" fitWidth="159.0" layoutX="231.0" layoutY="352.0" onMouseClicked="#clickIs10" onMouseEntered="#mouseOnIs10" onMouseExited="#mouseOffIs10" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="towerIs11" fitHeight="150.0" fitWidth="150.0" layoutX="334.0" layoutY="77.0" onMouseClicked="#clickIs11" onMouseEntered="#mouseOnIs11" onMouseExited="#mouseOffIs11" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="towerIs12" fitHeight="150.0" fitWidth="200.0" layoutX="579.0" layoutY="7.0" onMouseClicked="#clickIs12" onMouseEntered="#mouseOnIs12" onMouseExited="#mouseOffIs12" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="s1cloud1" fitHeight="84.0" fitWidth="81.0" layoutX="883.0" layoutY="357.0" onMouseClicked="#clickCloud1" onMouseEntered="#mouseOnC1" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="s2cloud1" fitHeight="84.0" fitWidth="81.0" layoutX="953.0" layoutY="337.0" onMouseClicked="#clickCloud1" onMouseEntered="#mouseOnC1" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="s3cloud1" fitHeight="84.0" fitWidth="81.0" layoutX="937.0" layoutY="404.0" onMouseClicked="#clickCloud1" onMouseEntered="#mouseOnC1" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="s4cloud1" fitHeight="84.0" fitWidth="81.0" layoutX="924.0" layoutY="359.0" onMouseClicked="#clickCloud1" onMouseEntered="#mouseOnC1" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="s1cloud1" fitHeight="84.0" fitWidth="81.0" layoutX="883.0" layoutY="357.0" onMouseClicked="#clickCloud1" onMouseEntered="#mouseOnC1" onMouseExited="#mouseOffC1" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="s2cloud1" fitHeight="84.0" fitWidth="81.0" layoutX="953.0" layoutY="337.0" onMouseClicked="#clickCloud1" onMouseEntered="#mouseOnC1" onMouseExited="#mouseOffC1" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="s3cloud1" fitHeight="84.0" fitWidth="81.0" layoutX="937.0" layoutY="404.0" onMouseClicked="#clickCloud1" onMouseEntered="#mouseOnC1" onMouseExited="#mouseOffC1" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="s4cloud1" fitHeight="84.0" fitWidth="81.0" layoutX="924.0" layoutY="359.0" onMouseClicked="#clickCloud1" onMouseEntered="#mouseOnC1" onMouseExited="#mouseOffC1" pickOnBounds="true" preserveRatio="true" />
       <Text fx:id="currentPlayer" fill="WHITE" layoutX="14.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Player:" wrappingWidth="537.2369995117188">
          <font>
             <Font name="Constantia" size="31.0" />
@@ -680,14 +680,14 @@
       <ImageView fx:id="s2cloud2" fitHeight="84.0" fitWidth="81.0" layoutX="961.0" layoutY="559.0" onMouseClicked="#clickCloud2" onMouseEntered="#mouseOnC2" onMouseExited="#mouseOffC2" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="s3cloud2" fitHeight="84.0" fitWidth="81.0" layoutX="945.0" layoutY="626.0" onMouseClicked="#clickCloud2" onMouseEntered="#mouseOnC2" onMouseExited="#mouseOffC2" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="s4cloud2" fitHeight="84.0" fitWidth="81.0" layoutX="932.0" layoutY="581.0" onMouseClicked="#clickCloud2" onMouseEntered="#mouseOnC2" onMouseExited="#mouseOffC2" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="s1cloud3" fitHeight="84.0" fitWidth="81.0" layoutX="657.0" layoutY="488.0" onMouseClicked="#clickCloud3" onMouseEntered="#mouseOnC3" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="s2cloud3" fitHeight="84.0" fitWidth="81.0" layoutX="727.0" layoutY="468.0" onMouseClicked="#clickCloud3" onMouseEntered="#mouseOnC3" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="s3cloud3" fitHeight="84.0" fitWidth="81.0" layoutX="711.0" layoutY="535.0" onMouseClicked="#clickCloud3" onMouseEntered="#mouseOnC3" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="s4cloud3" fitHeight="84.0" fitWidth="81.0" layoutX="698.0" layoutY="490.0" onMouseClicked="#clickCloud3" onMouseEntered="#mouseOnC3" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="s1cloud4" fitHeight="84.0" fitWidth="81.0" layoutX="1112.0" layoutY="470.0" onMouseClicked="#clickCloud4" onMouseEntered="#mouseOnC4" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="s2cloud4" fitHeight="84.0" fitWidth="81.0" layoutX="1182.0" layoutY="450.0" onMouseClicked="#clickCloud4" onMouseEntered="#mouseOnC4" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="s3cloud4" fitHeight="84.0" fitWidth="81.0" layoutX="1166.0" layoutY="517.0" onMouseClicked="#clickCloud4" onMouseEntered="#mouseOnC4" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="s4cloud4" fitHeight="84.0" fitWidth="81.0" layoutX="1153.0" layoutY="472.0" onMouseClicked="#clickCloud4" onMouseEntered="#mouseOnC4" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="s1cloud3" fitHeight="84.0" fitWidth="81.0" layoutX="657.0" layoutY="488.0" onMouseClicked="#clickCloud3" onMouseEntered="#mouseOnC3" onMouseExited="#mouseOffC3" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="s2cloud3" fitHeight="84.0" fitWidth="81.0" layoutX="727.0" layoutY="468.0" onMouseClicked="#clickCloud3" onMouseEntered="#mouseOnC3" onMouseExited="#mouseOffC3" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="s3cloud3" fitHeight="84.0" fitWidth="81.0" layoutX="711.0" layoutY="535.0" onMouseClicked="#clickCloud3" onMouseEntered="#mouseOnC3" onMouseExited="#mouseOffC3" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="s4cloud3" fitHeight="84.0" fitWidth="81.0" layoutX="698.0" layoutY="490.0" onMouseClicked="#clickCloud3" onMouseEntered="#mouseOnC3" onMouseExited="#mouseOffC3" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="s1cloud4" fitHeight="84.0" fitWidth="81.0" layoutX="1112.0" layoutY="470.0" onMouseClicked="#clickCloud4" onMouseEntered="#mouseOnC4" onMouseExited="#mouseOffC4" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="s2cloud4" fitHeight="84.0" fitWidth="81.0" layoutX="1182.0" layoutY="450.0" onMouseClicked="#clickCloud4" onMouseEntered="#mouseOnC4" onMouseExited="#mouseOffC4" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="s3cloud4" fitHeight="84.0" fitWidth="81.0" layoutX="1166.0" layoutY="517.0" onMouseClicked="#clickCloud4" onMouseEntered="#mouseOnC4" onMouseExited="#mouseOffC4" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="s4cloud4" fitHeight="84.0" fitWidth="81.0" layoutX="1153.0" layoutY="472.0" onMouseClicked="#clickCloud4" onMouseEntered="#mouseOnC4" onMouseExited="#mouseOffC4" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="inibIs1" fitHeight="67.0" fitWidth="68.0" layoutX="943.0" layoutY="40.0" onMouseClicked="#clickIs1" onMouseEntered="#mouseOnIs1" onMouseExited="#mouseOffIs1" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@inibF.png" />
