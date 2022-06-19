@@ -140,6 +140,7 @@ public class Model {
         unusedCoins=model.unusedCoins;
         card5=model.card5;
         support=model.support;
+        phase=model.phase;
     }
 
     /**
