@@ -590,7 +590,7 @@
             <Font name="Constantia" size="31.0" />
          </font>
       </Text>
-      <Text fx:id="unusedCoins" fill="#d08535" layoutX="13.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unused Coins:" wrappingWidth="222.44654846191423">
+      <Text fx:id="unusedCoins" fill="#d08535" layoutX="13.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unused Coins:" wrappingWidth="305.113235473633">
          <font>
             <Font name="Constantia" size="31.0" />
          </font>

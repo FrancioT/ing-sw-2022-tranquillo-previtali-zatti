@@ -422,6 +422,24 @@ public class IslandController extends Showable
         inibMNImage.put(11, inibIs11);
         inibMNImage.put(12, inibIs12);
 
+        lumIs1.setVisible(false);
+        lumIs2.setVisible(false);
+        lumIs3.setVisible(false);
+        lumIs4.setVisible(false);
+        lumIs5.setVisible(false);
+        lumIs6.setVisible(false);
+        lumIs7.setVisible(false);
+        lumIs8.setVisible(false);
+        lumIs9.setVisible(false);
+        lumIs10.setVisible(false);
+        lumIs11.setVisible(false);
+        lumIs12.setVisible(false);
+
+        lumC1.setVisible(false);
+        lumC2.setVisible(false);
+        lumC3.setVisible(false);
+        lumC4.setVisible(false);
+
         for(int i=1; i<=12; i++)
         {
             inibMNImage.get(i).setVisible(false);
