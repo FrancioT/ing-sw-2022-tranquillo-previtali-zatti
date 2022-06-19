@@ -46,6 +46,12 @@ public class DashboardController extends Showable
     ImageView eSt1,eSt2,eSt3,eSt4,eSt5,eSt6,eSt7,eSt8,eSt9;
     @FXML
     ImageView cc1,cc2,cc3,cc4,cc5,cc6,cc7,cc8,cc9,cc10,disC;
+    @FXML
+    ImageView edgeC1,edgeC2,edgeC3,edgeC4,edgeC5,edgeC6,edgeC7,edgeC8,edgeC9,edgeC10;
+    @FXML
+    ImageView usedC1,usedC2,usedC3,usedC4,usedC5,usedC6,usedC7,usedC8,usedC9,usedC10;
+    @FXML
+    ImageView lumS1,lumS2,lumS3,lumS4,lumS5,lumS6,lumS7,lumS8,lumS9;
 
     Image redS = new Image("resizedRedStudent.png");
     Image pinkS = new Image("resizedPinkStudent.png");
@@ -61,6 +67,9 @@ public class DashboardController extends Showable
     private final HashMap<Integer, ImageView> yellowStudents = new HashMap<>();
     private final HashMap<Integer, ImageView> blueStudents = new HashMap<>();
     private final HashMap<Integer, ImageView> cardsMap = new HashMap<>();
+    private final HashMap<Integer, ImageView> usedCards = new HashMap<>();
+    private final HashMap<Integer, ImageView> edgeCards = new HashMap<>();
+    private final HashMap<Integer, ImageView> lumStud = new HashMap<>();
     private ModelMessage game;
     private ReceiverGui receiver;
     private String nickname;
@@ -185,6 +194,49 @@ public class DashboardController extends Showable
             (cardsMap.get(i)).setVisible(true);
 
         disC.setVisible(false);
+
+        usedCards.put(1, usedC1);
+        usedCards.put(2, usedC2);
+        usedCards.put(3, usedC3);
+        usedCards.put(4, usedC4);
+        usedCards.put(5, usedC5);
+        usedCards.put(6, usedC6);
+        usedCards.put(7, usedC7);
+        usedCards.put(8, usedC8);
+        usedCards.put(9, usedC9);
+        usedCards.put(10, usedC10);
+
+        edgeCards.put(1, edgeC1);
+        edgeCards.put(2, edgeC2);
+        edgeCards.put(3, edgeC3);
+        edgeCards.put(4, edgeC4);
+        edgeCards.put(5, edgeC5);
+        edgeCards.put(6, edgeC6);
+        edgeCards.put(7, edgeC7);
+        edgeCards.put(8, edgeC8);
+        edgeCards.put(9, edgeC9);
+        edgeCards.put(10, edgeC10);
+
+        for(int i=1; i<=10; i++)
+        {
+            (usedCards.get(i)).setVisible(false);
+            (edgeCards.get(i)).setVisible(false);
+        }
+
+        lumStud.put(1, lumS1);
+        lumStud.put(2, lumS2);
+        lumStud.put(3, lumS3);
+        lumStud.put(4, lumS4);
+        lumStud.put(5, lumS5);
+        lumStud.put(6, lumS6);
+        lumStud.put(7, lumS7);
+        lumStud.put(8, lumS8);
+        lumStud.put(9, lumS9);
+
+        for(int i=1; i<=9; i++)
+        {
+            (lumStud.get(i)).setVisible(false);
+        }
 
         disableTeachers();
         disableStudentsOnDashboard();
@@ -318,6 +370,9 @@ public class DashboardController extends Showable
         {
             (cardsMap.get(i)).setMouseTransparent(true);
             (cardsMap.get(i)).setFocusTraversable(false);
+
+            (usedCards.get(i)).setMouseTransparent(true);
+            (usedCards.get(i)).setFocusTraversable(false);
         }
     }
 
@@ -330,6 +385,9 @@ public class DashboardController extends Showable
         {
             (cardsMap.get(i)).setMouseTransparent(false);
             (cardsMap.get(i)).setFocusTraversable(true);
+
+            (usedCards.get(i)).setMouseTransparent(false);
+            (usedCards.get(i)).setFocusTraversable(true);
         }
     }
 
@@ -486,7 +544,20 @@ public class DashboardController extends Showable
         
         // after setting the indexes we show the available cards
         for(int i=1; i<=10; i++)
-            cardsMap.get(i).setVisible(cardsIndexes.get(i-1)!=-1);
+        {
+            if(cardsIndexes.get(i-1)!=-1)
+            {
+                cardsMap.get(i).setVisible(true);
+                usedCards.get(i).setVisible(false);
+            }
+            else
+            {
+                cardsMap.get(i).setVisible(true);
+                usedCards.get(i).setVisible(true);
+            }
+        }
+
+
 
         try {
             disC.setImage(cardsMap.get(yourself.getDiscardedCard().getRoundValue()).getImage());
@@ -708,6 +779,122 @@ public class DashboardController extends Showable
     {
         selectedEntranceStudent(eSt9, 8);
     }
+
+    @FXML
+    private void mouseOnC1(){ edgeCards.get(1).setVisible(true);}
+
+    @FXML
+    private void mouseOnC2(){ edgeCards.get(2).setVisible(true);}
+
+    @FXML
+    private void mouseOnC3(){ edgeCards.get(3).setVisible(true);}
+
+    @FXML
+    private void mouseOnC4(){ edgeCards.get(4).setVisible(true);}
+
+    @FXML
+    private void mouseOnC5(){ edgeCards.get(5).setVisible(true);}
+
+    @FXML
+    private void mouseOnC6(){ edgeCards.get(6).setVisible(true);}
+
+    @FXML
+    private void mouseOnC7(){ edgeCards.get(7).setVisible(true);}
+
+    @FXML
+    private void mouseOnC8(){ edgeCards.get(8).setVisible(true);}
+
+    @FXML
+    private void mouseOnC9(){ edgeCards.get(9).setVisible(true);}
+
+    @FXML
+    private void mouseOnC10(){ edgeCards.get(10).setVisible(true);}
+
+    @FXML
+    private void mouseOffC1(){ edgeCards.get(1).setVisible(false);}
+
+    @FXML
+    private void mouseOffC2(){ edgeCards.get(2).setVisible(false);}
+
+    @FXML
+    private void mouseOffC3(){ edgeCards.get(3).setVisible(false);}
+
+    @FXML
+    private void mouseOffC4(){ edgeCards.get(4).setVisible(false);}
+
+    @FXML
+    private void mouseOffC5(){ edgeCards.get(5).setVisible(false);}
+
+    @FXML
+    private void mouseOffC6(){ edgeCards.get(6).setVisible(false);}
+
+    @FXML
+    private void mouseOffC7(){ edgeCards.get(7).setVisible(false);}
+
+    @FXML
+    private void mouseOffC8(){ edgeCards.get(8).setVisible(false);}
+
+    @FXML
+    private void mouseOffC9(){ edgeCards.get(9).setVisible(false);}
+
+    @FXML
+    private void mouseOffC10(){ edgeCards.get(10).setVisible(false);}
+
+    @FXML
+    private void mouseOnS1(){ lumStud.get(1).setVisible(true);}
+
+    @FXML
+    private void mouseOnS2(){ lumStud.get(2).setVisible(true);}
+
+    @FXML
+    private void mouseOnS3(){ lumStud.get(3).setVisible(true);}
+
+    @FXML
+    private void mouseOnS4(){ lumStud.get(4).setVisible(true);}
+
+    @FXML
+    private void mouseOnS5(){ lumStud.get(5).setVisible(true);}
+
+    @FXML
+    private void mouseOnS6(){ lumStud.get(6).setVisible(true);}
+
+    @FXML
+    private void mouseOnS7(){ lumStud.get(7).setVisible(true);}
+
+    @FXML
+    private void mouseOnS8(){ lumStud.get(8).setVisible(true);}
+
+    @FXML
+    private void mouseOnS9(){ lumStud.get(9).setVisible(true);}
+
+    @FXML
+    private void mouseOffS1(){ lumStud.get(1).setVisible(false);}
+
+    @FXML
+    private void mouseOffS2(){ lumStud.get(2).setVisible(false);}
+
+    @FXML
+    private void mouseOffS3(){ lumStud.get(3).setVisible(false);}
+
+    @FXML
+    private void mouseOffS4(){ lumStud.get(4).setVisible(false);}
+
+    @FXML
+    private void mouseOffS5(){ lumStud.get(5).setVisible(false);}
+
+    @FXML
+    private void mouseOffS6(){ lumStud.get(6).setVisible(false);}
+
+    @FXML
+    private void mouseOffS7(){ lumStud.get(7).setVisible(false);}
+
+    @FXML
+    private void mouseOffS8(){ lumStud.get(8).setVisible(false);}
+
+    @FXML
+    private void mouseOffS9(){ lumStud.get(9).setVisible(false);}
+
+
 
     /**
      * This method complete the movement of the selected student on dashboard

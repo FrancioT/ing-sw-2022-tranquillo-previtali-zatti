@@ -14,9 +14,109 @@
             <Image url="@colorBackground.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="disC" fitHeight="150.0" fitWidth="200.0" layoutX="929.0" layoutY="833.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Animali10.jpg" />
+         </image>
+      </ImageView>
       <ImageView fitHeight="732.0" fitWidth="1010.0" layoutX="-222.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
          <image>
             <Image url="@dashboardImage.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="edgeC1" fitHeight="162.0" fitWidth="108.0" layoutX="642.0" layoutY="123.0" pickOnBounds="true">
+         <image>
+            <Image url="@BordoCarte.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="edgeC2" fitHeight="162.0" fitWidth="108.0" layoutX="761.0" layoutY="123.0" pickOnBounds="true">
+         <image>
+            <Image url="@BordoCarte.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="edgeC3" fitHeight="162.0" fitWidth="108.0" layoutX="881.0" layoutY="123.0" pickOnBounds="true">
+         <image>
+            <Image url="@BordoCarte.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="edgeC4" fitHeight="162.0" fitWidth="108.0" layoutX="642.0" layoutY="293.0" pickOnBounds="true">
+         <image>
+            <Image url="@BordoCarte.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="edgeC5" fitHeight="162.0" fitWidth="108.0" layoutX="761.0" layoutY="293.0" pickOnBounds="true">
+         <image>
+            <Image url="@BordoCarte.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="edgeC6" fitHeight="162.0" fitWidth="108.0" layoutX="881.0" layoutY="293.0" pickOnBounds="true">
+         <image>
+            <Image url="@BordoCarte.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="edgeC7" fitHeight="162.0" fitWidth="108.0" layoutX="642.0" layoutY="463.0" pickOnBounds="true">
+         <image>
+            <Image url="@BordoCarte.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="edgeC8" fitHeight="162.0" fitWidth="108.0" layoutX="761.0" layoutY="463.0" pickOnBounds="true">
+         <image>
+            <Image url="@BordoCarte.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="edgeC9" fitHeight="162.0" fitWidth="108.0" layoutX="881.0" layoutY="463.0" pickOnBounds="true">
+         <image>
+            <Image url="@BordoCarte.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="edgeC10" fitHeight="162.0" fitWidth="108.0" layoutX="642.0" layoutY="633.0" pickOnBounds="true">
+         <image>
+            <Image url="@BordoCarte.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="lumS1" fitHeight="150.0" fitWidth="200.0" layoutX="21.0" layoutY="789.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@luminescenzaMigliore.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="lumS2" fitHeight="150.0" fitWidth="200.0" layoutX="116.0" layoutY="791.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@luminescenzaMigliore.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="lumS3" fitHeight="150.0" fitWidth="200.0" layoutX="207.0" layoutY="789.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@luminescenzaMigliore.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="lumS4" fitHeight="150.0" fitWidth="200.0" layoutX="301.0" layoutY="789.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@luminescenzaMigliore.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="lumS5" fitHeight="150.0" fitWidth="200.0" layoutX="394.0" layoutY="789.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@luminescenzaMigliore.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="lumS6" fitHeight="150.0" fitWidth="200.0" layoutX="117.0" layoutY="864.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@luminescenzaMigliore.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="lumS7" fitHeight="150.0" fitWidth="200.0" layoutX="207.0" layoutY="866.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@luminescenzaMigliore.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="lumS8" fitHeight="150.0" fitWidth="200.0" layoutX="301.0" layoutY="866.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@luminescenzaMigliore.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="lumS9" fitHeight="150.0" fitWidth="200.0" layoutX="394.0" layoutY="866.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@luminescenzaMigliore.png" />
          </image>
       </ImageView>
       <Text fx:id="nickPlayer" fill="WHITE" layoutX="587.0" layoutY="42.0" stroke="#1f67ba" strokeType="OUTSIDE" strokeWidth="2.0" text="NickPlayer" wrappingWidth="448.00016276041674">
@@ -299,61 +399,61 @@
             <Image url="@blue_student.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="eSt1" fitHeight="63.0" fitWidth="60.0" layoutX="67.0" layoutY="835.0" onMouseClicked="#select1" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="eSt2" fitHeight="63.0" fitWidth="60.0" layoutX="160.0" layoutY="835.0" onMouseClicked="#select2" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="eSt3" fitHeight="63.0" fitWidth="60.0" layoutX="252.0" layoutY="835.0" onMouseClicked="#select3" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="eSt4" fitHeight="63.0" fitWidth="60.0" layoutX="348.0" layoutY="835.0" onMouseClicked="#select4" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="eSt5" fitHeight="63.0" fitWidth="60.0" layoutX="439.0" layoutY="835.0" onMouseClicked="#select5" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="eSt6" fitHeight="63.0" fitWidth="60.0" layoutX="160.0" layoutY="911.0" onMouseClicked="#select6" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="eSt7" fitHeight="63.0" fitWidth="60.0" layoutX="252.0" layoutY="911.0" onMouseClicked="#select7" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="eSt8" fitHeight="63.0" fitWidth="60.0" layoutX="348.0" layoutY="911.0" onMouseClicked="#select8" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="eSt9" fitHeight="63.0" fitWidth="60.0" layoutX="437.0" layoutY="911.0" onMouseClicked="#select9" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="cc1" fitHeight="150.0" fitWidth="200.0" layoutX="646.0" layoutY="128.0" onMouseClicked="#chooseCardMN1" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="eSt1" fitHeight="63.0" fitWidth="60.0" layoutX="67.0" layoutY="835.0" onMouseClicked="#select1" onMouseEntered="#mouseOnS1" onMouseExited="#mouseOffS1" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="eSt2" fitHeight="63.0" fitWidth="60.0" layoutX="160.0" layoutY="835.0" onMouseClicked="#select2" onMouseEntered="#mouseOnS2" onMouseExited="#mouseOffS2" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="eSt3" fitHeight="63.0" fitWidth="60.0" layoutX="252.0" layoutY="835.0" onMouseClicked="#select3" onMouseEntered="#mouseOnS3" onMouseExited="#mouseOffS3" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="eSt4" fitHeight="63.0" fitWidth="60.0" layoutX="348.0" layoutY="835.0" onMouseClicked="#select4" onMouseEntered="#mouseOnS4" onMouseExited="#mouseOffS4" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="eSt5" fitHeight="63.0" fitWidth="60.0" layoutX="439.0" layoutY="835.0" onMouseClicked="#select5" onMouseEntered="#mouseOnS5" onMouseExited="#mouseOffS5" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="eSt6" fitHeight="63.0" fitWidth="60.0" layoutX="160.0" layoutY="911.0" onMouseClicked="#select6" onMouseEntered="#mouseOnS6" onMouseExited="#mouseOffS6" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="eSt7" fitHeight="63.0" fitWidth="60.0" layoutX="252.0" layoutY="911.0" onMouseClicked="#select7" onMouseEntered="#mouseOnS7" onMouseExited="#mouseOffS7" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="eSt8" fitHeight="63.0" fitWidth="60.0" layoutX="348.0" layoutY="911.0" onMouseClicked="#select8" onMouseEntered="#mouseOnS8" onMouseExited="#mouseOffS8" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="eSt9" fitHeight="63.0" fitWidth="60.0" layoutX="437.0" layoutY="911.0" onMouseClicked="#select9" onMouseEntered="#mouseOnS9" onMouseExited="#mouseOffS9" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cc1" fitHeight="150.0" fitWidth="200.0" layoutX="646.0" layoutY="128.0" onMouseClicked="#chooseCardMN1" onMouseEntered="#mouseOnC1" onMouseExited="#mouseOffC1" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Animali.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="cc2" fitHeight="150.0" fitWidth="200.0" layoutX="766.0" layoutY="128.0" onMouseClicked="#chooseCardMN2" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cc2" fitHeight="150.0" fitWidth="200.0" layoutX="766.0" layoutY="128.0" onMouseClicked="#chooseCardMN2" onMouseEntered="#mouseOnC2" onMouseExited="#mouseOffC2" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Animali2.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="cc3" fitHeight="150.0" fitWidth="200.0" layoutX="886.0" layoutY="128.0" onMouseClicked="#chooseCardMN3" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cc3" fitHeight="150.0" fitWidth="200.0" layoutX="886.0" layoutY="128.0" onMouseClicked="#chooseCardMN3" onMouseEntered="#mouseOnC3" onMouseExited="#mouseOffC3" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Animali3.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="cc4" fitHeight="150.0" fitWidth="200.0" layoutX="646.0" layoutY="298.0" onMouseClicked="#chooseCardMN4" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cc4" fitHeight="150.0" fitWidth="200.0" layoutX="646.0" layoutY="298.0" onMouseClicked="#chooseCardMN4" onMouseEntered="#mouseOnC4" onMouseExited="#mouseOffC4" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Animali4.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="cc5" fitHeight="150.0" fitWidth="200.0" layoutX="766.0" layoutY="298.0" onMouseClicked="#chooseCardMN5" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cc5" fitHeight="150.0" fitWidth="200.0" layoutX="766.0" layoutY="298.0" onMouseClicked="#chooseCardMN5" onMouseEntered="#mouseOnC5" onMouseExited="#mouseOffC5" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Animali5.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="cc6" fitHeight="150.0" fitWidth="200.0" layoutX="886.0" layoutY="298.0" onMouseClicked="#chooseCardMN6" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cc6" fitHeight="150.0" fitWidth="200.0" layoutX="886.0" layoutY="298.0" onMouseClicked="#chooseCardMN6" onMouseEntered="#mouseOnC6" onMouseExited="#mouseOffC6" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Animali6.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="cc7" fitHeight="150.0" fitWidth="200.0" layoutX="646.0" layoutY="468.0" onMouseClicked="#chooseCardMN7" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cc7" fitHeight="150.0" fitWidth="200.0" layoutX="646.0" layoutY="468.0" onMouseClicked="#chooseCardMN7" onMouseEntered="#mouseOnC7" onMouseExited="#mouseOffC7" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Animali7.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="cc8" fitHeight="150.0" fitWidth="200.0" layoutX="766.0" layoutY="468.0" onMouseClicked="#chooseCardMN8" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cc8" fitHeight="150.0" fitWidth="200.0" layoutX="766.0" layoutY="468.0" onMouseClicked="#chooseCardMN8" onMouseEntered="#mouseOnC8" onMouseExited="#mouseOffC8" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Animali8.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="cc9" fitHeight="150.0" fitWidth="200.0" layoutX="886.0" layoutY="468.0" onMouseClicked="#chooseCardMN9" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cc9" fitHeight="150.0" fitWidth="200.0" layoutX="886.0" layoutY="468.0" onMouseClicked="#chooseCardMN9" onMouseEntered="#mouseOnC9" onMouseExited="#mouseOffC9" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Animali9.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="cc10" fitHeight="150.0" fitWidth="200.0" layoutX="646.0" layoutY="638.0" onMouseClicked="#chooseCardMN10" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cc10" fitHeight="150.0" fitWidth="200.0" layoutX="646.0" layoutY="638.0" onMouseClicked="#chooseCardMN10" onMouseEntered="#mouseOnC10" onMouseExited="#mouseOffC10" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Animali10.jpg" />
          </image>
@@ -378,9 +478,54 @@
             <Font name="Constantia" size="31.0" />
          </font>
       </Text>
-      <ImageView fx:id="disC" fitHeight="150.0" fitWidth="200.0" layoutX="929.0" layoutY="833.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="usedC1" fitHeight="150.0" fitWidth="200.0" layoutX="646.0" layoutY="129.0" onMouseClicked="#chooseCardMN1" onMouseEntered="#mouseOnC1" onMouseExited="#mouseOffC1" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Animali10.jpg" />
+            <Image url="@CartaUsata.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="usedC2" fitHeight="150.0" fitWidth="200.0" layoutX="766.0" layoutY="129.0" onMouseClicked="#chooseCardMN2" onMouseEntered="#mouseOnC2" onMouseExited="#mouseOffC2" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@CartaUsata.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="usedC3" fitHeight="150.0" fitWidth="200.0" layoutX="886.0" layoutY="129.0" onMouseClicked="#chooseCardMN3" onMouseEntered="#mouseOnC3" onMouseExited="#mouseOffC3" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@CartaUsata.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="usedC4" fitHeight="150.0" fitWidth="200.0" layoutX="646.0" layoutY="298.0" onMouseClicked="#chooseCardMN4" onMouseEntered="#mouseOnC4" onMouseExited="#mouseOffC4" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@CartaUsata.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="usedC5" fitHeight="150.0" fitWidth="200.0" layoutX="766.0" layoutY="298.0" onMouseClicked="#chooseCardMN5" onMouseEntered="#mouseOnC5" onMouseExited="#mouseOffC5" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@CartaUsata.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="usedC6" fitHeight="150.0" fitWidth="200.0" layoutX="886.0" layoutY="298.0" onMouseClicked="#chooseCardMN6" onMouseEntered="#mouseOnC6" onMouseExited="#mouseOffC6" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@CartaUsata.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="usedC7" fitHeight="150.0" fitWidth="200.0" layoutX="646.0" layoutY="468.0" onMouseClicked="#chooseCardMN7" onMouseEntered="#mouseOnC7" onMouseExited="#mouseOffC7" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@CartaUsata.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="usedC8" fitHeight="150.0" fitWidth="200.0" layoutX="766.0" layoutY="468.0" onMouseClicked="#chooseCardMN8" onMouseEntered="#mouseOnC8" onMouseExited="#mouseOffC8" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@CartaUsata.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="usedC9" fitHeight="150.0" fitWidth="200.0" layoutX="886.0" layoutY="468.0" onMouseClicked="#chooseCardMN9" onMouseEntered="#mouseOnC9" onMouseExited="#mouseOffC9" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@CartaUsata.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="usedC10" fitHeight="150.0" fitWidth="200.0" layoutX="646.0" layoutY="638.0" onMouseClicked="#chooseCardMN10" onMouseEntered="#mouseOnC10" onMouseExited="#mouseOffC10" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@CartaUsata.png" />
          </image>
       </ImageView>
    </children>

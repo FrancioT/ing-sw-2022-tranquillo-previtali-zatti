@@ -89,7 +89,10 @@ public class IslandController extends Showable
     private Text inibCount1,inibCount2,inibCount3,inibCount4,inibCount5,inibCount6,inibCount7,inibCount8,inibCount9,inibCount10,inibCount11,inibCount12;
     @FXML
     private ImageView overPriceCC1,overPriceCC2,overPriceCC3;
-
+    @FXML
+    private ImageView lumIs1,lumIs2,lumIs3,lumIs4,lumIs5,lumIs6,lumIs7,lumIs8,lumIs9,lumIs10,lumIs11,lumIs12;
+    @FXML
+    private ImageView lumC1,lumC2,lumC3,lumC4;
     private HashMap<Integer, ImageView> islandsImages = new HashMap<>();
     private HashMap<Integer, HashMap<Colour, Text>> islandsStudents = new HashMap<>();
     private HashMap<Colour, Text> island1 = new HashMap<>();
@@ -1021,6 +1024,71 @@ public class IslandController extends Showable
     {
         selectedIsland(11);
     }
+    @FXML
+    private void mouseOnIs1(){ lumIs1.setVisible(true);}
+    @FXML
+    private void mouseOnIs2(){ lumIs2.setVisible(true);}
+    @FXML
+    private void mouseOnIs3(){ lumIs3.setVisible(true);}
+    @FXML
+    private void mouseOnIs4(){ lumIs4.setVisible(true);}
+    @FXML
+    private void mouseOnIs5(){ lumIs5.setVisible(true);}
+    @FXML
+    private void mouseOnIs6(){ lumIs6.setVisible(true);}
+    @FXML
+    private void mouseOnIs7(){ lumIs7.setVisible(true);}
+    @FXML
+    private void mouseOnIs8(){ lumIs8.setVisible(true);}
+    @FXML
+    private void mouseOnIs9(){ lumIs9.setVisible(true);}
+    @FXML
+    private void mouseOnIs10(){ lumIs10.setVisible(true);}
+    @FXML
+    private void mouseOnIs11(){ lumIs11.setVisible(true);}
+    @FXML
+    private void mouseOnIs12(){ lumIs12.setVisible(true);}
+    @FXML
+    private void mouseOnC1(){ lumC1.setVisible(true);}
+    @FXML
+    private void mouseOnC2(){ lumC2.setVisible(true);}
+    @FXML
+    private void mouseOnC3(){ lumC3.setVisible(true);}
+    @FXML
+    private void mouseOnC4(){ lumC4.setVisible(true);}
+    @FXML
+    private void mouseOffIs1(){ lumIs1.setVisible(false);}
+    @FXML
+    private void mouseOffIs2(){ lumIs2.setVisible(false);}
+    @FXML
+    private void mouseOffIs3(){ lumIs3.setVisible(false);}
+    @FXML
+    private void mouseOffIs4(){ lumIs4.setVisible(false);}
+    @FXML
+    private void mouseOffIs5(){ lumIs5.setVisible(false);}
+    @FXML
+    private void mouseOffIs6(){ lumIs6.setVisible(false);}
+    @FXML
+    private void mouseOffIs7(){ lumIs7.setVisible(false);}
+    @FXML
+    private void mouseOffIs8(){ lumIs8.setVisible(false);}
+    @FXML
+    private void mouseOffIs9(){ lumIs9.setVisible(false);}
+    @FXML
+    private void mouseOffIs10(){ lumIs10.setVisible(false);}
+    @FXML
+    private void mouseOffIs11(){ lumIs11.setVisible(false);}
+    @FXML
+    private void mouseOffIs12(){ lumIs12.setVisible(false);}
+    @FXML
+    private void mouseOffC1(){ lumC1.setVisible(false);}
+    @FXML
+    private void mouseOffC2(){ lumC2.setVisible(false);}
+    @FXML
+    private void mouseOffC3(){ lumC3.setVisible(false);}
+    @FXML
+    private void mouseOffC4(){ lumC4.setVisible(false);}
+
     private void selectedIsland(int index)
     {
         if(ccIslandChoice)
