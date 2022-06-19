@@ -813,8 +813,10 @@ public class Model {
      * This method sets the phase to the one passed as an argument
      * @param newPhase the new phase
      */
-    public void setPhase(Phase newPhase)
+    public synchronized void setPhase(Phase newPhase)
     {
+        if(newPhase==null)
+            throw new NullPointerException("The new phase was null");
         this.phase= newPhase;
         ModelMessage message= new ModelMessage(characterCardList.size()!=0, null,
                                                 null, null, null, currentPlayer.getuID(),
