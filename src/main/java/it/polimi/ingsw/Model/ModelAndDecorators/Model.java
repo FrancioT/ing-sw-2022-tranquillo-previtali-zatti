@@ -48,23 +48,23 @@ public class Model {
         for(int i=0; i<uIDs.size(); i++)
         {
             Towers towers= towersList.pop();
-            playersList.add(new Player(uIDs.get(i), towers, this));
+            playersList.add(new Player(uIDs.get(i), towers));
             if(uIDs.size()==4 && i%2==0)
                 towersList.push(towers);
         }
         currentPlayer=playersList.get(0);
         // creation of islands and mother nature
         Bag bag=new Bag();
-        islandsList.add(new Island(true, this));
+        islandsList.add(new Island(true));
         for(int i=1; i<12; i++)
         {
             if (i != 6)
             {
-                try{ islandsList.add(new Island(bag.randomExtraction(), this)); }
+                try{ islandsList.add(new Island(bag.randomExtraction())); }
                 catch(RunOutOfStudentsException e) { throw new RuntimeException(); }
             }
             else
-                islandsList.add(new Island(false, this));
+                islandsList.add(new Island(false));
         }
         motherNature=new MotherNature(islandsList.get(0));
         // creation of clouds and bag
@@ -238,14 +238,19 @@ public class Model {
     {
         if(uID==null) throw new NullPointerException();
 
-        Player tmp = null;
+        Player player = null;
         for (Player p : playersList)
             if (p.getuID().equals(uID))
-                tmp = p;
-        if(tmp==null)
+                player = p;
+        if(player==null)
             throw new NoSuchPlayerException();
-        tmp.addStudent(student);
-        teacherDominance(tmp, student.getColour());
+        if(player.addStudent(student, unusedCoins>0))
+        {
+            if(unusedCoins<=0)
+                throw new IllegalStateException("There were no more unused coins, but a player tried to take one anyway");
+            unusedCoins--;
+        }
+        teacherDominance(player, student.getColour());
 
         ModelMessage message= new ModelMessage(characterCardList.size()!=0, null, null,
                                                new ArrayList<>(playersList), null, currentPlayer.getuID(),
@@ -501,7 +506,15 @@ public class Model {
             }
 
             if(!drawFlag)
-                island.towersSwitcher((dominantPlayer.getTowers()));
+            {
+                try{
+                    island.towersSwitcher((dominantPlayer.getTowers()));
+                    checkIslandLinking();
+                }catch(RunOutOfTowersException e){
+                    checkIslandLinking();
+                    throw e;
+                }
+            }
         }
         else
         {
@@ -521,7 +534,7 @@ public class Model {
      * If there are some, those islands are linked and the set of island is changed
      * @throws LinkFailedException thrown by the islandLinker method of the class Island
      */
-    public synchronized void checkIslandLinking() throws LinkFailedException
+    protected synchronized void checkIslandLinking() throws LinkFailedException
     {
         Island island1;
         Island island2;
@@ -756,18 +769,6 @@ public class Model {
             throw new NoSuchPlayerException();
 
         return player.getHandCards().stream().map(StandardCard::getRoundValue).collect(Collectors.toList());
-    }
-
-    /**
-     * This method removes a coin (if there is at least one) from the unused coins in the model
-     * @throws NoMoreCoinsException thrown if there are no more coins available
-     */
-    public synchronized void getCoin() throws NoMoreCoinsException
-    {
-        if(unusedCoins<=0)
-            throw new NoMoreCoinsException();
-        else
-            unusedCoins--;
     }
 
     /**

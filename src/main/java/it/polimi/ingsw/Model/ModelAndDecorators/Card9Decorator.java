@@ -90,7 +90,15 @@ public class Card9Decorator extends Model
             }
 
             if(!drawFlag)
-                island.towersSwitcher((dominantPlayer.getTowers()));
+            {
+                try{
+                    island.towersSwitcher((dominantPlayer.getTowers()));
+                    checkIslandLinking();
+                }catch(RunOutOfTowersException e){
+                    checkIslandLinking();
+                    throw e;
+                }
+            }
         }
         else
         {

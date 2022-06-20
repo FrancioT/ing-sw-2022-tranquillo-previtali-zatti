@@ -83,8 +83,16 @@ public class Card3Actuator
                 pPoints=0;
             }
 
-            if(drawFlag==false)
-                island.towersSwitcher((dominantPlayer.getTowers()));
+            if(!drawFlag)
+            {
+                try{
+                    island.towersSwitcher((dominantPlayer.getTowers()));
+                    model.checkIslandLinking();
+                }catch(RunOutOfTowersException e){
+                    model.checkIslandLinking();
+                    throw e;
+                }
+            }
         }
         else
         {

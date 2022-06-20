@@ -29,8 +29,8 @@ class IslandTest
         Island island1;
         Island island2;
         Bag bag=new Bag();
-        island1=new Island(true, model);
-        island2=new Island(bag.randomExtraction(), model);
+        island1=new Island(true);
+        island2=new Island(bag.randomExtraction());
         assertTrue(island2.getStudentsColours().size()>0);
         assertFalse(island2.isMotherNatureFlag());
         assertFalse(island2.getInhibition());
@@ -119,7 +119,7 @@ class IslandTest
             island3.islandsLinker(null);
             assertTrue(false);
         } catch (NullPointerException e){}
-        Island islandTmp=new Island(false, model);
+        Island islandTmp=new Island(false);
         try{
             island3.islandsLinker(islandTmp);
             assertTrue(false);
@@ -145,8 +145,8 @@ class IslandTest
         Island island1;
         Island island2;
         Bag bag=new Bag();
-        island1=new Island(true, model);
-        island2=new Island(false, model);
+        island1=new Island(true);
+        island2=new Island(false);
 
         island1.towersSwitcher(ModelTest.getPlayers(model).get(0).getTowers());
         island2.towersSwitcher(ModelTest.getPlayers(model).get(0).getTowers());
@@ -189,7 +189,7 @@ class IslandTest
         List<String> uIDs=new ArrayList<>();
         uIDs.add("Francio"); uIDs.add("Tarallo");
         Model model=new Model(uIDs, true);
-        Island island= new Island(true, model);
+        Island island= new Island(true);
         island.towersSwitcher(new Towers(ColourT.black, 0));
         System.setOut(new PrintStream(new OutputStream()
         {
@@ -212,7 +212,7 @@ class IslandTest
         List<String> uIDs=new ArrayList<>();
         uIDs.add("Francio"); uIDs.add("Tarallo");
         Model model = new Model(uIDs, false);
-        Island island= new Island(true, model);
+        Island island= new Island(true);
         island.addStudent(new Student(Colour.pink));
         island.addStudent(new Student(Colour.red));
         island.towersSwitcher(new Towers(ColourT.black, 0));

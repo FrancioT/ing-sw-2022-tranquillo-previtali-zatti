@@ -20,8 +20,8 @@ class MotherNatureTest {
         Island island1;
         Island island2;
 
-        island1=new Island(true, null);
-        island2=new Island(false, null);
+        island1=new Island(true);
+        island2=new Island(false);
         mN1=new MotherNature(island1);
         assertTrue(mN1.getCurrentPos()==island1);
         assertTrue(island1.isMotherNatureFlag());

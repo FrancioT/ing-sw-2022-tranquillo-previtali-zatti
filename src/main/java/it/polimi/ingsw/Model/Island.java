@@ -1,7 +1,6 @@
 package it.polimi.ingsw.Model;
 
 import it.polimi.ingsw.Model.Exceptions.*;
-import it.polimi.ingsw.Model.ModelAndDecorators.Model;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -16,37 +15,32 @@ public class Island extends Tile implements Serializable
     private int numTowers;
     private boolean motherNatureFlag;
     private int inhibitionCounter;
-    transient private final Model model;
     static final long serialVersionUID= 80100L;
 
     /**
      * Constructor for the islands where there will be no students at the start of the game (the island with MN, and
      * the one opposite to it)
      * @param MN_presence true if MN has to be put on it, false if not
-     * @param model the model to which this island will refer
      */
-    public Island(boolean MN_presence, Model model)
+    public Island(boolean MN_presence)
     {
         super();
         inhibitionCounter=0;
         motherNatureFlag=MN_presence;
         numTowers=0;
-        this.model=model;
     }
 
     /**
      * Constructor for the island that will have students at the start of the game
      * @param student student that needs to be added
-     * @param model the model to which this island will refer
      */
-    public Island(Student student, Model model)
+    public Island(Student student)
     {
         super();
         addStudent(student);
         inhibitionCounter=0;
         motherNatureFlag=false;
         numTowers=0;
-        this.model=model;
     }
 
     /**
@@ -55,18 +49,16 @@ public class Island extends Tile implements Serializable
      * @param towers towers that are on the island
      * @param numT number of towers to be added
      * @param inhibitionCounter number of inhibition tiles on the island
-     * @param model the model to which this island will refer
      * @param mnFlag true if MN is on the island, false if not
      */
     private Island(List<Student> students, Towers towers, int numT,
-                  int inhibitionCounter, Model model, boolean mnFlag)
+                  int inhibitionCounter, boolean mnFlag)
     {
         super();
         this.towers=towers;
         numTowers=numT;
         motherNatureFlag=mnFlag;
         this.inhibitionCounter=inhibitionCounter;
-        this.model=model;
         for(Student s: students)
             addStudent(s);
     }
@@ -93,8 +85,8 @@ public class Island extends Tile implements Serializable
         List<Student> tmp1=new ArrayList<>(studentsList);
         tmp1.addAll(island.studentsList);
         return new Island(tmp1, towers, numTowers + island.numTowers,
-                island.inhibitionCounter + this.inhibitionCounter, this.model,
-                          this.motherNatureFlag || island.motherNatureFlag);
+                island.inhibitionCounter + this.inhibitionCounter,
+                        this.motherNatureFlag || island.motherNatureFlag);
     }
 
     /**
@@ -120,29 +112,20 @@ public class Island extends Tile implements Serializable
      * @param newTowers the player's towers
      * @throws FullTowersException Exception thrown if the towers of a player are more than the possible number
      * @throws RunOutOfTowersException Exception thrown if a player has finished its towers
-     * @throws LinkFailedException Exception thrown if a linking has failed
      */
-    public void towersSwitcher(Towers newTowers) throws FullTowersException, RunOutOfTowersException,
-                                                        LinkFailedException
+    public void towersSwitcher(Towers newTowers) throws FullTowersException, RunOutOfTowersException
     {
         if(newTowers==null) throw new NullPointerException();
 
-        try {
-            if (numTowers == 0) {
-                towers = newTowers;
-                numTowers = 1;
-                newTowers.availabilityModifier(-1);
-            } else {
-                towers.availabilityModifier(numTowers);
-                towers = newTowers;
-                newTowers.availabilityModifier(-numTowers);
-            }
-        }catch (RunOutOfTowersException e)
-        {
-            model.checkIslandLinking();
-            throw e;
+        if (numTowers == 0) {
+            towers = newTowers;
+            numTowers = 1;
+            newTowers.availabilityModifier(-1);
+        } else {
+            towers.availabilityModifier(numTowers);
+            towers = newTowers;
+            newTowers.availabilityModifier(-numTowers);
         }
-        model.checkIslandLinking();
     }
 
     /**

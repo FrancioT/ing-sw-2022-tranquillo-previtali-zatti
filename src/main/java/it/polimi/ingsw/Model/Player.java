@@ -2,7 +2,6 @@ package it.polimi.ingsw.Model;
 
 import it.polimi.ingsw.Model.Dashboard.Dashboard;
 import it.polimi.ingsw.Model.Exceptions.*;
-import it.polimi.ingsw.Model.ModelAndDecorators.Model;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,22 +13,19 @@ public class Player implements Serializable
     private final Dashboard playerDashboard;
     private final Deck playerDeck;
     private int coins;
-    transient private final Model model;
     static final long serialVersionUID= 80200L;
 
     /**
      * Constructor of the players
      * @param uID user id of the player, which is the nickname they choose at the start
      * @param towers the towers associated tp the player
-     * @param model the model on which they are playing
      */
-    public Player(String uID, Towers towers, Model model)
+    public Player(String uID, Towers towers)
     {
         this.uID=uID;
         this.playerDashboard=new Dashboard(towers);
         this.playerDeck=new Deck();
         this.coins=1;
-        this.model=model;
     }
 
     /**
@@ -66,18 +62,20 @@ public class Player implements Serializable
     /**
      * Method to add a student to a classroom
      * @param student the student to add
+     * @param availableCoinsFlag boolean which indicates if there are unused coins in the model,
+     *                           if true the player can have (when required) an additional coin
+     * @return true if was added a coin to the player (so that the model can remove one to the unused ones)
      * @throws FullClassException Exception thrown if the classroom is full
      */
-    public void addStudent(Student student) throws FullClassException
+    public boolean addStudent(Student student, boolean availableCoinsFlag) throws FullClassException
     {
         playerDashboard.addStudent(student);
-        if(getStudentNum(student.getColour())%3==0)
+        if(getStudentNum(student.getColour())%3==0 && availableCoinsFlag)
         {
-            try {
-                model.getCoin();
-                coins++;
-            } catch (NoMoreCoinsException ignored) {}
+            coins++;
+            return true;
         }
+        return false;
     }
 
     /**

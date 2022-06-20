@@ -27,7 +27,7 @@ class CloudTest {
         bag1=new Bag();
         cloud1=new Cloud(bag1);
         towers1=new Towers(ColourT.white,1);
-        player1=new Player("player1", towers1, null);
+        player1=new Player("player1", towers1);
 
         cloud1.cloudFiller(5);
         assertEquals(cloud1.getStudentsColours().size(), 5);

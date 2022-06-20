@@ -23,11 +23,11 @@ class PlayerTest {
      */
     @Test
     public void testGetStudentsNum() throws FullClassException {
-        Player player = new Player("test", new Towers(ColourT.black, 1), null);
+        Player player = new Player("test", new Towers(ColourT.black, 1));
         //player.setNickName("test");
         int num = player.getStudentNum(Colour.red);
         assertEquals(num, 0);
-        player.addStudent(new Student(Colour.red));
+        player.addStudent(new Student(Colour.red), true);
         num = player.getStudentNum(Colour.green);
         assertEquals(num, 0);
         num = player.getStudentNum(Colour.red);
@@ -46,7 +46,7 @@ class PlayerTest {
      */
     @Test
     public void testEntranceFillerEmptier() throws EmptyException, NoSuchStudentException, FullEntranceException {
-        Player player = new Player("test", new Towers(ColourT.black, 1), null);
+        Player player = new Player("test", new Towers(ColourT.black, 1));
         Colour colour;
         List<Student> students= new ArrayList<>();
         students.add(new Student(Colour.blue));
@@ -70,7 +70,7 @@ class PlayerTest {
      */
     @Test
     public void testTeacherMovements() throws TeacherAlreadyInException, TooManyTeachersException, NoSuchTeacherException {
-        Player player = new Player("test", new Towers(ColourT.black, 1), null);
+        Player player = new Player("test", new Towers(ColourT.black, 1));
         assertFalse(player.checkTeacherPresence(Colour.red));
         player.addTeacher(new Teacher(Colour.red));
         assertTrue(player.checkTeacherPresence(Colour.red));
@@ -96,7 +96,7 @@ class PlayerTest {
     @Test
     public void towersTest(){
         Towers towers = new Towers(ColourT.black, 1);
-        Player player = new Player("test", towers, null);
+        Player player = new Player("test", towers);
         assertTrue(player.getTowers().equals(towers));
         Towers towers1 = new Towers(ColourT.white, 1);
         assertFalse(player.getTowers().equals(towers1));
@@ -109,7 +109,7 @@ class PlayerTest {
     @Test
     public void getLastCardMNValuetest() throws EmptyException
     {
-        Player player = new Player("test", new Towers(ColourT.black, 1), null);
+        Player player = new Player("test", new Towers(ColourT.black, 1));
         StandardCard sc = player.cardDiscarder(0);
         int i = player.getDiscardedCard().getMnValue();
         assertEquals(i, 1);
@@ -136,7 +136,7 @@ class PlayerTest {
         } catch (CardPaymentException c){}
 
         for (int i = 0; i < 4; i++){
-            ModelTest.getPlayers(controller.getModel()).get(0).addStudent(new Student(Colour.red));
+            ModelTest.getPlayers(controller.getModel()).get(0).addStudent(new Student(Colour.red), true);
         }
 
         ModelTest.getPlayers(controller.getModel()).get(0).removeStudentClassroom(Colour.red);
@@ -160,11 +160,11 @@ class PlayerTest {
         List<String> uIDs=new ArrayList<>();
         uIDs.add("Francio"); uIDs.add("Tarallo");
         Model model=new Model(uIDs, true);
-        Player player = new Player("Aldo", new Towers(ColourT.black, 0), model);
-        Player player1 = new Player("Giovanni", new Towers(ColourT.white, 0), model);
-        Player player2 = new Player("Giacomo", new Towers(ColourT.grey, 0), model);
+        Player player = new Player("Aldo", new Towers(ColourT.black, 0));
+        Player player1 = new Player("Giovanni", new Towers(ColourT.white, 0));
+        Player player2 = new Player("Giacomo", new Towers(ColourT.grey, 0));
         player.addTeacher(new Teacher(Colour.red));
-        player.addStudent(new Student(Colour.red));
+        player.addStudent(new Student(Colour.red), true);
         List<Student> students = new ArrayList<>();
         students.add(new Student(Colour.red));
         students.add(new Student(Colour.red));

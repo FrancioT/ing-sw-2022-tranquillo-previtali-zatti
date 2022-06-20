@@ -23,8 +23,8 @@ class TeacherTest {
         teacher1=new Teacher(Colour.red);
         towers1=new Towers(ColourT.white,1);
         towers2=new Towers(ColourT.black,1);
-        player1=new Player("Topo", towers1, null);
-        player2=new Player("Gigio", towers2, null);
+        player1=new Player("Topo", towers1);
+        player2=new Player("Gigio", towers2);
 
         teacher1.setNewPos(player1);
         assertTrue((teacher1.getCurrentPos()).equals(player1));
