@@ -21,9 +21,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- *
- */
 public class DashboardController extends Showable
 {
     @FXML
@@ -306,6 +303,9 @@ public class DashboardController extends Showable
         }
     }
 
+    /**
+     * Method used to set the visibility and the number of coins owned by this player
+     */
     public void setCoins()
     {
         if(game.isExpertMode())
@@ -321,6 +321,11 @@ public class DashboardController extends Showable
         }
     }
 
+    /**
+     * Method used to get the colour of the student selected by the user with the mouse click, before returning
+     * the colour the student opacity is returned to normal
+     * @return the colour of the student selected in your entrance
+     */
     public synchronized static Colour getSelectStudentColour()
     {
         if(selectStudentColour==null)
@@ -331,6 +336,11 @@ public class DashboardController extends Showable
         return returnValue;
     }
 
+    /**
+     * Method used to set the opacity of the student selected in your entrance
+     * @param image the ImageView selected
+     * @param colour the colour associated to the ImageView selected
+     */
     public synchronized static void setSelectStudentColour(ImageView image, Colour colour)
     {
         if(selectStudentColour!=null)
@@ -558,6 +568,10 @@ public class DashboardController extends Showable
         }
     }
 
+    /**
+     * Method used to send a message to the server after the activation of a character card
+     * @param index position int the ModelMessage of the character card selected
+     */
     private void useCard(int index)
     {
         // if the card wasn't already played
@@ -670,6 +684,11 @@ public class DashboardController extends Showable
 
     }
 
+    /**
+     * Method used by all the ImageView in the entrance after a mouse click
+     * @param image the ImageView selected
+     * @param index the position of the student in the entrance
+     */
     private void selectedEntranceStudent(ImageView image, int index)
     {
         for(int i=0; i<game.getPlayerList().size(); i++)
@@ -771,117 +790,250 @@ public class DashboardController extends Showable
         selectedEntranceStudent(eSt9, 8);
     }
 
+    /**
+     * Method used to highlight the player's card 1 when passing on it with the mouse
+     */
     @FXML
     private void mouseOnC1(){ edgeCards.get(1).setVisible(true);}
 
+    /**
+     * Method used to highlight the player's card 2 when passing on it with the mouse
+     */
     @FXML
     private void mouseOnC2(){ edgeCards.get(2).setVisible(true);}
 
+    /**
+     * Method used to highlight the player's card 3 when passing on it with the mouse
+     */
     @FXML
     private void mouseOnC3(){ edgeCards.get(3).setVisible(true);}
 
+    /**
+     * Method used to highlight the player's card 4 when passing on it with the mouse
+     */
     @FXML
     private void mouseOnC4(){ edgeCards.get(4).setVisible(true);}
 
+    /**
+     * Method used to highlight the player's card 5 when passing on it with the mouse
+     */
     @FXML
     private void mouseOnC5(){ edgeCards.get(5).setVisible(true);}
 
+    /**
+     * Method used to highlight the player's card 6 when passing on it with the mouse
+     */
     @FXML
     private void mouseOnC6(){ edgeCards.get(6).setVisible(true);}
 
+    /**
+     * Method used to highlight the player's card 7 when passing on it with the mouse
+     */
     @FXML
     private void mouseOnC7(){ edgeCards.get(7).setVisible(true);}
 
+    /**
+     * Method used to highlight the player's card 8 when passing on it with the mouse
+     */
     @FXML
     private void mouseOnC8(){ edgeCards.get(8).setVisible(true);}
 
+    /**
+     * Method used to highlight the player's card 9 when passing on it with the mouse
+     */
     @FXML
     private void mouseOnC9(){ edgeCards.get(9).setVisible(true);}
 
+    /**
+     * Method used to highlight the player's card 10 when passing on it with the mouse
+     */
     @FXML
     private void mouseOnC10(){ edgeCards.get(10).setVisible(true);}
 
+    /**
+     * Method used to remove the possibility to highlight the player's card 1 when passing on it with
+     * the mouse in case it's not the turn to choose a card
+     */
     @FXML
     private void mouseOffC1(){ edgeCards.get(1).setVisible(false);}
 
+    /**
+     * Method used to remove the possibility to highlight the player's card 2 when passing on it with
+     * the mouse in case it's not the turn to choose a card
+     */
     @FXML
     private void mouseOffC2(){ edgeCards.get(2).setVisible(false);}
 
+    /**
+     * Method used to remove the possibility to highlight the player's card 3 when passing on it with
+     * the mouse in case it's not the turn to choose a card
+     */
     @FXML
     private void mouseOffC3(){ edgeCards.get(3).setVisible(false);}
 
+    /**
+     * Method used to remove the possibility to highlight the player's card 4 when passing on it with
+     * the mouse in case it's not the turn to choose a card
+     */
     @FXML
     private void mouseOffC4(){ edgeCards.get(4).setVisible(false);}
 
+    /**
+     * Method used to remove the possibility to highlight the player's card 5 when passing on it with
+     * the mouse in case it's not the turn to choose a card
+     */
     @FXML
     private void mouseOffC5(){ edgeCards.get(5).setVisible(false);}
 
+    /**
+     * Method used to remove the possibility to highlight the player's card 6 when passing on it with
+     * the mouse in case it's not the turn to choose a card
+     */
     @FXML
     private void mouseOffC6(){ edgeCards.get(6).setVisible(false);}
 
+    /**
+     * Method used to remove the possibility to highlight the player's card 7 when passing on it with
+     * the mouse in case it's not the turn to choose a card
+     */
     @FXML
     private void mouseOffC7(){ edgeCards.get(7).setVisible(false);}
 
+    /**
+     * Method used to remove the possibility to highlight the player's card 8 when passing on it with
+     * the mouse in case it's not the turn to choose a card
+     */
     @FXML
     private void mouseOffC8(){ edgeCards.get(8).setVisible(false);}
 
+    /**
+     * Method used to remove the possibility to highlight the player's card 9 when passing on it with
+     * the mouse in case it's not the turn to choose a card
+     */
     @FXML
     private void mouseOffC9(){ edgeCards.get(9).setVisible(false);}
 
+    /**
+     * Method used to remove the possibility to highlight the player's card 10 when passing on it with
+     * the mouse in case it's not the turn to choose a card
+     */
     @FXML
     private void mouseOffC10(){ edgeCards.get(10).setVisible(false);}
 
+    /**
+     * Method used to highlight the player's student 1 in the entrance when passing on it with the mouse
+     */
     @FXML
     private void mouseOnS1(){ lumStud.get(1).setVisible(true);}
 
+    /**
+     * Method used to highlight the player's student 2 in the entrance when passing on it with the mouse
+     */
     @FXML
     private void mouseOnS2(){ lumStud.get(2).setVisible(true);}
 
+    /**
+     * Method used to highlight the player's student 3 in the entrance when passing on it with the mouse
+     */
     @FXML
     private void mouseOnS3(){ lumStud.get(3).setVisible(true);}
 
+    /**
+     * Method used to highlight the player's student 4 in the entrance when passing on it with the mouse
+     */
     @FXML
     private void mouseOnS4(){ lumStud.get(4).setVisible(true);}
 
+    /**
+     * Method used to highlight the player's student 5 in the entrance when passing on it with the mouse
+     */
     @FXML
     private void mouseOnS5(){ lumStud.get(5).setVisible(true);}
 
+    /**
+     * Method used to highlight the player's student 6 in the entrance when passing on it with the mouse
+     */
     @FXML
     private void mouseOnS6(){ lumStud.get(6).setVisible(true);}
 
+    /**
+     * Method used to highlight the player's student 7 in the entrance when passing on it with the mouse
+     */
     @FXML
     private void mouseOnS7(){ lumStud.get(7).setVisible(true);}
 
+    /**
+     * Method used to highlight the player's student 8 in the entrance when passing on it with the mouse
+     */
     @FXML
     private void mouseOnS8(){ lumStud.get(8).setVisible(true);}
 
+    /**
+     * Method used to highlight the player's student 9 in the entrance when passing on it with the mouse
+     */
     @FXML
     private void mouseOnS9(){ lumStud.get(9).setVisible(true);}
 
+    /**
+     * Method used to remove the possibility to highlight the player's student 1 on the entrance when passing
+     * on it with the mouse in case it's not the turn to choose a card
+     */
     @FXML
     private void mouseOffS1(){ lumStud.get(1).setVisible(false);}
 
+    /**
+     * Method used to remove the possibility to highlight the player's student 2 on the entrance when passing
+     * on it with the mouse in case it's not the turn to choose a card
+     */
     @FXML
     private void mouseOffS2(){ lumStud.get(2).setVisible(false);}
 
+    /**
+     * Method used to remove the possibility to highlight the player's student 3 on the entrance when passing
+     * on it with the mouse in case it's not the turn to choose a card
+     */
     @FXML
     private void mouseOffS3(){ lumStud.get(3).setVisible(false);}
 
+    /**
+     * Method used to remove the possibility to highlight the player's student 4 on the entrance when passing
+     * on it with the mouse in case it's not the turn to choose a card
+     */
     @FXML
     private void mouseOffS4(){ lumStud.get(4).setVisible(false);}
 
+    /**
+     * Method used to remove the possibility to highlight the player's student 5 on the entrance when passing
+     * on it with the mouse in case it's not the turn to choose a card
+     */
     @FXML
     private void mouseOffS5(){ lumStud.get(5).setVisible(false);}
 
+    /**
+     * Method used to remove the possibility to highlight the player's student 6 on the entrance when passing
+     * on it with the mouse in case it's not the turn to choose a card
+     */
     @FXML
     private void mouseOffS6(){ lumStud.get(6).setVisible(false);}
 
+    /**
+     * Method used to remove the possibility to highlight the player's student 7 on the entrance when passing
+     * on it with the mouse in case it's not the turn to choose a card
+     */
     @FXML
     private void mouseOffS7(){ lumStud.get(7).setVisible(false);}
 
+    /**
+     * Method used to remove the possibility to highlight the player's student 8 on the entrance when passing
+     * on it with the mouse in case it's not the turn to choose a card
+     */
     @FXML
     private void mouseOffS8(){ lumStud.get(8).setVisible(false);}
 
+    /**
+     * Method used to remove the possibility to highlight the player's student 9 on the entrance when passing
+     * on it with the mouse in case it's not the turn to choose a card
+     */
     @FXML
     private void mouseOffS9(){ lumStud.get(9).setVisible(false);}
 
@@ -898,9 +1050,15 @@ public class DashboardController extends Showable
             sendMessage(new StudentToDashboard(GUI.getInstance().getNickName(), selected));
     }
 
+    /**
+     * Method used to close this dashboard window when the GUI main class is closing
+     */
     @Override
     public void close() { window.close(); }
 
+    /**
+     * Method used to stop all possible interactions with this dashboard window
+     */
     @Override
     public void pause()
     {
@@ -909,6 +1067,9 @@ public class DashboardController extends Showable
         disableCards();
     }
 
+    /**
+     * Method used to enable again the interaction with this dashboard window after the pause method was called
+     */
     @Override
     public void resume()
     {
