@@ -25,6 +25,7 @@ class CharacterCard1Test {
     @Test
     public void CharacterCard1Colours() throws RunOutOfStudentsException {
         CharacterCard1 card = new CharacterCard1(new Bag());
+        card.initialize();
 
         assertEquals(card.getCardID(), 1);
         assertEquals(card.getPrice(), 1);
@@ -39,6 +40,22 @@ class CharacterCard1Test {
                 fail();
         }
         assertThrows(NullPointerException.class, () -> card.handle(null, null, null));
+    }
+
+    /**
+     * In this test is tested an impossible case where the card is being created but there are no more students
+     * available
+     */
+    @Test
+    public void emptyBagExceptionTest() throws RunOutOfStudentsException {
+        Bag bag = new Bag();
+        for(int i=0; i<10; i++)
+            bag.randomExtraction();
+        try {
+            CharacterCard1 card = new CharacterCard1(bag);
+            card.initialize();
+            fail();
+        }catch (RuntimeException r){};
     }
 
 
@@ -59,6 +76,7 @@ class CharacterCard1Test {
     public void CharacterCard1Handle() throws Exception {
         Bag bag = new Bag();
         CharacterCard1 card = new CharacterCard1(bag);
+        card.initialize();
         List<CharacterCard> cards = new ArrayList<>();
         cards.add(card);
         Map<String, DataBuffer> uIDs = new HashMap<>();
@@ -133,6 +151,7 @@ class CharacterCard1Test {
     @Test
     public void printerTest() throws RunOutOfStudentsException, FullTowersException, RunOutOfTowersException, LinkFailedException {
         CharacterCard1 card = new CharacterCard1(new Bag());
+        card.initialize();
 
         System.setOut(new PrintStream(new OutputStream()
         {

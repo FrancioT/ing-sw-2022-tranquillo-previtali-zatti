@@ -24,6 +24,22 @@ import static org.junit.jupiter.api.Assertions.*;
 class CharacterCard11Test
 {
     /**
+     * In this test is tested an impossible case where the card is being created but there are no more students
+     * available
+     */
+    @Test
+    public void emptyBagExceptionTest() throws RunOutOfStudentsException {
+        Bag bag = new Bag();
+        for(int i=0; i<10; i++)
+            bag.randomExtraction();
+        try {
+            CharacterCard11 card = new CharacterCard11(bag);
+            card.initialize();
+            fail();
+        }catch (RuntimeException r){};
+    }
+
+    /**
      * This test in first instance creates a controller, which creates a model with the charactercards I need.
      * Once the card is created I check if it has the correct values.
      * Then, I test all the cases in which it fails (e.g. not enough money, null pointer, no such student).
@@ -37,6 +53,7 @@ class CharacterCard11Test
         String player3 = "Giacomo";
         Bag bag= new Bag();
         CharacterCard11 card = new CharacterCard11(bag);
+        card.initialize();
         List<CharacterCard> cards = new ArrayList<>();
         cards.add(card);
         Map<String, DataBuffer> uIDs = new HashMap<>();
