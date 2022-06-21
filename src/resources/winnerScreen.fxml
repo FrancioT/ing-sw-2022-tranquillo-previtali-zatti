@@ -38,5 +38,40 @@
             <Font size="96.0" />
          </font>
       </Text>
+      <ImageView fitHeight="294.0" fitWidth="307.0" layoutX="473.0" layoutY="-34.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@fuochi3.gif" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="287.0" fitWidth="411.0" layoutY="613.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@fuochi4.gif" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="287.0" fitWidth="375.0" layoutX="1294.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+         <image>
+            <Image url="@fuochi4.gif" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="459.0" fitWidth="423.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@fuochi2.gif" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="459.0" fitWidth="423.0" layoutX="1177.0" layoutY="477.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@fuochi2.gif" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="206.0" fitWidth="228.0" layoutX="868.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@fuochi3.gif" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="423.0" fitWidth="584.0" layoutX="593.0" layoutY="-27.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@fuochi5.gif" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
