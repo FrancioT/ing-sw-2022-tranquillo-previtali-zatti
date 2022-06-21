@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="900.0" maxWidth="1600.0" minHeight="900.0" minWidth="1600.0" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WinnerScreen">
+<AnchorPane maxHeight="900.0" maxWidth="1600.0" minHeight="900.0" minWidth="1600.0" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.Client.GUI.WinnerController">
    <children>
       <ImageView fitHeight="936.0" fitWidth="1715.0" layoutX="-32.0" layoutY="-18.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -23,17 +23,7 @@
             <Font size="96.0" />
          </font>
       </Text>
-      <Text fx:id="winner3" fill="WHITE" layoutX="445.0" layoutY="596.0" strokeType="OUTSIDE" strokeWidth="0.0" text="giocatore2">
-         <font>
-            <Font size="50.0" />
-         </font>
-      </Text>
-      <Text fx:id="winner4" fill="WHITE" layoutX="915.0" layoutY="596.0" strokeType="OUTSIDE" strokeWidth="0.0" text="giocatore2">
-         <font>
-            <Font size="50.0" />
-         </font>
-      </Text>
-      <Text fx:id="winner2" fill="WHITE" layoutX="355.0" layoutY="581.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Winner" textAlignment="CENTER" wrappingWidth="891.1563110351562">
+      <Text fx:id="winner2" fill="WHITE" layoutX="355.0" layoutY="568.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Winner" textAlignment="CENTER" wrappingWidth="891.1563110351562">
          <font>
             <Font size="96.0" />
          </font>
@@ -58,7 +48,7 @@
             <Image url="@fuochi2.gif" />
          </image>
       </ImageView>
-      <ImageView fitHeight="459.0" fitWidth="423.0" layoutX="1177.0" layoutY="477.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="459.0" fitWidth="423.0" layoutX="1178.0" layoutY="477.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@fuochi2.gif" />
          </image>
@@ -73,5 +63,10 @@
             <Image url="@fuochi5.gif" />
          </image>
       </ImageView>
+      <Text fx:id="winner3" fill="WHITE" layoutX="355.0" layoutY="709.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Winner" textAlignment="CENTER" wrappingWidth="891.1563110351562">
+         <font>
+            <Font size="96.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
