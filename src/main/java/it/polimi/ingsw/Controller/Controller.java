@@ -227,37 +227,8 @@ public class Controller extends Thread
                 // then, it re-start from where it stopped
                 catch (CardActivatedException e)
                 {
-                    if (!cardActivated)
-                    {
-                        cardActivated=true;
-                        try {
-                            model.activateCard(uID, usersData.get(uID), this);
-                            if(model.getNumIslands()<=3)
-                            {
-                                breakEnd= true;
-                                endGame=true;
-                                return;
-                            }
-                        }
-                        catch (RunOutOfTowersException e1) {
-                            breakEnd= true;
-                            endGame=true;
-                            return;
-                        }
-                        catch (RunOutOfStudentsException e1) {
-                            endGame=true;
-                        }
-                        catch (Exception e1)
-                        {
-                            model.errorMessage("An error occurred during the activation of the card, "
-                                        +"please try again or move on", false);
-                            cardActivated=false;
-                        }
-                    }
-                    else
-                    {
-                        model.errorMessage("Another card was already activated in this turn", false);
-                    }
+                    if(cardActivated(uID))
+                        return;
                 }
             }
 
@@ -302,37 +273,8 @@ public class Controller extends Thread
                     // then, it re-start from where it stopped
                     catch (CardActivatedException e)
                     {
-                        if (!cardActivated)
-                        {
-                            cardActivated=true;
-                            try {
-                                model.activateCard(uID, usersData.get(uID), this);
-                                if(model.getNumIslands()<=3)
-                                {
-                                    breakEnd= true;
-                                    endGame=true;
-                                    return;
-                                }
-                            }
-                            catch (RunOutOfTowersException e1) {
-                                breakEnd= true;
-                                endGame=true;
-                                return;
-                            }
-                            catch (RunOutOfStudentsException e1) {
-                                endGame=true;
-                            }
-                            catch (Exception e1)
-                            {
-                                model.errorMessage("An error occurred during the activation of the card, "
-                                        +"please try again or move on", false);
-                                cardActivated=false;
-                            }
-                        }
-                        else
-                        {
-                            model.errorMessage("Another card was already activated in this turn", false);
-                        }
+                        if(cardActivated(uID))
+                            return;
                     }
                 }
                 try {
@@ -385,37 +327,8 @@ public class Controller extends Thread
                 // then, it re-start from where it stopped
                 catch (CardActivatedException e)
                 {
-                    if (!cardActivated)
-                    {
-                        cardActivated=true;
-                        try {
-                            model.activateCard(uID, usersData.get(uID), this);
-                            if(model.getNumIslands()<=3)
-                            {
-                                breakEnd= true;
-                                endGame=true;
-                                return;
-                            }
-                        }
-                        catch (RunOutOfTowersException e1) {
-                            breakEnd= true;
-                            endGame=true;
-                            return;
-                        }
-                        catch (RunOutOfStudentsException e1) {
-                            endGame=true;
-                        }
-                        catch (Exception e1)
-                        {
-                            model.errorMessage("An error occurred during the activation of the card, "
-                                    +"please try again or move on", false);
-                            cardActivated=false;
-                        }
-                    }
-                    else
-                    {
-                        model.errorMessage("Another card was already activated in this turn", false);
-                    }
+                    if(cardActivated(uID))
+                        return;
                 }
             }
 
@@ -439,10 +352,6 @@ public class Controller extends Thread
                     breakEnd= true;
                     endGame=true;
                     return;
-                }
-                catch(IndexOutOfBoundsException e)
-                {
-                    throw new IllegalMNMovementException();
                 }
                 catch(Exception e)
                 {
@@ -492,37 +401,8 @@ public class Controller extends Thread
                 // then, it re-start from where it stopped
                 catch (CardActivatedException e)
                 {
-                    if (!cardActivated)
-                    {
-                        cardActivated=true;
-                        try {
-                            model.activateCard(uID, usersData.get(uID), this);
-                            if(model.getNumIslands()<=3)
-                            {
-                                breakEnd= true;
-                                endGame=true;
-                                return;
-                            }
-                        }
-                        catch (RunOutOfTowersException e1) {
-                            breakEnd= true;
-                            endGame=true;
-                            return;
-                        }
-                        catch (RunOutOfStudentsException e1) {
-                            endGame=true;
-                        }
-                        catch (Exception e1)
-                        {
-                            model.errorMessage("An error occurred during the activation of the card, "
-                                    +"please try again or move on", false);
-                            cardActivated=false;
-                        }
-                    }
-                    else
-                    {
-                        model.errorMessage("Another card was already activated in this turn", false);
-                    }
+                    if(cardActivated(uID))
+                        return;
                 }
             }
 
@@ -547,6 +427,48 @@ public class Controller extends Thread
             decorationFlag=false;
         }
         cardActivated=false;
+    }
+
+    /**
+     * Method used to handle the activation of a character card
+     * @param uID uID of the player who activated the card
+     * @return true if was thrown an exception during the activation of the card or if an end game
+     * condition was met
+     */
+    private boolean cardActivated(String uID)
+    {
+        if (!cardActivated)
+        {
+            cardActivated=true;
+            try {
+                model.activateCard(uID, usersData.get(uID), this);
+                if(model.getNumIslands()<=3)
+                {
+                    breakEnd= true;
+                    endGame=true;
+                    return true;
+                }
+            }
+            catch (RunOutOfTowersException e1) {
+                breakEnd= true;
+                endGame=true;
+                return true;
+            }
+            catch (RunOutOfStudentsException e1) {
+                endGame=true;
+            }
+            catch (Exception e1)
+            {
+                model.errorMessage("An error occurred during the activation of the card, "
+                                   +"please try again or move on", false);
+                cardActivated=false;
+            }
+        }
+        else
+        {
+            model.errorMessage("Another card was already activated in this turn", false);
+        }
+        return false;
     }
 
     /**
