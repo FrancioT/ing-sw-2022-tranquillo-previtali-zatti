@@ -19,6 +19,9 @@ public class WinnerController extends Showable
     private List<Text> winnersText= new ArrayList<>();
 
 
+    /**
+     * This method calculate the winner and display his name in the last game's screen
+     */
     private synchronized void showWinner()
     {
         int maxScore=0;
@@ -86,6 +89,9 @@ public class WinnerController extends Showable
         }
     }
 
+    /**
+     * This method shows and updates the Winner screen
+     */
     @Override
     void show()
     {
