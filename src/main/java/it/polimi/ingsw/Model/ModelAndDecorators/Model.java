@@ -832,7 +832,7 @@ public class Model {
     public void endGame()
     {
         ModelMessage message= new ModelMessage(characterCardList.size()!=0, new ArrayList<>(islandsList),
-                                               new ArrayList<>(cloudsList), new ArrayList<>(playersList),
+                                               null, new ArrayList<>(playersList),
                                                new ArrayList<>(characterCardList), currentPlayer.getuID(),
                                                unusedCoins, true, phase);
         notify(message);
