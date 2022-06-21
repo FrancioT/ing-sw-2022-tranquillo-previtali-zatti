@@ -15,15 +15,27 @@ public class CharacterCard1 extends CharacterCardWithStudentsList{
     /**
      * Constructor of the card
      * @param bag the bag from which the card will take students to refill itself
-     * @throws RunOutOfStudentsException Exception thrown if the students in the bag are finished
      */
-    public CharacterCard1(Bag bag) throws RunOutOfStudentsException
+    public CharacterCard1(Bag bag)
     {
         super(1, 1);
         this.effect="Take 1 student from this card and place it on an island of your choice.";
         this.bag = bag;
+    }
+
+    /**
+     * Extract 4 students from the bag and add them to the card
+     */
+    @Override
+    public void initialize()
+    {
         for (int i = 0; i < 4; i++){
-            studentsList.add(bag.randomExtraction());
+            try{
+                studentsList.add(bag.randomExtraction());
+            }
+            catch(RunOutOfStudentsException e){
+                throw new RuntimeException("There were not enough students in the bag for the creation of the game");
+            }
         }
     }
 

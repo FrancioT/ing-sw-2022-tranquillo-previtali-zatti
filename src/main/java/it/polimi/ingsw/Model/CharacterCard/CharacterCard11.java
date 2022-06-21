@@ -16,16 +16,29 @@ public class CharacterCard11 extends CharacterCardWithStudentsList
     /**
      * Constructor of the card
      * @param bag the bag from which the card will take students to refill itself
-     * @throws RunOutOfStudentsException Exception thrown if the students in the bag are finished
      */
-    public CharacterCard11(Bag bag) throws RunOutOfStudentsException
+    public CharacterCard11(Bag bag)
     {
         super(11, 2);
         this.bag = bag;
         this.effect="Take 1 Student from this card and place it in your classroom. \n" +
                     "Then, draw a new Student from the Bag and place it on this card.";
-        for (int i = 0; i < 4; i++)
-            studentsList.add(bag.randomExtraction());
+    }
+
+    /**
+     * Extract 4 students from the bag and add them to the card
+     */
+    @Override
+    public void initialize()
+    {
+        for (int i = 0; i < 4; i++){
+            try{
+                studentsList.add(bag.randomExtraction());
+            }
+            catch(RunOutOfStudentsException e){
+                throw new RuntimeException("There were not enough students in the bag for the creation of the game");
+            }
+        }
     }
 
     /**

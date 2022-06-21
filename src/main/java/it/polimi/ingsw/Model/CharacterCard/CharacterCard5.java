@@ -25,6 +25,12 @@ public class CharacterCard5 extends CharacterCard
     }
 
     /**
+     * This method is implemented by the superclass, but does nothing
+     */
+    @Override
+    public void initialize(){}
+
+    /**
      * Method used when an inhibition tile is removed from an island and needs to be put back on the card
      */
     public void giveBackInhibitionFlag(){

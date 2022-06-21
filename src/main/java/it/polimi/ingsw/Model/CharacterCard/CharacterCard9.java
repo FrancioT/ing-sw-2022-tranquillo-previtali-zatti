@@ -21,6 +21,12 @@ public class CharacterCard9 extends CharacterCard
     }
 
     /**
+     * This method is implemented by the superclass, but does nothing
+     */
+    @Override
+    public void initialize(){}
+
+    /**
      * @param userData   the databuffer with the colour of the students that the player wants to "inhibit" for the
      *                   calculation of the dominance for this turn
      */

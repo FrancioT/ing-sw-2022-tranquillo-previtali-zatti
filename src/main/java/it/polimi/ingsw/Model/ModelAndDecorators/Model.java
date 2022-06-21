@@ -97,29 +97,29 @@ public class Model {
         {
             unusedCoins=20-playersList.size();
             List<CharacterCard> cardListTmp= new ArrayList<>();
-            try{ cardListTmp.add(new CharacterCard1(bag)); }
-            catch(RunOutOfStudentsException e) { throw new RuntimeException(); }
+            cardListTmp.add(new CharacterCard1(bag));
             cardListTmp.add(new CharacterCard2());
             cardListTmp.add(new CharacterCard3());
             cardListTmp.add(new CharacterCard4());
             cardListTmp.add(new CharacterCard5());
             cardListTmp.add(new CharacterCard6());
-            try{ cardListTmp.add(new CharacterCard7(bag)); }
-            catch(RunOutOfStudentsException e) { throw new RuntimeException(); }
+            cardListTmp.add(new CharacterCard7(bag));
             cardListTmp.add(new CharacterCard8());
             cardListTmp.add(new CharacterCard9());
             cardListTmp.add(new CharacterCard10());
-            try{ cardListTmp.add(new CharacterCard11(bag)); }
-            catch(RunOutOfStudentsException e) { throw new RuntimeException(); }
+            cardListTmp.add(new CharacterCard11(bag));
             cardListTmp.add(new CharacterCard12(bag, new ArrayList<>(playersList)));
             int randIndex1= (int)Math.floor(Math.random()*characterCardNum);
             int randIndex2, randIndex3;
+            cardListTmp.get(randIndex1).initialize();
             characterCardList.add(cardListTmp.get(randIndex1));
             do randIndex2= (int)Math.floor(Math.random()*characterCardNum);
             while(randIndex2==randIndex1);
+            cardListTmp.get(randIndex2).initialize();
             characterCardList.add(cardListTmp.get(randIndex2));
             do randIndex3= (int)Math.floor(Math.random()*characterCardNum);
             while(randIndex3==randIndex1 || randIndex3==randIndex2);
+            cardListTmp.get(randIndex3).initialize();
             characterCardList.add(cardListTmp.get(randIndex3));
         }
     }

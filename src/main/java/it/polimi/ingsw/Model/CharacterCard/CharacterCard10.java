@@ -24,6 +24,12 @@ public class CharacterCard10 extends CharacterCard
     }
 
     /**
+     * This method is implemented by the superclass, but does nothing
+     */
+    @Override
+    public void initialize(){}
+
+    /**
      * @param userData   the databuffer with the colours of the students that the player wants to swap.
      *                   The colours must be in this order: up to 2 pairs of colours, the first colour of the pair
      *                   represents the student in the classroom that must be swapped with the student from the

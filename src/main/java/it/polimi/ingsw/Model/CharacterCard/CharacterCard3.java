@@ -22,6 +22,12 @@ public class CharacterCard3 extends CharacterCard
     }
 
     /**
+     * This method is implemented by the superclass, but does nothing
+     */
+    @Override
+    public void initialize(){}
+
+    /**
      * @param userData   the databuffer with the index of the island where the player wants to calculate the dominance
      */
     @Override

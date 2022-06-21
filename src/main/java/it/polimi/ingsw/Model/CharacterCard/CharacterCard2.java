@@ -21,6 +21,12 @@ public class CharacterCard2 extends CharacterCard
     }
 
     /**
+     * This method is implemented by the superclass, but does nothing
+     */
+    @Override
+    public void initialize(){}
+
+    /**
      * @param userData   in this case is null as this card doesn't need any data from the databuffer
      */
     @Override

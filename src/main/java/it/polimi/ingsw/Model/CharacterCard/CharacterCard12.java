@@ -34,6 +34,12 @@ public class CharacterCard12 extends CharacterCard
     }
 
     /**
+     * This method is implemented by the superclass, but does nothing
+     */
+    @Override
+    public void initialize(){}
+
+    /**
      * @param userData   the databuffer with the colour of the students that the player has chosen to be removed from
      *                   the classroom of every player.
      */

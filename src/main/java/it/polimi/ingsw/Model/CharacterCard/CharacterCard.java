@@ -31,6 +31,11 @@ abstract public class CharacterCard implements Serializable
     public boolean getOverprice() { return overPrice; }
 
     /**
+     * This method is used to separate some initialization procedures from the constructor of the card
+     * in order to do them after it's creation, must be called before the actual use of the card
+     */
+    abstract public void initialize();
+    /**
      * The card's method which activates the effect of it
      * @param uID the player that wants to activate the card
      * @param userData the databuffer with the infos necessary for the activation of the card
