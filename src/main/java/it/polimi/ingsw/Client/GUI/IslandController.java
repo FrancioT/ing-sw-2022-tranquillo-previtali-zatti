@@ -537,6 +537,10 @@ public class IslandController extends Showable
             towers.get(i).setFocusTraversable(true);
             motherNature.get(i).setMouseTransparent(false);
             motherNature.get(i).setFocusTraversable(true);
+            inibMNText.get(i).setMouseTransparent(false);
+            inibMNText.get(i).setFocusTraversable(true);
+            inibMNImage.get(i).setMouseTransparent(false);
+            inibMNImage.get(i).setFocusTraversable(true);
             for(Colour cS: Colour.values())
             {
                 islandsStudents.get(i).get(cS).setMouseTransparent(false);
@@ -560,6 +564,10 @@ public class IslandController extends Showable
             towers.get(i).setFocusTraversable(false);
             motherNature.get(i).setMouseTransparent(true);
             motherNature.get(i).setFocusTraversable(false);
+            inibMNText.get(i).setMouseTransparent(true);
+            inibMNText.get(i).setFocusTraversable(false);
+            inibMNImage.get(i).setMouseTransparent(true);
+            inibMNImage.get(i).setFocusTraversable(false);
             for(Colour cS: Colour.values())
             {
                 islandsStudents.get(i).get(cS).setMouseTransparent(true);
@@ -1139,7 +1147,7 @@ public class IslandController extends Showable
         String[] phaseTmp= game.getPhase().toString().split("_");
         String phase="";
         for(String s: phaseTmp)
-            phase=phase.concat(" "+s);
+            phase=phase.concat(s+" ");
 
         currentPlayer.setText("Current player: "+game.getCurrPlayerNickname());
         currentPhase.setText("Current phase: "+phase);
