@@ -287,8 +287,9 @@ public class GUI extends Application implements PropertyChangeListener
                 addShowableStage(loader.getController());
             }
             updateStages();
-            if(game.hasGameEnded())
-                showWinner();
+            //FARE QUALCOSA QUI CHE CHIAMI IL METODO VERO O CHE PUNTI AL CONTROLLER DEL WINNER
+            //if(game.hasGameEnded())
+            //   showWinner();
         }
     }
 
@@ -308,51 +309,5 @@ public class GUI extends Application implements PropertyChangeListener
     {
         for(Showable stage: allStages)
             stage.resume();
-    }
-
-    /**
-     * Method to find and print the winner/s
-     */
-    private synchronized void showWinner()
-    {
-        int maxScore=0;
-        List<String> winners= new ArrayList<>();
-        if(game==null)
-            return;
-
-        // calculating the number of towers with which a player start the game
-        int mode= game.getPlayerList().size()%2;    // mode==0 => 8 towers
-                                                    // mode==1 => 6 towers
-        final int maxTowers= (mode)*6 + (1-mode)*8;
-
-        // for loop to calculate the "score" of every player, based on the number of towers that he still has in the
-        // dashboard and on the teachers he owns
-        for(Player player: game.getPlayerList())
-        {
-            int score= 0;
-            for(Colour c: Colour.values())
-                if(player.checkTeacherPresence(c))
-                    score++;
-            score+= (maxTowers - player.getTowers().availabilityChecker())*10;
-            if(score==maxScore)
-                winners.add(player.getuID());
-            else if(score>maxScore)
-            {
-                maxScore=score;
-                winners.clear();
-                winners.add(player.getuID());
-            }
-        }
-        //in case there is a draw
-        if(winners.size()>1)
-        {
-            String message= "The winners are: ";
-            for(String winner: winners)
-                message= message.concat(winner+"   ");
-            AlertBox.display("Game ended", message);
-        }
-        else
-            AlertBox.display("Game ended", "The winner is "+winners.get(0));
-        closeAllWindows();
     }
 }
