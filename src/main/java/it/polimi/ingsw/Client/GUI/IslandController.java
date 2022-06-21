@@ -755,6 +755,12 @@ public class IslandController extends Showable
     }
 
 
+    /**
+     * This method is called by every activation card method, displays the card effect and asks the player
+     * if he wants to play the card
+     * @param message
+     * @return boolean
+     */
     private boolean checkActivation(String message)
     {
         if(!ConfirmBox.display("Activate card?", message))
@@ -766,12 +772,22 @@ public class IslandController extends Showable
         }
         return true;
     }
+
+    /**
+     * This method call checkActivation and sends card1 effect
+     * @param card
+     */
     private void activateCard1(CharacterCard card)
     {
         if(!checkActivation("Effect: "+card.getEffect()))
             return;
         activateCardRequiringIsland(card.getCardID());
     }
+
+    /**
+     * This method call checkActivation and sends card2 effect
+     * @param card
+     */
     private void activateCard2(CharacterCard card)
     {
         if(!checkActivation("Effect: "+card.getEffect()))
@@ -780,12 +796,22 @@ public class IslandController extends Showable
         sendMessage(new Card2_4_6_8(nickName, card.getCardID()));
         GUI.getInstance().resumeAllStages();
     }
+
+    /**
+     * This method call checkActivation and sends card3 effect
+     * @param card
+     */
     private void activateCard3(CharacterCard card)
     {
         if(!checkActivation("Effect: "+card.getEffect()))
             return;
         activateCardRequiringIsland(card.getCardID());
     }
+
+    /**
+     * This method call checkActivation and sends card4 effect
+     * @param card
+     */
     private void activateCard4(CharacterCard card)
     {
         if(!checkActivation("Effect: "+card.getEffect()))
@@ -794,6 +820,11 @@ public class IslandController extends Showable
         sendMessage(new Card2_4_6_8(nickName, card.getCardID()));
         GUI.getInstance().resumeAllStages();
     }
+
+    /**
+     * This method call checkActivation and sends card5 effect
+     * @param card
+     */
     private void activateCard5(CharacterCard card)
     {
         int inhibitionTiles= ((CharacterCard5)card).getAvailableFlags();
@@ -806,6 +837,11 @@ public class IslandController extends Showable
         }
         activateCardRequiringIsland(card.getCardID());
     }
+
+    /**
+     * This method call checkActivation and sends card6 effect
+     * @param card
+     */
     private void activateCard6(CharacterCard card)
     {
         if(!checkActivation("Effect: "+card.getEffect()))
@@ -814,6 +850,11 @@ public class IslandController extends Showable
         sendMessage(new Card2_4_6_8(nickName, card.getCardID()));
         GUI.getInstance().resumeAllStages();
     }
+
+    /**
+     * This method call checkActivation and sends card7 effect
+     * @param card
+     */
     private void activateCard7(CharacterCard card)
     {
         if(!checkActivation("Effect: "+card.getEffect()))
@@ -831,6 +872,11 @@ public class IslandController extends Showable
         sendMessage(new Card7_10Data(nickName, card.getCardID(), result));
         GUI.getInstance().resumeAllStages();
     }
+
+    /**
+     * This method call checkActivation and sends card8 effect
+     * @param card
+     */
     private void activateCard8(CharacterCard card)
     {
         if(!checkActivation("Effect: "+card.getEffect()))
@@ -839,6 +885,11 @@ public class IslandController extends Showable
         sendMessage(new Card2_4_6_8(nickName, card.getCardID()));
         GUI.getInstance().resumeAllStages();
     }
+
+    /**
+     * This method call checkActivation and sends card9 effect
+     * @param card
+     */
     private void activateCard9(CharacterCard card)
     {
         if(!checkActivation("Effect: "+card.getEffect()))
@@ -848,6 +899,11 @@ public class IslandController extends Showable
                                                         "choose a colour to activate the card: ")));
         GUI.getInstance().resumeAllStages();
     }
+
+    /**
+     * This method call checkActivation and sends card10 effect
+     * @param card
+     */
     private void activateCard10(CharacterCard card)
     {
         if(!checkActivation("Effect: "+card.getEffect()))
@@ -881,6 +937,11 @@ public class IslandController extends Showable
         sendMessage(new Card7_10Data(nickName, card.getCardID(), result));
         GUI.getInstance().resumeAllStages();
     }
+
+    /**
+     * This method call checkActivation and sends card11 effect
+     * @param card
+     */
     private void activateCard11(CharacterCard card)
     {
         if(!checkActivation("Effect: "+card.getEffect()))
@@ -890,6 +951,11 @@ public class IslandController extends Showable
                                                         "choose a colour to activate the card: ")));
         GUI.getInstance().resumeAllStages();
     }
+
+    /**
+     * This method call checkActivation and sends card12 effect
+     * @param card
+     */
     private void activateCard12(CharacterCard card)
     {
         if(!checkActivation("Effect: "+card.getEffect()))
@@ -899,6 +965,12 @@ public class IslandController extends Showable
                                                         "choose a colour to activate the card: ")));
         GUI.getInstance().resumeAllStages();
     }
+
+    /**
+     * This method is called by card 1, 3, 5 and blocks everything except islands cause these cards
+     * requires an island as a parameter and the player must choose one
+     * @param cardID
+     */
     private void activateCardRequiringIsland(int cardID)
     {
         GUI.getInstance().pauseAllStages();
@@ -907,6 +979,16 @@ public class IslandController extends Showable
         disableClouds();
         enableIslands();
     }
+
+    /**
+     * This method is called by card 7, 10 and tells to the player that he must choose students to
+     * play the selected card
+     * @param referenceList
+     * @param maxNum
+     * @param minNum
+     * @param message
+     * @return selected students list
+     */
     private List<Colour> chooseColoursUntilCorrect(List<Colour> referenceList, int maxNum, int minNum, String message)
     {
         boolean errorInChoice= true;
@@ -948,149 +1030,339 @@ public class IslandController extends Showable
         return chosenStudents;
     }
 
+    /**
+     * This method send the message that the cloud1 has been selected
+     */
     @FXML
     private void clickCloud1()
     {
         sendMessage(new ChooseCloud(nickName, 0));
     }
+
+    /**
+     * This method send the message that the cloud2 has been selected
+     */
     @FXML
     private void clickCloud2()
     {
         sendMessage(new ChooseCloud(nickName, 1));
     }
+
+    /**
+     * This method send the message that the cloud3 has been selected
+     */
     @FXML
     private void clickCloud3()
     {
         sendMessage(new ChooseCloud(nickName, 2));
     }
+
+    /**
+     * This method send the message that the cloud4 has been selected
+     */
     @FXML
     private void clickCloud4()
     {
         sendMessage(new ChooseCloud(nickName, 3));
     }
 
+    /**
+     * This method send the message that the Island1 has been selected
+     */
     @FXML
     private void clickIs1()
     {
         selectedIsland(0);
     }
+
+    /**
+     * This method send the message that the Island2 has been selected
+     */
     @FXML
     private void clickIs2()
     {
         selectedIsland(1);
     }
+
+    /**
+     * This method send the message that the Island3 has been selected
+     */
     @FXML
     private void clickIs3()
     {
         selectedIsland(2);
     }
+
+    /**
+     * This method send the message that the Island4 has been selected
+     */
     @FXML
     private void clickIs4()
     {
         selectedIsland(3);
     }
+
+    /**
+     * This method send the message that the Island5 has been selected
+     */
     @FXML
     private void clickIs5()
     {
         selectedIsland(4);
     }
+
+    /**
+     * This method send the message that the Island6 has been selected
+     */
     @FXML
     private void clickIs6()
     {
         selectedIsland(5);
     }
+
+    /**
+     * This method send the message that the Island7 has been selected
+     */
     @FXML
     private void clickIs7()
     {
         selectedIsland(6);
     }
+
+    /**
+     * This method send the message that the Island8 has been selected
+     */
     @FXML
     private void clickIs8()
     {
         selectedIsland(7);
     }
+
+    /**
+     * This method send the message that the Island9 has been selected
+     */
     @FXML
     private void clickIs9()
     {
         selectedIsland(8);
     }
+
+    /**
+     * This method send the message that the Island10 has been selected
+     */
     @FXML
     private void clickIs10()
     {
         selectedIsland(9);
     }
+
+    /**
+     * This method send the message that the Island11 has been selected
+     */
     @FXML
     private void clickIs11()
     {
         selectedIsland(10);
     }
+
+    /**
+     * This method send the message that the Island12 has been selected
+     */
     @FXML
     private void clickIs12()
     {
         selectedIsland(11);
     }
+
+    /**
+     * This method highlights island1 when the mouse of the current player is on her
+     */
     @FXML
     private void mouseOnIs1(){ lumIs1.setVisible(true);}
+
+    /**
+     * This method highlights island2 when the mouse of the current player is on her
+     */
     @FXML
     private void mouseOnIs2(){ lumIs2.setVisible(true);}
+
+    /**
+     * This method highlights island3 when the mouse of the current player is on her
+     */
     @FXML
     private void mouseOnIs3(){ lumIs3.setVisible(true);}
+
+    /**
+     * This method highlights island4 when the mouse of the current player is on her
+     */
     @FXML
     private void mouseOnIs4(){ lumIs4.setVisible(true);}
+
+    /**
+     * This method highlights island5 when the mouse of the current player is on her
+     */
     @FXML
     private void mouseOnIs5(){ lumIs5.setVisible(true);}
+
+    /**
+     * This method highlights island6 when the mouse of the current player is on her
+     */
     @FXML
     private void mouseOnIs6(){ lumIs6.setVisible(true);}
+
+    /**
+     * This method highlights island7 when the mouse of the current player is on her
+     */
     @FXML
     private void mouseOnIs7(){ lumIs7.setVisible(true);}
+
+    /**
+     * This method highlights island8 when the mouse of the current player is on her
+     */
     @FXML
     private void mouseOnIs8(){ lumIs8.setVisible(true);}
+
+    /**
+     * This method highlights island9 when the mouse of the current player is on her
+     */
     @FXML
     private void mouseOnIs9(){ lumIs9.setVisible(true);}
+
+    /**
+     * This method highlights island10 when the mouse of the current player is on her
+     */
     @FXML
     private void mouseOnIs10(){ lumIs10.setVisible(true);}
+
+    /**
+     * This method highlights island11 when the mouse of the current player is on her
+     */
     @FXML
     private void mouseOnIs11(){ lumIs11.setVisible(true);}
+
+    /**
+     * This method highlights island12 when the mouse of the current player is on her
+     */
     @FXML
     private void mouseOnIs12(){ lumIs12.setVisible(true);}
+
+    /**
+     * This method highlights cloud1 when the mouse of the current player is on her
+     */
     @FXML
     private void mouseOnC1(){ lumC1.setVisible(true);}
+
+    /**
+     * This method highlights cloud2 when the mouse of the current player is on her
+     */
     @FXML
     private void mouseOnC2(){ lumC2.setVisible(true);}
+
+    /**
+     * This method highlights cloud3 when the mouse of the current player is on her
+     */
     @FXML
     private void mouseOnC3(){ lumC3.setVisible(true);}
+
+    /**
+     * This method highlights cloud4 when the mouse of the current player is on her
+     */
     @FXML
     private void mouseOnC4(){ lumC4.setVisible(true);}
+
+    /**
+     * This method turn off highlights island1 when the mouse of the current player is on her
+     */
     @FXML
     private void mouseOffIs1(){ lumIs1.setVisible(false);}
+
+    /**
+     * This method turn off highlights island2 when the mouse of the current player is on her
+     */
     @FXML
     private void mouseOffIs2(){ lumIs2.setVisible(false);}
+
+    /**
+     * This method turn off highlights island3 when the mouse of the current player is on her
+     */
     @FXML
     private void mouseOffIs3(){ lumIs3.setVisible(false);}
+
+    /**
+     * This method turn off highlights island4 when the mouse of the current player is on her
+     */
     @FXML
     private void mouseOffIs4(){ lumIs4.setVisible(false);}
+
+    /**
+     * This method turn off highlights island5 when the mouse of the current player is on her
+     */
     @FXML
     private void mouseOffIs5(){ lumIs5.setVisible(false);}
+
+    /**
+     * This method turn off highlights island6 when the mouse of the current player is on her
+     */
     @FXML
     private void mouseOffIs6(){ lumIs6.setVisible(false);}
+
+    /**
+     * This method turn off highlights island7 when the mouse of the current player is on her
+     */
     @FXML
     private void mouseOffIs7(){ lumIs7.setVisible(false);}
+
+    /**
+     * This method turn off highlights island8 when the mouse of the current player is on her
+     */
     @FXML
     private void mouseOffIs8(){ lumIs8.setVisible(false);}
+
+    /**
+     * This method turn off highlights island9 when the mouse of the current player is on her
+     */
     @FXML
     private void mouseOffIs9(){ lumIs9.setVisible(false);}
+
+    /**
+     * This method turn off highlights island10 when the mouse of the current player is on her
+     */
     @FXML
     private void mouseOffIs10(){ lumIs10.setVisible(false);}
+
+    /**
+     * This method turn off highlights island11 when the mouse of the current player is on her
+     */
     @FXML
     private void mouseOffIs11(){ lumIs11.setVisible(false);}
+
+    /**
+     * This method turn off highlights island12 when the mouse of the current player is on her
+     */
     @FXML
     private void mouseOffIs12(){ lumIs12.setVisible(false);}
+
+    /**
+     * This method turn off highlights cloud1 when the mouse of the current player is on her
+     */
     @FXML
     private void mouseOffC1(){ lumC1.setVisible(false);}
+
+    /**
+     * This method turn off highlights cloud2 when the mouse of the current player is on her
+     */
     @FXML
     private void mouseOffC2(){ lumC2.setVisible(false);}
+
+    /**
+     * This method turn off highlights cloud3 when the mouse of the current player is on her
+     */
     @FXML
     private void mouseOffC3(){ lumC3.setVisible(false);}
+
+    /**
+     * This method turn off highlights cloud4 when the mouse of the current player is on her
+     */
     @FXML
     private void mouseOffC4(){ lumC4.setVisible(false);}
 
