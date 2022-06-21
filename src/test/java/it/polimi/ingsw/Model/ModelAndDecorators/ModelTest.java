@@ -497,6 +497,7 @@ public class ModelTest
 
         model.islandsList.get(5).towersSwitcher(getPlayers(model).get(0).getTowers());
         model.islandsList.get(6).towersSwitcher(getPlayers(model).get(0).getTowers());
+        model.checkIslandLinking();
 
         assertEquals(model.islandsList.get(5).getNumTowers(), 2);
         assertEquals(model.islandsList.get(5).getStudentsColours().size(), 17);
@@ -532,6 +533,7 @@ public class ModelTest
         }
 
         model.islandsList.get(6).towersSwitcher(getPlayers(model).get(0).getTowers());
+        model.checkIslandLinking();
 
         assertEquals(model.islandsList.get(5).getStudentsColours().size(), 23);
 
