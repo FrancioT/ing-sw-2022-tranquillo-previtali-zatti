@@ -715,6 +715,10 @@ public class Model {
 
         player.entranceFiller(studentsList);
 
+        // if the call of entranceFiller was made by the constructor and part of the game isn't created yet,
+        // don't send the message
+        if(characterCardList==null || phase==null)
+            return;
         List<Player> player_updated= new ArrayList<>();
         player_updated.add(player);
         ModelMessage message= new ModelMessage(characterCardList.size()!=0, null,
