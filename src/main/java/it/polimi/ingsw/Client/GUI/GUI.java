@@ -307,7 +307,6 @@ public class GUI extends Application implements PropertyChangeListener
                 window.show();
                 addShowableStage(loader.getController());
             }
-            updateStages();
             if(game.hasGameEnded())
             {
                 try{
@@ -325,6 +324,7 @@ public class GUI extends Application implements PropertyChangeListener
                     showWinner();
                 }
             }
+            updateStages();
         }
     }
 
