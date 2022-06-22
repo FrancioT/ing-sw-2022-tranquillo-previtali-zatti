@@ -6,11 +6,6 @@ abstract class Showable implements Closeable
 {
      abstract void show();
 
-     void removeShowable()
-     {
-          GUI.getInstance().removeShowableStage(this);
-     }
-
      @Override
      abstract public void close();
      abstract public void pause();

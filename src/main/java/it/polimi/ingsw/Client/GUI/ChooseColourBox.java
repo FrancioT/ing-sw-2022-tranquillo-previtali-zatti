@@ -28,6 +28,12 @@ class ChooseColourBox
     private static Colour choice;
     private static List<Colour> multipleChoice;
 
+    /**
+     * Display a window which allow the user to choose one of the 5 student's colours
+     * @param title the title of the window
+     * @param message the text inside the window
+     * @return the colour selected by the user
+     */
     static Colour singleColour(String title, String message)
     {
         setImageSize();
@@ -75,6 +81,12 @@ class ChooseColourBox
         return choice;
     }
 
+    /**
+     * Display a window which allow the user to choose between the 5 student's colours multiple times
+     * @param title the title of the window
+     * @param message the text inside the window
+     * @return a list of the colour selected
+     */
     static List<Colour> multipleColours(String title, String message)
     {
         setImageSize();

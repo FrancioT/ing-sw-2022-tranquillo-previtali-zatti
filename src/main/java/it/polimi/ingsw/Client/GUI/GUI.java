@@ -19,7 +19,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -135,18 +134,32 @@ public class GUI extends Application implements PropertyChangeListener
         this.nickName= nickName;
     }
 
+    /**
+     * Add a Showable window to the showable list in this class
+     * @param showable the Showable window object
+     */
     public synchronized void addShowableStage(Showable showable)
     {
         allStages.add(showable);
     }
 
+    /**
+     * Remove a Showable window to the showable list in this class
+     * @param showable the Showable window object
+     */
     public synchronized void removeShowableStage(Showable showable)
     {
         allStages.remove(showable);
     }
 
+    /**
+     * @return the main stage
+     */
     public synchronized Stage getWindow() { return window; }
 
+    /**
+     * @return the last ModelMessage sent by the server
+     */
     public synchronized ModelMessage getModel() { return game; }
 
     public synchronized String getNickName()
@@ -198,7 +211,7 @@ public class GUI extends Application implements PropertyChangeListener
     }
 
     /**
-     * Close all the open stages and window
+     * Close all the open stages and window which are saved in the showable list
      */
     public void closeAllWindows()
     {
@@ -207,6 +220,14 @@ public class GUI extends Application implements PropertyChangeListener
         window.close();
     }
 
+    /**
+     * Method called by the Receiver class, when a new ModelMessage was received.
+     * This method first checks if the massage was an error message and if it's fatal, in which case displays
+     * an alert box that tells to the player that a fatal error has occurred and terminate the program.
+     * If it's not an error this method update the game and all the showable stages saved in the showable list.
+     * @param event A PropertyChangeEvent object describing the event source and the property that has changed.
+     *              Just the property name and the new value (in which must be the ModelMessage) are used
+     */
     // synchronized because we change all the stages to follow the new model, but it can't be updated
     // again during this action
     @Override
@@ -287,27 +308,96 @@ public class GUI extends Application implements PropertyChangeListener
                 addShowableStage(loader.getController());
             }
             updateStages();
-            //FARE QUALCOSA QUI CHE CHIAMI IL METODO VERO O CHE PUNTI AL CONTROLLER DEL WINNER
-            //if(game.hasGameEnded())
-            //   showWinner();
+            if(game.hasGameEnded())
+            {
+                try{
+                    FXMLLoader loader= new  FXMLLoader(getClass().getClassLoader().getResource("winnerScreen.fxml"));
+                    Parent winnerScreen= loader.load();
+                    addShowableStage(loader.getController());
+                    Stage winnerWindow= new Stage();
+                    winnerWindow.setTitle("Winners");
+                    winnerWindow.setScene(new Scene(winnerScreen));
+                    winnerWindow.getIcons().add(icon);
+                    winnerWindow.setResizable(false);
+                    WinnerController.setWindow(winnerWindow);
+                    winnerWindow.show();
+                }catch (IOException e){
+                    showWinner();
+                }
+            }
         }
     }
 
+    /**
+     * Method used to call the method show of all the Showable stages in the showable list
+     */
     private synchronized void updateStages()
     {
         for(Showable stage: allStages)
             stage.show();
     }
 
+    /**
+     * Method used to call the method pause of all the Showable stages in the showable list
+     */
     public synchronized void pauseAllStages()
     {
         for(Showable stage: allStages)
             stage.pause();
     }
 
+    /**
+     * Method used to call the method resume of all the Showable stages in the showable list
+     */
     public synchronized void resumeAllStages()
     {
         for(Showable stage: allStages)
             stage.resume();
+    }
+
+    /**
+     * Method used to find and print the winner/s as an AlertBox in case the winner screen failed to load
+     */
+    private synchronized void showWinner()
+    {
+        int maxScore=0;
+        List<String> winners= new ArrayList<>();
+        if(game==null)
+            return;
+
+        // calculating the number of towers with which a player start the game
+        int mode= game.getPlayerList().size()%2;    // mode==0 => 8 towers
+        // mode==1 => 6 towers
+        final int maxTowers= (mode)*6 + (1-mode)*8;
+
+        // for loop to calculate the "score" of every player, based on the number of towers that he still has in the
+        // dashboard and on the teachers he owns
+        for(Player player: game.getPlayerList())
+        {
+            int score= 0;
+            for(Colour c: Colour.values())
+                if(player.checkTeacherPresence(c))
+                    score++;
+            score+= (maxTowers - player.getTowers().availabilityChecker())*10;
+            if(score==maxScore)
+                winners.add(player.getuID());
+            else if(score>maxScore)
+            {
+                maxScore=score;
+                winners.clear();
+                winners.add(player.getuID());
+            }
+        }
+        //in case there is a draw
+        if(winners.size()>1)
+        {
+            String message= "The winners are: ";
+            for(String winner: winners)
+                message= message.concat(winner+"   ");
+            AlertBox.display("Game ended", message);
+        }
+        else
+            AlertBox.display("Game ended", "The winner is "+winners.get(0));
+        closeAllWindows();
     }
 }

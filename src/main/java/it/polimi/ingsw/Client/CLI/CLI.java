@@ -791,6 +791,12 @@ public class CLI extends Thread implements PropertyChangeListener
             }
         }
     }
+
+    /**
+     * Method used to check if the requested card was present in the game
+     * @param ID the id of the card
+     * @return true if the card is in the current game
+     */
     private boolean checkCharacterCardPresence(int ID)
     {
         if(!game.orElse(null).isExpertMode())
@@ -800,6 +806,10 @@ public class CLI extends Thread implements PropertyChangeListener
                 return true;
         return false;
     }
+
+    /**
+     * Method used to print the winner at the end of the game
+     */
     private void printWinner()
     {
         int maxScore=0;

@@ -13,6 +13,11 @@ import javafx.stage.Stage;
 
 class AlertBox
 {
+    /**
+     * Display a window which stops the calling window until the new one is closed
+     * @param title title of this window
+     * @param message text inside the window
+     */
     static void display(String title, String message)
     {
         Stage window;

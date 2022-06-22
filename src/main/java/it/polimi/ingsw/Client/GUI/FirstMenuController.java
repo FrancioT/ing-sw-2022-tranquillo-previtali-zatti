@@ -49,6 +49,9 @@ public class FirstMenuController
     public void connection()
     { inputChecker(); }
 
+    /**
+     * This method checks if the inputted data are acceptable, in which case calls the firstConnection method
+     */
     private void inputChecker()
     {
         String nick= nickname.getText();
@@ -78,6 +81,11 @@ public class FirstMenuController
         }
     }
 
+    /**
+     * This method tries to connect to the server with the data inputted, if the nickName selected was already
+     * used notifies the user with an AlertBox
+     * @throws IOException thrown if the connection with the server fails
+     */
     private void firstConnection() throws IOException
     {
         serverConnection = new Socket(serverIP.getText(), serverPort);
@@ -106,6 +114,10 @@ public class FirstMenuController
         GUI.getInstance().setNickName(yourNickname);
     }
 
+    /**
+     * If you are the first player to connect, this method is called setting up the window to allow the player
+     * the modality selection of this game
+     */
     private void chooseMode()
     {
         numPlayers= new ToggleGroup();
@@ -118,6 +130,10 @@ public class FirstMenuController
         startTheGame.setOnAction(event -> sendMode());
     }
 
+    /**
+     * This method is called when the selection of the modality is ended, it extracts the inputted data and
+     * then it calls the method sendInfo
+     */
     private void sendMode()
     {
         if(numPlayers.getSelectedToggle()==null || mode.getSelectedToggle()==null)
@@ -155,6 +171,14 @@ public class FirstMenuController
         }
     }
 
+    /**
+     * Send to the server your nickname and, if necessary, the modality
+     * @param nickname the nickname inputted by the player
+     * @param mode the modality of the game
+     * @return the new nickname if the one selected was already taken, or else the one selected by the user
+     * @throws IOException if an I/O error occurs when creating the output stream to send to the server or if
+     * the socket is not connected
+     */
     private String sendInfo(String nickname, String mode) throws IOException
     {
         PrintWriter out = new PrintWriter(serverConnection.getOutputStream(), true);
@@ -166,6 +190,9 @@ public class FirstMenuController
         return newNickName;
     }
 
+    /**
+     * After the creation of the game, this method is called, creating a stable connection with the server
+     */
     private void startReceiver()
     {
         Task<Boolean> receiverTask= new Task<Boolean>() {
@@ -193,6 +220,10 @@ public class FirstMenuController
         receiverThread.start();
     }
 
+    /**
+     * Method used to change the behaviour of the window when the user tries to close it
+     * @param event the closing window event
+     */
     private void closeWindow(WindowEvent event)
     {
         event.consume();  // consume the main closing window event

@@ -15,6 +15,13 @@ import javafx.stage.Stage;
 class ConfirmBox
 {
     private static boolean answer;
+
+    /**
+     * Display a window which asks a choice between yes and no, stops the calling window until this one is closed
+     * @param title title of the window
+     * @param message text inside the window
+     * @return the answer of the user: true if yes, false if no
+     */
     static boolean display(String title, String message)
     {
         answer=false;

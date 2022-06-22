@@ -2,10 +2,10 @@ package it.polimi.ingsw.Client.GUI;
 
 import it.polimi.ingsw.ClientsHandler.Messages.ModelMessage;
 import it.polimi.ingsw.Model.Colour;
-import it.polimi.ingsw.Model.ColourT;
 import it.polimi.ingsw.Model.Player;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +14,15 @@ public class WinnerController extends Showable
 {
 
     private ModelMessage game;
+    private static Stage window;
     @FXML
     private Text winner1, winner2, winner3;
-    private List<Text> winnersText= new ArrayList<>();
+    private final List<Text> winnersText= new ArrayList<>();
 
+    public static void setWindow(Stage winnerWindow)
+    {
+        window= winnerWindow;
+    }
 
     /**
      * This method calculate the winner and display his name in the last game's screen
@@ -65,19 +70,8 @@ public class WinnerController extends Showable
 
         if(winners.size()==4)
         {
-            String team1="", team2="";
-            for(int j=0; j<4; j++)
-            {
-                if(game.getPlayerList().get(j).getTowers().getColour().equals(ColourT.black))
-                    team1= team1.concat(winners.get(j)+" ");
-
-                if(game.getPlayerList().get(j).getTowers().getColour().equals(ColourT.white))
-                    team2= team2.concat(winners.get(j)+" ");
-            }
-            winnersText.get(0).setText(team1);
+            winnersText.get(0).setText("Both teams have won");
             winnersText.get(0).setVisible(true);
-            winnersText.get(1).setText(team2);
-            winnersText.get(1).setVisible(true);
         }
         else
         {
@@ -96,11 +90,19 @@ public class WinnerController extends Showable
     void show()
     {
         game= GUI.getInstance().getModel();
+        window.setOnCloseRequest(e -> close());
         showWinner();
     }
 
     @Override
-    public void close(){}
+    public void close()
+    {
+        if(window!=null)
+        {
+            GUI.getInstance().closeAllWindows();
+            window.close();
+        }
+    }
 
     @Override
     public void pause(){}

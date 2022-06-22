@@ -73,6 +73,11 @@ public class Receiver extends Thread implements PingWaiter
         waitingPong.interrupt();
         connection.close();
     }
+
+    /**
+     * Function called by the pong waiter thread
+     * @return true if there was a response to a ping sent between the last call of this function and this call
+     */
     @Override
     public synchronized boolean getPing()
     {
