@@ -505,7 +505,7 @@ public class DashboardController extends Showable
                 {
                     teacherDashboard.get(cS).setVisible(game.getPlayerList().get(i-1).checkTeacherPresence(cS));
 
-                    for(int j=1; j<=9; j++)
+                    for(int j=1; j<=10; j++)
                     {
                         if(j<=game.getPlayerList().get(i-1).getStudentNum(cS))
                             studentsDashboard.get(cS).get(j).setVisible(true);
