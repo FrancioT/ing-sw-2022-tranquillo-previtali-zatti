@@ -1366,6 +1366,11 @@ public class IslandController extends Showable
     @FXML
     private void mouseOffC4(){ lumC4.setVisible(false);}
 
+    /**
+     * This method is called by the methods those detect a mouse click on a specific island and depending
+     * on the current phase sends the corresponding message to the receiver
+     * @param index
+     */
     private void selectedIsland(int index)
     {
         if(ccIslandChoice)
@@ -1398,6 +1403,11 @@ public class IslandController extends Showable
         }
     }
 
+    /**
+     * This method is called by every method that needs to communicate with the receiver and
+     * sends to this the associated message
+     * @param message
+     */
     private void sendMessage(Message message)
     {
         try{
@@ -1412,7 +1422,7 @@ public class IslandController extends Showable
 
 
     /**
-     *
+     * This method sets the current player text on the islands dashboard
      */
     private void setCurrentPlayer()
     {
@@ -1426,7 +1436,7 @@ public class IslandController extends Showable
     }
 
     /**
-     *
+     * This method sets the current unused coins text on the islands dashboard
      */
     private void setUnusedCoins()
     {
@@ -1435,7 +1445,7 @@ public class IslandController extends Showable
     }
 
     /**
-     *
+     * This method sets the correct number of towers that each player has
      */
     private void setPlayersCoinsAndTowers()
     {
@@ -1448,7 +1458,7 @@ public class IslandController extends Showable
     }
 
     /**
-     *
+     * This method checks where is mother nature and turn on the image on the found island
      */
     private void setMotherNature()
     {
@@ -1457,9 +1467,10 @@ public class IslandController extends Showable
     }
 
     /**
+     * This method count and return the number of the chosen colour students on the chosen island
      * @param cS
      * @param islandIndex
-     * @return
+     * @return Number of colour cS students on island islandIndex
      */
     private int studentsColourOnIsland(Colour cS, Integer islandIndex)
     {
@@ -1473,7 +1484,7 @@ public class IslandController extends Showable
     }
 
     /**
-     *
+     * This method sets all texts on every island to the corresponding students number
      */
     private void setIslandsStudents()
     {
@@ -1483,7 +1494,8 @@ public class IslandController extends Showable
     }
 
     /**
-     *
+     * This method shows the correct number of clouds on the islands dashboard and also sets students
+     * images on them
      */
     private void setClouds()
     {
@@ -1505,6 +1517,9 @@ public class IslandController extends Showable
         }
     }
 
+    /**
+     * This method shows the correct number of islands and students on them
+     */
     private void showIslands()
     {
         for(int i=1; i<=12; i++)
@@ -1552,7 +1567,8 @@ public class IslandController extends Showable
     }
 
     /**
-     *
+     * This method checks the current phase of the game, the current player and enable or disable
+     * related functions for all players
      */
     private void setActionOnPhaseIsland()
     {
@@ -1583,7 +1599,7 @@ public class IslandController extends Showable
     }
 
     /**
-     *
+     * This method set the correct nicknames of all players on the islands dashboard
      */
     private void setNicknames()
     {
@@ -1597,7 +1613,7 @@ public class IslandController extends Showable
     }
 
     /**
-     *
+     * This method shows the correct number and colour of towers on the islands dashboard
      */
     private void setTowers()
     {
@@ -1621,7 +1637,7 @@ public class IslandController extends Showable
     }
 
     /**
-     *
+     * This method shows the first player's dashboard when you click the associated button
      */
     @FXML
     public void showDashboard1()
@@ -1633,7 +1649,7 @@ public class IslandController extends Showable
     }
 
     /**
-     *
+     * This method shows the second player's dashboard when you click the associated button
      */
     @FXML
     public void showDashboard2()
@@ -1645,7 +1661,7 @@ public class IslandController extends Showable
     }
 
     /**
-     *
+     * This method shows the third player's dashboard when you click the associated button
      */
     @FXML
     public void showDashboard3()
@@ -1657,7 +1673,7 @@ public class IslandController extends Showable
     }
 
     /**
-     *
+     * This method shows the fourth player's dashboard when you click the associated button
      */
     @FXML
     public void showDashboard4()
