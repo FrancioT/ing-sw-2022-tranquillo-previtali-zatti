@@ -714,6 +714,13 @@ public class Model {
             throw new NoSuchPlayerException();
 
         player.entranceFiller(studentsList);
+
+        List<Player> player_updated= new ArrayList<>();
+        player_updated.add(player);
+        ModelMessage message= new ModelMessage(characterCardList.size()!=0, null,
+                                               null, player_updated, null, currentPlayer.getuID(),
+                                               unusedCoins, false, phase);
+        notify(message);
     }
 
     /**

@@ -32,8 +32,8 @@ public class CharacterCard10 extends CharacterCard
     /**
      * @param userData   the databuffer with the colours of the students that the player wants to swap.
      *                   The colours must be in this order: up to 2 pairs of colours, the first colour of the pair
-     *                   represents the student in the classroom that must be swapped with the student from the
-     *                   entrance whose colour is the second one of the pair
+     *                   represents the student in the entrance that must be swapped with the student from the
+     *                   classroom whose colour is the second one of the pair
      */
     @Override
     public void handle(String uID, DataBuffer userData, Controller controller) throws Exception
@@ -111,7 +111,7 @@ public class CharacterCard10 extends CharacterCard
         super.ccPrinter();
         System.out.println("Effect: "+effect);
         System.out.println("Parameters: list of colours (order must be: up to 2 pairs of colours, the first colour of\n" +
-                "the pair represents the student in the classroom that must be swapped with the student from\n" +
-                "the entrance whose colour is the second one of the pair)");
+                "the pair represents the student in the entrance that must be swapped with the student from\n" +
+                "the classroom whose colour is the second one of the pair)");
     }
 }

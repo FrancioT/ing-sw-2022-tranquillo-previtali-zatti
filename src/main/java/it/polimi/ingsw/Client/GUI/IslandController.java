@@ -917,10 +917,10 @@ public class IslandController extends Showable
         for(Colour c: Colour.values())
             for(int i=0; i<player.getStudentNum(c); i++)
                 classroomsStudents.add(c);
-        List<Colour> result1= chooseColoursUntilCorrect(classroomsStudents, 2, 1,
-                                               "Select up to 2 students from your classrooms:");
-        List<Colour> result2= chooseColoursUntilCorrect(player.getStudents(), result1.size(), result1.size(),
-                                               "Select "+result1.size()+" students from your entrance:");
+        List<Colour> result1= chooseColoursUntilCorrect(player.getStudents(), 2, 1,
+                                               "Select up to 2 students from your entrance:");
+        List<Colour> result2= chooseColoursUntilCorrect(classroomsStudents, result1.size(), result1.size(),
+                                               "Select "+result1.size()+" students from your classrooms:");
         List<Colour> result= new ArrayList<>();
         if(result1.size()==1)
         {

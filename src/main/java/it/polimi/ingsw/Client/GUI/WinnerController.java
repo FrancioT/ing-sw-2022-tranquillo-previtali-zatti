@@ -90,7 +90,7 @@ public class WinnerController extends Showable
     void show()
     {
         game= GUI.getInstance().getModel();
-        window.setOnCloseRequest(e -> close());
+        window.setOnCloseRequest(e -> GUI.getInstance().closeAllWindows());
         showWinner();
     }
 
@@ -98,10 +98,7 @@ public class WinnerController extends Showable
     public void close()
     {
         if(window!=null)
-        {
-            GUI.getInstance().closeAllWindows();
             window.close();
-        }
     }
 
     @Override
