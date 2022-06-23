@@ -27,6 +27,29 @@ class ChooseColourBox
     private static final ImageView blueS = new ImageView("resizedBlueStudent.png");
     private static Colour choice;
     private static List<Colour> multipleChoice;
+    private static Stage window;
+
+    /**
+     * Private class used only as a showable object in order to close the ChooseColourBox when the game is closing
+     */
+    private static class FireClosing extends Showable
+    {
+        @Override
+        public void show(){}
+
+        @Override
+        public void close()
+        {
+            ChooseColourBox.close();
+        }
+
+        @Override
+        public void pause() {}
+
+        @Override
+        public void resume() {}
+    }
+    private static FireClosing closingChecker;
 
     /**
      * Display a window which allow the user to choose one of the 5 student's colours
@@ -36,9 +59,9 @@ class ChooseColourBox
      */
     static Colour singleColour(String title, String message)
     {
+        setClosingChecker();
         setImageSize();
         choice= null;
-        Stage window;
         window= new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(title);
@@ -78,6 +101,7 @@ class ChooseColourBox
         Scene scene= new Scene(layout);
         window.setScene(scene);
         window.showAndWait();
+        removeClosingChecker();
         return choice;
     }
 
@@ -89,9 +113,9 @@ class ChooseColourBox
      */
     static List<Colour> multipleColours(String title, String message)
     {
+        setClosingChecker();
         setImageSize();
         multipleChoice= new ArrayList<>();
-        Stage window;
         window= new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(title);
@@ -144,7 +168,38 @@ class ChooseColourBox
         Scene scene= new Scene(layout);
         window.setScene(scene);
         window.showAndWait();
+        removeClosingChecker();
         return multipleChoice;
+    }
+
+    /**
+     * Close the pop-up window created when was calling the methods multipleColours or singleColour
+     */
+    private static void close()
+    {
+        if(window!=null)
+            window.close();
+    }
+
+    /**
+     * Creates a Showable object and adds it to the showable list of the GUI instance
+     */
+    private static void setClosingChecker()
+    {
+        closingChecker= new FireClosing();
+        GUI.getInstance().addShowableStage(closingChecker);
+    }
+
+    /**
+     * Removes the Showable object created and added in the GUI instance
+     */
+    private static void removeClosingChecker()
+    {
+        if(closingChecker!=null)
+        {
+            GUI.getInstance().removeShowableStage(closingChecker);
+            closingChecker=null;
+        }
     }
 
     private static void setImageSize()

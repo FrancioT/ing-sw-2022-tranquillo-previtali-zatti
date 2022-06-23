@@ -15,6 +15,29 @@ import javafx.stage.Stage;
 class ConfirmBox
 {
     private static boolean answer;
+    private static Stage window;
+
+    /**
+     * Private class used only as a showable object in order to close the ChooseColourBox when the game is closing
+     */
+    private static class FireClosing extends Showable
+    {
+        @Override
+        public void show(){}
+
+        @Override
+        public void close()
+        {
+            ConfirmBox.close();
+        }
+
+        @Override
+        public void pause() {}
+
+        @Override
+        public void resume() {}
+    }
+    private static FireClosing closingChecker;
 
     /**
      * Display a window which asks a choice between yes and no, stops the calling window until this one is closed
@@ -24,8 +47,8 @@ class ConfirmBox
      */
     static boolean display(String title, String message)
     {
+        setClosingChecker();
         answer=false;
-        Stage window;
         window= new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(title);
@@ -55,6 +78,37 @@ class ConfirmBox
         Scene scene= new Scene(layout);
         window.setScene(scene);
         window.showAndWait();
+        removeClosingChecker();
         return answer;
+    }
+
+    /**
+     * Close the pop-up window created when was calling the methods multipleColours or singleColour
+     */
+    private static void close()
+    {
+        if(window!=null)
+            window.close();
+    }
+
+    /**
+     * Creates a Showable object and adds it to the showable list of the GUI instance
+     */
+    private static void setClosingChecker()
+    {
+        closingChecker= new FireClosing();
+        GUI.getInstance().addShowableStage(closingChecker);
+    }
+
+    /**
+     * Removes the Showable object created and added in the GUI instance
+     */
+    private static void removeClosingChecker()
+    {
+        if(closingChecker!=null)
+        {
+            GUI.getInstance().removeShowableStage(closingChecker);
+            closingChecker=null;
+        }
     }
 }
