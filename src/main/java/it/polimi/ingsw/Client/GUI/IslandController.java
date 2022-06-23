@@ -779,7 +779,7 @@ public class IslandController extends Showable
      */
     private void activateCard1(CharacterCard card)
     {
-        if(!checkActivation("Effect: "+card.getEffect()))
+        if(!checkActivation("Effect: "+card.getEffect()+"\nFirst select an island"))
             return;
         activateCardRequiringIsland(card.getCardID());
     }
