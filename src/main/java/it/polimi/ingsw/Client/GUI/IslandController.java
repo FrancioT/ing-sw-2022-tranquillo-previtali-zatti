@@ -493,7 +493,7 @@ public class IslandController extends Showable
     /**
      * This method verify if the expert mode is active and set visible or invisible
      * the characters cards
-     * @param mod
+     * @param mod the boolean that tells to the method in which mode the game is set
      */
     private void expertActivation(boolean mod)
     {
@@ -757,9 +757,9 @@ public class IslandController extends Showable
 
     /**
      * This method is called by every activation card method, displays the card effect and asks the player
-     * if he wants to play the card
-     * @param message
-     * @return boolean
+     * if he wants to play the card and return the answer
+     * @param message the message given by the caller
+     * @return boolean that tells to the caller the chosen answer by the player
      */
     private boolean checkActivation(String message)
     {
@@ -775,7 +775,7 @@ public class IslandController extends Showable
 
     /**
      * This method call checkActivation and sends card1 effect
-     * @param card
+     * @param card 1 effect message
      */
     private void activateCard1(CharacterCard card)
     {
@@ -786,7 +786,7 @@ public class IslandController extends Showable
 
     /**
      * This method call checkActivation and sends card2 effect
-     * @param card
+     * @param card 2 effect message
      */
     private void activateCard2(CharacterCard card)
     {
@@ -799,7 +799,7 @@ public class IslandController extends Showable
 
     /**
      * This method call checkActivation and sends card3 effect
-     * @param card
+     * @param card 3 effect message
      */
     private void activateCard3(CharacterCard card)
     {
@@ -810,7 +810,7 @@ public class IslandController extends Showable
 
     /**
      * This method call checkActivation and sends card4 effect
-     * @param card
+     * @param card 4 effect message
      */
     private void activateCard4(CharacterCard card)
     {
@@ -823,7 +823,7 @@ public class IslandController extends Showable
 
     /**
      * This method call checkActivation and sends card5 effect
-     * @param card
+     * @param card 5 effect message
      */
     private void activateCard5(CharacterCard card)
     {
@@ -840,7 +840,7 @@ public class IslandController extends Showable
 
     /**
      * This method call checkActivation and sends card6 effect
-     * @param card
+     * @param card 6 effect message
      */
     private void activateCard6(CharacterCard card)
     {
@@ -853,7 +853,7 @@ public class IslandController extends Showable
 
     /**
      * This method call checkActivation and sends card7 effect
-     * @param card
+     * @param card 7 effect message
      */
     private void activateCard7(CharacterCard card)
     {
@@ -879,7 +879,7 @@ public class IslandController extends Showable
 
     /**
      * This method call checkActivation and sends card8 effect
-     * @param card
+     * @param card 8 effect message
      */
     private void activateCard8(CharacterCard card)
     {
@@ -892,7 +892,7 @@ public class IslandController extends Showable
 
     /**
      * This method call checkActivation and sends card9 effect
-     * @param card
+     * @param card 9 effect message
      */
     private void activateCard9(CharacterCard card)
     {
@@ -909,7 +909,7 @@ public class IslandController extends Showable
 
     /**
      * This method call checkActivation and sends card10 effect
-     * @param card
+     * @param card 10 effect message
      */
     private void activateCard10(CharacterCard card)
     {
@@ -951,7 +951,7 @@ public class IslandController extends Showable
 
     /**
      * This method call checkActivation and sends card11 effect
-     * @param card
+     * @param card 11 effect message
      */
     private void activateCard11(CharacterCard card)
     {
@@ -968,7 +968,7 @@ public class IslandController extends Showable
 
     /**
      * This method call checkActivation and sends card12 effect
-     * @param card
+     * @param card 12 effect message
      */
     private void activateCard12(CharacterCard card)
     {
@@ -986,7 +986,7 @@ public class IslandController extends Showable
     /**
      * This method is called by card 1, 3, 5 and blocks everything except islands cause these cards
      * requires an island as a parameter and the player must choose one
-     * @param cardID
+     * @param cardID of the used character card
      */
     private void activateCardRequiringIsland(int cardID)
     {
@@ -1000,10 +1000,10 @@ public class IslandController extends Showable
     /**
      * This method is called by card 7, 10 and tells to the player that he must choose students to
      * play the selected card
-     * @param referenceList
-     * @param maxNum
-     * @param minNum
-     * @param message
+     * @param referenceList list of students on the selected card
+     * @param maxNum max number of selectable students
+     * @param minNum min number of selectable students
+     * @param message error message in case the player chose inexistent or the wrong number of students
      * @return selected students list
      */
     private List<Colour> chooseColoursUntilCorrect(List<Colour> referenceList, int maxNum, int minNum, String message)
@@ -1388,7 +1388,7 @@ public class IslandController extends Showable
     /**
      * This method is called by the methods those detect a mouse click on a specific island and depending
      * on the current phase sends the corresponding message to the receiver
-     * @param index
+     * @param index of the selected island
      */
     private void selectedIsland(int index)
     {
@@ -1427,7 +1427,7 @@ public class IslandController extends Showable
     /**
      * This method is called by every method that needs to communicate with the receiver and
      * sends to this the associated message
-     * @param message
+     * @param message given by the caller function
      */
     private void sendMessage(Message message)
     {
@@ -1487,10 +1487,11 @@ public class IslandController extends Showable
             motherNature.get(i).setVisible(game.getIslandList().get(i-1).isMotherNatureFlag());
     }
 
+
     /**
      * This method count and return the number of the chosen colour students on the chosen island
-     * @param cS
-     * @param islandIndex
+     * @param cS the colour of the students to be counted
+     * @param islandIndex the index of the island on which the students must be counted
      * @return Number of colour cS students on island islandIndex
      */
     private int studentsColourOnIsland(Colour cS, Integer islandIndex)

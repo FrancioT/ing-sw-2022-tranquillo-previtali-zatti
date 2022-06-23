@@ -670,7 +670,7 @@ public class DashboardController extends Showable
 
     /**
      * This method really send the message to the receiver for each card
-     * @param message
+     * @param message the message given by the caller function
      */
     private void sendMessage(Message message)
     {
