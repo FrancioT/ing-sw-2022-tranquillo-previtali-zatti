@@ -177,6 +177,8 @@ class ChooseColourBox
      */
     private static void close()
     {
+        multipleChoice=null;
+        choice=null;
         if(window!=null)
             window.close();
     }

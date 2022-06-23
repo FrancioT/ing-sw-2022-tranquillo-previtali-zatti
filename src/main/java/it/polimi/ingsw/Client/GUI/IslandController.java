@@ -866,9 +866,13 @@ public class IslandController extends Showable
                 player= p;
         List<Colour> result= chooseColoursUntilCorrect(player.getStudents(), 3, 1,
                                               "Select up to 3 students from your entrance:");
-        result.addAll(chooseColoursUntilCorrect(((CharacterCardWithStudentsList)card).getColoursOnCard(),
-                                                result.size(), result.size(),
-                                        "Select "+result.size()+" students from the card"));
+        if(result==null)
+            return;
+        List<Colour> result2= chooseColoursUntilCorrect(((CharacterCardWithStudentsList)card).getColoursOnCard(),
+                              result.size(), result.size(), "Select "+result.size()+" students from the card");
+        if(result2==null)
+            return;
+        result.addAll(result2);
         sendMessage(new Card7_10Data(nickName, card.getCardID(), result));
         GUI.getInstance().resumeAllStages();
     }
@@ -895,8 +899,11 @@ public class IslandController extends Showable
         if(!checkActivation("Effect: "+card.getEffect()))
             return;
         GUI.getInstance().pauseAllStages();
-        sendMessage(new Card9_11_12Data(nickName, card.getCardID(), ChooseColourBox.singleColour("Choose colour",
-                                                        "choose a colour to activate the card: ")));
+        Colour chosenColour= ChooseColourBox.singleColour("Choose colour",
+                                                         "choose a colour to activate the card: ");
+        if(chosenColour==null)
+            return;
+        sendMessage(new Card9_11_12Data(nickName, card.getCardID(), chosenColour));
         GUI.getInstance().resumeAllStages();
     }
 
@@ -919,8 +926,12 @@ public class IslandController extends Showable
                 classroomsStudents.add(c);
         List<Colour> result1= chooseColoursUntilCorrect(player.getStudents(), 2, 1,
                                                "Select up to 2 students from your entrance:");
+        if(result1==null)
+            return;
         List<Colour> result2= chooseColoursUntilCorrect(classroomsStudents, result1.size(), result1.size(),
                                                "Select "+result1.size()+" students from your classrooms:");
+        if(result2==null)
+            return;
         List<Colour> result= new ArrayList<>();
         if(result1.size()==1)
         {
@@ -947,8 +958,11 @@ public class IslandController extends Showable
         if(!checkActivation("Effect: "+card.getEffect()))
             return;
         GUI.getInstance().pauseAllStages();
-        sendMessage(new Card9_11_12Data(nickName, card.getCardID(), ChooseColourBox.singleColour("Choose colour",
-                                                        "choose a colour to activate the card: ")));
+        Colour chosenColour= ChooseColourBox.singleColour("Choose colour",
+                                                         "choose a colour to activate the card: ");
+        if(chosenColour==null)
+            return;
+        sendMessage(new Card9_11_12Data(nickName, card.getCardID(), chosenColour));
         GUI.getInstance().resumeAllStages();
     }
 
@@ -961,8 +975,11 @@ public class IslandController extends Showable
         if(!checkActivation("Effect: "+card.getEffect()))
             return;
         GUI.getInstance().pauseAllStages();
-        sendMessage(new Card9_11_12Data(nickName, card.getCardID(), ChooseColourBox.singleColour("Choose colour",
-                                                        "choose a colour to activate the card: ")));
+        Colour chosenColour= ChooseColourBox.singleColour("Choose colour",
+                                                         "choose a colour to activate the card: ");
+        if(chosenColour==null)
+            return;
+        sendMessage(new Card9_11_12Data(nickName, card.getCardID(), chosenColour));
         GUI.getInstance().resumeAllStages();
     }
 
@@ -998,6 +1015,8 @@ public class IslandController extends Showable
         {
             copyList= new ArrayList<>(referenceList);
             chosenStudents= ChooseColourBox.multipleColours("Select Students", message);
+            if(chosenStudents==null)
+                return null;
             if(chosenStudents.size()<=maxNum && chosenStudents.size()>=minNum)
             {
                 errorInChoice=false;
@@ -1379,9 +1398,11 @@ public class IslandController extends Showable
             // and send the message to the server
             if(cardSelected==1)
             {
-                sendMessage(new Card1Data(nickName, cardSelected, index,
-                                    ChooseColourBox.singleColour("Choose colour",
-                                                        "choose a colour to activate the card: ")));
+                Colour chosenColour= ChooseColourBox.singleColour("Choose colour",
+                                                                  "choose a colour to activate the card: ");
+                if(chosenColour==null)
+                    return;
+                sendMessage(new Card1Data(nickName, cardSelected, index, chosenColour));
                 GUI.getInstance().resumeAllStages();
             }
             else
