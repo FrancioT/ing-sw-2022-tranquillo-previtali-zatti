@@ -71,9 +71,13 @@ java -jar CLIGC37.jar
 
 ## Coverage
 ### Model
---Class coverage: 100% 
---Methods coverage: 99%
---Lines coverage: 96%
+| Class coverage  | Methods coverage | Lines coverage |
+| -------------    | ------------- | ------------- | 
+| 100% | 99% | 96% |
+
+--Class coverage: 
+--Methods coverage: 
+--Lines coverage: 
 
 ### Controller
 --Class coverage: 100% 
