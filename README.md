@@ -70,3 +70,14 @@ To execute CLI please duble click the jar file or run the following command
 ```
 java -jar CLIGC37.jar 
 ```
+
+## Coverage
+### Model
+--Class coverage: 100% 
+--Methods coverage: 99%
+--Lines coverage: 96%
+
+### Controller
+--Class coverage: 100% 
+--Methods coverage: 100%
+--Lines coverage: 91%
