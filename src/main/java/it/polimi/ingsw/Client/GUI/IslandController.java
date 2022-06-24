@@ -16,9 +16,13 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -88,7 +92,7 @@ public class IslandController extends Showable
     @FXML
     private Text inibCount1,inibCount2,inibCount3,inibCount4,inibCount5,inibCount6,inibCount7,inibCount8,inibCount9,inibCount10,inibCount11,inibCount12;
     @FXML
-    private ImageView overPriceCC1,overPriceCC2,overPriceCC3;
+    private ImageView overPriceCC1,overPriceCC2,overPriceCC3,sound;
     @FXML
     private ImageView lumIs1,lumIs2,lumIs3,lumIs4,lumIs5,lumIs6,lumIs7,lumIs8,lumIs9,lumIs10,lumIs11,lumIs12;
     @FXML
@@ -131,7 +135,7 @@ public class IslandController extends Showable
     private ModelMessage game;
     private ReceiverGui receiver;
     private String nickName;
-    private boolean ccIslandChoice;
+    private boolean ccIslandChoice,soundState;
     private int cardSelected;
     private Image whiteT = new Image("wt.png");
     private Image blackT = new Image("bt.png");
@@ -153,6 +157,10 @@ public class IslandController extends Showable
     private Image card10 = new Image("CarteTOT_front10.jpg");
     private Image card11 = new Image("CarteTOT_front11.jpg");
     private Image card12 = new Image("CarteTOT_front12.jpg");
+A    private Image soundON = new Image("SoundON.png");
+    private Image soundOFF = new Image("SoundOFF.png");
+    private Media media;
+    private MediaPlayer mediaPlayer;
 
     /**
      * This method associates each parameter of the fxml file in
@@ -163,10 +171,25 @@ public class IslandController extends Showable
     public void initialize()
     {
         ccIslandChoice=false;
+        soundState=false;
         cardSelected=-1;
         this.game= GUI.getInstance().getModel();
         receiver= GUI.getInstance().getReceiver();
         nickName= GUI.getInstance().getNickName();
+
+        try {
+            media = new Media(new File(getClass().getClassLoader().getResource("soundTrack.mp3").toURI()).toURI()
+                    .toString());
+        }catch(URISyntaxException|NullPointerException e){
+            media = null;
+        }
+        sound.setVisible(false);
+        if(media!=null)
+        {
+            sound.setVisible(true);
+            mediaPlayer = new MediaPlayer(media);
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        }
 
         characterCards.put(1, characterCard1);
         characterCards.put(2, characterCard2);
@@ -1704,6 +1727,24 @@ public class IslandController extends Showable
         FXMLLoader loader= new FXMLLoader(getClass().getClassLoader().getResource("dashboardsGameScreen.fxml"));
         try{ scene= loader.load(); }catch (IOException e1){ throw new RuntimeException(); }
         ((DashboardController)loader.getController()).initialize(scene, game.getPlayerList().get(3).getuID());
+    }
+
+    /**
+     * This method is a music player that can be turned on and off from the island screen
+     */
+    @FXML
+    public void setSoundOnOff()
+    {
+        if(!soundState){
+            soundState=true;
+            sound.setImage(soundON);
+            mediaPlayer.play();
+        }
+        else{
+            soundState=false;
+            sound.setImage(soundOFF);
+            mediaPlayer.pause();
+        }
     }
 
     /**
