@@ -41,12 +41,10 @@ The CODE is opensource, Graphical resources (Images, GameBoard, Cards...) instea
 * CLI
 * Simplified rules 
 * Socket
-### Advanced Functionalities (3FA + Some extra)
+### Advanced Functionalities
 * MultiMatch
 * All 12 character cards 
 * Multiplayer till 4 players game 
-* EXTRA:
-   * Stoppable music in game
 
 ## JAR 
 [Download JAR]()
