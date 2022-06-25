@@ -50,21 +50,21 @@ The CODE is opensource, Graphical resources (Images, GameBoard, Cards...) instea
 [Download JAR]()
 ## Server
 ### Excecution:
-To execute Server please duble click the jar file or run the following command
+To execute Server please double click the jar file or run the following command
 ```
 java -jar ServerGC37.jar 
 ```
 
 ## GUI
 ### Excecution:
-To execute GUI please duble click the jar file or run the following command
+To execute GUI please double click the jar file or run the following command
 ```
 java -jar GUIGC37.jar 
 ```
 
 ## CLI
 ### Excecution:
-To execute CLI please duble click the jar file or run the following command
+To execute CLI please double click the jar file or run the following command
 ```
 java -jar CLIGC37.jar 
 ```
