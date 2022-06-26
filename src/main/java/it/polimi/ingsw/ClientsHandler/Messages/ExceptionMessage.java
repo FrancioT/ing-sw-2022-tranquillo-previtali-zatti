@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class ExceptionMessage implements Serializable
 {
-    String message;
-    boolean fatal;
+    private String message;
+    private boolean fatal;
     static final long serialVersionUID= 31000L;
     public ExceptionMessage(String message, boolean fatalFlag)
     {

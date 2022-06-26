@@ -16,10 +16,16 @@ public abstract class Message implements Serializable
     protected Message(String uID) { this.uID=uID; }
 
     /**
-     * Method that sets the datas needed for an action in the DataBuffer
-     * @param dataBuffer the DataBuffer where the datas received will be stored
+     * Method that sets the data needed for an action in the DataBuffer
+     * @param dataBuffer the DataBuffer where the data received will be stored
      */
     public abstract void handle(DataBuffer dataBuffer);
+
+    /**
+     * Method that checks if the dataBuffer which the method handle is trying to fill, is coherent with the
+     * uID in the message (must be called at the beginning of the handle method)
+     * @param dataBuffer
+     */
     protected void checkDataBuffer(DataBuffer dataBuffer)
     {
         if(dataBuffer==null)

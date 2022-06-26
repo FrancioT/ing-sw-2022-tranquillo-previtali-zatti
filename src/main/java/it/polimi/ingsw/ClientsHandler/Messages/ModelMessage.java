@@ -69,6 +69,11 @@ public class ModelMessage implements Serializable
     public boolean isExpertMode() { return expertModeFlag; }
     public boolean hasGameEnded() { return gameEndedFlag; }
     public Phase getPhase() { return phase; }
+
+    /**
+     * Check if the ModelMessage is an update of the Model or an error
+     * @return true if the ModelMessage represent an error message
+     */
     public boolean errorStatus() { return error!=null; }
     public ExceptionMessage getErrorMessage() { return error; }
 }

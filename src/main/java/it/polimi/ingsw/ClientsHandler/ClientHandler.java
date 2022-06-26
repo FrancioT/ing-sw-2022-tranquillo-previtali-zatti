@@ -102,7 +102,7 @@ public class ClientHandler extends Thread implements PingWaiter
     }
 
     /**
-     * @return true if a pong has been received, false if not
+     * @return true if a pong has been received between the last call of this method and this one
      */
     @Override
     public synchronized boolean getPing()
