@@ -20,10 +20,9 @@ The CODE is opensource, Graphical resources (Images, GameBoard, Cards...) instea
 
 ### UML
 
-* [Initial]()
-* [Final]()
-* [HighLevel Summary]()
-* [Network Architecture]()
+* [Detailed UML](https://github.com/ZattiAndrea/ing-sw-2022-tranquillo-previtali-zatti/tree/master/deliverables/UML/DetailedUML)
+* [HighLevel UML](https://github.com/ZattiAndrea/ing-sw-2022-tranquillo-previtali-zatti/tree/master/deliverables/UML/HighLevelUML)
+* [Sequence diagrams](https://github.com/ZattiAndrea/ing-sw-2022-tranquillo-previtali-zatti/tree/master/deliverables/Sequence%20Diagrams)
 
 ### Librerie e Plugins
 
