@@ -1,5 +1,7 @@
 # Progetto Ingegneria del Software 2021-2022
 
+![alt text](https://github.com/ZattiAndrea/ing-sw-2022-tranquillo-previtali-zatti/blob/master/src/resources/SfondoMenuIniziale.jpg)
+
 Implementazione del gioco da tavolo "Eriantys".\
 Il progetto consiste nella realizzazione digitale e multiplayer del gioco.\
 L'architettura generale consiste in un applicativo "SERVER" che ospita diverse partite ognuna con multipli "CLIENTS".\
