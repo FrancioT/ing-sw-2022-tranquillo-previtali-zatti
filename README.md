@@ -13,7 +13,7 @@ From a gameplay point of view the users can have either a CLI (Client terminal) 
 
 We also want to leave the official requirements given to us at the begin of the project
 
-* [Requirements](https://github.com/FrancioT)
+* [Requirements](https://github.com/ZattiAndrea/ing-sw-2022-tranquillo-previtali-zatti/blob/master/deliverables/Requirements/requirements.pdf)
 
 ## Authors
 
