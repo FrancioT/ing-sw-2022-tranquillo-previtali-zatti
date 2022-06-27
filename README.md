@@ -2,14 +2,18 @@
 
 ![alt text](https://github.com/ZattiAndrea/ing-sw-2022-tranquillo-previtali-zatti/blob/master/src/resources/SfondoMenuIniziale.jpg)
 
-Implementazione del gioco da tavolo "Eriantys".\
-Il progetto consiste nella realizzazione digitale e multiplayer del gioco.\
-L'architettura generale consiste in un applicativo "SERVER" che ospita diverse partite ognuna con multipli "CLIENTS".\
-L'approccio utilizzato per realizzare l'app è del tipo MVC (ModelViewControl) in cui appunto i dati, la vista e la logica sono concettualmente separate.
+"Eriantys" Board game implementation.\
+The progject concerns the digitization and online gaming of "Eriantys".\
+The main architecture consists of a "SERVER" application that hosts several games each with multiple "CLIENTS".\
+The approach used to create the app is MVC (ModelViewControl) in which the data, the view and the logic are conceptually separated. 
 
-A livello di gameplay invece gli utenti potranno disporre di un client CLI (terminale) oppure di un client GUI (interfaccia grafica).
+From a gameplay point of view the users can have either a CLI (Client terminal) or a GUI (Client graphical interface).
 
-voglio aggiungere i link alle specifiche in pdf vere date da loro
+## Initial requirements
+
+We also want to leave the official requirements given to us at the begin of the project
+
+* [Requirements](https://github.com/FrancioT)
 
 ## Authors
 
