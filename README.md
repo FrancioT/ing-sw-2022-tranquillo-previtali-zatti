@@ -9,6 +9,8 @@ L'approccio utilizzato per realizzare l'app è del tipo MVC (ModelViewControl) i
 
 A livello di gameplay invece gli utenti potranno disporre di un client CLI (terminale) oppure di un client GUI (interfaccia grafica).
 
+voglio aggiungere i link alle specifiche in pdf vere date da loro
+
 ## Authors
 
 * [Francesco Maria Tranquillo](https://github.com/FrancioT)
