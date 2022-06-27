@@ -54,7 +54,10 @@ The CODE is opensource, Graphical resources (Images, GameBoard, Cards...) instea
 * Multiplayer till 4 players game 
 
 ## JAR 
-[Download JAR]()
+[Download Server JAR]()
+[Download GUI JAR]()
+[Download CLI JAR]()
+
 ## Server
 ### Excecution:
 To execute Server please double click the jar file or run the following command
