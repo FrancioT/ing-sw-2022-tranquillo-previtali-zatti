@@ -21,9 +21,6 @@ We also want to leave the official requirements given to us at the begin of the 
 * [Denis Previtali](https://github.com/Denis-Previtali)
 * [Andrea Zatti](https://github.com/ZattiAndrea)
 
-### Copyright
-The CODE is opensource, Graphical resources (Images, GameBoard, Cards...) instead are under copyright of  [Cranio Creations](http://www.craniocreations.it)
-
 ## Documentazione
 
 ### UML
@@ -90,3 +87,5 @@ java -jar CLIGC37.jar
 | -------------    | ------------- | ------------- | 
 | 100% | 100% | 91% |
 
+### Copyright
+The CODE is opensource, Graphical resources (Images, GameBoard, Cards...) instead are under copyright of  [Cranio Creations](http://www.craniocreations.it)
