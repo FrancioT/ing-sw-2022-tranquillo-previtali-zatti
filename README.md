@@ -50,7 +50,7 @@ We also want to leave the official requirements given to us at the begin of the 
 * Multiplayer till 4 players game 
 
 ## JAR 
-* .[Download Server]()
+* [Download Server]()
 * [Download Windows GUI](https://github.com/ZattiAndrea/ing-sw-2022-tranquillo-previtali-zatti/blob/master/deliverables/Jars/GUI_Windows.jar)
 * [Download CLI]()
 
