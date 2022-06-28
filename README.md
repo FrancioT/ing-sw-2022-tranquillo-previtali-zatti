@@ -68,6 +68,9 @@ To execute GUI please double click the jar file or run the following command
 ```
 java -jar GUI_Windows.jar 
 ```
+```
+java -jar GUI_Linux_Mac.jar 
+```
 
 ## CLI
 ### Excecution:
