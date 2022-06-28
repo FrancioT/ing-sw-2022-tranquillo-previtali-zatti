@@ -52,6 +52,7 @@ We also want to leave the official requirements given to us at the begin of the 
 ## JAR 
 * [Download Server](https://github.com/ZattiAndrea/ing-sw-2022-tranquillo-previtali-zatti/blob/master/deliverables/Jars/Server.jar)
 * [Download Windows GUI](https://github.com/ZattiAndrea/ing-sw-2022-tranquillo-previtali-zatti/blob/master/deliverables/Jars/GUI_Windows.jar)
+* [Download Linux and Mac GUI](https://github.com/ZattiAndrea/ing-sw-2022-tranquillo-previtali-zatti/blob/master/deliverables/Jars/GUI_Linux_Mac.jar)
 * [Download CLI](https://github.com/ZattiAndrea/ing-sw-2022-tranquillo-previtali-zatti/blob/master/deliverables/Jars/CLI.jar)
 
 ## Server
