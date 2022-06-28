@@ -50,29 +50,29 @@ We also want to leave the official requirements given to us at the begin of the 
 * Multiplayer till 4 players game 
 
 ## JAR 
-* [Download Server]()
+* [Download Server](https://github.com/ZattiAndrea/ing-sw-2022-tranquillo-previtali-zatti/blob/master/deliverables/Jars/Server.jar)
 * [Download Windows GUI](https://github.com/ZattiAndrea/ing-sw-2022-tranquillo-previtali-zatti/blob/master/deliverables/Jars/GUI_Windows.jar)
-* [Download CLI]()
+* [Download CLI](https://github.com/ZattiAndrea/ing-sw-2022-tranquillo-previtali-zatti/blob/master/deliverables/Jars/CLI.jar)
 
 ## Server
 ### Excecution:
 To execute Server please double click the jar file or run the following command
 ```
-java -jar ServerGC37.jar 
+java -jar Server.jar 
 ```
 
 ## GUI
 ### Excecution:
 To execute GUI please double click the jar file or run the following command
 ```
-java -jar GUIGC37.jar 
+java -jar GUI_Windows.jar 
 ```
 
 ## CLI
 ### Excecution:
 To execute CLI please double click the jar file or run the following command
 ```
-java -jar CLIGC37.jar 
+java -jar CLI.jar 
 ```
 
 ## Coverage
