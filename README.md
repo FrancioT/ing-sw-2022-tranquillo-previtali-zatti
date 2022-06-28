@@ -34,7 +34,6 @@ We also want to leave the official requirements given to us at the begin of the 
 | Libreria/Plugin  | Descrizione |
 | -------------    | ------------- |
 | Maven   | Tool to organize, simplify and automatize all JAVA app lifeCyle operations   |
-| JavaFX-Media   | JavaFX plugin to implement music in game                             |
 | JavaFX-FXML    | JavaFX plugin to implement fxml files for graphics layouts                         |
 | JavaFX-Graphics  | Graphic interface library                                                                    | 
 
