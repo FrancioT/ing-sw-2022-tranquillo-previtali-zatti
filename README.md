@@ -3,7 +3,7 @@
 ![alt text](https://github.com/ZattiAndrea/ing-sw-2022-tranquillo-previtali-zatti/blob/master/src/resources/SfondoMenuIniziale.jpg)
 
 "Eriantys" Board game implementation.\
-The progject concerns the digitization and online gaming of "Eriantys".\
+The project concerns the digitization and online gaming of "Eriantys".\
 The main architecture consists of a "SERVER" application that hosts several games each with multiple "CLIENTS".\
 The approach used to create the app is MVC (ModelViewControl) in which the data, the view and the logic are conceptually separated. 
 
@@ -51,7 +51,7 @@ We also want to leave the official requirements given to us at the begin of the 
 
 ## JAR 
 * .[Download Server JAR]()
-* [Download GUI JAR]()
+* [Download Windows GUI JAR](https://github.com/ZattiAndrea/ing-sw-2022-tranquillo-previtali-zatti/blob/master/deliverables/Jars/GUI_Windows.jar)
 * [Download CLI JAR]()
 
 ## Server
